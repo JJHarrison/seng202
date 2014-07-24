@@ -33,7 +33,7 @@ public class JavaFx extends Application {
       //The primaryStage is the top-level container
       primaryStage.setTitle("Example Gui");
       primaryStage.centerOnScreen();
-      primaryStage.getIcons().add(new Image("test/home.png"));
+     // primaryStage.getIcons().add(new Image("test/home.png"));
       
 
       //The BorderPane has the same areas laid out as the
