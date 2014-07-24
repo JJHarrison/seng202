@@ -1,5 +1,6 @@
 
 
+
 //Imports are listed in full to show what's being used could just import javafx.*
 import javafx.application.Application;
 import javafx.collections.FXCollections;
