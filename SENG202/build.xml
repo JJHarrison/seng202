@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="Ant-Test" default="main" basedir=".">
+  <property name="src.dir" location="src" />
+  <property name="build.dir" location="bin" />
+  <!-- Variables used for JUnit testing -->
+  <property name="test.dir" location="src" />
+  <property name="test.report.dir" location="testreport" />
+  <!-- Define the classpath which includes the junit.jar and the classes
+after compiling-->
+<path id="junit.class.path">
+<!-- This is the location of the junit jar on the lab machines. --> <!--you may need to download junit and change the location to reflect where you have copied junit into your repository-->
+    <pathelement location="/usr/share/java/junit-3.8.2.jar" />
+    <pathelement location="${build.dir}" />
+  </path>
+ <target name="clean">
+    <delete dir="${build.dir}" />
+    <delete dir="${test.report.dir}" />
+</target>
+  <target name="makedir">
+    <mkdir dir="${build.dir}" />
+    <mkdir dir="${test.report.dir}" />
+  </target>
+  <!-- Compiles the java code (including the usage of library for JUnit -->
+<target name="compile" depends="clean, makedir">
+    <javac srcdir="${src.dir}" destdir="${build.dir}">
+      <classpath refid="junit.class.path" />
+    </javac>
+</target>
+  <!-- Run the JUnit Tests -->
+  <!-- Output is XML, could also be plain-->
+  <target name="junit" depends="compile">
+    <junit printsummary="on" fork="true" haltonfailure="yes">
+      <classpath refid="junit.class.path" />
+      <formatter type="xml" />
+      <batchtest todir="${test.report.dir}">
+        <fileset dir="${src.dir}">
+          <!-- only test classes which end with the word ‘Test’ name-->
+          <include name="**/*Test.java" />
+        </fileset>
+      </batchtest>
+    </junit>
+</target>
+  <target name="main" depends="compile, junit">
+    <description>Main target</description>
+  </target>
+</project>
