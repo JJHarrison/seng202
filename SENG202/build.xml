@@ -9,7 +9,7 @@
 after compiling-->
 <path id="junit.class.path">
 <!-- This is the location of the junit jar on the lab machines. --> <!--you may need to download junit and change the location to reflect where you have copied junit into your repository-->
-    <pathelement location="/usr/share/java/junit-3.8.2.jar" />
+    <pathelement location="lib/junit.jar" />
     <pathelement location="${build.dir}" />
   </path>
  <target name="clean">
