@@ -16,6 +16,7 @@ public class FileLoader {
 		System.out.println("File Loaded\n");
 		
 		//print out events and their date
+		// a
 		for(int i = 0; i < fl.events.size(); i++){
 			System.out.println("Speed is: " + fl.events.get(i).points.get(3).speed);
 			System.out.println("Time is: " + fl.events.get(i).points.get(3).dTime);
