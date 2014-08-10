@@ -6,9 +6,4 @@ public class MyClass {
 		System.out.print(false);
 		System.out.println(true);
 	}
-	
-	@Deprecated
-	public static void print__() {
-		System.out.print(false);
-	}
 }
