@@ -4,10 +4,11 @@ import dataModel.Event;
 import junit.framework.TestCase;
 
 public class EventTest extends TestCase {
+	Event e;
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-        Event e = new Event("My Event");
+        e = new Event("My Event");
         //e.setStartTime();
         //e.setFinishTime();
         //e.addDataPoint();

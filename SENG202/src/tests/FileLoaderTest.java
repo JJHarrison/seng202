@@ -1,13 +1,17 @@
 package tests;
 
-import dataModel.DataPoint;
+import dataImport.FileLoader;
 import junit.framework.TestCase;
 
 public class FileLoaderTest extends TestCase {
+	FileLoader fl;
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-        DataPoint point = new DataPoint("01/01/2014", "12:00:00", "100", "1000", "1000", "50", 10.5, 30);
+        fl = new FileLoader();
+		fl.load();
         System.out.println("setup");
     }
+	
+	
 }
