@@ -1,4 +1,4 @@
-package dataImport;
+/**package dataImport;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -106,4 +106,4 @@ public class FileLoader {
 		return distance;
 	}
 
-}
+}*/

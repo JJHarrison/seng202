@@ -1,56 +1,91 @@
 package dataModel;
 
-import java.util.Date;
+import java.util.Calendar;
 
+/**
+ * 
+ * @author FitrTeam
+ */
 public class DataPoint {
-	private Date date;
+	private Calendar date;
 	private int heartRate;
-	private double lat;
-	private double lon;
-	private double alt;
-	private DataPoint lastPoint;
-	private float speed;
+	private double latitude;
+	private double longitude;
+	private double altitude;
+	private double speed;
 	private double distance;
-	private float dTime;
 	
-	public DataPoint(Date date, int heartrate, double lat, double lon, double alt, DataPoint lastPoint){
+	/**
+	 * Constructor.
+	 * @param date The current date at this point.
+	 * @param heartrate The current heart rate at this point.
+	 * @param latitude The current latitude at this point.
+	 * @param longitude The current longitude at this point.
+	 * @param altitude The current altitude at this point.
+	 * @param lastPoint The previous point, used for distance calculations.
+	 */
+	public DataPoint(Calendar date, int heartrate, double latitude, double longitude, double altitude, DataPoint lastPoint) {
 		this.date = date;
 		this.heartRate = heartrate;
-		this.lat =lat;
-		this.lon = lon;
-		this.alt = alt;
-		this.lastPoint = lastPoint;
-		this.speed = calculateSpeed();
-		this.distance = calculateDistance();
-		this.dTime = calculate_dTime();
-	}
-
-	private float calculate_dTime() {
-		return dTime;
-		// TODO Auto-generated method stub
-		
-	}
-
-	private double calculateDistance() {
-		return distance;
-		// TODO Auto-generated method stub
-		
-	}
-
-	private float calculateSpeed() {
-		return speed;
-		// TODO Auto-generated method stub
-		
+		this.latitude =latitude;
+		this.longitude = longitude;
+		this.altitude = altitude;
+		if (lastPoint != null) {
+			this.distance = calculateDistance(lastPoint);
+			this.speed = calculateSpeed(calculateDeltaTime(lastPoint));
+		} else {
+			this.distance = 0.0;
+			this.speed = 0.0;
+		}
 	}
 
 	/**
+	 * Calculates the change in time between two points.
+	 * @param lastPoint The point previous to this point in an event.
+	 * @return The change in time (seconds).
+	 */
+	private long calculateDeltaTime(DataPoint lastPoint) {
+		long previousTime = lastPoint.getDate().getTimeInMillis();
+		return ((date.getTimeInMillis() - previousTime) / 1000);
+	}
+	
+	private double calculateDistance(DataPoint lastPoint) {
+		double distance = 0;
+		double radius = 6373 * 1000; // Converted to meters
+		double latPrev = lastPoint.latitude;
+		double lonPrev = lastPoint.longitude;
+		
+		double deltaLat = latPrev - latitude;
+		double deltaLon = lonPrev - longitude;
+		
+		double a = Math.pow(Math.sin(Math.toRadians(deltaLat / 2)), 2) + (Math.cos(Math.toRadians(latitude))
+				* Math.cos(Math.toRadians(latPrev)) * Math.pow(Math.sin(Math.toRadians(deltaLon / 2)),2));
+		
+		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
+		distance = radius * c;
+		
+		return distance;
+	}
+	
+	/**
+	 * 
+	 * @param deltaTime The between two data points
+	 * @return The average speed between two points
+	 */
+	private double calculateSpeed(long deltaTime) {
+		return (distance / deltaTime);
+	}
+
+	/**
+	 * Gets the date at a particular point.
 	 * @return the date
 	 */
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
 	/**
+	 * Gets the heart rate at a particular point.
 	 * @return the heartRate
 	 */
 	public int getHeartRate() {
@@ -58,52 +93,42 @@ public class DataPoint {
 	}
 
 	/**
+	 * Gets the latitude at a particular point.
 	 * @return the latitude
 	 */
-	public double getLat() {
-		return lat;
+	public double getLatitude() {
+		return latitude;
 	}
 
 	/**
+	 * Gets the longitude at a particular point.
 	 * @return the longitude
 	 */
-	public double getLon() {
-		return lon;
+	public double getLongitude() {
+		return longitude;
 	}
 
 	/**
+	 * Gets the altitude at a particular point.
 	 * @return the altitude
 	 */
-	public double getAlt() {
-		return alt;
+	public double getAltitude() {
+		return altitude;
 	}
 	
 	/**
+	 * Gets the average speed (m/s) from the previous point to this point.
 	 * @return the speed
 	 */
-	public float getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
 	/**
+	 * Gets the distance (m) from the previous point to this point.
 	 * @return the distance
 	 */
 	public double getDistance() {
 		return distance;
 	}
-
-	/**
-	 * @return the dTime
-	 */
-	public float getdTime() {
-		return dTime;
-	}
-
-	/**
-	 * @return the lastPoint
-	 */
-	public DataPoint getLastPoint() {
-		return lastPoint;
-	}
-	
 }
