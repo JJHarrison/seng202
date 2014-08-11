@@ -6,11 +6,11 @@ import java.util.Calendar;
 import dataModel.DataPoint;
 
 public class Event {
-	public String eventName;
-	public Calendar startTime;
-	public Calendar finishTime;
-	public String data;
-	public ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+	private String eventName;
+	private Calendar startTime;
+	private Calendar finishTime;
+	private String data;
+	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
 	/**
 	 * Constructor.

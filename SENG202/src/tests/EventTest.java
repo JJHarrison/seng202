@@ -1,15 +1,15 @@
 package tests;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import dataModel.Event;
 import dataModel.DataPoint;
-
 import junit.framework.TestCase;
 
 public class EventTest extends TestCase {
-	Event e;
-	ArrayList<DataPoint> points;
+	private Event e;
+	private ArrayList<DataPoint> points;
 	
 	@Override
     protected void setUp() throws Exception {
