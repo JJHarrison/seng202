@@ -1,4 +1,4 @@
-package fileHandler;
+package dataModel;
 
 import java.util.ArrayList;
 

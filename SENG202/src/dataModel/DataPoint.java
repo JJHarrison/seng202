@@ -1,4 +1,4 @@
-package fileHandler;
+package dataModel;
 
 public class DataPoint {
 	String date;
