@@ -20,12 +20,25 @@ public class DataPoint {
 		this.lon = lon;
 		this.alt = alt;
 		this.lastPoint = lastPoint;
-		calculateSpeed();
-		calculateDistance();
-		calculatedTime();
+		this.speed = calculateSpeed();
+		this.distance = calculateDistance();
+		this.dTime = calculate_dTime();
 	}
 
-	private void calculateSpeed() {
+	private float calculate_dTime() {
+		return dTime;
+		// TODO Auto-generated method stub
+		
+	}
+
+	private double calculateDistance() {
+		return distance;
+		// TODO Auto-generated method stub
+		
+	}
+
+	private float calculateSpeed() {
+		return speed;
 		// TODO Auto-generated method stub
 		
 	}
