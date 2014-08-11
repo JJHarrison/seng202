@@ -19,7 +19,6 @@ public class FileLoader {
 		System.out.println("File Loaded\n");
 		
 		//print out events and their date
-		// a
 		for(int i = 0; i < fl.events.size(); i++){
 			System.out.println("Speed is: " + fl.events.get(i).points.get(3).speed);
 			System.out.println("Time is: " + fl.events.get(i).points.get(3).dTime);
@@ -88,7 +87,7 @@ public class FileLoader {
 		// returns the distance between the current data point and the previous data point
 		// this doesn't  give the right distance 
 		double distance = 0;
-		double radius = 6373 * 1000;
+		double radius = 6373;
 		double lat2 = Double.parseDouble(lastLat);
 		double lat1 = Double.parseDouble(currentLat);
 		
