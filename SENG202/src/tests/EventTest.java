@@ -1,13 +1,34 @@
 package tests;
 
-import dataModel.DataPoint;
+import dataModel.Event;
 import junit.framework.TestCase;
 
 public class EventTest extends TestCase {
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
-        DataPoint point = new DataPoint("01/01/2014", "12:00:00", "100", "1000", "1000", "50", 10.5, 30);
+        Event e = new Event("My Event");
+        //e.setStartTime();
+        //e.setFinishTime();
+        //e.addDataPoint();
+        //e.addDataPoint();
         System.out.println("setup");
+        
     }
+	
+	public void testGetEventName() {
+		assertEquals(e.getEventName(), "My Event");
+	}
+	
+	public void testGetStartTime() {
+		//assertEquals();
+	}
+	
+	public void testGetFinishTime() {
+		//assertEquals();
+	}
+	
+	public void testGetDataPoints() {
+		//assertEquals();
+	}
 }
