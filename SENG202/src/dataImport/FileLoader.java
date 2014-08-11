@@ -23,12 +23,12 @@ public class FileLoader {
 		
 		//print out events and their date
 		for(int i = 0; i < fl.events.size(); i++){
-			System.out.println("Speed is: " + fl.events.get(i).points.get(3).speed);
-			System.out.println("Time is: " + fl.events.get(i).points.get(3).dTime);
-			System.out.println("distance is: " + fl.events.get(i).points.get(3).distance);
+			System.out.println("Speed is: " + fl.events.get(i).points.get(3).getSpeed());
+			System.out.println("Time is: " + fl.events.get(i).points.get(3).getdTime());
+			System.out.println("distance is: " + fl.events.get(i).points.get(3).getDistance());
 			//System.out.println(fl.events.get(i).points.get(3).dTime);
 			System.out.println(fl.events.get(i).eventName + "\n");
-			d += fl.events.get(i).points.get(3).distance;
+			d += fl.events.get(i).points.get(3).getDistance();
 		}
 		System.out.print(d);
 		
@@ -43,7 +43,7 @@ public class FileLoader {
 		String line = "";
 		String split = ",";
 		Event currentEvent = new Event("");
-		DataPoint lastPoint = new DataPoint("0", "0:0:0", "0", "0", "0", "0", 0, 0);
+		DataPoint lastPoint = new DataPoint(null, 0, 0, 0, 0, 0, 0);
 		
 		try {
 			br = new BufferedReader(new InputStreamReader(stream));
@@ -54,8 +54,8 @@ public class FileLoader {
 					currentEvent = new Event(dataLine[1]);
 					events.add(currentEvent);
 				} else {
-					double distance = getDistance(dataLine[3], dataLine[4], lastPoint.lat, lastPoint.lon);
-					int time = getTime(dataLine[1], lastPoint.time);
+					double distance = getDistance(dataLine[3], dataLine[4], lastPoint.getLat(), lastPoint.getLon());
+					int time = getTime(dataLine[1], lastPoint.getTime());
 					DataPoint p = new DataPoint(dataLine[0], dataLine[1], dataLine[2], dataLine[3], dataLine[4], dataLine[5], distance, time);
 					lastPoint = p;
 					currentEvent.points.add(p);
@@ -86,15 +86,15 @@ public class FileLoader {
 		return dTime;
 	}
 	
-	private double getDistance(String currentLat, String currentLon, String lastLat, String lastLon) {
+	private double getDistance(String currentLat, String currentLon, double d, double e) {
 		// returns the distance between the current data point and the previous data point
 		// this doesn't  give the right distance 
 		double distance = 0;
 		double radius = 6373 * 1000;
-		double lat2 = Double.parseDouble(lastLat);
+		double lat2 = Double.parseDouble(d);
 		double lat1 = Double.parseDouble(currentLat);
 		
-		double dlon = Float.parseFloat(currentLon) - Float.parseFloat(lastLon);
+		double dlon = Float.parseFloat(currentLon) - Float.parseFloat(e);
 		double dlat = lat1 - lat2; 
 		
 		double a = Math.pow(Math.sin(Math.toRadians(dlat / 2)), 2) + (Math.cos(Math.toRadians(lat1))
