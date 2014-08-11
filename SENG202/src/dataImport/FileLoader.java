@@ -108,6 +108,3 @@ public class FileLoader {
 	}
 
 }*/
-=======
-}
->>>>>>> branch 'master' of https://bitbucket.org/simoncrequer/seng202_2014_team5.git
