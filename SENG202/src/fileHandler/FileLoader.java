@@ -1,10 +1,16 @@
 package fileHandler;
 
+import java.beans.EventSetDescriptor;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import sun.misc.IOUtils;
 
 
 public class FileLoader {
@@ -13,6 +19,7 @@ public class FileLoader {
 	public static void main(String[] args) {
 		FileLoader fl = new FileLoader();
 		fl.load();
+		double d = 0;
 		System.out.println("File Loaded\n");
 		
 		//print out events and their date
@@ -23,14 +30,17 @@ public class FileLoader {
 			System.out.println("distance is: " + fl.events.get(i).points.get(3).distance);
 			//System.out.println(fl.events.get(i).points.get(3).dTime);
 			System.out.println(fl.events.get(i).eventName + "\n");
+			d += fl.events.get(i).points.get(3).distance;
 		}
+		System.out.print(d);
 		
 		
 	}
 	
 	
 	public void load() {
-		String file = "/Users/SamSchofield/Desktop/UNI/semester_2/SENG_202/Assignment/Data/seng202_2014_example_data.csv";
+		InputStream stream = FileLoader.class.getResourceAsStream("seng202_2014_example_data.csv");
+		
 		BufferedReader br = null;
 		String line = "";
 		String split = ",";
@@ -38,7 +48,7 @@ public class FileLoader {
 		DataPoint lastPoint = new DataPoint("0", "0:0:0", "0", "0", "0", "0", 0, 0);
 		
 		try {
-			br = new BufferedReader(new FileReader(file));
+			br = new BufferedReader(new InputStreamReader(stream));
 			while((line = br.readLine()) != null) {
 				String[] dataLine = line.split(split);
 				

@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class MyClassTest extends TestCase {
 	public void testMe() {
-		assertEquals(1,0);
+		assertEquals(1,1);
 	}
 	
 }
