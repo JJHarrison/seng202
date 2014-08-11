@@ -2,6 +2,11 @@ package dataModel;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Sam, Jaln
+ *
+ */
 public class DataPoint {
 	private Date date;
 	private int heartRate;
@@ -11,7 +16,15 @@ public class DataPoint {
 	private double speed;
 	private double distance;
 	private long dTime;
-	
+	/**
+	 * 
+	 * @param date
+	 * @param heartrate
+	 * @param lat
+	 * @param lon
+	 * @param alt
+	 * @param lastPoint
+	 */
 	public DataPoint(Date date, int heartrate, double lat, double lon, double alt, DataPoint lastPoint){
 		this.date = date;
 		this.heartRate = heartrate;
@@ -23,6 +36,10 @@ public class DataPoint {
 		this.dTime = calculate_dTime(lastPoint);
 	}
 
+	/**
+	 * @return the dTime
+	 * Calculates the difference in time, in seconds, by using previous points time   
+	 */
 	private long calculate_dTime(DataPoint lastPoint) {
 		// Returns the time difference between the previous and last data points in seconds
 		
@@ -30,23 +47,23 @@ public class DataPoint {
 		
 		return dTime;
 	}
-
+	
+	/**
+	 * @return the distance
+	 * Calculates the speed, in metres, by using the previous points longitude and latitude
+	 * and appropriate function to take into account the curvature of the earth.   
+	 */
 	private double calculateDistance(DataPoint lastPoint) {
-		// TODO Get Sam to look at and help explain the equation? Unless this gets done.
 		// Returns the distance between the current data point and the previous data point
 		// This method doesn't currently give the right distance. 
 		
-		
-		double distance = 0;
 		double radius = 6373 * 1000;
-		double lat2 = Double.parseDouble(d);
-		double lat1 = Double.parseDouble(lat);
 		
-		double dlon = Float.parseFloat(lon) - Float.parseFloat(e);
-		double dlat = lat1 - lat2; 
+		double dlon = lon - lastPoint.getLon();
+		double dlat = lat - lastPoint.getLat();
 		
-		double a = Math.pow(Math.sin(Math.toRadians(dlat / 2)), 2) + (Math.cos(Math.toRadians(lat1))
-				* Math.cos(Math.toRadians(lat2)) * Math.pow(Math.sin(Math.toRadians(dlon / 2)),2));
+		double a = Math.pow(Math.sin(Math.toRadians(dlat / 2)), 2) + (Math.cos(Math.toRadians(lat))
+				* Math.cos(Math.toRadians(lastPoint.getLat())) * Math.pow(Math.sin(Math.toRadians(dlon / 2)),2));
 		
 		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
 				distance = radius * c;
