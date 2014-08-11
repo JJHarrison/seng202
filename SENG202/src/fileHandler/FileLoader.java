@@ -87,7 +87,7 @@ public class FileLoader {
 		// returns the distance between the current data point and the previous data point
 		// this doesn't  give the right distance 
 		double distance = 0;
-		double radius = 6373;
+		double radius = 6373 * 1000;
 		double lat2 = Double.parseDouble(lastLat);
 		double lat1 = Double.parseDouble(currentLat);
 		
