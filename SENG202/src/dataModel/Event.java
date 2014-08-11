@@ -3,6 +3,8 @@ package dataModel;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import dataModel.DataPoint;
+
 public class Event {
 	public String eventName;
 	public Calendar startTime;
