@@ -43,7 +43,7 @@ public class FileLoader {
 		String line = "";
 		String split = ",";
 		Event currentEvent = new Event("");
-		DataPoint lastPoint = new DataPoint(null, 0, 0, 0, 0, 0, 0);
+		DataPoint lastPoint = new DataPoint(null, 0, 0, 0, 0, null);
 		
 		try {
 			br = new BufferedReader(new InputStreamReader(stream));
@@ -71,39 +71,4 @@ public class FileLoader {
 			System.out.println("couldnt read line");
 		}
 	}
-	
-	private int getTime(String currentTime, String lastTime) {
-		// returns the time difference between the previous and last data points
-		// need to fix so that it works over midnight
-		int dTime = 0;
-		String[] cTime = currentTime.split(":");
-		String[] lTime = lastTime.split(":");
-		
-		int cTimeInSec = (Integer.parseInt(cTime[0]) * 60 * 60) + (Integer.parseInt(cTime[1]) * 60) + (Integer.parseInt(cTime[2]));
-		int lTimeInSec = (Integer.parseInt(lTime[0]) * 60 * 60) + (Integer.parseInt(lTime[1]) * 60) + (Integer.parseInt(lTime[2]));
-		
-		dTime = cTimeInSec - lTimeInSec;
-		return dTime;
-	}
-	
-	private double getDistance(String currentLat, String currentLon, double d, double e) {
-		// returns the distance between the current data point and the previous data point
-		// this doesn't  give the right distance 
-		double distance = 0;
-		double radius = 6373 * 1000;
-		double lat2 = Double.parseDouble(d);
-		double lat1 = Double.parseDouble(currentLat);
-		
-		double dlon = Float.parseFloat(currentLon) - Float.parseFloat(e);
-		double dlat = lat1 - lat2; 
-		
-		double a = Math.pow(Math.sin(Math.toRadians(dlat / 2)), 2) + (Math.cos(Math.toRadians(lat1))
-				* Math.cos(Math.toRadians(lat2)) * Math.pow(Math.sin(Math.toRadians(dlon / 2)),2));
-		
-		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
-		distance = radius * c;
-		
-		return distance;
-	}
-
 }

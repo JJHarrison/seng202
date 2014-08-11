@@ -8,10 +8,9 @@ public class DataPoint {
 	private double lat;
 	private double lon;
 	private double alt;
-	private DataPoint lastPoint;
-	private float speed;
+	private double speed;
 	private double distance;
-	private float dTime;
+	private long dTime;
 	
 	public DataPoint(Date date, int heartrate, double lat, double lon, double alt, DataPoint lastPoint){
 		this.date = date;
@@ -19,28 +18,50 @@ public class DataPoint {
 		this.lat =lat;
 		this.lon = lon;
 		this.alt = alt;
-		this.lastPoint = lastPoint;
 		this.speed = calculateSpeed();
-		this.distance = calculateDistance();
-		this.dTime = calculate_dTime();
+		this.distance = calculateDistance(lastPoint);
+		this.dTime = calculate_dTime(lastPoint);
 	}
 
-	private float calculate_dTime() {
+	private long calculate_dTime(DataPoint lastPoint) {
+		// Returns the time difference between the previous and last data points in seconds
+		
+		dTime = (this.getDate().getTime() - lastPoint.getDate().getTime()) * 1000;
+		
 		return dTime;
-		// TODO Auto-generated method stub
-		
 	}
 
-	private double calculateDistance() {
+	private double calculateDistance(DataPoint lastPoint) {
+		// TODO Get Sam to look at and help explain the equation? Unless this gets done.
+		// Returns the distance between the current data point and the previous data point
+		// This method doesn't currently give the right distance. 
+		
+		
+		double distance = 0;
+		double radius = 6373 * 1000;
+		double lat2 = Double.parseDouble(d);
+		double lat1 = Double.parseDouble(lat);
+		
+		double dlon = Float.parseFloat(lon) - Float.parseFloat(e);
+		double dlat = lat1 - lat2; 
+		
+		double a = Math.pow(Math.sin(Math.toRadians(dlat / 2)), 2) + (Math.cos(Math.toRadians(lat1))
+				* Math.cos(Math.toRadians(lat2)) * Math.pow(Math.sin(Math.toRadians(dlon / 2)),2));
+		
+		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
+				distance = radius * c;
+		
 		return distance;
-		// TODO Auto-generated method stub
-		
 	}
-
-	private float calculateSpeed() {
+	
+	/**
+	 * @return the speed
+	 * Calculates the speed by using the calculated distance and dTime   
+	 */
+	private double calculateSpeed() {
+		// Calculates the speed from the distance and change in time from the previous point.
+		speed = distance / dTime;
 		return speed;
-		// TODO Auto-generated method stub
-		
 	}
 
 	/**
@@ -81,7 +102,7 @@ public class DataPoint {
 	/**
 	 * @return the speed
 	 */
-	public float getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
@@ -97,13 +118,6 @@ public class DataPoint {
 	 */
 	public float getdTime() {
 		return dTime;
-	}
-
-	/**
-	 * @return the lastPoint
-	 */
-	public DataPoint getLastPoint() {
-		return lastPoint;
 	}
 	
 }
