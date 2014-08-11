@@ -1,4 +1,4 @@
-/**package dataImport;
+package dataImport;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -23,12 +23,12 @@ public class FileLoader {
 		
 		//print out events and their date
 		for(int i = 0; i < fl.events.size(); i++){
-			System.out.println("Speed is: " + fl.events.get(i).points.get(3).getSpeed());
-			System.out.println("Time is: " + fl.events.get(i).points.get(3).getdTime());
-			System.out.println("distance is: " + fl.events.get(i).points.get(3).getDistance());
+			System.out.println("Speed is: " + fl.events.get(i).getDataPoints().get(3).getSpeed());
+			System.out.println("Time is: " + fl.events.get(i).getDataPoints().get(3).getDeltaTime());
+			System.out.println("distance is: " + fl.events.get(i).getDataPoints().get(3).getDistance());
 			//System.out.println(fl.events.get(i).points.get(3).dTime);
-			System.out.println(fl.events.get(i).eventName + "\n");
-			d += fl.events.get(i).points.get(3).getDistance();
+			System.out.println(fl.events.get(i).getEventName() + "\n");
+			d += fl.events.get(i).getDataPoints().get(3).getDistance();
 		}
 		System.out.print(d);
 		
@@ -54,11 +54,12 @@ public class FileLoader {
 					currentEvent = new Event(dataLine[1]);
 					events.add(currentEvent);
 				} else {
-					double distance = getDistance(dataLine[3], dataLine[4], lastPoint.getLat(), lastPoint.getLon());
-					int time = getTime(dataLine[1], lastPoint.getTime());
+					double distance = getDistance(dataLine[3], dataLine[4], lastPoint.getLatitude(), lastPoint.getLongitude());
+					int time = getTime(dataLine[1], lastPoint.getDeltaTime());
+					// need to make this into new format
 					DataPoint p = new DataPoint(dataLine[0], dataLine[1], dataLine[2], dataLine[3], dataLine[4], dataLine[5], distance, time);
 					lastPoint = p;
-					currentEvent.points.add(p);
+					currentEvent.getDataPoints().add(p);
 				}
 				
 				
@@ -71,7 +72,6 @@ public class FileLoader {
 			System.out.println("couldnt read line");
 		}
 	}
-<<<<<<< HEAD
 	
 	private int getTime(String currentTime, String lastTime) {
 		// returns the time difference between the previous and last data points
@@ -107,4 +107,4 @@ public class FileLoader {
 		return distance;
 	}
 
-}*/
+}
