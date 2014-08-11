@@ -43,7 +43,7 @@ public class FileLoader {
 		String line = "";
 		String split = ",";
 		Event currentEvent = new Event("");
-		DataPoint lastPoint = new DataPoint(null, 0, 0, 0, 0, 0, 0);
+		DataPoint lastPoint = new DataPoint(null, 0, 0, 0, 0, null);
 		
 		try {
 			br = new BufferedReader(new InputStreamReader(stream));
@@ -71,6 +71,7 @@ public class FileLoader {
 			System.out.println("couldnt read line");
 		}
 	}
+<<<<<<< HEAD
 	
 	private int getTime(String currentTime, String lastTime) {
 		// returns the time difference between the previous and last data points
@@ -107,3 +108,6 @@ public class FileLoader {
 	}
 
 }*/
+=======
+}
+>>>>>>> branch 'master' of https://bitbucket.org/simoncrequer/seng202_2014_team5.git
