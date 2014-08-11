@@ -29,4 +29,5 @@ public class DataPointTest extends TestCase {
 		assertEquals(1.194953411338526, p2.getSpeed(), 1e-4);
 		assertEquals(0.0, p1.getSpeed(), 1e-10);
 	}
+	//Commnet
 }
