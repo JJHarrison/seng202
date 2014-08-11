@@ -1,4 +1,4 @@
-package src.dataModel;
+package dataModel;
 
 import java.util.ArrayList;
 
