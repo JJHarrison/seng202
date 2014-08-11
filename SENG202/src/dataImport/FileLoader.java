@@ -1,4 +1,4 @@
-package dataImport;
+package src.dataImport;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

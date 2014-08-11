@@ -1,4 +1,4 @@
-package dataModel;
+package src.dataModel;
 
 public class DataPoint {
 	String date;
