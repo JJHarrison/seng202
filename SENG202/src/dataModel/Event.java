@@ -3,9 +3,9 @@ package src.dataModel;
 import java.util.ArrayList;
 
 public class Event {
-	String eventName;
+	public String eventName;
 	String data;
-	ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+	public ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
 	public Event(String name){
 		eventName = name;
