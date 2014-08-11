@@ -4,16 +4,28 @@ import java.util.Calendar;
 
 /**
  * 
+<<<<<<< HEAD
  * @author FitrTeam
+=======
+ * @author Sam, Jaln
+ *
+>>>>>>> branch 'master' of https://bitbucket.org/simoncrequer/seng202_2014_team5.git
  */
 public class DataPoint {
 	private Calendar date;
 	private int heartRate;
+<<<<<<< HEAD
 	private double latitude;
 	private double longitude;
 	private double altitude;
+=======
+	private double lat;
+	private double lon;
+	private double alt;
+>>>>>>> branch 'master' of https://bitbucket.org/simoncrequer/seng202_2014_team5.git
 	private double speed;
 	private double distance;
+<<<<<<< HEAD
 	
 	/**
 	 * Constructor.
@@ -25,8 +37,22 @@ public class DataPoint {
 	 * @param lastPoint The previous point, used for distance calculations.
 	 */
 	public DataPoint(Calendar date, int heartrate, double latitude, double longitude, double altitude, DataPoint lastPoint) {
+=======
+	private long dTime;
+	/**
+	 * 
+	 * @param date
+	 * @param heartrate
+	 * @param lat
+	 * @param lon
+	 * @param alt
+	 * @param lastPoint
+	 */
+	public DataPoint(Date date, int heartrate, double lat, double lon, double alt, DataPoint lastPoint){
+>>>>>>> branch 'master' of https://bitbucket.org/simoncrequer/seng202_2014_team5.git
 		this.date = date;
 		this.heartRate = heartrate;
+<<<<<<< HEAD
 		this.latitude =latitude;
 		this.longitude = longitude;
 		this.altitude = altitude;
@@ -37,6 +63,59 @@ public class DataPoint {
 			this.distance = 0.0;
 			this.speed = 0.0;
 		}
+=======
+		this.lat =lat;
+		this.lon = lon;
+		this.alt = alt;
+		distance = calculateDistance(lastPoint);
+		dTime = calculate_dTime(lastPoint);
+		speed = calculateSpeed();
+	}
+
+	/**
+	 * @return the dTime
+	 * Calculates the difference in time, in seconds, by using previous points time   
+	 */
+	private long calculate_dTime(DataPoint lastPoint) {
+		// Returns the time difference between the previous and last data points in seconds
+		
+		dTime = (this.getDate().getTime() - lastPoint.getDate().getTime()) * 1000;
+		
+		return dTime;
+	}
+	
+	/**
+	 * @return the distance
+	 * Calculates the speed, in metres, by using the previous points longitude and latitude
+	 * and appropriate function to take into account the curvature of the earth.   
+	 */
+	private double calculateDistance(DataPoint lastPoint) {
+		// Returns the distance between the current data point and the previous data point
+		// This method doesn't currently give the right distance. 
+		
+		double radius = 6373 * 1000;
+		
+		double dlon = lon - lastPoint.getLon();
+		double dlat = lat - lastPoint.getLat();
+		
+		double a = Math.pow(Math.sin(Math.toRadians(dlat / 2)), 2) + (Math.cos(Math.toRadians(lat))
+				* Math.cos(Math.toRadians(lastPoint.getLat())) * Math.pow(Math.sin(Math.toRadians(dlon / 2)),2));
+		
+		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
+				distance = radius * c;
+		
+		return distance;
+	}
+	
+	/**
+	 * @return the speed
+	 * Calculates the speed by using the calculated distance and dTime   
+	 */
+	private double calculateSpeed() {
+		// Calculates the speed from the distance and change in time from the previous point.
+		speed = distance / dTime;
+		return speed;
+>>>>>>> branch 'master' of https://bitbucket.org/simoncrequer/seng202_2014_team5.git
 	}
 
 	/**
@@ -131,4 +210,15 @@ public class DataPoint {
 	public double getDistance() {
 		return distance;
 	}
+<<<<<<< HEAD
+=======
+
+	/**
+	 * @return the dTime
+	 */
+	public float getdTime() {
+		return dTime;
+	}
+	
+>>>>>>> branch 'master' of https://bitbucket.org/simoncrequer/seng202_2014_team5.git
 }
