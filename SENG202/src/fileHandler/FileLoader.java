@@ -1,16 +1,12 @@
 package fileHandler;
 
-import java.beans.EventSetDescriptor;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import sun.misc.IOUtils;
 
 
 public class FileLoader {
@@ -92,14 +88,16 @@ public class FileLoader {
 		// returns the distance between the current data point and the previous data point
 		// this doesn't  give the right distance 
 		double distance = 0;
-		double radius = 6373;
+		double radius = 6373 * 1000;
 		double lat2 = Double.parseDouble(lastLat);
 		double lat1 = Double.parseDouble(currentLat);
 		
 		double dlon = Float.parseFloat(currentLon) - Float.parseFloat(lastLon);
 		double dlat = lat1 - lat2; 
 		
-		double a = Math.pow(Math.sin(dlat / 2), 2) + (Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon / 2),2));
+		double a = Math.pow(Math.sin(Math.toRadians(dlat / 2)), 2) + (Math.cos(Math.toRadians(lat1))
+				* Math.cos(Math.toRadians(lat2)) * Math.pow(Math.sin(Math.toRadians(dlon / 2)),2));
+		
 		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
 		distance = radius * c;
 		
