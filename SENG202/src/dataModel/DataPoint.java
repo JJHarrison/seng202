@@ -31,9 +31,9 @@ public class DataPoint {
 		this.lat =lat;
 		this.lon = lon;
 		this.alt = alt;
-		this.speed = calculateSpeed();
-		this.distance = calculateDistance(lastPoint);
-		this.dTime = calculate_dTime(lastPoint);
+		distance = calculateDistance(lastPoint);
+		dTime = calculate_dTime(lastPoint);
+		speed = calculateSpeed();
 	}
 
 	/**
