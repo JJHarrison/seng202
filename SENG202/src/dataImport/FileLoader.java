@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import dataModel.DataPoint;
-import dataModel.Event;
+import src.dataModel.DataPoint;
+import src.dataModel.Event;
 
 
 
