@@ -7,6 +7,8 @@ public class Event {
 	public String eventName;
 	public Calendar startTime;
 	public Calendar finishTime;
+	public String data;
+	public ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
 	/**
 	 * Constructor.
@@ -16,11 +18,35 @@ public class Event {
 		this.eventName = eventName;
 	}
 	
-	String data;
-	public ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-	
 	public void printEvent(){
 		System.out.println(eventName);
 	}
-
+	
+	public void setStartTime(Calendar c) {
+		this.startTime = c;
+	}
+	
+	public void setFinishTime(Calendar c) {
+		this.finishTime = c;
+	}
+	
+	public void addDataPoint(DataPoint p) {
+		this.points.add(p);
+	}
+	
+	public String getEventName() {
+		return this.eventName;
+	}
+	
+	public Calendar getStartTime() {
+		return this.startTime;
+	}
+	
+	public Calendar getFinishTime() {
+		return this.finishTime;
+	}
+	
+	public ArrayList<DataPoint> getDataPoints() {
+		return this.points;
+	}
 }
