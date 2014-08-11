@@ -31,7 +31,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextArea id="eventAnalysis" editable="false" prefHeight="200.0" prefWidth="200.0" text="Total Time:&#10;Total Distance:&#10;Average Heartrate:&#10;Max Heartrate:&#10;Average Speed:&#10;Max Speed:" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <TextArea fx:id="eventSummary" editable="false" prefHeight="200.0" prefWidth="200.0" text="Total Time:&#10;Total Distance:&#10;Average Heartrate:&#10;Max Heartrate:&#10;Average Speed:&#10;Max Speed:" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
@@ -44,15 +44,15 @@
             </TextArea>
          </children>
       </VBox>
-      <TableView id="eventData" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="4" GridPane.rowIndex="2">
+      <TableView fx:id="eventData" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="4" GridPane.rowIndex="2">
         <columns>
-          <TableColumn id="tableID" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Point ID" />
-          <TableColumn id="tableDate" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Date" />
-            <TableColumn id="tableTime" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Time" />
-            <TableColumn id="tableHR" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Heartrate" />
-            <TableColumn id="tableLat" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="97.0" text="Latitude" />
-            <TableColumn id="tableLong" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="97.0" text="Longitude" />
-            <TableColumn id="tableAlt" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Altitude" />
+          <TableColumn fx:id="tableID" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Point ID" />
+          <TableColumn fx:id="tableDate" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="tableTime" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Time" />
+            <TableColumn fx:id="tableHR" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Heartrate" />
+            <TableColumn fx:id="tableLat" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="97.0" text="Latitude" />
+            <TableColumn fx:id="tableLong" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="97.0" text="Longitude" />
+            <TableColumn fx:id="tableAlt" editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="75.0" text="Altitude" />
         </columns>
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -68,14 +68,7 @@
                   <Insets left="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane prefViewportHeight="140.0" prefViewportWidth="290.0">
-               <content>
-                  <ListView id="eventSelector" prefHeight="195.0" prefWidth="282.0" />
-               </content>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </ScrollPane>
+            <ListView fx:id="eventSelector" prefHeight="195.0" prefWidth="282.0" />
          </children>
       </VBox>
       <GridPane GridPane.columnIndex="3">
@@ -87,8 +80,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button id="importToolbarButton" disable="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Import" textAlignment="CENTER" />
-            <Button id="menuToolbarButton" disable="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Menu" textAlignment="CENTER" GridPane.columnIndex="1" />
+            <Button fx:id="importToolbarButton" disable="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Import" textAlignment="CENTER" />
+            <Button fx:id="menuToolbarButton" disable="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="70.0" text="Menu" textAlignment="CENTER" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <GridPane GridPane.columnSpan="3">
@@ -110,12 +103,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button id="importButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Import" textAlignment="CENTER">
+                  <Button fx:id="importButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Import" textAlignment="CENTER">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="processButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Process" textAlignment="CENTER" GridPane.columnIndex="1">
+                  <Button fx:id="processButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Process" textAlignment="CENTER" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
@@ -124,12 +117,12 @@
             </GridPane>
             <GridPane GridPane.columnIndex="1">
                <children>
-                  <Button id="helpButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Help" textAlignment="CENTER">
+                  <Button fx:id="helpButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Help" textAlignment="CENTER">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button id="quitButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Quit" textAlignment="CENTER" GridPane.columnIndex="1">
+                  <Button fx:id="quitButton" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefWidth="65.0" text="Quit" textAlignment="CENTER" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
