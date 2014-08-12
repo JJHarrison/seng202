@@ -38,24 +38,43 @@ public class UserProfile {
 		this.weight = weight;
 	}
 	
+	/**
+	 * Returns the weight of the user in kg.
+	 * @return
+	 */
 	public double getWeight(){
 		return weight;
 	}
 	
+	/**
+	 * Set the height for the users profile, must be in m.
+	 * @param height Height of the user in m.
+	 */
 	public void setHeight(double height){
 		this.height = height;
 	}
 	
+	/**
+	 * Returns the height of the user in m.
+	 * @return
+	 */
 	public double getHeight(){
 		return height;
 	}
 	
+	/**
+	 * Calculates the BMI of the user based on their height and weight.
+	 * @return
+	 */
 	public double calculateBMI(){
-		return Math.pow((weight/height), 2);
+		return weight/(Math.pow(height, 2));
 	}
 	
 	public double getBMI(){
 		return BMI;
 	}
 	
+	//public Calendar getDateOfBirth(){
+		//return 
+	//}
 }
