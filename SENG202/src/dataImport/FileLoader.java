@@ -1,6 +1,5 @@
 package dataImport;
 
-import java.beans.EventSetDescriptor;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,11 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import dataModel.DataPoint;
 import dataModel.Event;
-
 
 
 public class FileLoader {
@@ -25,19 +21,17 @@ public class FileLoader {
 		
 		for(int i = 0; i < fl.events.size(); i++) {
 			System.out.println(fl.events.get(i).getEventName());
-			System.out.println("Speed is: " + fl.events.get(i).getDataPoints().get(2).getSpeed());
+			System.out.println("Speed is: " + fl.events.get(i).getDataPoints().get(1).getSpeed());
+			System.out.println("distance is: " + fl.events.get(i).getDataPoints().get(3).getDistance());
 			System.out.println(fl.events.get(i).getDataPoints().get(0).getDate().getTime() + "\n");
 		}
 	}
-	
 	
 	public void load() {
 		InputStream stream = FileLoader.class.getResourceAsStream("seng202_2014_example_data.csv");
 		BufferedReader br = null;
 		String line = "";
-		Calendar date = new GregorianCalendar();
-		date.set(0, 0, 0, 0, 0, 0);
-		DataPoint lastPoint = new DataPoint(null, 0, 0, 0, 0, null);
+		DataPoint lastPoint = null;
 		Event currentEvent = new Event("");
 		
 		try {
@@ -46,25 +40,26 @@ public class FileLoader {
 			while((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
 				
-				if(dataLine[0].contains("#start")){
+				if(dataLine[0].contains("#start")){ // creates a new event when a new #start line is encountered
 					currentEvent = new Event(dataLine[1]);
 					events.add(currentEvent);
-					lastPoint = new DataPoint(date, 0, 0, 0, 0, null);
+					lastPoint = null;
 				} else {
 					String[] dateString = dataLine[0].split("/");
 					String[] time = dataLine[1].split(":");
-
-					date.set(Integer.parseInt(dateString[2]), Integer.parseInt(dateString[1]), Integer.parseInt(dateString[0]),
-							Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[0]));
+					
+					Calendar date = new Calendar.Builder().setTimeOfDay(
+							Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[2])).setDate(
+									Integer.parseInt(dateString[2]), Integer.parseInt(dateString[1]), Integer.parseInt(dateString[0])).build();
 				
 					int heartrate = Integer.parseInt(dataLine[2]);
 					double latitude = Double.parseDouble(dataLine[3]);
 					double longitude = Double.parseDouble(dataLine[4]);
 					double altitude = Double.parseDouble(dataLine[5]);
 					
-					DataPoint point = new DataPoint(date, heartrate, latitude, longitude, altitude, lastPoint);
+					DataPoint point = new DataPoint(date, heartrate, latitude, longitude, altitude, lastPoint);					
+					currentEvent.addDataPoint(point);
 					lastPoint = point;
-					currentEvent.getDataPoints().add(point);
 				}
 				
 				

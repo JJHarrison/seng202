@@ -45,7 +45,7 @@ public class DataPoint {
 	 * @param lastPoint The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
-	private long calculateDeltaTime(DataPoint lastPoint) {
+	public long calculateDeltaTime(DataPoint lastPoint) {
 		long previousTime = lastPoint.getDate().getTimeInMillis();
 		return ((date.getTimeInMillis() - previousTime) / 1000);
 	}
