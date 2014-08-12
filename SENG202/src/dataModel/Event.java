@@ -9,6 +9,10 @@ public class Event {
 	private String eventName;
 	private Calendar startTime;
 	private Calendar finishTime;
+	private int numPoints;
+	private double distance;
+	private double averageSpeed;
+	
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
 	/**
@@ -33,6 +37,9 @@ public class Event {
 	
 	public void addDataPoint(DataPoint p) {
 		this.points.add(p);
+		this.numPoints += 1;
+		this.distance += p.getDistance();
+		this.averageSpeed = (averageSpeed*numPoints + p.getSpeed()) / numPoints;
 	}
 	
 	public String getEventName() {

@@ -26,7 +26,10 @@ public class FileLoader {
 			System.out.println(fl.events.get(i).getDataPoints().get(0).getDate().getTime() + "\n");
 		}
 	}
-	
+	/**
+	 * reads a csv file and create a new event at each #start
+	 * add all following data points to the event
+	 */
 	public void load() {
 		InputStream stream = FileLoader.class.getResourceAsStream("seng202_2014_example_data.csv");
 		BufferedReader br = null;
