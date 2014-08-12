@@ -53,8 +53,8 @@ public class DataPoint {
 	private double calculateDistance(DataPoint lastPoint) {
 		double distance = 0;
 		double radius = 6373 * 1000; // Converted to meters
-		double latPrev = lastPoint.latitude;
-		double lonPrev = lastPoint.longitude;
+		double latPrev = lastPoint.getLatitude();
+		double lonPrev = lastPoint.getLongitude();
 		
 		double deltaLat = latPrev - latitude;
 		double deltaLon = lonPrev - longitude;
