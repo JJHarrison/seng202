@@ -16,7 +16,7 @@ public class DataPoint {
 	private double speed;
 	private double distance;
 	private double deltaTime;//added this
-	private DataPoint lastPoint; //added this  
+	private DataPoint lastPoint; //added this.
 	
 	/**
 	 * Constructor.
