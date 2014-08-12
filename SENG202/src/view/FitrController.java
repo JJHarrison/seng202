@@ -11,7 +11,7 @@ import javafx.scene.control.TextArea;
 
 
 public class FitrController {
-	private MainApp mainApp;
+	//private MainApp mainApp;
 	
 	@FXML
 	private TableView<?> tableView;
@@ -60,16 +60,5 @@ public class FitrController {
 			    "Single", "Double", "Suite", "Family App");
 			eventSelector.setItems(items);
 	}
-	
-	 /**
-     * Is called by the main application to give a reference back to itself.
-     * 
-     * @param mainApp
-     */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-
-
-    }
 	
 }

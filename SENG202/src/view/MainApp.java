@@ -20,8 +20,6 @@ public class MainApp extends Application {
 
         initRootLayout();
     }
-    
-    
 
     /**
      * Initializes the root layout.
@@ -37,8 +35,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
-            FitrController controller = loader.getController();
-            controller.setMainApp(this);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
