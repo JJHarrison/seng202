@@ -15,6 +15,8 @@ public class DataPoint {
 	private double altitude;
 	private double speed;
 	private double distance;
+	private double deltaTime;//added this
+	private DataPoint lastPoint; //added this
 	
 	/**
 	 * Constructor.
@@ -31,10 +33,13 @@ public class DataPoint {
 		this.latitude =latitude;
 		this.longitude = longitude;
 		this.altitude = altitude;
+		this.lastPoint = lastPoint; //added this
 		if (lastPoint != null) {
-			this.distance = calculateDistance(lastPoint);
-			this.speed = calculateSpeed(calculateDeltaTime(lastPoint));
+			this.deltaTime = calculateDeltaTime();
+			this.distance = calculateDistance();//changed this
+			this.speed = calculateSpeed();//changed this
 		} else {
+			this.deltaTime = 0.0;
 			this.distance = 0.0;
 			this.speed = 0.0;
 		}
@@ -45,25 +50,34 @@ public class DataPoint {
 	 * @param lastPoint The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
-	private long calculateDeltaTime(DataPoint lastPoint) {
-		long previousTime = lastPoint.getDate().getTimeInMillis();
-		return ((date.getTimeInMillis() - previousTime) / 1000);
+	private double calculateDeltaTime() {
+		return ((date.getTimeInMillis() - lastPoint.getDate().getTimeInMillis()) / 1000);//changed this
 	}
 	
-	private double calculateDistance(DataPoint lastPoint) {
-		double distance = 0;
+	//added this
+	private double getDeltaTime(){
+		return deltaTime;
+	}
+	
+	private double calculateDistance() {
+		double distance = 0.0;
 		double radius = 6373 * 1000; // Converted to meters
-		double latPrev = lastPoint.latitude;
-		double lonPrev = lastPoint.longitude;
+		double latPrev = lastPoint.getLatitude();
+		double lonPrev = lastPoint.getLongitude();
 		
 		double deltaLat = latPrev - latitude;
 		double deltaLon = lonPrev - longitude;
+		double radDeltaLat = Math.toRadians(deltaLat / 2);
+		double radDeltaLon = Math.toRadians(deltaLon / 2);
+		double radLat = Math.toRadians(latitude);
+		double radPrevLat = Math.toRadians(latPrev);
 		
-		double a = Math.pow(Math.sin(Math.toRadians(deltaLat / 2)), 2) + (Math.cos(Math.toRadians(latitude))
-				* Math.cos(Math.toRadians(latPrev)) * Math.pow(Math.sin(Math.toRadians(deltaLon / 2)),2));
+		double a = Math.pow(Math.sin(radDeltaLat), 2) + (Math.cos(radLat)
+				* Math.cos(radPrevLat) * Math.pow(Math.sin(radDeltaLon),2));
 		
 		double c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
-		distance = radius * c;
+		
+		distance = radius * c;		
 		
 		return distance;
 	}
@@ -73,7 +87,7 @@ public class DataPoint {
 	 * @param deltaTime The between two data points
 	 * @return The average speed between two points
 	 */
-	private double calculateSpeed(long deltaTime) {
+	private double calculateSpeed() {
 		return (distance / deltaTime);
 	}
 
@@ -98,7 +112,7 @@ public class DataPoint {
 	 * @return the latitude
 	 */
 	public double getLatitude() {
-		return latitude;
+		return this.latitude;
 	}
 
 	/**
