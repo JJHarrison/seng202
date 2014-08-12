@@ -1,6 +1,5 @@
 package tests;
 
-import view.Viewer;
 import junit.framework.TestCase;
 
 public class ViewerTest extends TestCase {

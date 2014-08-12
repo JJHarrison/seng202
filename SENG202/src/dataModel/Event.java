@@ -9,7 +9,6 @@ public class Event {
 	private String eventName;
 	private Calendar startTime;
 	private Calendar finishTime;
-	private String data;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
 	/**
