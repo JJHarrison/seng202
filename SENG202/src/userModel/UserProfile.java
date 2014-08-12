@@ -17,16 +17,19 @@ public class UserProfile {
 	}
 	
 
-	public UserProfile(String name, Calendar dateOfBirth, double weight, double height, Gender gender){
+	public UserProfile(String name, Calendar dateOfBirth, Gender gender){
 		this.dateofBirth = dateOfBirth;
 		this.name = name;
-		this.weight = weight;
-		this.height = height;
+		//this.weight = weight;
+		//this.height = height;
 		this.gender = gender;
-		this.BMI = calculateBMI();
+		//this.BMI = calculateBMI();
 		this.events = new EventContainer();
 		}
 	
+	private double calculateBMI(){
+		return 0;
+	}
 	
 	
 }
