@@ -56,7 +56,7 @@ public class FileLoader {
 				} else {
 					double distance = getDistance(dataLine[3], dataLine[4], lastPoint.getLatitude(), lastPoint.getLongitude());
 					int time = getTime(dataLine[1], lastPoint.getDeltaTime());
-					// need to make this into new format
+					// need to make this into new constructor format
 					DataPoint p = new DataPoint(dataLine[0], dataLine[1], dataLine[2], dataLine[3], dataLine[4], dataLine[5], distance, time);
 					lastPoint = p;
 					currentEvent.getDataPoints().add(p);
