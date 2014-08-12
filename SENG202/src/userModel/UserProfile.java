@@ -36,6 +36,7 @@ public class UserProfile {
 	 */
 	public void setWeight(double weight){
 		this.weight = weight;
+		calculateAndSetBMI();
 	}
 	
 	/**
@@ -52,6 +53,7 @@ public class UserProfile {
 	 */
 	public void setHeight(double height){
 		this.height = height;
+		calculateAndSetBMI();
 	}
 	
 	/**
@@ -63,12 +65,13 @@ public class UserProfile {
 	}
 	
 	/**
-	 * Calculates the BMI of the user based on their height and weight.
-	 * @return
+	 * Calculates the BMI of the user based on their height and weight and sets it to their
+	 * user profile.
 	 */
-	public double calculateBMI(){
-		return weight/(Math.pow(height, 2));
+	public void calculateAndSetBMI(){
+		this.BMI = weight/(Math.pow(height, 2));
 	}
+	
 	
 	public double getBMI(){
 		return BMI;
@@ -77,4 +80,6 @@ public class UserProfile {
 	//public Calendar getDateOfBirth(){
 		//return 
 	//}
+	
 }
+
