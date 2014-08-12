@@ -46,8 +46,6 @@ public class DataPoint {
 	 * @return The change in time (seconds).
 	 */
 	private long calculateDeltaTime(DataPoint lastPoint) {
-		//System.out.println(lastPoint.getDate().getTimeInMillis() / 1000);
-		//System.out.println(this.getDate().getTimeInMillis() / 1000);
 		long previousTime = lastPoint.getDate().getTimeInMillis();
 		return ((date.getTimeInMillis() - previousTime) / 1000);
 	}
@@ -76,7 +74,6 @@ public class DataPoint {
 	 * @return The average speed between two points
 	 */
 	private double calculateSpeed(long deltaTime) {
-		//System.out.println("distance is: " + distance + " delta time is: " + deltaTime);
 		return (distance / deltaTime);
 	}
 
