@@ -21,7 +21,7 @@ public class FileLoader {
 		
 		for(int i = 0; i < fl.events.size(); i++) {
 			System.out.println(fl.events.get(i).getEventName());
-			System.out.println("Speed is: " + fl.events.get(i).getDataPoints().get(1).getSpeed());
+			System.out.println("Speed is: " + fl.events.get(i).getDataPoints().get(3).getSpeed());
 			System.out.println("distance is: " + fl.events.get(i).getDataPoints().get(3).getDistance());
 			System.out.println(fl.events.get(i).getDataPoints().get(0).getDate().getTime() + "\n");
 		}
@@ -61,9 +61,9 @@ public class FileLoader {
 					currentEvent.addDataPoint(point);
 					lastPoint = point;
 				}
-				
-				
 			}
+			stream.close();
+			
 		} catch (FileNotFoundException e){ 
 			e.printStackTrace();
 			System.out.println("File Not Found");
@@ -71,5 +71,6 @@ public class FileLoader {
 			e.printStackTrace();
 			System.out.println("couldnt read line");
 		}
+		
 	}	
 }

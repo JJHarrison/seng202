@@ -31,6 +31,7 @@ public class DataPoint {
 		this.latitude =latitude;
 		this.longitude = longitude;
 		this.altitude = altitude;
+		
 		if (lastPoint != null) {
 			this.distance = calculateDistance(lastPoint);
 			this.speed = calculateSpeed(calculateDeltaTime(lastPoint));
@@ -45,7 +46,7 @@ public class DataPoint {
 	 * @param lastPoint The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
-	public long calculateDeltaTime(DataPoint lastPoint) {
+	private long calculateDeltaTime(DataPoint lastPoint) {
 		long previousTime = lastPoint.getDate().getTimeInMillis();
 		return ((date.getTimeInMillis() - previousTime) / 1000);
 	}
