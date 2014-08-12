@@ -42,6 +42,14 @@ public class Event {
 		this.averageSpeed = (averageSpeed*numPoints + p.getSpeed()) / numPoints;
 	}
 	
+	public double getAverageSpeed() {
+		return averageSpeed;
+	}
+	
+	public double getDistance() {
+		return distance;
+	}
+	
 	public String getEventName() {
 		return this.eventName;
 	}

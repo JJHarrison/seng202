@@ -21,8 +21,8 @@ public class FileLoader {
 		
 		for(int i = 0; i < fl.events.size(); i++) {
 			System.out.println(fl.events.get(i).getEventName());
-			System.out.println("Speed is: " + fl.events.get(i).getDataPoints().get(3).getSpeed());
-			System.out.println("distance is: " + fl.events.get(i).getDataPoints().get(3).getDistance());
+			System.out.println("average speed is: " + fl.events.get(i).getAverageSpeed());
+			System.out.println("total distance is: " + fl.events.get(i).getDistance());
 			System.out.println(fl.events.get(i).getDataPoints().get(0).getDate().getTime() + "\n");
 		}
 	}
