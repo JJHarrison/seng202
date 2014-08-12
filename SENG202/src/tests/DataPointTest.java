@@ -12,6 +12,8 @@ public class DataPointTest extends TestCase {
 	
 	@Override
     protected void setUp() throws Exception {
+		super.setUp();
+		
         Calendar c1 = new Calendar.Builder().setTimeOfDay(23, 42, 28).setDate(2005, 5, 10).build();
         Calendar c2 = new Calendar.Builder().setTimeOfDay(23, 43, 05).setDate(2005, 5, 10).build();
         
