@@ -7,8 +7,8 @@ import dataModel.EventContainer;
 public class UserProfile {
 	private Calendar dateofBirth;
 	private String name;
-	private double weight;
-	private double height;
+	private float weight;
+	private float height;
 	private Gender gender;
 	private double BMI;
 	private EventContainer events;
@@ -16,19 +16,38 @@ public class UserProfile {
 		MALE, FEMALE
 	}
 	
-
+	
+	/**
+	 * Constructor.
+	 * @param name Name of the user.
+	 * @param dateOfBirth Date of birth of the user.
+	 * @param gender Gender of the user.
+	 */
 	public UserProfile(String name, Calendar dateOfBirth, Gender gender){
 		this.dateofBirth = dateOfBirth;
 		this.name = name;
-		//this.weight = weight;
-		//this.height = height;
 		this.gender = gender;
-		//this.BMI = calculateBMI();
 		this.events = new EventContainer();
 		}
 	
+	private void setWeight(float weight){
+		this.weight = weight;
+	}
+	
+	private float getWeight(){
+		return weight;
+	}
+	
+	private void setHeight(float height){
+		this.height = height;
+	}
+	
+	private float getHeight(){
+		return height;
+	}
+	
 	private double calculateBMI(){
-		return 0;
+		return Math.pow((weight/height), 2);
 	}
 	
 	
