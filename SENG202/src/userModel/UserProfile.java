@@ -30,25 +30,28 @@ public class UserProfile {
 		this.events = new EventContainer();
 		}
 	
-	private void setWeight(float weight){
+	public void setWeight(float weight){
 		this.weight = weight;
 	}
 	
-	private float getWeight(){
+	public float getWeight(){
 		return weight;
 	}
 	
-	private void setHeight(float height){
+	public void setHeight(float height){
 		this.height = height;
 	}
 	
-	private float getHeight(){
+	public float getHeight(){
 		return height;
 	}
 	
-	private double calculateBMI(){
+	public double calculateBMI(){
 		return Math.pow((weight/height), 2);
 	}
 	
+	public double getBMI(){
+		return BMI;
+	}
 	
 }
