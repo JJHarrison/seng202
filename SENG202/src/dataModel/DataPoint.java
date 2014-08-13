@@ -75,7 +75,13 @@ public class DataPoint {
 	 * @return The average speed between two points
 	 */
 	private double calculateSpeed(long deltaTime) {
-		return (distance / deltaTime);
+		double speed;
+		if(deltaTime == 0) {
+			speed = 0;
+		} else {
+			speed =  (distance / deltaTime);
+		}
+		return speed;
 	}
 
 	/**
