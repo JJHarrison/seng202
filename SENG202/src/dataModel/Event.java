@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
+
 import dataModel.DataPoint;
 
 public class Event {
@@ -79,7 +81,7 @@ public class Event {
 		String date = df.format(this.startTime.getTime());
 				
 		String summary = "Summary:\n" + "Event Name: " + getEventName() + "\nDate: " + date + "\nStart Time: " + startTime + "\nEnd Time: "  + endTime
-				+ "\nAverage Speed: " + getAverageSpeed() + "\nMax Speed: " + maxSpeed + "\nDistance: " + distance + "\nCalories Burned: " + "1000\n";
+				+ "\nAverage Speed: " + getAverageSpeed() + "\nMax Speed: " + maxSpeed + "\nDistance: " + distance + "\nCalories Burned: " + getCaloriesBurned() + "\n";
 		
 		return summary;
 	}
@@ -119,9 +121,14 @@ public class Event {
 	public double getCaloriesBurned() {
 		int weight = 75;
 		double runMET = 7.5;
-		int timeInHours = 1;
+		double timeInHours = getDuration();
 		
 		double calories = weight * runMET * timeInHours;
 		return calories;
+	}
+	
+	@Override
+	public String toString() {
+		return getEventName();
 	}
 }
