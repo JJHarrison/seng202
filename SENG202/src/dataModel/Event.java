@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.sun.glass.ui.Pixels.Format;
+
 import dataModel.DataPoint;
 
 public class Event {
@@ -15,6 +17,7 @@ public class Event {
 	private double averageSpeed;
 	private double maxSpeed;
 	private double totalSpeed;
+	private int totalHeartRate;
 	
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
@@ -64,6 +67,8 @@ public class Event {
 		this.finishTime = p.getDate();
 		this.startTime = this.getDataPoints().get(0).getDate();
 		
+		this.totalHeartRate += p.getHeartRate();
+		
 		if(maxSpeed < p.getSpeed()) {
 			maxSpeed = p.getSpeed();
 		}
@@ -76,15 +81,19 @@ public class Event {
 		String startTime = tf.format(this.startTime.getTime());
 		String endTime = tf.format(this.finishTime.getTime());
 		String date = df.format(this.startTime.getTime());
-				
-		String summary = "Summary:\n" + "Event Name: " + getEventName() + "\nDate: " + date + "\nStart Time: " + startTime + "\nEnd Time: "  + endTime
-				+ "\nAverage Speed: " + getAverageSpeed() + "\nMax Speed: " + maxSpeed + "\nDistance: " + distance + "\nCalories Burned: " + getCaloriesBurned() + "\n";
+		
+		String summary = String.format("Summary:\nEvent Name: %s\nDate: %s\nStart Time: %s\nEnd Time: %s\nAverageSpeed: %.2f m/s\nMax Speed: %.2f m/s\nDistance:"
+				+ " %.0f m\nCalories Burned: %.0f\nAverage HR: %d", eventName, date, startTime, endTime, getAverageSpeed(), maxSpeed, distance, getCaloriesBurned(), getAverageHeartRate());
 		
 		return summary;
 	}
 	
 	public double getAverageSpeed() {
 		return (totalSpeed / numPoints);
+	}
+	
+	public int getAverageHeartRate() {
+		return totalHeartRate / numPoints;
 	}
 	
 	public double getMaxSpeed() {
