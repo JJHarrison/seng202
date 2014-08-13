@@ -4,7 +4,10 @@ package dataModel;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.sun.glass.ui.Pixels.Format;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * 
@@ -162,4 +165,41 @@ public class DataPoint {
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		return(df.format(date.getTime()));
 	}
+	
+	@Deprecated
+	public Property<String> getDateProperty() {
+		return new SimpleStringProperty(getDateString());
+	}
+	
+	@Deprecated
+	public Property<String> getTimeProperty() {
+		return new SimpleStringProperty(getTimeString());
+	}
+	
+	@Deprecated
+	public Property<?> getLatitudeProperty() {
+		return new SimpleDoubleProperty(getLatitude());
+	}
+	
+	@Deprecated
+	public Property<?> getLongitudeProperty() {
+		return new SimpleDoubleProperty(getLatitude());
+	}
+	
+	@Deprecated
+	public Property<?> getDistanceProperty() {
+		return new SimpleDoubleProperty(getDistance());
+	}
+	
+	@Deprecated
+	public Property<?> getSpeedProperty() {
+		return new SimpleDoubleProperty(getSpeed());
+	}
+	
+	@Deprecated
+	public Property<?> getHeartRateProperty() {
+		return new SimpleIntegerProperty(getHeartRate());
+	}
+	
+	
 }
