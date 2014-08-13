@@ -183,7 +183,7 @@ public class DataPoint {
 	
 	@Deprecated
 	public Property<?> getLongitudeProperty() {
-		return new SimpleDoubleProperty(getLatitude());
+		return new SimpleDoubleProperty(getLongitude());
 	}
 	
 	@Deprecated
