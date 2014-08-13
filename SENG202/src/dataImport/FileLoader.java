@@ -20,12 +20,14 @@ public class FileLoader {
 		System.out.println("File Loaded\n");	
 		
 		for(int i = 0; i < fl.events.size(); i++) {
+			/*
 			System.out.println(fl.events.get(i).getEventName());
 			System.out.println("average speed is: " + fl.events.get(i).getAverageSpeed());
 			System.out.println("total distance is: " + fl.events.get(i).getDistance());
 			System.out.printf( "%.2f hours\n", fl.events.get(i).getDuration());
 			System.out.println(fl.events.get(i).getDataPoints().get(0).getDate().getTime() + "\n");
-			
+			*/
+			System.out.print(fl.events.get(i).getSummary() + "\n");
 		}
 	}
 	/**

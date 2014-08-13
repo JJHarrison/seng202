@@ -1,5 +1,7 @@
 package dataModel;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -13,6 +15,7 @@ public class Event {
 	private double distance;
 	private double averageSpeed;
 	private double maxSpeed;
+	private double totalSpeed;
 	
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
@@ -56,16 +59,33 @@ public class Event {
 		this.points.add(p);
 		this.numPoints += 1;
 		this.distance += p.getDistance();
-		this.averageSpeed = (averageSpeed*numPoints + p.getSpeed()) / numPoints;
+		
+		//this.averageSpeed = (averageSpeed*numPoints + p.getSpeed()) / numPoints;
+		totalSpeed += p.getSpeed();
 		this.finishTime = p.getDate();
 		this.startTime = this.getDataPoints().get(0).getDate();
+		
 		if(maxSpeed < p.getSpeed()) {
 			maxSpeed = p.getSpeed();
 		}
 	}
 	
+	public String getSummary() {
+		SimpleDateFormat tf = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		
+		String startTime = tf.format(this.startTime.getTime());
+		String endTime = tf.format(this.finishTime.getTime());
+		String date = df.format(this.startTime.getTime());
+				
+		String summary = "Summary:\n" + "Event Name: " + getEventName() + "\nDate: " + date + "\nStart Time: " + startTime + "\nEnd Time: "  + endTime
+				+ "\nAverage Speed: " + getAverageSpeed() + "\nMax Speed: " + maxSpeed + "\nDistance: " + distance + "\nCalories Burned: " + "1000\n";
+		
+		return summary;
+	}
+	
 	public double getAverageSpeed() {
-		return averageSpeed;
+		return (totalSpeed / numPoints);
 	}
 	
 	public double getMaxSpeed() {
