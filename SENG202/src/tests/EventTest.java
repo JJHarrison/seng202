@@ -2,6 +2,7 @@ package tests;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import dataModel.Event;
 import dataModel.DataPoint;
@@ -20,15 +21,40 @@ public class EventTest extends TestCase {
         e = new Event("My Event");
         
         // set start and finish times 3 minutes apart
-        c1 = new Calendar.Builder().setTimeOfDay(23, 42, 28).setDate(2005, 5, 10).build();
-        c2 = new Calendar.Builder().setTimeOfDay(23, 45, 28).setDate(2005, 5, 10).build();
+		Calendar c1 = new GregorianCalendar(
+				2005, // Year 
+				5, // Month
+				10, // Day
+				23, // Hour
+				42, // Minute
+				28); // Second
+		Calendar c2 = new GregorianCalendar(
+				2005, // Year 
+				5, // Month
+				10, // Day
+				23, // Hour
+				45, // Minute
+				28); // Second
+		
         e.setStartTime(c1);
         e.setFinishTime(c2);
         
         // set up data points
         points = new ArrayList<DataPoint>();
-        Calendar c3 = new Calendar.Builder().setTimeOfDay(23, 42, 28).setDate(2005, 5, 10).build();
-        Calendar c4 = new Calendar.Builder().setTimeOfDay(23, 43, 05).setDate(2005, 5, 10).build();
+		Calendar c3 = new GregorianCalendar(
+				2005, // Year 
+				5, // Month
+				10, // Day
+				23, // Hour
+				42, // Minute
+				28); // Second
+		Calendar c4 = new GregorianCalendar(
+				2005, // Year 
+				5, // Month
+				10, // Day
+				23, // Hour
+				43, // Minute
+				5); // Second
         DataPoint p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
         DataPoint p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
         points.add(p1);

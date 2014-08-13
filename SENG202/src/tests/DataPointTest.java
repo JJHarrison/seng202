@@ -2,6 +2,7 @@ package tests;
 
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
 import dataModel.DataPoint;
@@ -14,8 +15,22 @@ public class DataPointTest extends TestCase {
     protected void setUp() throws Exception {
 		super.setUp();
 		
-        Calendar c1 = new Calendar.Builder().setTimeOfDay(23, 42, 28).setDate(2005, 5, 10).build();
-        Calendar c2 = new Calendar.Builder().setTimeOfDay(23, 43, 05).setDate(2005, 5, 10).build();
+		Calendar c1 = new GregorianCalendar(
+				2005, // Year 
+				5, // Month
+				10, // Day
+				23, // Hour
+				42, // Minute
+				28); // Second
+		
+		Calendar c2 = new GregorianCalendar(
+				2005, // Year 
+				5, // Month
+				10, // Day
+				23, // Hour
+				43, // Minute
+				5); // Second
+
         
         p1 = new DataPoint(c1, 120, 30.2553368, -97.83891084, 50.0, null);
         p2 = new DataPoint(c2, 125, 30.25499189, -97.83913958, 51.0, p1);

@@ -19,10 +19,10 @@ public class Event {
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
 	
-	// GET RID OF THIS AFTER DANIEL IS DONE WITH IT
+	/*// GET RID OF THIS AFTER DANIEL IS DONE WITH IT
 	public Event() {
 		this.eventName = "Event";
-		this.startTime = new Calendar.Builder().setDate(2000, 1, 1)
+		//this.startTime = new Calendar.Builder().setDate(2000, 1, 1)
 							.setTimeOfDay(12, 0, 0).build();
 		this.finishTime = new Calendar.Builder().setDate(2000, 1, 1)
 							.setTimeOfDay(1, 0, 0).build();
@@ -31,7 +31,7 @@ public class Event {
 		this.points.add(new DataPoint(new Calendar.Builder().setDate(
 						2000, 1, 1).setTimeOfDay(12, 0, 0).build(),
 						100, 10000, 10000, 50, null));
-	}
+	}*/
 	
 	/**
 	 * Constructor.

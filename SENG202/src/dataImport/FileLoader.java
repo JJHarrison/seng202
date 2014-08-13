@@ -15,6 +15,8 @@ import java.util.Calendar;
 
 
 
+import java.util.GregorianCalendar;
+
 import dataModel.DataPoint;
 import dataModel.Event;
 
@@ -90,9 +92,13 @@ public class FileLoader {
 					String[] time = dataLine[1].split(":");
 					
 					//months start from 0...
-					Calendar date = new Calendar.Builder().setTimeOfDay(
-							Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[2])).setDate(
-									Integer.parseInt(dateString[2]), Integer.parseInt(dateString[1]) - 1, Integer.parseInt(dateString[0])).build();
+					Calendar date = new GregorianCalendar(
+									Integer.parseInt(dateString[2]), // Year 
+									Integer.parseInt(dateString[1]), // Month
+									Integer.parseInt(dateString[0]), // Day
+									Integer.parseInt(time[0]), // Hour
+									Integer.parseInt(time[1]), // Minute
+									Integer.parseInt(time[2])); // Second
 				
 					int heartrate = Integer.parseInt(dataLine[2]);
 					double latitude = Double.parseDouble(dataLine[3]);
