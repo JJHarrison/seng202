@@ -12,6 +12,7 @@ public class Event {
 	private int numPoints;
 	private double distance;
 	private double averageSpeed;
+	private double maxSpeed;
 	
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
@@ -56,10 +57,17 @@ public class Event {
 		this.numPoints += 1;
 		this.distance += p.getDistance();
 		this.averageSpeed = (averageSpeed*numPoints + p.getSpeed()) / numPoints;
+		if(maxSpeed < p.getSpeed()) {
+			maxSpeed = p.getSpeed();
+		}
 	}
 	
 	public double getAverageSpeed() {
 		return averageSpeed;
+	}
+	
+	public double getMaxSpeed() {
+		return maxSpeed;
 	}
 	
 	public double getDistance() {
@@ -80,5 +88,11 @@ public class Event {
 	
 	public ArrayList<DataPoint> getDataPoints() {
 		return this.points;
+	}
+	
+	public int getCaloriesBurned() {
+		
+		
+		return 0;
 	}
 }
