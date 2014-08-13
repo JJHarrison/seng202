@@ -1,5 +1,7 @@
 package view;
 
+import dataImport.FileLoader;
+import dataModel.Event;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,7 +34,7 @@ public class FitrController {
 	private TableColumn<?, Integer> colHR;
 	
 	@FXML
-	private ListView<String> eventSelector;
+	private ListView<Event> eventSelector;
 	
 	@FXML
 	private TextArea eventSummary;
@@ -49,16 +51,22 @@ public class FitrController {
 	@FXML
 	private MenuItem menuAbout;
 	
-	public FitrController() {
-		// TODO Auto-generated constructor stub
-	}
+	public FitrController() {}
 	
 	@FXML
 	private void initialize() {
-		eventSummary.setText("Hello");
-		ObservableList<String> items = FXCollections.observableArrayList (
-			    "Single", "Double", "Suite", "Family App");
-			eventSelector.setItems(items);
+		
+		FileLoader fLoader = new FileLoader();
+		fLoader.load();
+		
+		ObservableList<Event> events = FXCollections.observableArrayList();
+		events.setAll(fLoader.getEvents());
+		eventSelector.setItems(events);
+				
+		//eventSummary.setText("Hello");
+		//ObservableList<String> items = FXCollections.observableArrayList (
+			//    "Single", "Double", "Suite", "Family App");
+			//eventSelector.setItems(items);
 	}
 	
 }

@@ -7,12 +7,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import dataModel.DataPoint;
 import dataModel.Event;
+import dataModel.EventContainer;
 
 
 public class FileLoader {
-	ArrayList<Event> events = new ArrayList<Event>();
+	private ArrayList<Event> events = new ArrayList<Event>();
 	
 	public static void main(String[] args) {
 		FileLoader fl = new FileLoader();
@@ -82,5 +84,9 @@ public class FileLoader {
 			System.out.println("couldnt read line");
 		}
 		
-	}	
+	}
+	
+	public ArrayList<Event> getEvents() {
+		return events;
+	}
 }
