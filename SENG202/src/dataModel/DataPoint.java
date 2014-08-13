@@ -1,7 +1,10 @@
 package dataModel;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import com.sun.glass.ui.Pixels.Format;
 
 /**
  * 
@@ -138,5 +141,24 @@ public class DataPoint {
 	 */
 	public double getDistance() {
 		return distance;
+	}
+	
+	/**
+	 * Returns a string representation of the timestamp for the data point as "hh:mm:ss" 
+	 * @return time of the data point
+	 */
+	public String getTimeString(){
+		SimpleDateFormat tf = new SimpleDateFormat("HH:mm:ss");
+		return(tf.format(date.getTime()));
+		
+	}
+	
+	/**
+	 * Returns a string representation of the date for the data point as "dd/mm/yyyy"
+	 * @return date of the data point
+	 */
+	public String getDateString(){
+		SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+		return(df.format(date.getTime()));
 	}
 }
