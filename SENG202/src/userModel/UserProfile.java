@@ -24,10 +24,10 @@ public class UserProfile {
 	 * @param gender Gender of the user.
 	 */
 	public UserProfile(String name, Calendar dateOfBirth, Gender gender){
-		this.dateofBirth = dateOfBirth;
-		this.name = name;
-		this.gender = gender;
-		this.events = new EventContainer();
+		this.setDateofBirth(dateOfBirth);
+		this.setName(name);
+		this.setGender(gender);
+		this.setEvents(new EventContainer());
 		}
 	
 	/**
@@ -72,14 +72,68 @@ public class UserProfile {
 		this.BMI = weight/(Math.pow(height, 2));
 	}
 	
-	
+	/**
+	 * @return the BMI
+	 */
 	public double getBMI(){
 		return BMI;
 	}
-	
-	//public Calendar getDateOfBirth(){
-		//return 
-	//}
+
+	/**
+	 * @return the dateofBirth
+	 */
+	public Calendar getDateofBirth() {
+		return dateofBirth;
+	}
+
+	/**
+	 * @param dateofBirth the dateofBirth to set
+	 */
+	public void setDateofBirth(Calendar dateofBirth) {
+		this.dateofBirth = dateofBirth;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name The name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public Gender getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the events
+	 */
+	public EventContainer getEvents() {
+		return events;
+	}
+
+	/**
+	 * @param events the events to set
+	 */
+	public void setEvents(EventContainer events) {
+		this.events = events;
+	}
 	
 }
 
