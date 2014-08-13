@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.Desktop.Action;
-import java.awt.Dialog;
 import java.io.File;
 import java.util.ArrayList;
 
