@@ -57,6 +57,8 @@ public class Event {
 		this.numPoints += 1;
 		this.distance += p.getDistance();
 		this.averageSpeed = (averageSpeed*numPoints + p.getSpeed()) / numPoints;
+		this.finishTime = p.getDate();
+		this.startTime = this.getDataPoints().get(0).getDate();
 		if(maxSpeed < p.getSpeed()) {
 			maxSpeed = p.getSpeed();
 		}
@@ -86,13 +88,21 @@ public class Event {
 		return this.finishTime;
 	}
 	
+	public double getDuration() {
+		System.out.println(finishTime.getTimeInMillis() - startTime.getTimeInMillis());
+		return (finishTime.getTimeInMillis() - startTime.getTimeInMillis()) / (1000 * 60 * 60);
+	}
+	
 	public ArrayList<DataPoint> getDataPoints() {
 		return this.points;
 	}
 	
-	public int getCaloriesBurned() {
+	public double getCaloriesBurned() {
+		int weight = 75;
+		double runMET = 7.5;
+		int timeInHours = 1;
 		
-		
-		return 0;
+		double calories = weight * runMET * timeInHours;
+		return calories;
 	}
 }

@@ -23,6 +23,7 @@ public class FileLoader {
 			System.out.println(fl.events.get(i).getEventName());
 			System.out.println("average speed is: " + fl.events.get(i).getAverageSpeed());
 			System.out.println("total distance is: " + fl.events.get(i).getDistance());
+			System.out.println("total time was: " + fl.events.get(i).getDuration() + " hours");
 			System.out.println(fl.events.get(i).getDataPoints().get(0).getDate().getTime() + "\n");
 		}
 	}
@@ -53,9 +54,10 @@ public class FileLoader {
 					String[] dateString = dataLine[0].split("/");
 					String[] time = dataLine[1].split(":");
 					
+					//months start from 0...
 					Calendar date = new Calendar.Builder().setTimeOfDay(
 							Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[2])).setDate(
-									Integer.parseInt(dateString[2]), Integer.parseInt(dateString[1]), Integer.parseInt(dateString[0])).build();
+									Integer.parseInt(dateString[2]), Integer.parseInt(dateString[1]) - 1, Integer.parseInt(dateString[0])).build();
 				
 					int heartrate = Integer.parseInt(dataLine[2]);
 					double latitude = Double.parseDouble(dataLine[3]);
