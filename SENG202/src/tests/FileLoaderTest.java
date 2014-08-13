@@ -13,5 +13,9 @@ public class FileLoaderTest extends TestCase {
         System.out.println("setup");
     }
 	
+	public void testDummy() {
+		assertEquals(true, true);
+	}
+	
 	
 }
