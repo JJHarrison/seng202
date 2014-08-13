@@ -158,7 +158,8 @@ public class DataPoint {
 	 * @return date of the data point 
 	 */
 	public String getDateString(){
-		SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+		//The calendar takes january being the 0th month and december the 11th
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		return(df.format(date.getTime()));
 	}
 }

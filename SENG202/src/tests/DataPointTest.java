@@ -31,4 +31,13 @@ public class DataPointTest extends TestCase {
 		assertEquals(1.194953411338526, p2.getSpeed(), 1e-4);
 		assertEquals(0.0, p1.getSpeed(), 1e-10);
 	}
+	
+	public void testDateString(){
+		System.out.println(p1.getDateString());
+		assertEquals("10/06/2005", p1.getDateString());
+	}
+	
+	public void testTimeString(){
+		assertEquals("23:42:28", p1.getTimeString());
+	}
 }
