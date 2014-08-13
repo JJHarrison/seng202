@@ -6,8 +6,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+
+
+
 
 import dataModel.DataPoint;
 import dataModel.Event;
@@ -21,14 +27,20 @@ public class FileLoader {
 	}
 	
 	public FileLoader() {
-		this.file = new File("/home/daniel/git/seng202_2014_team5/SENG202/bin/dataImport/seng202_2014_example_data.csv");
+		URL url = this.getClass().getResource("seng202_2014_example_data.csv");
+		try {
+			this.file = new File(url.toURI());
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
 	private ArrayList<Event> events = new ArrayList<Event>();
 	
 	public static void main(String[] args) {
-		FileLoader fl = new FileLoader(new File("/home/daniel/git/seng202_2014_team5/SENG202/bin/dataImport/seng202_2014_example_data.csv"));
+		FileLoader fl = new FileLoader();
 		fl.load();
 		System.out.println("File Loaded\n");	
 		
