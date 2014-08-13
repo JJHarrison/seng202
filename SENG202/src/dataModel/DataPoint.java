@@ -155,7 +155,7 @@ public class DataPoint {
 	
 	/**
 	 * Returns a string representation of the date for the data point as "dd/mm/yyyy"
-	 * @return date of the data point
+	 * @return date of the data point 
 	 */
 	public String getDateString(){
 		SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
