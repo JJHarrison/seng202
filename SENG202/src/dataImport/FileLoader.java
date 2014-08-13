@@ -1,9 +1,10 @@
 package dataImport;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,10 +14,21 @@ import dataModel.Event;
 
 
 public class FileLoader {
+	private File file;
+	
+	public FileLoader(File file) {
+		this.file = file;
+	}
+	
+	public FileLoader() {
+		this.file = new File("/home/daniel/git/seng202_2014_team5/SENG202/bin/dataImport/seng202_2014_example_data.csv");
+	}
+	
+	
 	private ArrayList<Event> events = new ArrayList<Event>();
 	
 	public static void main(String[] args) {
-		FileLoader fl = new FileLoader();
+		FileLoader fl = new FileLoader(new File("/home/daniel/git/seng202_2014_team5/SENG202/bin/dataImport/seng202_2014_example_data.csv"));
 		fl.load();
 		System.out.println("File Loaded\n");	
 		
@@ -36,7 +48,14 @@ public class FileLoader {
 	 * add all following data points to the event
 	 */
 	public void load() {
-		InputStream stream = FileLoader.class.getResourceAsStream("seng202_2014_example_data.csv");
+		FileInputStream stream = null;
+		try {
+			stream = new FileInputStream(this.file);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//InputStream stream = FileLoader.class.getResourceAsStream(file.getAbsolutePath());
 		BufferedReader br = null;
 		String line = "";
 		DataPoint lastPoint = null;
