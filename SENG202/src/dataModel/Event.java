@@ -15,6 +15,17 @@ public class Event {
 	
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
+	
+	// GET RID OF THIS AFTER DANIEL IS DONE WITH IT
+	public Event() {
+		this.eventName = "Event";
+		this.startTime = new Calendar.Builder().setDate(2000, 1, 1).setTimeOfDay(12, 0, 0).build();
+		this.finishTime = new Calendar.Builder().setDate(2000, 1, 1).setTimeOfDay(1, 0, 0).build();
+		this.numPoints = 10;
+		this.distance = 1000;
+		this.averageSpeed = 6;
+	}
+	
 	/**
 	 * Constructor.
 	 * @param eventName The name of the event.
