@@ -42,8 +42,10 @@ public class FileLoader {
 			
 			while((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
-				
-				if(dataLine[0].contains("#start")){ // creates a new event when a new #start line is encountered
+				if (line.isEmpty()){
+					//this is ugly and should be changed???
+					// used to prevent crash if a empty line is read
+				} else if(dataLine[0].contains("#start")){ // creates a new event when a new #start line is encountered
 					currentEvent = new Event(dataLine[1]);
 					events.add(currentEvent);
 					lastPoint = null;
