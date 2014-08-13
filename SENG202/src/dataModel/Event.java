@@ -24,6 +24,8 @@ public class Event {
 		this.numPoints = 10;
 		this.distance = 1000;
 		this.averageSpeed = 6;
+		this.points.add(new DataPoint(new Calendar.Builder().setDate(2000, 1, 1).setTimeOfDay(12, 0, 0).build(),
+						100, 10000, 10000, 50, null));
 	}
 	
 	/**
