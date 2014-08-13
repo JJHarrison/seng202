@@ -89,8 +89,7 @@ public class Event {
 	}
 	
 	public double getDuration() {
-		System.out.println(finishTime.getTimeInMillis() - startTime.getTimeInMillis());
-		return (finishTime.getTimeInMillis() - startTime.getTimeInMillis()) / (1000 * 60 * 60);
+		return (finishTime.getTimeInMillis() - startTime.getTimeInMillis()) / (1000.0 * 60 * 60);
 	}
 	
 	public ArrayList<DataPoint> getDataPoints() {
