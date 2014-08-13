@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.sun.glass.ui.Pixels.Format;
-
 import dataModel.DataPoint;
 
 public class Event {
@@ -14,7 +12,6 @@ public class Event {
 	private Calendar finishTime;
 	private int numPoints;
 	private double distance;
-	private double averageSpeed;
 	private double maxSpeed;
 	private double totalSpeed;
 	private int totalHeartRate;
@@ -31,7 +28,6 @@ public class Event {
 							.setTimeOfDay(1, 0, 0).build();
 		this.numPoints = 10;
 		this.distance = 1000;
-		this.averageSpeed = 6;
 		this.points.add(new DataPoint(new Calendar.Builder().setDate(
 						2000, 1, 1).setTimeOfDay(12, 0, 0).build(),
 						100, 10000, 10000, 50, null));
