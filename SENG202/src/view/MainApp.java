@@ -18,7 +18,6 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Fitr.aw");
-        //this.primaryStage.setMaximized(true);
         try {
         	this.primaryStage.getIcons().add(new Image("/resources/heart11.png"));
 		} catch (Exception e) {

@@ -8,8 +8,8 @@
 <property name="lib.dir" location="lib" />
 <property name="test.report.dir" location="testreport" />
 	
-<path id="junit.class.path">
-	<pathelement location="${lib.dir}/junit.jar" />
+<path id="classpath">
+	<fileset dir="${lib.dir}" includes="**/*.jar"/>
 	<pathelement location="${build.dir}" />
 </path>
 		
@@ -28,16 +28,14 @@
 </target>
 
 <target name="compile" depends="clean, makedir">
-	<javac srcdir="${src.dir}" destdir="${build.dir}">
-		<classpath refid="libraries"/>	
-		<classpath refid="junit.class.path" />
+	<javac srcdir="${src.dir}" destdir="${build.dir}">	
+		<classpath refid="classpath" />
     </javac>
 </target>
 
 <target name="junit" depends="compile">
 	<junit printsummary="on" fork="true" haltonfailure="yes">
-		<classpath refid="libraries"/>
-		<classpath refid="junit.class.path" />
+		<classpath refid="classpath" />
 		<formatter type="xml" />
 		<batchtest todir="${test.report.dir}">
 			<fileset dir="${src.dir}">
