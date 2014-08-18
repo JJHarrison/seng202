@@ -21,14 +21,14 @@ public class EventTest extends TestCase {
         e = new Event("My Event");
         
         // set start and finish times 3 minutes apart
-		Calendar c1 = new GregorianCalendar(
+		c1 = new GregorianCalendar(
 				2005, // Year 
 				5, // Month
 				10, // Day
 				23, // Hour
 				42, // Minute
 				28); // Second
-		Calendar c2 = new GregorianCalendar(
+		c2 = new GregorianCalendar(
 				2005, // Year 
 				5, // Month
 				10, // Day
