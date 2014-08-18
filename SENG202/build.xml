@@ -30,10 +30,11 @@
 <target name="makedir">
 	<mkdir dir="${build.dir}" />
 	<mkdir dir="${test.report.dir}" />
-	<mkdir dir="${classes.dir}"/>
+	<mkdir dir="${doc.dir}"/>
 </target>
 
 <target name="compile" depends="clean, makedir">
+	<mkdir dir="${classes.dir}"/>
 	<javac srcdir="${src.dir}" destdir="${classes.dir}">
 		<classpath refid="libraries"/>	
 		<classpath refid="junit.class.path" />
@@ -51,30 +52,6 @@
 			</fileset>
 		</batchtest>
 	</junit>
-</target>
-	
-<target name="jar" depends="compile">
-	<mkdir dir="${jar.dir}"/>
-	<jar destfile="${jar.dir}/${project.name}.jar" basedir="${classes.dir}">
-		<manifest>
-			<attribute name="Main-Class" value="MainApp"/>
-		</manifest>
-	</jar>
-</target>
-
-<target name="doc" depends="compile">
-	<mkdir dir="${doc.dir}"/>
-	<javadoc
-		destdir="${doc.dir}"
-		verbose="true"
-		author="true"
-		version="true">
-		<classpath refid="classpath" />
-		<packageset dir="${src.dir}" defaultexcludes="yes">
-			<include name="**" />
-			<exclude name="**/tests/" />
-		</packageset>
-	</javadoc>
 </target>
 
 <target name="main" depends="compile, junit">
