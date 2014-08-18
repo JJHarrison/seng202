@@ -7,8 +7,6 @@ import jfx.messagebox.MessageBox;
 import dataImport.FileLoader;
 import dataModel.DataPoint;
 import dataModel.Event;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ObjectPropertyBase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -70,25 +68,6 @@ public class FitrController {
 	
 	public FitrController() {}
 	
-	ObjectProperty<Event> obsEvent = new ObjectPropertyBase<Event>() {
-
-		public Object getBean() {
-			return null;
-		}
-
-		public String getName() {
-			return getValue().getEventName();
-		}
-	};
-	
-	public ObservableValue<Event> getObsEvent() {
-		return obsEvent;
-	}
-	
-	public void setObsEvent(Event event) {
-		obsEvent.set(event);
-	}
-	
 	@FXML
 	private void initialize() {
 		menuImport.setOnAction(new EventHandler<ActionEvent>() {
@@ -125,7 +104,6 @@ public class FitrController {
 			        		 + "USE WITH CARE!",
 			         "About Fitr",
 			          MessageBox.OK | MessageBox.CANCEL);
-				
 			}
 		});
 		
@@ -142,9 +120,8 @@ public class FitrController {
 
 					public void changed(ObservableValue<? extends Event> observable, Event oldValue, Event newValue) {
 						if (newValue != null) {
-						obsEvent.set(newValue);
-						eventSummary.setText(obsEvent.getValue().getSummary());
-						ObservableList<DataPoint> data = FXCollections.observableArrayList(obsEvent.get().getDataPoints());
+						eventSummary.setText(newValue.getSummary());
+						ObservableList<DataPoint> data = FXCollections.observableArrayList(newValue.getDataPoints());
 						tableView.itemsProperty().setValue(data);
 						} else {
 							eventSummary.setText(null);
@@ -184,7 +161,7 @@ public class FitrController {
 		eventSelector.getSelectionModel().clearAndSelect(0);
 	}
 	
-	public void clear() {
+	private void clear() {
 		eventSelector.setItems(null);
 	}
 	
