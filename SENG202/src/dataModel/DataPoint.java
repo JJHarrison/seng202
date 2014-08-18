@@ -49,19 +49,24 @@ public class DataPoint {
 
 	/**
 	 * Calculates the change in time between two points.
-	 * @param lastPoint The point previous to this point in an event.
+	 * @param previousPoint The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
-	private long calculateDeltaTime(DataPoint lastPoint) {
-		long previousTime = lastPoint.getDate().getTimeInMillis();
+	private long calculateDeltaTime(DataPoint previousPoint) {
+		long previousTime = previousPoint.getDate().getTimeInMillis();
 		return ((date.getTimeInMillis() - previousTime) / 1000);
 	}
 	
-	private double calculateDistance(DataPoint lastPoint) {
+	/**
+	 * Calculates the distance from the current point to the previousPoint in meters.
+	 * @param previousPoint The point from which to calculate the distance from 
+	 * @return The distance in meters from the previous point
+	 */
+	private double calculateDistance(DataPoint previousPoint) {
 		double distance = 0;
 		double radius = 6373 * 1000; // Converted to meters
-		double latPrev = lastPoint.getLatitude();
-		double lonPrev = lastPoint.getLongitude();
+		double latPrev = previousPoint.getLatitude();
+		double lonPrev = previousPoint.getLongitude();
 		
 		double deltaLat = latPrev - latitude;
 		double deltaLon = lonPrev - longitude;
