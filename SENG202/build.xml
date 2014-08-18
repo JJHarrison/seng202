@@ -11,8 +11,13 @@
 <property name="jar.dir" value="${build.dir}/jar"/>
 <property name="classes.dir" value="${build.dir}/classes"/>
 <property name="doc.dir" value="doc" />
+	
+<path id="junit.class.path">
+	<pathelement location="${lib.dir}/junit.jar" />
+	<pathelement location="${classes.dir}" />
+</path>
 		
-<path id="classpath">
+<path id="libraries">
 	<fileset dir="${lib.dir}" includes="**/*.jar"/>
 </path>
  
@@ -25,22 +30,23 @@
 <target name="makedir">
 	<mkdir dir="${build.dir}" />
 	<mkdir dir="${test.report.dir}" />
+	<mkdir dir="${classes.dir}"/>
 </target>
 
 <target name="compile" depends="clean, makedir">
-	<mkdir dir="${classes.dir}"/>
 	<javac srcdir="${src.dir}" destdir="${classes.dir}">
-		<classpath refid="classpath"/>
+		<classpath refid="libraries"/>	
+		<classpath refid="junit.class.path" />
     </javac>
 </target>
 
 <target name="junit" depends="compile">
-
 	<junit printsummary="on" fork="true" haltonfailure="yes">
-		<classpath refid="classpath"/>
+		<classpath refid="libraries"/>
+		<classpath refid="junit.class.path" />
 		<formatter type="xml" />
 		<batchtest todir="${test.report.dir}">
-			<fileset dir="${src.dir}">
+			<fileset dir="${test.dir}">
 				<include name="**/*Test.java" />
 			</fileset>
 		</batchtest>
