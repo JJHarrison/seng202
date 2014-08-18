@@ -20,7 +20,11 @@ import java.util.GregorianCalendar;
 import dataModel.DataPoint;
 import dataModel.Event;
 
-
+/**
+ * This class provides a way of reading activity events provided by a fitness tracking device. The activity data needs 
+ * to be in a csv format consisting of date, time, heart rate, latitude, longitude & altitude.
+ * @author Fitr.Team
+ */
 public class FileLoader {
 	private File file;
 	

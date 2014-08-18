@@ -12,6 +12,9 @@ import java.util.ArrayList;
 public class EventContainer {
 	private ArrayList<Event> events;
 	
+	/**
+	 * Constructs a new event container object consisting of an arraylist to contain activity events.
+	 */
 	public EventContainer() {
 		events = new ArrayList<Event>();
 	}

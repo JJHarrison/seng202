@@ -4,6 +4,12 @@ import java.util.Calendar;
 
 import dataModel.EventContainer;
 
+/**
+ * This class provides an abstract version of a user profile. The profile consists of the users date of birth, name,
+ * weight, height, gender. The BMI is estimated by a commonly used formula found on wikipedia. The user profile also
+ * has the event container that holds all of the activity events associated with the user.
+ * @author Fitr.Team
+ */
 public class UserProfile {
 	private Calendar dateofBirth;
 	private String name;
