@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="lib/amd64"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry exported="true" kind="lib" path="lib/jfxmessagebox-1.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/jfxrt.jar"/>
-	<classpathentry kind="lib" path="lib/amd64/libjavafx-font.so"/>
-	<classpathentry kind="lib" path="lib/amd64/libglass.so"/>
-	<classpathentry kind="lib" path="lib/amd64/libjavafx-iio.so"/>
-	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre"/>
-	<classpathentry kind="lib" path="/home/daniel/git/seng202_2014_team5/SENG202/lib/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

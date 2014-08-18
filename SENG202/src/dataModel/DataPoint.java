@@ -10,8 +10,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * 
- * @author FitrTeam
+ * This class provides an abstract version of points provided by a fitness tracking device. Each dataPoint 
+ * consists of attributes related to the actual values in the real world at that time point. 
+ * @author Fitr.Team
  */
 public class DataPoint {
 	private Calendar date;
@@ -29,18 +30,18 @@ public class DataPoint {
 	 * @param latitude The current latitude at this point.
 	 * @param longitude The current longitude at this point.
 	 * @param altitude The current altitude at this point.
-	 * @param lastPoint The previous point, used for distance calculations.
+	 * @param previousPointPoint The previous point, used for distance calculations.
 	 */
-	public DataPoint(Calendar date, int heartrate, double latitude, double longitude, double altitude, DataPoint lastPoint) {
+	public DataPoint(Calendar date, int heartrate, double latitude, double longitude, double altitude, DataPoint previousPointPoint) {
 		this.date = date;
 		this.heartRate = heartrate;
 		this.latitude =latitude;
 		this.longitude = longitude;
 		this.altitude = altitude;
 		
-		if (lastPoint != null) {
-			this.distance = calculateDistance(lastPoint);
-			this.speed = calculateSpeed(calculateDeltaTime(lastPoint));
+		if (previousPointPoint != null) {
+			this.distance = calculateDistance(previousPointPoint);
+			this.speed = calculateSpeed(calculateDeltaTime(previousPointPoint));
 		} else {
 			this.distance = 0.0;
 			this.speed = 0.0;
@@ -49,19 +50,24 @@ public class DataPoint {
 
 	/**
 	 * Calculates the change in time between two points.
-	 * @param lastPoint The point previous to this point in an event.
+	 * @param previousPoint The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
-	private long calculateDeltaTime(DataPoint lastPoint) {
-		long previousTime = lastPoint.getDate().getTimeInMillis();
+	private long calculateDeltaTime(DataPoint previousPoint) {
+		long previousTime = previousPoint.getDate().getTimeInMillis();
 		return ((date.getTimeInMillis() - previousTime) / 1000);
 	}
 	
-	private double calculateDistance(DataPoint lastPoint) {
+	/**
+	 * Calculates the distance from the current point to the previousPoint in meters.
+	 * @param previousPoint The point from which to calculate the distance from 
+	 * @return The distance in meters from the previous point
+	 */
+	private double calculateDistance(DataPoint previousPoint) {
 		double distance = 0;
 		double radius = 6373 * 1000; // Converted to meters
-		double latPrev = lastPoint.getLatitude();
-		double lonPrev = lastPoint.getLongitude();
+		double latPrev = previousPoint.getLatitude();
+		double lonPrev = previousPoint.getLongitude();
 		
 		double deltaLat = latPrev - latitude;
 		double deltaLon = lonPrev - longitude;
