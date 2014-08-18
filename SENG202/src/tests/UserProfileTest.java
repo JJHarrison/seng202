@@ -1,6 +1,6 @@
 package tests;
 
-import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
 import userModel.UserProfile;
@@ -14,8 +14,8 @@ public class UserProfileTest extends TestCase {
 		super.setUp();
 		
 		// John Key's actual birthday
-		Calendar c1 = new Calendar.Builder().setTimeOfDay(0, 0, 0).setDate(1961, 8, 9).build();
-		john = new UserProfile("John Key", c1, Gender.MALE);
+		
+		john = new UserProfile("John Key", new GregorianCalendar(), Gender.MALE);
 		john.setWeight(81.2);
 		john.setHeight(1.8);
 	}
