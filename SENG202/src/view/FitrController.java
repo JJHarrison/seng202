@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 
 /**
  * The current controller for the Fitr application.
- * @author daniel
+ * @author Daniel van Wichen
  *
  */
 public class FitrController {
@@ -73,7 +73,6 @@ public class FitrController {
 	ObjectProperty<Event> obsEvent = new ObjectPropertyBase<Event>() {
 
 		public Object getBean() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
@@ -165,7 +164,7 @@ public class FitrController {
 		colHR.setCellValueFactory(new PropertyValueFactory<DataPoint,Integer>("getHeartRate"));
 	}
 	
-	public File importFile() {
+	private File importFile() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Activity File");
 		ArrayList<ExtensionFilter> filter = new ArrayList<ExtensionFilter>();
@@ -175,7 +174,7 @@ public class FitrController {
 		return file;
 	}
 	
-	public void loadFile(File file) {
+	private void loadFile(File file) {
 		FileLoader fLoader = new FileLoader();
 		fLoader.load();
 		
