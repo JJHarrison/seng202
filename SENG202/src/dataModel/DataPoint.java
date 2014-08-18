@@ -29,18 +29,18 @@ public class DataPoint {
 	 * @param latitude The current latitude at this point.
 	 * @param longitude The current longitude at this point.
 	 * @param altitude The current altitude at this point.
-	 * @param lastPoint The previous point, used for distance calculations.
+	 * @param previousPointPoint The previous point, used for distance calculations.
 	 */
-	public DataPoint(Calendar date, int heartrate, double latitude, double longitude, double altitude, DataPoint lastPoint) {
+	public DataPoint(Calendar date, int heartrate, double latitude, double longitude, double altitude, DataPoint previousPointPoint) {
 		this.date = date;
 		this.heartRate = heartrate;
 		this.latitude =latitude;
 		this.longitude = longitude;
 		this.altitude = altitude;
 		
-		if (lastPoint != null) {
-			this.distance = calculateDistance(lastPoint);
-			this.speed = calculateSpeed(calculateDeltaTime(lastPoint));
+		if (previousPointPoint != null) {
+			this.distance = calculateDistance(previousPointPoint);
+			this.speed = calculateSpeed(calculateDeltaTime(previousPointPoint));
 		} else {
 			this.distance = 0.0;
 			this.speed = 0.0;

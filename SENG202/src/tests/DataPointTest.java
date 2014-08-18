@@ -48,7 +48,6 @@ public class DataPointTest extends TestCase {
 	}
 	
 	public void testDateString(){
-		System.out.println(p1.getDateString());
 		assertEquals("10/06/2005", p1.getDateString());
 	}
 	
