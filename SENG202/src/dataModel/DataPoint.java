@@ -10,8 +10,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * 
- * @author FitrTeam
+ * This class provides an abstract version of points provided by a fitness tracking device. Each dataPoint 
+ * consists of attributes related to the actual values in the real world at that time point. 
+ * @author Fitr.Team
  */
 public class DataPoint {
 	private Calendar date;
