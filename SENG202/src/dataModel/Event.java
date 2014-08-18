@@ -18,21 +18,6 @@ public class Event {
 	
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
-	
-	/*// GET RID OF THIS AFTER DANIEL IS DONE WITH IT
-	public Event() {
-		this.eventName = "Event";
-		//this.startTime = new Calendar.Builder().setDate(2000, 1, 1)
-							.setTimeOfDay(12, 0, 0).build();
-		this.finishTime = new Calendar.Builder().setDate(2000, 1, 1)
-							.setTimeOfDay(1, 0, 0).build();
-		this.numPoints = 10;
-		this.distance = 1000;
-		this.points.add(new DataPoint(new Calendar.Builder().setDate(
-						2000, 1, 1).setTimeOfDay(12, 0, 0).build(),
-						100, 10000, 10000, 50, null));
-	}*/
-	
 	/**
 	 * Constructor.
 	 * @param eventName The name of the event.
@@ -58,7 +43,6 @@ public class Event {
 		this.numPoints += 1;
 		this.distance += p.getDistance();
 		
-		//this.averageSpeed = (averageSpeed*numPoints + p.getSpeed()) / numPoints;
 		totalSpeed += p.getSpeed();
 		this.finishTime = p.getDate();
 		this.startTime = this.getDataPoints().get(0).getDate();

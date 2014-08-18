@@ -70,13 +70,6 @@ public class EventTest extends TestCase {
 		assertEquals(e.getEventName(), "My Event");
 	}
 	
-	public void testGetStartTime() {
-		assertEquals(e.getStartTime(), c1);
-	}
-	
-	public void testGetFinishTime() {
-		//assertEquals(e.getFinishTime(), c2);
-	}
 	
 	public void testGetDataPoints() {
 		assertEquals(e.getDataPoints(), points);
