@@ -12,13 +12,14 @@
 <property name="classes.dir" value="${build.dir}/classes"/>
 <property name="doc.dir" value="doc" />
 	
-<path id="junit.classpath">
+<path id="junit.class.path">
 	<pathelement location="${lib.dir}/junit.jar" />
 	<pathelement location="${build.dir}" />
-	</path>
+</path>
+		
 <path id="libraries">
 	<fileset dir="${lib.dir}" includes="**/*.jar"/>
-	</path>
+</path>
  
 <target name="clean">
 	<delete dir="${build.dir}" />
@@ -34,20 +35,20 @@
 <target name="compile" depends="clean, makedir">
 	<javac srcdir="${src.dir}" destdir="${classes.dir}">
 	<classpath refid="libraries"/>	
-	<classpath refid="junit.classpath" />
+	<classpath refid="junit.class.path" />
     </javac>
 </target>
 
 <target name="junit" depends="compile">
 	<junit printsummary="on" fork="true" haltonfailure="yes">
-	<classpath refid="libraries"/>
-	<classpath refid="junit.classpath" />
-	<formatter type="xml" />
-	<batchtest todir="${test.report.dir}">
-	<fileset dir="${src.dir}">
-		<include name="**/*Test.java" />
-	</fileset>
-	</batchtest>
+		<classpath refid="libraries"/>
+		<classpath refid="junit.class.path" />
+		<formatter type="xml" />
+		<batchtest todir="${test.report.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*Test.java" />
+			</fileset>
+		</batchtest>
 	</junit>
 </target>
 	
