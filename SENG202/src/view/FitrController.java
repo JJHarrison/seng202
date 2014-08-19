@@ -168,12 +168,11 @@ public class FitrController {
 		FileLoader fLoader = new FileLoader(file);
 		if (fLoader.getStream() != null) {
 			fLoader.load();
+			ObservableList<Event> events = FXCollections.observableArrayList();
+			events.setAll(fLoader.getEvents());
+			eventSelector.setItems(events);
+			eventSelector.getSelectionModel().clearAndSelect(0);
 		}
-		
-		ObservableList<Event> events = FXCollections.observableArrayList();
-		events.setAll(fLoader.getEvents());
-		eventSelector.setItems(events);
-		eventSelector.getSelectionModel().clearAndSelect(0);
 	}
 
 	private void clear() {

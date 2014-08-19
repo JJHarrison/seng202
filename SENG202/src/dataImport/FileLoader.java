@@ -38,6 +38,8 @@ public class FileLoader {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			clearStream();
+		} catch (NullPointerException e) {
+			// TODO: handle exception
 		}
 	}
 
