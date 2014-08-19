@@ -8,12 +8,20 @@ import dataModel.Event;
 import dataModel.DataPoint;
 import junit.framework.TestCase;
 
+/**
+ * Tests for the event class functionality
+ * @author James
+ *
+ */
 public class EventTest extends TestCase {
 	private Event e;
 	private ArrayList<DataPoint> points;
 	private Calendar c1;
 	private Calendar c2;
 	
+	/**
+	 * Sets up the events to be tested
+	 */
 	@Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -66,11 +74,16 @@ public class EventTest extends TestCase {
         
     }
 	
+	/**
+	 * Tests the getEventName function to make sure it returns the correct name of the event
+	 */
 	public void testGetEventName() {
 		assertEquals(e.getEventName(), "My Event");
 	}
 	
-	
+	/**
+	 * Tests the getDataPoints function to make sure it returns the dataPoints of the event. 
+	 */
 	public void testGetDataPoints() {
 		assertEquals(e.getDataPoints(), points);
 	}
