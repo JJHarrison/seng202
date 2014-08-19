@@ -4,8 +4,6 @@ package tests;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import junit.framework.TestCase;
 import dataModel.DataPoint;
 /**

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import sun.security.util.Length;
 import dataModel.Event;
 import dataModel.DataPoint;
 import junit.framework.TestCase;
