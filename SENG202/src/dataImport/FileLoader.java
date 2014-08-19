@@ -28,6 +28,10 @@ public class FileLoader {
 		inputStream=null;
 	}
 	
+	/**
+	 * Gets the input file
+	 * @return
+	 */
 	public InputStream getStream() {
 		return inputStream;
 	}

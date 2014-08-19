@@ -103,7 +103,7 @@ public class FitrController {
 
 				MessageBox.show(stage, "Version 1.0\n"
 						+ "\nThis is a prototype\n" + "USE WITH CARE!",
-						"About Fitr", MessageBox.OK | MessageBox.CANCEL);
+						"About Fitr", MessageBox.OK);
 			}
 		});
 
@@ -126,9 +126,11 @@ public class FitrController {
 									.observableArrayList(newValue
 											.getDataPoints());
 							tableView.itemsProperty().setValue(data);
+							eventSelector.getSelectionModel().clearAndSelect(0);
 						} else {
-							eventSummary.setText(null);
-							tableView.itemsProperty().setValue(null);
+							DataPoint nullPoint = null;
+							eventSummary.setText("");
+							tableView.itemsProperty().setValue(FXCollections.observableArrayList(nullPoint));
 						}
 					}
 				});
