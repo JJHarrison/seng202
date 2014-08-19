@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="daniel" name="tests.UserProfileTest" skipped="0" tests="4" time="0.068" timestamp="2014-08-19T12:39:23">
+<testsuite errors="0" failures="0" hostname="daniel" name="tests.UserProfileTest" skipped="0" tests="4" time="0.077" timestamp="2014-08-19T18:53:34">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="lib.dir" value="/home/daniel/git/seng202_2014_team5/SENG202/lib" />
@@ -50,7 +50,7 @@
     <property name="ant.file.Ant-Test" value="/home/daniel/git/seng202_2014_team5/SENG202/build.xml" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tests.UserProfileTest filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/daniel/git/seng202_2014_team5/SENG202/testreport/TEST-tests.UserProfileTest.xml crashfile=/home/daniel/git/seng202_2014_team5/SENG202/junitvmwatcher5564689260713872683.properties propsfile=/home/daniel/git/seng202_2014_team5/SENG202/junit5320346272673690005.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tests.UserProfileTest filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/daniel/git/seng202_2014_team5/SENG202/testreport/TEST-tests.UserProfileTest.xml crashfile=/home/daniel/git/seng202_2014_team5/SENG202/junitvmwatcher3512736738652831518.properties propsfile=/home/daniel/git/seng202_2014_team5/SENG202/junit7499574497603458438.properties" />
     <property name="java.class.path" value="/home/daniel/git/seng202_2014_team5/SENG202/lib/jfxmessagebox-1.1.0.jar:/home/daniel/git/seng202_2014_team5/SENG202/lib/jfxrt.jar:/home/daniel/git/seng202_2014_team5/SENG202/lib/junit.jar:/home/daniel/git/seng202_2014_team5/SENG202/bin:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-launcher.jar:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant.jar:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit.jar:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit4.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.2 compiled on July 8 2013" />
     <property name="project.name" value="seng202_2014_team05" />
@@ -76,10 +76,10 @@
     <property name="ant.project.invoked-targets" value="main" />
     <property name="mf.classpath" value="lib/jfxmessagebox-1.1.0.jar lib/jfxrt.jar lib/junit.jar" />
   </properties>
-  <testcase classname="tests.UserProfileTest" name="testGetBMI" time="0.003" />
-  <testcase classname="tests.UserProfileTest" name="testChangeWeight" time="0.003" />
-  <testcase classname="tests.UserProfileTest" name="testGetAge" time="0.001" />
-  <testcase classname="tests.UserProfileTest" name="testChangeHeight" time="0.001" />
+  <testcase classname="tests.UserProfileTest" name="testGetAge" time="0.005" />
+  <testcase classname="tests.UserProfileTest" name="testChangeHeight" time="0.004" />
+  <testcase classname="tests.UserProfileTest" name="testGetBMI" time="0.0" />
+  <testcase classname="tests.UserProfileTest" name="testChangeWeight" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
