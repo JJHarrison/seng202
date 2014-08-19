@@ -166,8 +166,12 @@ public class FitrController {
 	}
 
 	private void loadFile(File file) {
-		FileLoader fLoader = new FileLoader();
-		fLoader.load();
+		FileLoader fLoader = new FileLoader(file);
+		if (fLoader.getStream() != null) {
+			fLoader.load();
+		}
+		
+
 
 		ObservableList<Event> events = FXCollections.observableArrayList();
 		events.setAll(fLoader.getEvents());

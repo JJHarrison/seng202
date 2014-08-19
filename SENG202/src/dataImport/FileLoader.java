@@ -23,12 +23,21 @@ import dataModel.Event;
  */
 public class FileLoader {
 	private InputStream inputStream;
+	
+	public void clearStream(){
+		inputStream=null;
+	}
+	
+	public InputStream getStream() {
+		return inputStream;
+	}
 
 	public FileLoader(File file) {
 		try {
 			inputStream = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			clearStream();
 		}
 	}
 
@@ -44,14 +53,13 @@ public class FileLoader {
 	 * data points to the event
 	 */
 	public void load() {
-		;
 		BufferedReader br = null;
 		String line = "";
 		DataPoint lastPoint = null;
 		Event currentEvent = new Event("");
 
 		try {
-			br = new BufferedReader(new InputStreamReader(this.inputStream));
+			br = new BufferedReader(new InputStreamReader(inputStream));
 
 			while ((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
