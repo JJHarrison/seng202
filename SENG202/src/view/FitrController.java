@@ -46,9 +46,9 @@ public class FitrController {
 	@FXML
 	private TableColumn<DataPoint, Double> colLongitude;
 	@FXML
-	private TableColumn<DataPoint, Double> colDistance;
+	private TableColumn<DataPoint, String> colDistance;
 	@FXML
-	private TableColumn<DataPoint, Double> colSpeed;
+	private TableColumn<DataPoint, String> colSpeed;
 	@FXML
 	private TableColumn<DataPoint, Integer> colHR;
 
@@ -142,8 +142,8 @@ public class FitrController {
 		colTime.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("getTime"));
 		colLatitude.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>("getLatitude"));
 		colLongitude.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>("getLongitude"));
-		colDistance.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>("getDistance"));
-		colSpeed.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>("getSpeed"));
+		colDistance.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("getDistance"));
+		colSpeed.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("getSpeed"));
 		colHR.setCellValueFactory(new PropertyValueFactory<DataPoint, Integer>("getHeartRate"));
 	}
 

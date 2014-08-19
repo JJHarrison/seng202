@@ -188,12 +188,12 @@ public class DataPoint {
 		return new SimpleDoubleProperty(getLongitude());
 	}
 	
-	public SimpleDoubleProperty getDistanceProperty() {
-		return new SimpleDoubleProperty(getDistance());
+	public Property<String> getDistanceProperty() {
+		return new SimpleStringProperty(String.format("%.2f", getDistance()));
 	}
 	
-	public SimpleDoubleProperty getSpeedProperty() {
-		return new SimpleDoubleProperty(getSpeed());
+	public Property<String> getSpeedProperty() {
+		return new SimpleStringProperty(String.format("%.2f", getSpeed()));
 	}
 	
 	public SimpleIntegerProperty getHeartRateProperty() {
