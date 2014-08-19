@@ -183,6 +183,6 @@ public class Event {
 	 */
 	@Override
 	public String toString() {
-		return getEventName();
+		return getEventName() + "\n" + new SimpleDateFormat("dd/MM/yyyy").format(getStartTime().getTime());
 	}
 }

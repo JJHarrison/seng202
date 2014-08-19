@@ -139,6 +139,7 @@ public class FitrController {
 		colDistance.setCellValueFactory(new PropertyValueFactory<DataPoint,Double>("getDistance"));
 		colSpeed.setCellValueFactory(new PropertyValueFactory<DataPoint,Double>("getSpeed"));
 		colHR.setCellValueFactory(new PropertyValueFactory<DataPoint,Integer>("getHeartRate"));
+		
 	}
 	
 	private File importFile() {
