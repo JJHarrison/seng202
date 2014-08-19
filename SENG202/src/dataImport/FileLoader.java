@@ -65,33 +65,34 @@ public class FileLoader {
 
 			while ((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
-				if (line.isEmpty()) {
-				} else if (dataLine[0].contains("#start")) {
-					currentEvent = new Event(dataLine[1]);
-					events.add(currentEvent);
-					lastPoint = null;
-				} else {
-					String[] dateString = dataLine[0].split("/");
-					String[] time = dataLine[1].split(":");
-
-					// months start from 0...
-					Calendar date = new GregorianCalendar(
-							Integer.parseInt(dateString[2]), // Year
-							Integer.parseInt(dateString[1]), // Month
-							Integer.parseInt(dateString[0]), // Day
-							Integer.parseInt(time[0]), // Hour
-							Integer.parseInt(time[1]), // Minute
-							Integer.parseInt(time[2])); // Second
-
-					int heartrate = Integer.parseInt(dataLine[2]);
-					double latitude = Double.parseDouble(dataLine[3]);
-					double longitude = Double.parseDouble(dataLine[4]);
-					double altitude = Double.parseDouble(dataLine[5]);
-
-					DataPoint point = new DataPoint(date, heartrate, latitude,
-							longitude, altitude, lastPoint);
-					currentEvent.addDataPoint(point);
-					lastPoint = point;
+				if (!line.isEmpty()) {
+					 if (dataLine[0].contains("#start")) {
+						currentEvent = new Event(dataLine[1]);
+						events.add(currentEvent);
+						lastPoint = null;
+					} else {
+						String[] dateString = dataLine[0].split("/");
+						String[] time = dataLine[1].split(":");
+	
+						// months start from 0...
+						Calendar date = new GregorianCalendar(
+								Integer.parseInt(dateString[2]), // Year
+								Integer.parseInt(dateString[1]), // Month
+								Integer.parseInt(dateString[0]), // Day
+								Integer.parseInt(time[0]), // Hour
+								Integer.parseInt(time[1]), // Minute
+								Integer.parseInt(time[2])); // Second
+	
+						int heartrate = Integer.parseInt(dataLine[2]);
+						double latitude = Double.parseDouble(dataLine[3]);
+						double longitude = Double.parseDouble(dataLine[4]);
+						double altitude = Double.parseDouble(dataLine[5]);
+	
+						DataPoint point = new DataPoint(date, heartrate, latitude,
+								longitude, altitude, lastPoint);
+						currentEvent.addDataPoint(point);
+						lastPoint = point;
+					}
 				}
 			}
 			stream.close();
