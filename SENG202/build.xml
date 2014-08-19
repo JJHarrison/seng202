@@ -48,6 +48,7 @@
 </target>
 	
 <target name="jar" depends="compile">
+	<mkdir dir="${jar.dir}"/>
 	<jar destfile="${jar.dir}/seng202_2014_team05_phase02.jar" basedir="${build.dir}">
 		<manifest>
 			<attribute name="Main-Class" value="view.MainApp"/>
