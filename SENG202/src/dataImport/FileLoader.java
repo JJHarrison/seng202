@@ -42,27 +42,6 @@ public class FileLoader {
 
 	private ArrayList<Event> events = new ArrayList<Event>();
 
-	public static void main(String[] args) {
-		FileLoader fl = new FileLoader();
-		fl.load();
-		System.out.println("File Loaded\n");
-
-		for (int i = 0; i < fl.events.size(); i++) {
-			/*
-			 * System.out.println(fl.events.get(i).getEventName());
-			 * System.out.println("average speed is: " +
-			 * fl.events.get(i).getAverageSpeed());
-			 * System.out.println("total distance is: " +
-			 * fl.events.get(i).getDistance()); System.out.printf(
-			 * "%.2f hours\n", fl.events.get(i).getDuration());
-			 * System.out.println
-			 * (fl.events.get(i).getDataPoints().get(0).getDate().getTime() +
-			 * "\n");
-			 */
-			System.out.print(fl.events.get(i).getSummary() + "\n");
-		}
-	}
-
 	/**
 	 * reads a csv file and create a new event at each #start add all following
 	 * data points to the event
@@ -87,13 +66,7 @@ public class FileLoader {
 			while ((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
 				if (line.isEmpty()) {
-					// this is ugly and should be changed???
-					// used to prevent crash if a empty line is read
-				} else if (dataLine[0].contains("#start")) { // creates a new
-																// event when a
-																// new #start
-																// line is
-																// encountered
+				} else if (dataLine[0].contains("#start")) {
 					currentEvent = new Event(dataLine[1]);
 					events.add(currentEvent);
 					lastPoint = null;
