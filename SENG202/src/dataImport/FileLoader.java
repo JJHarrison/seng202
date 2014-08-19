@@ -5,9 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -23,21 +22,19 @@ import dataModel.Event;
  * @author Fitr.Team
  */
 public class FileLoader {
-	private File file;
+	private InputStream inputStream;
 
 	public FileLoader(File file) {
-		this.file = file;
+		try {
+			inputStream = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public FileLoader() {
-		URL url =
-		this.getClass().getResource("seng202_2014_example_data.csv");
-		try {
-			this.file = new File(url.toURI());
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		inputStream = this.getClass().getResourceAsStream(
+				"seng202_2014_example_data.csv");
 	}
 
 	private ArrayList<Event> events = new ArrayList<Event>();
@@ -47,21 +44,14 @@ public class FileLoader {
 	 * data points to the event
 	 */
 	public void load() {
-		FileInputStream stream = null;
-		try {
-			stream = new FileInputStream(this.file);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		//InputStream stream = FileLoader.class.getResourceAsStream(file.getAbsolutePath());
+		;
 		BufferedReader br = null;
 		String line = "";
 		DataPoint lastPoint = null;
 		Event currentEvent = new Event("");
 
 		try {
-			br = new BufferedReader(new InputStreamReader(stream));
+			br = new BufferedReader(new InputStreamReader(this.inputStream));
 
 			while ((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
@@ -94,7 +84,6 @@ public class FileLoader {
 					lastPoint = point;
 				}
 			}
-			stream.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

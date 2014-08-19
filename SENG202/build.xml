@@ -7,6 +7,8 @@
 <property name="build.dir" location="bin" />
 <property name="lib.dir" location="lib" />
 <property name="test.report.dir" location="testreport" />
+<property name="jar.dir" location="${build.dir}/jar" />
+<property name="doc.dir" value="doc" />
 	
 <path id="classpath">
 	<fileset dir="${lib.dir}" includes="**/*.jar"/>
@@ -16,6 +18,7 @@
 <target name="clean">
 	<delete dir="${build.dir}" />
 	<delete dir="${test.report.dir}" />
+	<delete dir="${doc.dir}" />
 </target>
 	
 <target name="makedir">
@@ -43,8 +46,32 @@
 		</batchtest>
 	</junit>
 </target>
+	
+<target name="jar" depends="compile">
+	<jar destfile="${jar.dir}/seng202_2014_team05_phase02.jar" basedir="${build.dir}">
+		<manifest>
+			<attribute name="Main-Class" value="view.MainApp"/>
+		</manifest>
+	</jar>
+</target>
 
-<target name="main" depends="compile, junit">
+<target name="doc" depends="compile">
+	<mkdir dir="${doc.dir}"/>
+	<mkdir dir="${doc.dir}"/>
+	<javadoc
+		destdir="${doc.dir}"
+		verbose="true"
+		author="true"
+		version="true">
+		<classpath refid="classpath" />
+		<packageset dir="${src.dir}" defaultexcludes="yes">
+			<include name="**" />
+			<exclude name="**/*Test.java" />
+		</packageset>
+	</javadoc>
+</target>	
+
+<target name="main" depends="compile, junit, jar">
     <description>Main target</description>
 </target>
 
