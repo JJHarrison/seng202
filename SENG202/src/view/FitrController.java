@@ -171,7 +171,8 @@ public class FitrController {
 			ObservableList<Event> events = FXCollections.observableArrayList();
 			events.setAll(fLoader.getEvents());
 			eventSelector.setItems(events);
-			eventSelector.getSelectionModel().clearAndSelect(0);
+			eventSelector.getSelectionModel().clearSelection();
+			eventSelector.getSelectionModel().select(0);
 		}
 	}
 
