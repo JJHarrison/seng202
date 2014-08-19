@@ -126,7 +126,6 @@ public class FitrController {
 									.observableArrayList(newValue
 											.getDataPoints());
 							tableView.itemsProperty().setValue(data);
-							eventSelector.getSelectionModel().clearAndSelect(0);
 						} else {
 							DataPoint nullPoint = null;
 							eventSummary.setText("");
