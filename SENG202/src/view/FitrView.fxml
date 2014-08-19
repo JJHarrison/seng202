@@ -16,8 +16,8 @@
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="300.0" percentHeight="50.0" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="200.0" minHeight="-Infinity" prefHeight="150.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
             <TextArea fx:id="eventSummary" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
