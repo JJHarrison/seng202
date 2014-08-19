@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import sun.security.util.Length;
 import dataModel.Event;
 import dataModel.DataPoint;
 import junit.framework.TestCase;
 
 /**
  * Tests for the event class functionality
- * 
  * @author James
  *
  */
@@ -19,73 +19,85 @@ public class EventTest extends TestCase {
 	private ArrayList<DataPoint> points;
 	private Calendar c1;
 	private Calendar c2;
-
+	private DataPoint p1;
+    private DataPoint p2;
+	
 	/**
 	 * Sets up the events to be tested
 	 */
 	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-
-		e = new Event("My Event");
-
-		// set start and finish times 3 minutes apart
-		c1 = new GregorianCalendar(2005, // Year
+    protected void setUp() throws Exception {
+        super.setUp();
+        
+        e = new Event("My Event");
+        
+        // set start and finish times 3 minutes apart
+		c1 = new GregorianCalendar(
+				2005, // Year 
 				5, // Month
 				10, // Day
 				23, // Hour
 				42, // Minute
 				28); // Second
-		c2 = new GregorianCalendar(2005, // Year
+		c2 = new GregorianCalendar(
+				2005, // Year 
 				5, // Month
 				10, // Day
 				23, // Hour
 				45, // Minute
 				28); // Second
-
-		e.setStartTime(c1);
-		e.setFinishTime(c2);
-
-		// set up data points
-		points = new ArrayList<DataPoint>();
-		Calendar c3 = new GregorianCalendar(2005, // Year
+		
+        e.setStartTime(c1);
+        e.setFinishTime(c2);
+        
+        // set up data points
+        points = new ArrayList<DataPoint>();
+		Calendar c3 = new GregorianCalendar(
+				2005, // Year 
 				5, // Month
 				10, // Day
 				23, // Hour
 				42, // Minute
 				28); // Second
-		Calendar c4 = new GregorianCalendar(2005, // Year
+		Calendar c4 = new GregorianCalendar(
+				2005, // Year 
 				5, // Month
 				10, // Day
 				23, // Hour
 				43, // Minute
 				5); // Second
-		DataPoint p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0,
-				null);
-		DataPoint p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0,
-				p1);
-		points.add(p1);
-		points.add(p2);
-		e.addDataPoint(p1);
-		e.addDataPoint(p2);
-
-		System.out.println("setup");
-
-	}
-
+		
+		p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
+		p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
+        points.add(p1);
+        points.add(p2);
+        e.addDataPoint(p1);
+        e.addDataPoint(p2);
+        
+    }
+	
 	/**
-	 * Tests the getEventName function to make sure it returns the correct name
-	 * of the event
+	 * Tests the getEventName function to make sure it returns the correct name of the event
 	 */
 	public void testGetEventName() {
 		assertEquals(e.getEventName(), "My Event");
 	}
-
+	
 	/**
-	 * Tests the getDataPoints function to make sure it returns the dataPoints
-	 * of the event.
+	 * Tests the getDataPoints function to make sure it returns the dataPoints of the event. 
 	 */
 	public void testGetDataPoints() {
 		assertEquals(e.getDataPoints(), points);
+	}
+	
+	
+	//run this last or you will cause the other test to fail
+	/**
+	 * Tests the addDataPoint function.
+	 */
+	public void testAddDataPoint() {
+		assertEquals(p2, points.get(points.size()-1));
+		points.add(p1);
+		assertEquals(p1, points.get(points.size()-1));
 	}
 }

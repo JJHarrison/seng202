@@ -4,6 +4,8 @@ package tests;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import junit.framework.TestCase;
 import dataModel.DataPoint;
 /**
@@ -51,6 +53,14 @@ public class DataPointTest extends TestCase {
 		
 	}
 	
+	/**
+	 * Tests the getDate function.
+	 */
+	public void testGetDate() {
+		Calendar c1 = new GregorianCalendar(2005, 5, 10, 23, 42, 28);
+		assertEquals(c1, p1.getDate());
+	}
+
 	/**
 	 * Test for calculating the speed between two points.
 	 */
