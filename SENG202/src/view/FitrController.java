@@ -151,7 +151,6 @@ public class FitrController {
 				"getSpeed"));
 		colHR.setCellValueFactory(new PropertyValueFactory<DataPoint, Integer>(
 				"getHeartRate"));
-
 	}
 
 	private File importFile() {
@@ -171,8 +170,6 @@ public class FitrController {
 			fLoader.load();
 		}
 		
-
-
 		ObservableList<Event> events = FXCollections.observableArrayList();
 		events.setAll(fLoader.getEvents());
 		eventSelector.setItems(events);
