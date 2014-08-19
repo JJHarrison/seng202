@@ -12,10 +12,6 @@
 	<fileset dir="${lib.dir}" includes="**/*.jar"/>
 	<pathelement location="${build.dir}" />
 </path>
-		
-<path id="libraries">
-	<fileset dir="${lib.dir}" includes="**/*.jar"/>
-</path>
  
 <target name="clean">
 	<delete dir="${build.dir}" />
@@ -31,6 +27,9 @@
 	<javac srcdir="${src.dir}" destdir="${build.dir}">	
 		<classpath refid="classpath" />
     </javac>
+	<copy todir="${build.dir}">
+	    <fileset dir="${src.dir}" includes="**/*" excludes="**/*.java" />
+	</copy>
 </target>
 
 <target name="junit" depends="compile">
