@@ -75,6 +75,7 @@ public class FitrController {
 		menuImport.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent event) {
+				clear();
 				loadFile(importFile());
 
 			}
