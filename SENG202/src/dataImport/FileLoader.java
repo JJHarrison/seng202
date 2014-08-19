@@ -23,19 +23,14 @@ import dataModel.Event;
  */
 public class FileLoader {
 	private InputStream inputStream;
-	
-	public void clearStream(){
-		inputStream=null;
-	}
-	
-	/**
-	 * Gets the input file
-	 * @return
-	 */
-	public InputStream getStream() {
-		return inputStream;
-	}
+	private ArrayList<Event> events = new ArrayList<Event>();
 
+	/**
+	 * Creates a FileLoader with a particular input file
+	 * 
+	 * @param file
+	 *            The input file
+	 */
 	public FileLoader(File file) {
 		try {
 			inputStream = new FileInputStream(file);
@@ -43,7 +38,7 @@ public class FileLoader {
 			e.printStackTrace();
 			clearStream();
 		} catch (NullPointerException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
@@ -52,7 +47,14 @@ public class FileLoader {
 				"seng202_2014_example_data.csv");
 	}
 
-	private ArrayList<Event> events = new ArrayList<Event>();
+	/**
+	 * Gets the input file
+	 * 
+	 * @return
+	 */
+	public InputStream getStream() {
+		return inputStream;
+	}
 
 	/**
 	 * reads a csv file and create a new event at each #start add all following
@@ -77,7 +79,7 @@ public class FileLoader {
 					} else {
 						String[] dateString = dataLine[0].split("/");
 						String[] time = dataLine[1].split(":");
-	
+
 						// months start from 0...
 						Calendar date = new GregorianCalendar(
 								Integer.parseInt(dateString[2]), // Year
@@ -86,14 +88,14 @@ public class FileLoader {
 								Integer.parseInt(time[0]), // Hour
 								Integer.parseInt(time[1]), // Minute
 								Integer.parseInt(time[2])); // Second
-	
+
 						int heartrate = Integer.parseInt(dataLine[2]);
 						double latitude = Double.parseDouble(dataLine[3]);
 						double longitude = Double.parseDouble(dataLine[4]);
 						double altitude = Double.parseDouble(dataLine[5]);
-	
-						DataPoint point = new DataPoint(date, heartrate, latitude,
-								longitude, altitude, lastPoint);
+
+						DataPoint point = new DataPoint(date, heartrate,
+								latitude, longitude, altitude, lastPoint);
 						currentEvent.addDataPoint(point);
 						lastPoint = point;
 					}
@@ -112,5 +114,9 @@ public class FileLoader {
 
 	public ArrayList<Event> getEvents() {
 		return events;
+	}
+
+	private void clearStream() {
+		inputStream = null;
 	}
 }

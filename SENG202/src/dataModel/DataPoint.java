@@ -172,38 +172,31 @@ public class DataPoint {
 		return(df.format(date.getTime()));
 	}
 	
-	@Deprecated
 	public Property<String> getDateProperty() {
 		return new SimpleStringProperty(getDateString());
 	}
 	
-	@Deprecated
 	public Property<String> getTimeProperty() {
 		return new SimpleStringProperty(getTimeString());
 	}
 	
-	@Deprecated
-	public Property<?> getLatitudeProperty() {
+	public SimpleDoubleProperty getLatitudeProperty() {
 		return new SimpleDoubleProperty(getLatitude());
 	}
 	
-	@Deprecated
-	public Property<?> getLongitudeProperty() {
+	public SimpleDoubleProperty getLongitudeProperty() {
 		return new SimpleDoubleProperty(getLongitude());
 	}
 	
-	@Deprecated
-	public Property<?> getDistanceProperty() {
+	public SimpleDoubleProperty getDistanceProperty() {
 		return new SimpleDoubleProperty(getDistance());
 	}
 	
-	@Deprecated
-	public Property<?> getSpeedProperty() {
+	public SimpleDoubleProperty getSpeedProperty() {
 		return new SimpleDoubleProperty(getSpeed());
 	}
 	
-	@Deprecated
-	public Property<?> getHeartRateProperty() {
+	public SimpleIntegerProperty getHeartRateProperty() {
 		return new SimpleIntegerProperty(getHeartRate());
 	}
 	

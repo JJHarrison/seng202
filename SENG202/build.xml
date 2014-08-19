@@ -10,11 +10,11 @@
 <property name="jar.dir" location="${build.dir}/jar" />
 <property name="doc.dir" value="doc" />
 	
-<path id="classpath">
+<path id="build.classpath">
 	<fileset dir="${lib.dir}" includes="**/*.jar"/>
 	<pathelement location="${build.dir}" />
 </path>
- 
+	
 <target name="clean">
 	<delete dir="${build.dir}" />
 	<delete dir="${test.report.dir}" />
@@ -28,16 +28,16 @@
 
 <target name="compile" depends="clean, makedir">
 	<javac srcdir="${src.dir}" destdir="${build.dir}">	
-		<classpath refid="classpath" />
+		<classpath refid="build.classpath" />
     </javac>
 	<copy todir="${build.dir}">
-	    <fileset dir="${src.dir}" includes="**/*" excludes="**/*.java" />
+	    <fileset dir="${src.dir}" includes="**/*.*" excludes="**/*.java" />
 	</copy>
 </target>
 
 <target name="junit" depends="compile">
 	<junit printsummary="on" fork="true" haltonfailure="yes">
-		<classpath refid="classpath" />
+		<classpath refid="build.classpath" />
 		<formatter type="xml" />
 		<batchtest todir="${test.report.dir}">
 			<fileset dir="${src.dir}">
@@ -47,11 +47,23 @@
 	</junit>
 </target>
 	
+<pathconvert property="mf.classpath" pathsep=" ">
+	<path refid="build.classpath"/>
+	<mapper>
+		<chainedmapper>
+			<flattenmapper/>
+			<globmapper from="*.jar" to="lib/*.jar"/>
+		</chainedmapper>
+	</mapper>
+</pathconvert>	
+	
 <target name="jar" depends="compile">
 	<mkdir dir="${jar.dir}"/>
 	<jar destfile="${jar.dir}/seng202_2014_team05_phase02.jar" basedir="${build.dir}">
+		<zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
 		<manifest>
 			<attribute name="Main-Class" value="view.MainApp"/>
+			<attribute name="Class-Path" value="${mf.classpath}"/>
 		</manifest>
 	</jar>
 </target>
@@ -65,7 +77,7 @@
 		version="true"
 		linksource="true"
 		link="http://docs.oracle.com/javase/8/docs/api/">
-		<classpath refid="classpath" />
+		<classpath refid="build.classpath" />
 		<packageset dir="${src.dir}" defaultexcludes="yes">
 			<include name="**" />
 			<exclude name="**/*Test.java" />
