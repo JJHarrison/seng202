@@ -1,6 +1,7 @@
 package userModel;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import dataModel.EventContainer;
 
@@ -139,6 +140,17 @@ public class UserProfile {
 	 */
 	public void setEvents(EventContainer events) {
 		this.events = events;
+	}
+	
+	/**
+	 * Returns the age of the user in years.
+	 * @return The age of the user in years.
+	 */
+	public int getAge(){
+		// Need to add some functionality to prevent negative or 0 ages being returned.
+		Calendar now = new GregorianCalendar();
+		int age = (now.get(Calendar.YEAR)- this.getDateofBirth().get(Calendar.YEAR));
+		return age;
 	}
 	
 }
