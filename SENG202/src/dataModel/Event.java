@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.sun.javafx.css.CalculatedValue;
+
 import dataModel.DataPoint;
 
 /**
@@ -18,7 +20,7 @@ public class Event {
 	private int numPoints;
 	private double distance;
 	private double maxSpeed;
-	private double totalSpeed;
+	private double averageSpeed;
 	private int totalHeartRate;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
@@ -58,15 +60,13 @@ public class Event {
 	 * @param p The dataPoint to be added to the activity event.
 	 */
 	public void addDataPoint(DataPoint p) {
-		this.points.add(p);
-		this.numPoints += 1;
-		this.distance += p.getDistance();
-		
-		totalSpeed += p.getSpeed();
-		this.finishTime = p.getDate();
-		this.startTime = this.getDataPoints().get(0).getDate();
-		
-		this.totalHeartRate += p.getHeartRate();
+		points.add(p);
+		distance += p.getDistance();
+		averageSpeed  = calculateAverageSpeed(p);
+		numPoints += 1;
+		finishTime = p.getDate();
+		startTime = this.getDataPoints().get(0).getDate();
+		totalHeartRate += p.getHeartRate();
 		
 		if(maxSpeed < p.getSpeed()) {
 			maxSpeed = p.getSpeed();
@@ -92,13 +92,19 @@ public class Event {
 		return summary;
 	}
 	
+	private double calculateAverageSpeed(DataPoint p) {
+		double newAverageSpeed = ((numPoints * averageSpeed) + p.getSpeed()) / (numPoints + 1);
+		return newAverageSpeed;
+	}
+	
 	/**
 	 * Returns the average speed of the activity event.
 	 * @return The average speed in meters per second
 	 */
 	public double getAverageSpeed() {
-		return (totalSpeed / numPoints);
+		return averageSpeed;
 	}
+	
 	
 	/**
 	 * Returns the average heart rate of the activity event.
