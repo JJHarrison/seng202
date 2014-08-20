@@ -80,7 +80,8 @@
 		<classpath refid="build.classpath" />
 		<packageset dir="${src.dir}" defaultexcludes="yes">
 			<include name="**" />
-			<exclude name="**/*Test.java" />
+			<exclude name="tests/**/"  />
+			<exclude name="resources/**/" />
 		</packageset>
 	</javadoc>
 </target>	
