@@ -31,7 +31,7 @@
 		<classpath refid="build.classpath" />
     </javac>
 	<copy todir="${build.dir}">
-	    <fileset dir="${src.dir}" includes="**/*.*" excludes="**/*.java" />
+	    <fileset dir="${src.dir}" includes="**/*.*" excludes="**/*.java"/>
 	</copy>
 </target>
 
