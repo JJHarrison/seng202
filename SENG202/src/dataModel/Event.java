@@ -84,7 +84,7 @@ public class Event {
 		String endTime = tf.format(this.finishTime.getTime());
 		String date = df.format(this.startTime.getTime());
 		
-		String summary = String.format("Event Name: %s\nDate: %s\nStart Time: %s\nEnd Time: %s\nAverageSpeed: %.2f m/s\nMax Speed: %.2f m/s\nDistance:"
+		String summary = String.format("Event Name: %s\nDate: %s\nStart Time: %s\nEnd Time: %s\nAverage Speed: %.2f m/s\nMax Speed: %.2f m/s\nDistance:"
 				+ " %.0f m\nCalories Burned: %.0f\nAverage Heart Rate: %d", eventName, 
 				date,
 				startTime,
