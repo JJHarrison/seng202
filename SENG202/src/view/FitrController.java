@@ -46,9 +46,9 @@ public class FitrController {
 	@FXML
 	private TableColumn<DataPoint, Double> colLongitude;
 	@FXML
-	private TableColumn<DataPoint, Double> colDistance;
+	private TableColumn<DataPoint, String> colDistance;
 	@FXML
-	private TableColumn<DataPoint, Double> colSpeed;
+	private TableColumn<DataPoint, String> colSpeed;
 	@FXML
 	private TableColumn<DataPoint, Integer> colHR;
 
@@ -76,8 +76,10 @@ public class FitrController {
 
 			public void handle(ActionEvent event) {
 				eventSelector.getSelectionModel().clearAndSelect(0);
-				loadFile(importFile());
-
+				File file = importFile();
+				if (file != null) {
+					loadFile(file);
+				}
 			}
 		});
 
@@ -103,7 +105,7 @@ public class FitrController {
 
 				MessageBox.show(stage, "Version 1.0\n"
 						+ "\nThis is a prototype\n" + "USE WITH CARE!",
-						"About Fitr", MessageBox.OK);
+						"About Fitr", MessageBox.OK );
 			}
 		});
 
@@ -126,7 +128,6 @@ public class FitrController {
 									.observableArrayList(newValue
 											.getDataPoints());
 							tableView.itemsProperty().setValue(data);
-							eventSelector.getSelectionModel().clearAndSelect(0);
 						} else {
 							DataPoint nullPoint = null;
 							eventSummary.setText("");
@@ -137,23 +138,13 @@ public class FitrController {
 
 		eventSelector.getSelectionModel().clearAndSelect(0);
 
-		colDate.setCellValueFactory(new PropertyValueFactory<DataPoint, String>(
-				"getDate"));
-		colTime.setCellValueFactory(new PropertyValueFactory<DataPoint, String>(
-				"getTime"));
-		colLatitude
-				.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>(
-						"getLatitude"));
-		colLongitude
-				.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>(
-						"getLongitude"));
-		colDistance
-				.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>(
-						"getDistance"));
-		colSpeed.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>(
-				"getSpeed"));
-		colHR.setCellValueFactory(new PropertyValueFactory<DataPoint, Integer>(
-				"getHeartRate"));
+		colDate.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("getDate"));
+		colTime.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("getTime"));
+		colLatitude.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>("getLatitude"));
+		colLongitude.setCellValueFactory(new PropertyValueFactory<DataPoint, Double>("getLongitude"));
+		colDistance.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("getDistance"));
+		colSpeed.setCellValueFactory(new PropertyValueFactory<DataPoint, String>("getSpeed"));
+		colHR.setCellValueFactory(new PropertyValueFactory<DataPoint, Integer>("getHeartRate"));
 	}
 
 	private File importFile() {
@@ -161,8 +152,7 @@ public class FitrController {
 		fileChooser.setTitle("Open Activity File");
 		ArrayList<ExtensionFilter> filter = new ArrayList<ExtensionFilter>();
 		filter.add(new ExtensionFilter("CSV file", "*.csv"));
-		fileChooser.getExtensionFilters().setAll(
-				FXCollections.observableList(filter));
+		fileChooser.getExtensionFilters().setAll(FXCollections.observableList(filter));
 		File file = fileChooser.showOpenDialog(new Stage());
 		return file;
 	}
@@ -174,8 +164,7 @@ public class FitrController {
 			ObservableList<Event> events = FXCollections.observableArrayList();
 			events.setAll(fLoader.getEvents());
 			eventSelector.setItems(events);
-			eventSelector.getSelectionModel().clearSelection();
-			eventSelector.getSelectionModel().select(0);
+			eventSelector.getSelectionModel().clearAndSelect(0);
 		}
 	}
 
