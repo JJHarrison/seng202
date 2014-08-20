@@ -57,7 +57,7 @@
 	</mapper>
 </pathconvert>	
 	
-<target name="jar" depends="compile">
+<target name="jar" depends="junit">
 	<mkdir dir="${jar.dir}"/>
 	<jar destfile="${jar.dir}/seng202_2014_team05_phase02.jar" basedir="${build.dir}">
 		<zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
