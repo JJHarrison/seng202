@@ -69,7 +69,7 @@ public class Event {
 		if(maxSpeed < p.getSpeed()) {
 			maxSpeed = p.getSpeed();
 		}
-	}
+	}	
 	
 	/**
 	 * Gets a summary of the activity event consisting of the event name, date, start time, end time, average speed,

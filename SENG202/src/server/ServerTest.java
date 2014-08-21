@@ -39,6 +39,7 @@ public class ServerTest {
 		//close connection
 		skt.close();
 		System.out.println("Server is exiting");
+		myServerSocket.close();
 		
 	}
 	
