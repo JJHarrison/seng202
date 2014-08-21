@@ -2,7 +2,7 @@ package server;
 
 import java.net.*;
 import java.io.*;
-public class ClientTest {
+public class Client {
 	
 	
 	

@@ -4,7 +4,7 @@ import java.net.*;
 import java.io.*;
 
 
-public class ServerTest {
+public class Server {
 	
 	public static void main(String[] args){
 	
