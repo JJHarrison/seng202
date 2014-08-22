@@ -1,8 +1,12 @@
 package dataModel;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import com.sun.javafx.geom.AreaOp.IntOp;
+import com.sun.webkit.ThemeClient;
 
 import dataModel.DataPoint;
 
@@ -84,9 +88,10 @@ public class Event {
 		String endTime = tf.format(this.finishTime.getTime());
 		String date = df.format(this.startTime.getTime());
 		
-		String summary = String.format("Event Name: %s\nDate: %s\nStart Time: %s\nEnd Time: %s\nAverage Speed: %.2f m/s\nMax Speed: %.2f m/s\nDistance:"
+		String summary = String.format("Event Name: %s\nDate: %s\nDuration: %s\nStart Time: %s\nEnd Time: %s\nAverage Speed: %.2f m/s\nMax Speed: %.2f m/s\nDistance:"
 				+ " %.0f m\nCalories Burned: %.0f\nAverage Heart Rate: %d", eventName, 
 				date,
+				getDurationString(),
 				startTime,
 				endTime,
 				getAverageSpeed(),
@@ -163,8 +168,19 @@ public class Event {
 	 * Returns the duration of the activity event.
 	 * @return The duration for the activity event in hours.
 	 */
+	
 	public double getDuration() {
 		return (finishTime.getTimeInMillis() - startTime.getTimeInMillis()) / (1000.0 * 60 * 60);
+	}
+	
+	/**
+	 * Returns a string formated to HH:MM:SS for the duration of the event to be displayed in the event summary.
+	 * @return A string of the activity events duration.
+	 */
+	public String getDurationString() {
+		long seconds = ((finishTime.getTimeInMillis() - startTime.getTimeInMillis()) / 1000);
+		String duration = String.format("%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, (seconds % 60));
+		return duration;
 	}
 	
 	/**
