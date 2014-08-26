@@ -76,6 +76,7 @@
 		author="true"
 		version="true"
 		linksource="true"
+		stylesheetfile="stylesheet.css"
 		link="http://docs.oracle.com/javase/8/docs/api/">
 		<classpath refid="build.classpath" />
 		<packageset dir="${src.dir}" defaultexcludes="yes">
