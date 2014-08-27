@@ -10,7 +10,7 @@ public class Client {
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private final int portNumber = 8888;
-	private String hostName = "LocalHost";
+	private String hostName = "localhost";
 	
 	/**
 	 * Sets up a connection with the server.	
