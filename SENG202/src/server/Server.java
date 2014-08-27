@@ -12,6 +12,7 @@ public class Server {
 	private Socket connection;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
+	private String host = "localhost";
 	final private int portNumber = 8888; 
 	final private int maxQueue = 10;
 	
@@ -54,7 +55,8 @@ public class Server {
 	 * @throws IOException
 	 */
 	public void waitForConnection() throws IOException{
-		System.out.println(startMessage() + " Waiting for a client to connect...");
+		System.out.println(startMessage() + " Waiting for a client to connect to [" + 
+							InetAddress.getLocalHost().getCanonicalHostName() + "]...");
 		//Once a client connects a socket is open for the server and client
 		connection = server.accept();
 		System.out.println(String.format(startMessage() + " Now connected to %s", connection.getInetAddress().getHostName()));
