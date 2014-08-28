@@ -93,9 +93,16 @@ public class FileLoader {
 						double latitude = Double.parseDouble(dataLine[3]);
 						double longitude = Double.parseDouble(dataLine[4]);
 						double altitude = Double.parseDouble(dataLine[5]);
-
-						DataPoint point = new DataPoint(date, heartrate,
-								latitude, longitude, altitude, lastPoint);
+						
+						DataPoint point = new DataPoint.Builder()
+								.date(date)
+								.heartRate(heartrate)
+								.latitude(latitude)
+								.longitude(longitude)
+								.altitude(altitude)
+								.prevDataPoint(lastPoint)
+								.build();
+						
 						currentEvent.addDataPoint(point);
 						lastPoint = point;
 					}

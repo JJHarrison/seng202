@@ -24,6 +24,88 @@ public class DataPoint {
 	private double distance;
 	
 	/**
+	 * Builder for DataPoint class
+	 * @author SamSchofield
+	 */
+	public static class Builder {
+		private Calendar date;
+		private int heartRate;
+		private double latitude;
+		private double longitude;
+		private double altitude;
+		private DataPoint previousPointPoint;
+		
+		/**
+		 * set date for data point
+		 * @param date
+		 * @return builder
+		 */
+		public Builder date(Calendar date) {
+			this.date = date;
+			return this;
+		}
+		
+		/**
+		 * set heartRate for data point
+		 * @param heartRate
+		 * @return builder
+		 */
+		public Builder heartRate(int heartRate) {
+			this.heartRate = heartRate;
+			return this;
+		}
+		
+		/**
+		 * set latitude for data point
+		 * @param latitude
+		 * @return builder
+		 */
+		public Builder latitude(Double latitude) {
+			this.latitude = latitude;
+			return this;
+		}
+		
+		/**
+		 * set longitude for data point
+		 * @param longitude
+		 * @return builder
+		 */
+		public Builder longitude(Double longitude) {
+			this.longitude = longitude;
+			return this;
+		}
+		
+		/**
+		 * set altitude for data point
+		 * @param altitude
+		 * @return builder
+		 */
+		public Builder altitude(Double altitude) {
+			this.altitude = altitude;
+			return this;
+		}
+		
+		
+		/**
+		 * set previous point for data point
+		 * @param point
+		 * @return builder
+		 */
+		public Builder prevDataPoint(DataPoint point) {
+			this.previousPointPoint = point;
+			return this;
+		}	
+		
+		/**
+		 * build the dataPoint
+		 * @return data point
+		 */
+		public DataPoint build() {
+			return new DataPoint(this);
+		}	
+	}
+	
+	/**
 	 * Constructor.
 	 * @param date The current date at this point.
 	 * @param heartrate The current heart rate at this point.
@@ -42,6 +124,27 @@ public class DataPoint {
 		if (previousPointPoint != null) {
 			this.distance = calculateDistance(previousPointPoint);
 			this.speed = calculateSpeed(calculateDeltaTime(previousPointPoint));
+		} else {
+			this.distance = 0.0;
+			this.speed = 0.0;
+		}
+	}
+	
+	/**
+	 * constructor for DataPoint 
+	 * Set data point values using builder 
+	 * @param builder
+	 */
+	public DataPoint(Builder builder) {
+		this.date = builder.date;
+		this.heartRate = builder.heartRate;
+		this.latitude = builder.latitude;
+		this.longitude = builder.longitude;
+		this.altitude = builder.altitude;
+		
+		if (builder.previousPointPoint != null) {
+			this.distance = calculateDistance(builder.previousPointPoint);
+			this.speed = calculateSpeed(calculateDeltaTime(builder.previousPointPoint));
 		} else {
 			this.distance = 0.0;
 			this.speed = 0.0;
