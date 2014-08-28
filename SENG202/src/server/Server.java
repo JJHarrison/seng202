@@ -41,7 +41,7 @@ public class Server {
 							+ "--------------------");
 				}
 				finally{
-					closeStuff();
+					closeStuff();  
 				}
 			}
 		}
