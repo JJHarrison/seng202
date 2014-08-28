@@ -38,8 +38,22 @@ public class DataPointTest extends TestCase {
 				5); // Second
 
         
-        p1 = new DataPoint(c1, 120, 30.2553368, -97.83891084, 50.0, null);
-        p2 = new DataPoint(c2, 125, 30.25499189, -97.83913958, 51.0, p1);
+       // p1 = new DataPoint(c1, 120, 30.2553368, -97.83891084, 50.0, null);
+		p1 = new DataPoint.Builder().date(c1)
+				.heartRate(120)
+				.latitude(30.2553368)
+				.longitude(-97.83891084)
+				.altitude(50.0)
+				.prevDataPoint(null)
+				.build();
+       // p2 = new DataPoint(c2, 125, 30.25499189, -97.83913958, 51.0, p1);
+		p2 = new DataPoint.Builder().date(c2)
+				.heartRate(125)
+				.latitude(30.25499189)
+				.longitude(-97.83913958)
+				.altitude(51.0)
+				.prevDataPoint(p1)
+				.build();
     }
 	
 	/**

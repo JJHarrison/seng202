@@ -105,6 +105,7 @@ public class DataPoint {
 		}	
 	}
 	
+	
 	/**
 	 * Constructor.
 	 * @param date The current date at this point.
@@ -114,6 +115,7 @@ public class DataPoint {
 	 * @param altitude The current altitude at this point.
 	 * @param previousPointPoint The previous point, used for distance calculations.
 	 */
+	/*
 	public DataPoint(Calendar date, int heartrate, double latitude, double longitude, double altitude, DataPoint previousPointPoint) {
 		this.date = date;
 		this.heartRate = heartrate;
@@ -129,6 +131,7 @@ public class DataPoint {
 			this.speed = 0.0;
 		}
 	}
+	*/
 	
 	/**
 	 * constructor for DataPoint 
