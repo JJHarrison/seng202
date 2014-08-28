@@ -8,6 +8,7 @@ package view;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -21,11 +22,20 @@ public class MainApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Fitr.aw");
+		this.primaryStage.setTitle("Fitr");
+		
+		//Minimum size of the stage
+		this.primaryStage.setMinHeight(675);
+		this.primaryStage.setMinWidth(1200);
+		
+		//Size of the stage when it is built
+		this.primaryStage.setHeight(800);
+		this.primaryStage.setWidth(1600);
+		
 		try {
-			this.primaryStage.getIcons().add(
-					new Image("/resources/heart11.png"));
+			this.primaryStage.getIcons().add(new Image("/resources/heart11.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,9 +48,9 @@ public class MainApp extends Application {
 	 */
 	public void initRootLayout() {
 		try {
-			// Load root layout from fxml file.
+			// Load root layout from FXML file.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("FitrView.fxml"));
+			loader.setLocation(MainApp.class.getResource("FitrMain.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
