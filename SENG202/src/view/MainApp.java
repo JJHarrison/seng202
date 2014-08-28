@@ -4,7 +4,6 @@
  */
 
 package view;
-s
 
 import java.io.IOException;
 
