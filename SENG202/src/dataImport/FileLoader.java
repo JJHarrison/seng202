@@ -71,7 +71,7 @@ public class FileLoader {
 
 			while ((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
-				if (!line.isEmpty()) {
+				if (isValidLine(line) || line.startsWith("#start")) {
 					if (dataLine[0].contains("#start")) {
 						currentEvent = new Event(dataLine[1]);
 						events.add(currentEvent);
@@ -117,6 +117,12 @@ public class FileLoader {
 			System.out.println("couldnt read line");
 		}
 
+	}
+	
+	private boolean isValidLine(String line) {
+		String dataLine = "(\\d){2}.*";
+		return line.matches(dataLine);
+		//return false;
 	}
 
 	public ArrayList<Event> getEvents() {
