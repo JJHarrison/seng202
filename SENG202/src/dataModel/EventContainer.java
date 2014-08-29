@@ -2,7 +2,9 @@ package dataModel;
 
 
 import dataModel.Event;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This class is abstract version of an activity event container. The activity event container consists of
@@ -10,13 +12,13 @@ import java.util.ArrayList;
  * @author Fitr.Team
  */
 public class EventContainer {
-	private ArrayList<Event> events;
+	private HashMap<String, ArrayList<Event>> days;
 	
 	/**
 	 * Constructs a new event container object consisting of an arraylist to contain activity events.
 	 */
 	public EventContainer() {
-		events = new ArrayList<Event>();
+		days = new HashMap<String, ArrayList<Event>>();
 	}
 	
 	/**
