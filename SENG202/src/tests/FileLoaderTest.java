@@ -16,5 +16,9 @@ public class FileLoaderTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
+	
+	public void testEMPTY() {
+		assertEquals(true, true);
+	}
 
 }
