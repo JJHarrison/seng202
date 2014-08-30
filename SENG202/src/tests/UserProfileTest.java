@@ -5,7 +5,6 @@ import java.util.GregorianCalendar;
 import junit.framework.TestCase;
 import userModel.UserProfile;
 import userModel.UserProfile.Gender;
-import view.FitrTileControl;
 
 /**
  * Tests the functionality of the UserProfile class

@@ -12,7 +12,7 @@ public class Server {
 	private Socket connection;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-	private String host = "localhost";
+	//private String host = "localhost";
 	final private int portNumber = 8888; 
 	final private int maxQueue = 10;
 	

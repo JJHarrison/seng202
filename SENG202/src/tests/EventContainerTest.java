@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.GregorianCalendar;
+
 import junit.framework.TestCase;
 import dataModel.EventContainer;
 import dataModel.Event;
@@ -27,9 +29,10 @@ public class EventContainerTest extends TestCase {
 	 */
 	public void testAddEvent() {
 		Event event = new Event("Test Event");
-		//ec.addEvent(event);
+		event.setStartTime(new GregorianCalendar());
+		ec.addEvent(event);
 
-		//assertEquals(ec.getEvents().get(0), e);
+		assertEquals(ec.getEvents(event.getStartTime().getTime()).get(0), event);
 		assertEquals(true, true);
 	}
 
