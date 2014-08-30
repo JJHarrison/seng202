@@ -5,16 +5,17 @@ import java.util.GregorianCalendar;
 import junit.framework.TestCase;
 import userModel.UserProfile;
 import userModel.UserProfile.Gender;
+import view.FitrTileControl;
 
 /**
  * Tests the functionality of the UserProfile class
  * 
  * @author Fitr.Team
  */
-public class UserProfileTest extends TestCase {
-
+public class UserProfileTest extends TestCase { 
+	
 	private UserProfile john;
-
+	
 	/**
 	 * Sets up the profile to be tested.
 	 */

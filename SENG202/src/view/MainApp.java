@@ -26,12 +26,11 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("Fitr");
 		
 		//Minimum size of the stage
-		this.primaryStage.setMinHeight(675);
-		this.primaryStage.setMinWidth(1200);
+		this.primaryStage.setMinHeight(768);
+		this.primaryStage.setMinWidth(1366);
 		
-		//Size of the stage when it is built
-		this.primaryStage.setHeight(800);
-		this.primaryStage.setWidth(1600);
+		this.primaryStage.setHeight(768);
+		this.primaryStage.setWidth(1366);
 		
 		try {
 			this.primaryStage.getIcons().add(new Image("/resources/heart11.png"));

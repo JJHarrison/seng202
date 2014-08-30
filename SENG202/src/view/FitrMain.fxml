@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
@@ -8,8 +10,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import view.*?>
+<?import extfx.scene.control.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -39,32 +43,33 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="250.0" prefWidth="250.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="NEVER" />
           <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="-Infinity" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <GridPane>
+            <GridPane style="-fx-background-color: lightblue;">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="15.0" prefWidth="15.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Circle fill="#ffec1f" radius="40.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" />
-                  <Label text="&lt;Profile Name&gt;" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
+                  <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@../../../../../Downloads/602_421508561302117_1587535550_n.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="Daniel van Wichen" GridPane.columnIndex="1" />
                </children>
             </GridPane>
+            <CalendarView GridPane.rowIndex="2" />
          </children>
          <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="5.0" left="5.0" top="5.0" />
          </BorderPane.margin>
       </GridPane>
    </left>
@@ -76,13 +81,20 @@
       </Label>
    </bottom>
    <center>
-      <GridPane fx:id="mainGrid" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefViewportWidth="940.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+         <content>
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <FitrTileControl />
+                  <FitrTileControl />
+                  <FitrTileControl />
+                  <FitrTileControl />
+               </children>
+            </VBox>
+         </content>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </ScrollPane>
    </center>
 </BorderPane>
