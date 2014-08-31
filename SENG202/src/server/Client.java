@@ -4,7 +4,7 @@ import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.io.*;
-
+ 
 public class Client {
 	private Socket clientSocket;
 	private ObjectInputStream input;
