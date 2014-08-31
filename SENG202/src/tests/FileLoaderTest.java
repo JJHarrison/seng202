@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 /**
  * Tests for the FileLoader class functionality
+ * 
  * @author Simon
  *
  */
@@ -16,7 +17,7 @@ public class FileLoaderTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
-	
+
 	public void testEMPTY() {
 		assertEquals(true, true);
 	}

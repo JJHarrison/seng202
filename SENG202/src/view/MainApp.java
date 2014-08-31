@@ -21,19 +21,20 @@ public class MainApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		
+
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Fitr");
-		
-		//Minimum size of the stage
+
+		// Minimum size of the stage
 		this.primaryStage.setMinHeight(768);
 		this.primaryStage.setMinWidth(1366);
-		
+
 		this.primaryStage.setHeight(768);
 		this.primaryStage.setWidth(1366);
-		
+
 		try {
-			this.primaryStage.getIcons().add(new Image("/resources/heart11.png"));
+			this.primaryStage.getIcons().add(
+					new Image("/resources/heart11.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -11,10 +11,10 @@ import userModel.UserProfile.Gender;
  * 
  * @author Fitr.Team
  */
-public class UserProfileTest extends TestCase { 
-	
+public class UserProfileTest extends TestCase {
+
 	private UserProfile john;
-	
+
 	/**
 	 * Sets up the profile to be tested.
 	 */

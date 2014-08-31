@@ -93,16 +93,12 @@ public class FileLoader {
 						double latitude = Double.parseDouble(dataLine[3]);
 						double longitude = Double.parseDouble(dataLine[4]);
 						double altitude = Double.parseDouble(dataLine[5]);
-						
-						DataPoint point = new DataPoint.Builder()
-								.date(date)
-								.heartRate(heartrate)
-								.latitude(latitude)
-								.longitude(longitude)
-								.altitude(altitude)
-								.prevDataPoint(lastPoint)
-								.build();
-						
+
+						DataPoint point = new DataPoint.Builder().date(date)
+								.heartRate(heartrate).latitude(latitude)
+								.longitude(longitude).altitude(altitude)
+								.prevDataPoint(lastPoint).build();
+
 						currentEvent.addDataPoint(point);
 						lastPoint = point;
 					}
@@ -118,11 +114,11 @@ public class FileLoader {
 		}
 
 	}
-	
+
 	private boolean isValidLine(String line) {
 		String dataLine = "(\\d){2}.*";
 		return line.matches(dataLine);
-		//return false;
+		// return false;
 	}
 
 	public ArrayList<Event> getEvents() {
