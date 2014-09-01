@@ -13,7 +13,7 @@
    <children>
       <BorderPane layoutX="9.0" layoutY="9.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 5, 5); -fx-background-color: #E6E6E6; -fx-padding: 10; -fx-background-radius: 0;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <left>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #bdc3c7;" text="Event Summary" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                      <VBox.margin>
