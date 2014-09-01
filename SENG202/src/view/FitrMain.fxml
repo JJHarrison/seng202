@@ -12,20 +12,22 @@
 <?import view.*?>
 <?import extfx.scene.control.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
+<BorderPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
    <top>
       <StackPane prefHeight="29.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar StackPane.alignment="TOP_LEFT">
+            <MenuBar minHeight="-Infinity" prefHeight="29.0" StackPane.alignment="TOP_LEFT">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" text="Import" />
+                        <MenuItem mnemonicParsing="false" text="Export" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" text="Profile" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -35,49 +37,62 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TextField maxWidth="250.0" style="-fx-background-radius: 10;" text="Search..." StackPane.alignment="CENTER_RIGHT" />
+            <TextField maxWidth="250.0" style="-fx-background-radius: 10;" text="Search..." StackPane.alignment="CENTER_RIGHT">
+               <StackPane.margin>
+                  <Insets right="5.0" />
+               </StackPane.margin></TextField>
          </children>
       </StackPane>
    </top>
    <center>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <FitrTileControl/>
-                  <FitrTileControl/>
-                  <FitrTileControl/>
+                  <FitrTileControl />
+                  <FitrTileControl />
+                  <FitrTileControl />
                </children>
             </VBox>
          </content>
          <BorderPane.margin>
-            <Insets right="5.0" top="5.0" />
+            <Insets right="5.0" />
          </BorderPane.margin>
       </ScrollPane>
    </center>
    <bottom>
-      <Label text="System Status" BorderPane.alignment="CENTER_LEFT" />
+      <Label text="System Status" BorderPane.alignment="CENTER_LEFT">
+         <padding>
+            <Insets left="5.0" />
+         </padding></Label>
    </bottom>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
          <children>
-            <AnchorPane layoutX="25.0" layoutY="-62.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <ListView fx:id="eventSelector" fixedCellSize="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="-52.0" layoutY="-49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="-37.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../../../../Downloads/profile.jpg" />
+                        <Image url="@../resources/profile.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="148.0" layoutY="30.0" text="Daniel van Wichen" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
+                  <Label layoutX="179.0" layoutY="54.0" text="Daniel van Wichen" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
-            <ListView fx:id="eventSelector" layoutX="25.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="85.0" />
-            <HBox layoutX="25.0" layoutY="195.0" prefHeight="240.0" prefWidth="240.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            <CalendarView GridPane.rowIndex="2" />
          </children>
-      </AnchorPane>
+      </GridPane>
    </left>
 </BorderPane>

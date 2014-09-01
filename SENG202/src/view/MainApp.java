@@ -29,9 +29,6 @@ public class MainApp extends Application {
 		this.primaryStage.setMinHeight(768);
 		this.primaryStage.setMinWidth(1366);
 
-		this.primaryStage.setHeight(768);
-		this.primaryStage.setWidth(1366);
-
 		try {
 			this.primaryStage.getIcons().add(
 					new Image("/resources/heart11.png"));
@@ -53,7 +50,7 @@ public class MainApp extends Application {
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
-			Scene scene = new Scene(rootLayout);
+			Scene scene = new Scene(rootLayout, 1366, 768);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 

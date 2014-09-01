@@ -24,12 +24,12 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-image: url(&quot;http://cdn.flaticon.com/png/256/34230.png&quot;); -fx-background-size: 80; -fx-background-repeat: no-repeat; -fx-background-position: center; -fx-background-color: lightblue;">
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-image: url(&quot;../profile.jpg&quot;); -fx-background-size: 80; -fx-background-repeat: no-repeat; -fx-background-position: center; -fx-background-color: lightblue;">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-image: url(&quot;http://cdn.flaticon.com/png/256/24281.png&quot;); -fx-background-size: 80; -fx-background-repeat: no-repeat; -fx-background-position: center; -fx-background-color: lightgreen;">
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-image: url(&quot;http://cdn.flaticon.com/png/256/24281.png&quot;); -fx-background-size: 75; -fx-background-repeat: stretch; -fx-background-position: center; -fx-background-color: lightgreen;">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
