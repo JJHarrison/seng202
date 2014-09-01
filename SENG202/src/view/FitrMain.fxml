@@ -1,100 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
+<?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import view.*?>
 <?import extfx.scene.control.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem fx:id="menuImport" mnemonicParsing="false" text="Import" />
-                  <MenuItem fx:id="menuClear" mnemonicParsing="false" text="Clear" />
-                  <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem fx:id="menuProfiles" mnemonicParsing="false" text="Profiles" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <left>
-      <GridPane fx:id="selectionGrid" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="250.0" prefWidth="250.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="NEVER" />
-          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="-Infinity" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <StackPane prefHeight="29.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <GridPane style="-fx-background-color: lightblue;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="75.0" prefWidth="75.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                     <image>
-                        <Image url="@../../../../../Downloads/602_421508561302117_1587535550_n.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label text="Daniel van Wichen" GridPane.columnIndex="1" />
-               </children>
-            </GridPane>
-            <CalendarView GridPane.rowIndex="2" />
+            <MenuBar StackPane.alignment="TOP_LEFT">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <TextField maxWidth="250.0" style="-fx-background-radius: 10;" text="Search..." StackPane.alignment="CENTER_RIGHT" />
          </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" top="5.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </left>
-   <bottom>
-      <Label fx:id="statusBar" text="Status Bar" BorderPane.alignment="CENTER_LEFT">
-         <BorderPane.margin>
-            <Insets left="5.0" />
-         </BorderPane.margin>
-      </Label>
-   </bottom>
+      </StackPane>
+   </top>
    <center>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefViewportWidth="940.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <FitrTileControl />
-                  <FitrTileControl />
-                  <FitrTileControl />
-                  <FitrTileControl />
+                  <FitrTileControl/>
+                  <FitrTileControl/>
+                  <FitrTileControl/>
                </children>
             </VBox>
          </content>
          <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets right="5.0" top="5.0" />
          </BorderPane.margin>
       </ScrollPane>
    </center>
+   <bottom>
+      <Label text="System Status" BorderPane.alignment="CENTER_LEFT" />
+   </bottom>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="25.0" layoutY="-62.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="-52.0" layoutY="-49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../../../../../Downloads/profile.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="148.0" layoutY="30.0" text="Daniel van Wichen" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <ListView fx:id="eventSelector" layoutX="25.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="85.0" />
+            <HBox layoutX="25.0" layoutY="195.0" prefHeight="240.0" prefWidth="240.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+         </children>
+      </AnchorPane>
+   </left>
 </BorderPane>

@@ -17,7 +17,7 @@ import dataModel.Event;
 
 /**
  * This class provides a way of reading activity events provided by a fitness
- * tracking device. The activity data needs to be in a csv format consisting of
+ * tracking device. The activity data needs to be in a CSV format consisting of
  * date, time, heart rate, latitude, longitude & altitude.
  * 
  * @author Fitr.Team
@@ -49,16 +49,16 @@ public class FileLoader {
 	}
 
 	/**
-	 * Gets the input file
+	 * Gets the input stream
 	 * 
-	 * @return
+	 * @return The input stream
 	 */
 	public InputStream getStream() {
 		return inputStream;
 	}
 
 	/**
-	 * reads a csv file and create a new event at each #start add all following
+	 * Reads a CSV file and creates a new event at each #start add all following
 	 * data points to the event
 	 */
 	public void load() {
