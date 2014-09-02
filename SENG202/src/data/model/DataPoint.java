@@ -1,13 +1,5 @@
 package data.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 /**
  * This class provides an abstract version of points provided by a fitness
  * tracking device. Each dataPoint consists of attributes related to the actual

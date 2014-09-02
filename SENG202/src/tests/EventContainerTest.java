@@ -1,7 +1,5 @@
 package tests;
 
-import java.util.GregorianCalendar;
-
 import junit.framework.TestCase;
 import data.model.Event;
 import data.model.EventContainer;
@@ -18,6 +16,7 @@ public class EventContainerTest extends TestCase {
 	/**
 	 * Sets up the event container that will be tested.
 	 */
+	@Override
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();

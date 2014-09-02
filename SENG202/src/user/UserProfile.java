@@ -1,8 +1,5 @@
 package user;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import data.model.EventContainer;
 
 /**

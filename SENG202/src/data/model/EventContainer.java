@@ -1,10 +1,5 @@
 package data.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-
 /**
  * This class is abstract version of an activity event container. The activity
  * event container consists of activity days containing Event objects

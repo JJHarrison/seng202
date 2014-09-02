@@ -1,9 +1,5 @@
 package data.model;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-
 /**
  * This class provides an abstract version of activity events provided by a
  * fitness tracking device. Each event consists of a collection of dataPoints

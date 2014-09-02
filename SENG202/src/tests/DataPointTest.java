@@ -1,8 +1,5 @@
 package tests;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import junit.framework.TestCase;
 import data.model.DataPoint;
 
@@ -18,6 +15,7 @@ public class DataPointTest extends TestCase {
 	/**
 	 * Sets up the test dataPoints to be tested
 	 */
+	@Override
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
