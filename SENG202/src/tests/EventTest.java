@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import dataModel.Event;
-import dataModel.DataPoint;
 import junit.framework.TestCase;
+import data.model.DataPoint;
+import data.model.Event;
 
 /**
  * Tests for the event class functionality

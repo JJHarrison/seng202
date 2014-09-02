@@ -3,8 +3,8 @@ package tests;
 import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
-import dataModel.EventContainer;
-import dataModel.Event;
+import data.model.Event;
+import data.model.EventContainer;
 
 /**
  * Tests for the event container class.

@@ -1,7 +1,6 @@
 package data.loader;
 
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import dataModel.DataPoint;
-import dataModel.Event;
+import data.model.DataPoint;
+import data.model.Event;
 
 /**
  * This class provides a way of reading activity events provided by a fitness

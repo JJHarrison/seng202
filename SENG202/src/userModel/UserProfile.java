@@ -3,7 +3,7 @@ package userModel;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import dataModel.EventContainer;
+import data.model.EventContainer;
 
 /**
  * This class provides an abstract version of a user profile. The profile

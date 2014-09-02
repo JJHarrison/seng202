@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
-import dataModel.DataPoint;
+import data.model.DataPoint;
 
 /**
  * Tests the functionality of the DataPoint class
