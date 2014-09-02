@@ -1,6 +1,6 @@
 /**
  * A prototype fitr.aw application
- * @author Daniel
+ * @author Daniel van Wichen
  */
 
 package view;
