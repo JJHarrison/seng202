@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 
 public class FitrMainController {
 
@@ -18,9 +19,10 @@ public class FitrMainController {
 	ScrollPane pane;
 	
 	@FXML
-	private void initialize() {
-		//pane.vbarPolicyProperty().setValue(new ScrollBarPolicy);
-		
+	BorderPane mainWindow;
+	
+	@FXML
+	private void initialize() {	
 		
 		ObservableList<String> list = FXCollections.observableArrayList();
 		list.add("11:24 - 12:45\nWalk with Dog");

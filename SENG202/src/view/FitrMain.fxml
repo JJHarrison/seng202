@@ -12,11 +12,11 @@
 <?import view.*?>
 <?import extfx.scene.control.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
+<BorderPane fx:id="mainWindow" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FitrMainController">
    <top>
       <StackPane prefHeight="29.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar minHeight="-Infinity" prefHeight="29.0" StackPane.alignment="TOP_LEFT">
+            <MenuBar StackPane.alignment="TOP_LEFT">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -37,10 +37,6 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TextField maxWidth="250.0" style="-fx-background-radius: 10;" text="Search..." StackPane.alignment="CENTER_RIGHT">
-               <StackPane.margin>
-                  <Insets right="5.0" />
-               </StackPane.margin></TextField>
          </children>
       </StackPane>
    </top>
@@ -92,4 +88,11 @@
          </children>
       </GridPane>
    </left>
+   <bottom>
+      <Label text="Status Updates" BorderPane.alignment="CENTER_LEFT">
+         <BorderPane.margin>
+            <Insets bottom="1.0" left="5.0" top="1.0" />
+         </BorderPane.margin>
+      </Label>
+   </bottom>
 </BorderPane>
