@@ -18,6 +18,7 @@ public class UserProfileTest extends TestCase {
 	/**
 	 * Sets up the profile to be tested.
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 

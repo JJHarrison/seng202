@@ -18,6 +18,7 @@ public class EventContainerTest extends TestCase {
 	/**
 	 * Sets up the event container that will be tested.
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 
