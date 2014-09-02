@@ -1,5 +1,9 @@
 package tests;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import junit.framework.TestCase;
 import data.model.DataPoint;
 import data.model.Event;
@@ -21,7 +25,6 @@ public class EventTest extends TestCase {
 	/**
 	 * Sets up the events to be tested
 	 */
-	@Override
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();

@@ -15,7 +15,6 @@ public class FileLoaderTest extends TestCase {
 	}
 
 	@Override
-	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 	}

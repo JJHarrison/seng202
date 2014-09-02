@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.GregorianCalendar;
+
 import junit.framework.TestCase;
 import user.UserProfile;
 import user.UserProfile.Gender;
@@ -16,7 +18,6 @@ public class UserProfileTest extends TestCase {
 	/**
 	 * Sets up the profile to be tested.
 	 */
-	@Override
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
