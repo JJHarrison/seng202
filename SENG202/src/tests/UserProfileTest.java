@@ -3,8 +3,8 @@ package tests;
 import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
-import userModel.UserProfile;
-import userModel.UserProfile.Gender;
+import user.UserProfile;
+import user.UserProfile.Gender;
 
 /**
  * Tests the functionality of the UserProfile class
