@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 
 import data.model.DataPoint;
 import data.model.Event;
+import data.model.EventContainer;
 
 /**
  * This class provides a way of reading activity events provided by a fitness
@@ -24,6 +25,7 @@ import data.model.Event;
 public class FileLoader {
 	private InputStream inputStream;
 	private ArrayList<Event> events = new ArrayList<Event>();
+	private EventContainer eventContainer = new EventContainer();
 
 	/**
 	 * Creates a FileLoader with a particular input file
@@ -75,6 +77,7 @@ public class FileLoader {
 					if (dataLine[0].contains("#start")) {
 						currentEvent = new Event(dataLine[1]);
 						events.add(currentEvent);
+						eventContainer.addEvent(currentEvent); // we should be using EventContainer not an arrayList???
 						lastPoint = null;
 					} else {
 						String[] dateString = dataLine[0].split("/");
