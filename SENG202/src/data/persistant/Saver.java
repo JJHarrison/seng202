@@ -12,7 +12,7 @@ import data.model.EventContainer;
  * A Saver class used for saving an event container to a json file
  * @author SamSchofield
  */
-public class Saver extends Persistent {
+public class Saver {
 	
 	/**
 	 * Saves an event container to the file at file path
@@ -23,7 +23,7 @@ public class Saver extends Persistent {
 		String ECString = gson.toJson(eventContainer);
 		
 		try {
-			FileWriter writer = new FileWriter(super.getFilePath());
+			FileWriter writer = new FileWriter(Persistent.getFilePath());
 			writer.write(ECString);
 			writer.close();
 		} catch (IOException e) {

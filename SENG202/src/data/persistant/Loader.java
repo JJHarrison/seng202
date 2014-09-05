@@ -15,7 +15,7 @@ import data.model.EventContainer;
  * A loader class used for loading an event container from a json file
  * @author SamSchofield
  */
-public class Loader extends Persistent {
+public class Loader {
 	
 	/** 
 	 * loads and returns an event container form the json file at file path
@@ -27,7 +27,7 @@ public class Loader extends Persistent {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(super.getFilePath()));
+			BufferedReader br = new BufferedReader(new FileReader(Persistent.getFilePath()));
 			ec = gson.fromJson(br, EventContainer.class);
 			
 		} catch (FileNotFoundException e) {
