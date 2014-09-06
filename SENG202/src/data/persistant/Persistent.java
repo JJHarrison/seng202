@@ -1,6 +1,7 @@
 package data.persistant;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -61,9 +62,28 @@ public class Persistent {
 		}
 	}
 	
+	/**
+	 * creates a new directory in users with name user to store information in 
+	 * @param userName
+	 */
+	public static void newUser(String userName) {
+		new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName).mkdir();
+		
+		try {
+			new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + ".json").createNewFile();
+			// should go in its own try catch block?
+			new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + "Activity.json").createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String args[]) throws BackingStoreException {
 		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
+		newUser("Sam");
+		newUser("Dan");
 		System.out.println(getFilePath());
 		System.out.println("Saved");
 	}
