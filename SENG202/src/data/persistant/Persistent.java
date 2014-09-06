@@ -2,6 +2,7 @@ package data.persistant;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -64,6 +65,7 @@ public class Persistent {
 	
 	/**
 	 * creates a new directory in users with name user to store information in 
+	 * also adds an user.json and activity.json file to save data to
 	 * @param userName
 	 */
 	public static void newUser(String userName) {
@@ -79,6 +81,24 @@ public class Persistent {
 		}
 	}
 	
+	/**
+	 * returns an ArrayList of all the users found in the user directories
+	 * @return ArrayList<String>
+	 */
+	public static ArrayList<String> getUsers() {
+		File filePath = new File(prefs.get("FilePath", null) + "/Fitr/users/");
+		File[] userDir = filePath.listFiles();
+		ArrayList<String> users = new ArrayList<String>();
+		
+		for(File user : userDir) {
+			if(user.isDirectory()) {
+				users.add(user.getName());
+			}
+		}
+		return users;
+	}
+	
+	
 	public static void main(String args[]) throws BackingStoreException {
 		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
@@ -86,6 +106,11 @@ public class Persistent {
 		newUser("Dan");
 		System.out.println(getFilePath());
 		System.out.println("Saved");
+		System.out.println("Users are: ");
+		ArrayList<String> a = new ArrayList<String>(getUsers());
+		for(int i = 0; i < a.size(); i++) {
+			System.out.println(a.get(i));
+		}
 	}
 		
 }
