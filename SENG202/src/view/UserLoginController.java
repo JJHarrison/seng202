@@ -1,5 +1,8 @@
 package view;
 
+import java.util.prefs.Preferences;
+
+import data.persistant.Persistent;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,18 +56,11 @@ public class UserLoginController extends AnchorPane {
 
 			public void handle(ActionEvent arg0) {
 				System.out.println("Profile");
+				Persistent.newUser("user");
 			}
 		});
 		
-		ObservableList<String> profileList = FXCollections.observableArrayList();
-		profileList.add("Daniel van Wichen");
-		profileList.add("Daniel van Wichen");
-		profileList.add("Daniel van Wichen");
-		profileList.add("Daniel van Wichen");
-		profileList.add("Daniel van Wichen");
-		profileList.add("Daniel van Wichen");
-		profileList.add("Daniel van Wichen");
-		profileList.add("Daniel van Wichen");
+		ObservableList<String> profileList = FXCollections.observableArrayList(Persistent.getUsers());
 		UserList.setItems(profileList);
 
 	}
