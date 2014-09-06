@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
+
 /**
  * static class for keeping track of preferences, filepaths etc
  * @author SamSchofield
@@ -79,6 +80,16 @@ public class Persistent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void setUser(String user) {
+		if(getUsers().contains(user)) {
+			prefs.put("User", user);
+		}
+	}
+	
+	public static String getCurrentUser() {
+		return prefs.get("User", null);
 	}
 	
 	/**
