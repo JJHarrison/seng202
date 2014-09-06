@@ -1,6 +1,6 @@
 /**
- * A prototype fitr.aw application
- * @author Daniel van Wichen
+ * The Fitr application
+ * @author The Fitr Team
  */
 
 package view;
@@ -50,7 +50,7 @@ public class MainApp extends Application {
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
-			Scene scene = new Scene(rootLayout, 1366, 768);
+			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
