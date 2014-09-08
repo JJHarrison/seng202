@@ -80,13 +80,13 @@ public class Persistent {
 	 * @param userName
 	 */
 	public static void newUser(String userName) {
-		if (!getUsers().contains(userName)) {
-			new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName).mkdir();
+		if (! getUsers().contains(userName)) {
+			new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName).mkdir();
 			
 			try {
-				new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + ".fitr").createNewFile();
+				new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName + "/" + userName + ".fitr").createNewFile();
 				// should go in its own try catch block?
-				new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + "Activity.fitr").createNewFile();
+				new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName + "/" + userName + "Activity.fitr").createNewFile();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -133,7 +133,7 @@ public class Persistent {
 	
 	
 	public static void main(String args[]) throws BackingStoreException {
-		setFilePath("/Users/SamSchofield/Desktop");
+		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		newUser("Sam2");
 		newUser("Dan");
