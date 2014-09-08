@@ -40,10 +40,18 @@ public class Persistent {
 		return prefs.get("FilePath", null);
 	}
 	
+	/**
+	 * returns the file path to the current users profile
+	 * @return profileFilePath
+	 */
 	public static String getProfileFilePath() {
 		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + ".fitr";
 	}
 	
+	/**
+	 * returns the file path to the current users activity data
+	 * @return ActivityFilePath
+	 */
 	public static String getActivityFilePath() {
 		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + "Activity.fitr";
 	}
