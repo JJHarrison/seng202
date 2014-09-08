@@ -40,10 +40,18 @@ public class Persistent {
 		return prefs.get("FilePath", null);
 	}
 	
+	/**
+	 * returns the file path to the current users profile
+	 * @return profileFilePath
+	 */
 	public static String getProfileFilePath() {
 		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + ".fitr";
 	}
 	
+	/**
+	 * returns the file path to the current users activity data
+	 * @return ActivityFilePath
+	 */
 	public static String getActivityFilePath() {
 		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + "Activity.fitr";
 	}
@@ -81,12 +89,12 @@ public class Persistent {
 	 */
 	public static void newUser(String userName) {
 		if (!getUsers().contains(userName)) {
-			new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName).mkdir();
+			new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName).mkdir();
 			
 			try {
-				new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + ".fitr").createNewFile();
+				new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName + "/" + userName + ".fitr").createNewFile();
 				// should go in its own try catch block?
-				new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + "Activity.fitr").createNewFile();
+				new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName + "/" + userName + "Activity.fitr").createNewFile();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
