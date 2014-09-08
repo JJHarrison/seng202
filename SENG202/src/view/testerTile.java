@@ -12,7 +12,7 @@ public class testerTile extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		arg0.setScene(new Scene(new FitrTileControl()));
+		arg0.setScene(new Scene(new TileControl()));
 		arg0.show();
 
 	}

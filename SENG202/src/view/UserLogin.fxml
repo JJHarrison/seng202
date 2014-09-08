@@ -12,7 +12,7 @@
       <Button fx:id="ButtonCancel" layoutX="300.0" layoutY="261.0" mnemonicParsing="false" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Button fx:id="ButtonLogin" layoutX="155.0" layoutY="261.0" mnemonicParsing="false" prefWidth="100.0" text="Log In" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="110.0" />
       <ListView fx:id="UserList" fixedCellSize="50.0" layoutX="200.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0" />
-      <Label layoutX="54.0" layoutY="14.0" text="Select Profile" textFill="#0000ccae" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label layoutX="54.0" layoutY="14.0" text="Select Profile" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="26.0" />
          </font>
