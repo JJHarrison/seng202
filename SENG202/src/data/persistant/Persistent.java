@@ -82,12 +82,20 @@ public class Persistent {
 		}
 	}
 	
+	/**
+	 * Sets the current user
+	 * @param user
+	 */
 	public static void setUser(String user) {
 		if(getUsers().contains(user)) {
 			prefs.put("User", user);
 		}
 	}
 	
+	/**
+	 * returns the current user
+	 * @return currenUser
+	 */
 	public static String getCurrentUser() {
 		return prefs.get("User", null);
 	}
