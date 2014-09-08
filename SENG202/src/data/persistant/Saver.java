@@ -27,7 +27,7 @@ public class Saver {
 		String ECString = gson.toJson(eventContainer);
 
 		try {
-			FileWriter writer = new FileWriter(Persistent.getFilePath());
+			FileWriter writer = new FileWriter(Persistent.getActivityFilePath());
 			writer.write(ECString);
 			writer.close();
 		} catch (IOException e) {
@@ -44,7 +44,7 @@ public class Saver {
 		String profileString = gson.toJson(profile);
 		
 		try {
-			FileWriter writer = new FileWriter(Persistent.getFilePath());
+			FileWriter writer = new FileWriter(Persistent.getProfileFilePath());
 			writer.write(profileString);
 			writer.close();
 		} catch (IOException e) {

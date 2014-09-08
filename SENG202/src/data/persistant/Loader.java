@@ -29,7 +29,7 @@ public class Loader {
 		EventContainer ec = null;
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(Persistent.getFilePath()));
+			BufferedReader br = new BufferedReader(new FileReader(Persistent.getActivityFilePath()));
 			ec = gson.fromJson(br, EventContainer.class);
 			
 		} catch (FileNotFoundException e) {
@@ -47,7 +47,7 @@ public class Loader {
 		UserProfile user = null;
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(Persistent.getFilePath()));
+			BufferedReader br = new BufferedReader(new FileReader(Persistent.getProfileFilePath()));
 			user = gson.fromJson(br, UserProfile.class);
 			
 		} catch (FileNotFoundException e) {

@@ -7,8 +7,9 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 
+
 /**
- * static class for keeping track of preferences, filepaths etc
+ * static class for keeping track of preferences, file paths etc
  * @author SamSchofield
  *
  */
@@ -32,15 +33,23 @@ public class Persistent {
 	
 	/** 
 	 * gets the file path form preferences 
-	 * @return filepath 
+	 * @return FilePath 
 	 */
 	public static String getFilePath() {
 		return prefs.get("FilePath", null);
 	}
 	
+	public static String getProfileFilePath() {
+		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + ".fitr";
+	}
+	
+	public static String getActivityFilePath() {
+		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + "Activity.fitr";
+	}
+	
 	/**
-	 * checks to see if the app has been opened before
-	 * @return boolean 
+	 * checks to see if the application  has been opened before
+	 * @return firstOpen 
 	 */
 	public static boolean firstOpen() {
 		boolean firstOpen = prefs.getBoolean("FirstOpen", false);
@@ -55,30 +64,34 @@ public class Persistent {
 	}
 	
 	/**
-	 * sets up a new fitr directory with a users sub directory at the file path 
+	 * sets up a new Fitr directory with a users sub directory at the file path 
 	 */
 	public static void setupDirectory() {
 		String filePath = prefs.get("FilePath", null);
 		if(filePath != null) {
-			new File(filePath + "/Fitr//users").mkdirs();
+			new File(filePath + "/Fitr//Users").mkdirs();
 		}
 	}
 	
 	/**
 	 * creates a new directory in users with name user to store information in 
-	 * also adds an user.json and activity.json file to save data to
+	 * also adds a user.json and activity.json file to save data to
 	 * @param userName
 	 */
 	public static void newUser(String userName) {
-		new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName).mkdir();
-		
-		try {
-			new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + ".json").createNewFile();
-			// should go in its own try catch block?
-			new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + "Activity.json").createNewFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (!getUsers().contains(userName)) {
+			new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName).mkdir();
+			
+			try {
+				new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + ".fitr").createNewFile();
+				// should go in its own try catch block?
+				new File(prefs.get("FilePath", null) + "/Fitr/users/" + userName + "/" + userName + "Activity.fitr").createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Sorry that user already exists");
 		}
 	}
 	
@@ -105,7 +118,7 @@ public class Persistent {
 	 * @return ArrayList<String>
 	 */
 	public static ArrayList<String> getUsers() {
-		File filePath = new File(prefs.get("FilePath", null) + "/Fitr/users/");
+		File filePath = new File(prefs.get("FilePath", null) + "/Fitr/Users/");
 		File[] userDir = filePath.listFiles();
 		ArrayList<String> users = new ArrayList<String>();
 		
@@ -121,7 +134,7 @@ public class Persistent {
 	public static void main(String args[]) throws BackingStoreException {
 		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
-		newUser("Sam");
+		newUser("Sam2");
 		newUser("Dan");
 		System.out.println(getFilePath());
 		System.out.println("Saved");
