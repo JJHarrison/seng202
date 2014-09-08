@@ -7,7 +7,6 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 
-
 /**
  * static class for keeping track of preferences, file paths etc
  * @author SamSchofield
@@ -15,13 +14,15 @@ import java.util.prefs.Preferences;
  */
 public class Persistent {
 	
-	private static Preferences prefs = Preferences.userRoot().node("/fitr");
+	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
+	
 	
 	/**
 	 * sets the FilePath preference 
 	 * @param filePath
 	 */
 	public static void setFilePath(String filePath) {
+		// filePath will be obtained from a file chooser so it will always be an existing file path so doesn't need to be checked
 		prefs.put("FilePath", filePath);
 		try {
 			prefs.flush();
@@ -48,19 +49,19 @@ public class Persistent {
 	}
 	
 	/**
-	 * checks to see if the application  has been opened before
-	 * @return firstOpen 
+	 * checks if a valid file path has been set
+	 * @return pathSet
 	 */
-	public static boolean firstOpen() {
-		boolean firstOpen = prefs.getBoolean("FirstOpen", false);
-		prefs.putBoolean("FirstOpen", false);
-		try {
-			prefs.flush();
-		} catch (BackingStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public static boolean filePathSet() {
+		boolean pathSet = true;
+		File fp = new File((prefs.get("FilePath", null)));
+		
+		if(fp == null || !fp.exists()) {
+			pathSet = false;
+		} else {
+			pathSet = true;
 		}
-		return firstOpen;
+		return pathSet;
 	}
 	
 	/**
