@@ -7,13 +7,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 
-public class FitrMainController {
+public class MainController {
 
 	@FXML
 	ListView<String> eventSelector;
 
 	@FXML
-	FitrTileControl mapTest;
+	TileControl mapTest;
 
 	@FXML
 	ScrollPane pane;

@@ -1,9 +1,6 @@
 package view;
 
-import java.util.prefs.Preferences;
-
 import data.persistant.Persistent;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
