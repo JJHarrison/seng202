@@ -24,6 +24,7 @@ public class Main extends Application {
 
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Fitr");
+		//this.primaryStage.initStyle(StageStyle.UNDECORATED);
 
 		// Minimum size of the stage
 		this.primaryStage.setMinHeight(768);
@@ -46,7 +47,7 @@ public class Main extends Application {
 		try {
 			// Load root layout from FXML file.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("FitrMain.fxml"));
+			loader.setLocation(Main.class.getResource("Main.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.

@@ -12,7 +12,7 @@ public class TileControl extends AnchorPane {
 
 	public TileControl() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-				"FitrTile.fxml"));
+				"Tile.fxml"));
 		fxmlLoader.setController(this);
 		fxmlLoader.setRoot(this);
 		try {

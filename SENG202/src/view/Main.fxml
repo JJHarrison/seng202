@@ -45,9 +45,9 @@
          <content>
             <VBox>
                <children>
-                  <FitrTileControl fx:id="mapTest" />
-                  <FitrTileControl />
-                  <FitrTileControl />
+                  <TileControl fx:id="mapTest" />
+                  <TileControl />
+                  <TileControl />
                </children>
             </VBox>
          </content>
