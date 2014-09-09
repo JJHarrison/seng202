@@ -20,6 +20,7 @@ public class TileControl extends AnchorPane {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		PersistentDialog.show();
 
 		WebEngine webEngine = webViewTest.getEngine();
 
