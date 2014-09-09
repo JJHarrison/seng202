@@ -30,7 +30,7 @@ public class Loader {
 		EventContainer ec = null;
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(Persistent.getActivityFilePath()));
+			BufferedReader br = new BufferedReader(new FileReader(Persistent.getActivityFilePath(Persistent.getCurrentUser())));
 			ec = gson.fromJson(br, EventContainer.class);
 			
 		} catch (FileNotFoundException e) {
