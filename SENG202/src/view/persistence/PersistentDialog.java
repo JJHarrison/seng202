@@ -1,4 +1,4 @@
-package view;
+package view.persistence;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -32,6 +32,5 @@ public class PersistentDialog {
 
 	public static void show() {
 		dialog.initialize(stage);
-
 	}
 }

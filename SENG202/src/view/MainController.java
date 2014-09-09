@@ -1,5 +1,6 @@
 package view;
 
+import view.tile.Tile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +14,7 @@ public class MainController {
 	ListView<String> eventSelector;
 
 	@FXML
-	TileControl mapTest;
+	Tile mapTest;
 
 	@FXML
 	ScrollPane pane;

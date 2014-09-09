@@ -1,4 +1,4 @@
-package view;
+package view.tile;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,11 +6,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-public class TileControl extends AnchorPane {
+public class Tile extends AnchorPane {
 	@FXML
 	WebView webViewTest;
 
-	public TileControl() {
+	public Tile() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
 				"Tile.fxml"));
 		fxmlLoader.setController(this);
@@ -20,7 +20,6 @@ public class TileControl extends AnchorPane {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		PersistentDialog.show();
 
 		WebEngine webEngine = webViewTest.getEngine();
 

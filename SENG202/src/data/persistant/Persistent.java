@@ -168,8 +168,7 @@ public class Persistent {
 	
 	
 	public static void main(String args[]) throws BackingStoreException {
-		
-		setFilePath("/Users/SamSchofield/Desktop");
+		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
