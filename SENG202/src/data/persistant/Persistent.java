@@ -3,8 +3,19 @@ package data.persistant;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
+
+import org.omg.CORBA.INITIALIZE;
+
+import com.sun.org.apache.xml.internal.security.Init;
+import com.sun.org.glassfish.external.statistics.Statistic;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import user.User;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 
 
 /**
@@ -15,8 +26,8 @@ import java.util.prefs.Preferences;
 public class Persistent {
 	
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
-	
-	
+	private static ObservableList<User> users = FXCollections.observableList(null);
+
 	/**
 	 * sets the FilePath preference 
 	 * @param filePath
@@ -87,7 +98,8 @@ public class Persistent {
 	 * also adds a user.json and activity.json file to save data to
 	 * @param userName
 	 */
-	public static void newUser(String userName) {
+	public static void newUser(User user) throws ValueException {
+		String userName = user.getName();
 		if (! getUsers().contains(userName)) {
 			new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName).mkdir();
 			
@@ -100,8 +112,11 @@ public class Persistent {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Sorry that user already exists");
+			throw new ValueException("User already exists");
 		}
+		
+		Saver.SaveUser(user);
+		users.add(user);
 	}
 	
 	/**
@@ -126,29 +141,35 @@ public class Persistent {
 	 * returns an ArrayList of all the users found in the user directories
 	 * @return ArrayList<String>
 	 */
-	public static ArrayList<String> getUsers() {
+	public static ArrayList<User> getUsers() {
 		File filePath = new File(prefs.get("FilePath", null) + "/Fitr/Users/");
-		File[] userDir = filePath.listFiles();
-		ArrayList<String> users = new ArrayList<String>();
+		File[] usersDir = filePath.listFiles();
 		
-		for(File user : userDir) {
-			if(user.isDirectory()) {
-				users.add(user.getName());
-			}
+		ArrayList<User> users = new ArrayList<User>();
+		
+		for(File userPath : usersDir) {
+			String userName = userPath.getName();
+			User newUser = Loader.loadUserProfile(new File(userName + ".fitr"));
+			users.add(newUser);
 		}
 		return users;
+	}
+	
+	
+	public static void init() {
+		
 	}
 	
 	
 	public static void main(String args[]) throws BackingStoreException {
 		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
-		newUser("Sam2");
-		newUser("Dan");
+		//newUser("Sam2");
+		//newUser("Dan");
 		System.out.println(getFilePath());
 		System.out.println("Saved");
 		System.out.println("Users are: ");
-		ArrayList<String> a = new ArrayList<String>(getUsers());
+		ArrayList<User> a = new ArrayList<User>(getUsers());
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
 		}

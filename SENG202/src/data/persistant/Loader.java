@@ -1,6 +1,7 @@
 package data.persistant;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
@@ -42,12 +43,12 @@ public class Loader {
 	 * loads and returns a user profile form the json file at file path
 	 * @return EventContainer
 	 */
-	public static User loadUserProfile() {
+	public static User loadUserProfile(File filepath) {
 		
 		User user = null;
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(Persistent.getProfileFilePath()));
+			BufferedReader br = new BufferedReader(new FileReader(filepath));//Persistent.getProfileFilePath()));
 			user = gson.fromJson(br, User.class);
 			
 		} catch (FileNotFoundException e) {
