@@ -94,7 +94,7 @@ public class Persistent {
 	 */
 	public static void newUser(User user) throws ValueException {
 		String userName = user.getName();
-		System.out.println("---name is: " + userName + "\n");
+
 		if (! userNames.contains(userName)) {
 			new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName).mkdir();
 			
@@ -113,8 +113,7 @@ public class Persistent {
 		users.add(user);
 		Saver.SaveUser(user);
 	}
-	///Users/SamSchofield/Desktop/Fitr/Users/sam
-	///Users/SamSchofield/Desktop/Users/sam/sam.fitr
+
 	/**
 	 * Sets the current user
 	 * @param user
@@ -152,13 +151,16 @@ public class Persistent {
 		if(prefs.get("FilePath", null) != null) {
 			File filePath = new File(prefs.get("FilePath", null) + "/Fitr/Users/");
 			File[] usersDir = filePath.listFiles();
-			
-			
+		
 			for(File userPath : usersDir) {
+				System.out.println(userPath);
 				String userName = userPath.getName();
-				if(new File(userName + ".fitr").exists()) {
-				User newUser = Loader.loadUserProfile(new File(userName + ".fitr"));
-				users.add(newUser);
+				
+				if(new File(userPath + "/" + userName + ".fitr").exists()) {
+					System.out.println("---");
+					User newUser = Loader.loadUserProfile(new File(userPath + "/" + userName + ".fitr"));
+					users.add(newUser);
+					userNames.add(newUser.getName());
 				}
 			}
 		}
@@ -170,6 +172,7 @@ public class Persistent {
 		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
 		init();
+		System.out.println("______________________");
 		User u = new User("sam", null, null);
 		setUser(u);
 		newUser(u);
