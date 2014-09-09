@@ -118,10 +118,11 @@ public class FileLoader {
 
 	}
 
-	private boolean isValidLine(String line) {
-		String dataLine = "(\\d){2}.*";
+	public boolean isValidLine(String line) {
+		String dataLine = "(\\d){2}/(\\d){2}/(\\d){4},(\\d){2}:(\\d){2}:(\\d){2}"
+				+ ",(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
+		
 		return line.matches(dataLine);
-		// return false;
 	}
 
 	public ArrayList<Event> getEvents() {
