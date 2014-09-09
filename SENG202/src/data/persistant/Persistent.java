@@ -3,15 +3,8 @@ package data.persistant;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
-
-import org.omg.CORBA.INITIALIZE;
-
-import com.sun.org.apache.xml.internal.security.Init;
-import com.sun.org.glassfish.external.statistics.Statistic;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import user.User;
@@ -26,7 +19,8 @@ import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 public class Persistent {
 	
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
-	private static ObservableList<User> users = FXCollections.observableList(null);
+	private static ObservableList<User> users = FXCollections.observableList(new ArrayList<User>());
+	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
 
 	/**
 	 * sets the FilePath preference 
@@ -56,7 +50,7 @@ public class Persistent {
 	 * @return profileFilePath
 	 */
 	public static String getProfileFilePath() {
-		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + ".fitr";
+		return prefs.get("FilePath", null) + "/Fitr/Users/" + getCurrentUser() + "/" + getCurrentUser() + ".fitr";
 	}
 	
 	/**
@@ -64,7 +58,7 @@ public class Persistent {
 	 * @return ActivityFilePath
 	 */
 	public static String getActivityFilePath() {
-		return prefs.get("FilePath", null) + "/Users/" + getCurrentUser() + "/" + getCurrentUser() + "Activity.fitr";
+		return prefs.get("FilePath", null) + "/Fitr/Users/" + getCurrentUser() + "/" + getCurrentUser() + "Activity.fitr";
 	}
 	
 	/**
@@ -100,7 +94,8 @@ public class Persistent {
 	 */
 	public static void newUser(User user) throws ValueException {
 		String userName = user.getName();
-		if (! getUsers().contains(userName)) {
+		System.out.println("---name is: " + userName + "\n");
+		if (! userNames.contains(userName)) {
 			new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName).mkdir();
 			
 			try {
@@ -115,18 +110,19 @@ public class Persistent {
 			throw new ValueException("User already exists");
 		}
 		
-		Saver.SaveUser(user);
 		users.add(user);
+		Saver.SaveUser(user);
 	}
-	
+	///Users/SamSchofield/Desktop/Fitr/Users/sam
+	///Users/SamSchofield/Desktop/Users/sam/sam.fitr
 	/**
 	 * Sets the current user
 	 * @param user
 	 */
-	public static void setUser(String user) {
-		if(getUsers().contains(user)) {
-			prefs.put("User", user);
-		}
+	public static void setUser(User user) {
+
+		prefs.put("User", user.getName());
+		
 	}
 	
 	/**
@@ -141,31 +137,44 @@ public class Persistent {
 	 * returns an ArrayList of all the users found in the user directories
 	 * @return ArrayList<String>
 	 */
-	public static ArrayList<User> getUsers() {
-		File filePath = new File(prefs.get("FilePath", null) + "/Fitr/Users/");
-		File[] usersDir = filePath.listFiles();
-		
-		ArrayList<User> users = new ArrayList<User>();
-		
-		for(File userPath : usersDir) {
-			String userName = userPath.getName();
-			User newUser = Loader.loadUserProfile(new File(userName + ".fitr"));
-			users.add(newUser);
-		}
+	public static ObservableList<User> getUsers() {
 		return users;
+	}
+	
+	public static void getUserNames() {
+		for(User user : users) {
+			userNames.add(user.getName());	
+		}
 	}
 	
 	
 	public static void init() {
-		
+		if(prefs.get("FilePath", null) != null) {
+			File filePath = new File(prefs.get("FilePath", null) + "/Fitr/Users/");
+			File[] usersDir = filePath.listFiles();
+			
+			
+			for(File userPath : usersDir) {
+				String userName = userPath.getName();
+				if(new File(userName + ".fitr").exists()) {
+				User newUser = Loader.loadUserProfile(new File(userName + ".fitr"));
+				users.add(newUser);
+				}
+			}
+		}
 	}
 	
 	
 	public static void main(String args[]) throws BackingStoreException {
-		setFilePath("/home/daniel/Desktop");
+		
+		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
-		//newUser("Sam2");
-		//newUser("Dan");
+		init();
+		User u = new User("sam", null, null);
+		setUser(u);
+		newUser(u);
+		
+		
 		System.out.println(getFilePath());
 		System.out.println("Saved");
 		System.out.println("Users are: ");
@@ -173,6 +182,8 @@ public class Persistent {
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
 		}
+		
+		
 	}
 		
 }
