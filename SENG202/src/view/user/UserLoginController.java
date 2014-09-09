@@ -10,8 +10,10 @@ import javafx.scene.control.ListView;
 import user.User;
 import data.persistant.Persistent;
 
-public class UserLoginController {
-
+public class UserLoginController implements ScreenController {
+	@FXML
+	private ScreenPane myScreenPane;
+	
 	@FXML
 	Button buttonCreateProfile;
 	@FXML
@@ -51,11 +53,17 @@ public class UserLoginController {
 		buttonCreateProfile.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent arg0) {
-				
+				myScreenPane.setScreen("userCreate");
 			}
 		});
 		
 		userList.setItems(Persistent.getUsers());
+		
+	}
+
+	@Override
+	public void setScreenPane(ScreenPane screenPage) {
+		myScreenPane = screenPage;
 		
 	}
 }

@@ -1,51 +1,37 @@
 package view.user;
 
-
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
+/**
+ *
+ * @author Daniel van Wichen
+ */
+public class UserLoginManager extends Application {
+	public static String loginFXML = "UserLogin.fxml";
+	public static String createFXML = "UserCreate.fxml";
 
-public class UserLoginManager {
-	@FXML
-	AnchorPane paneUserLogin;
-	@FXML
-	AnchorPane paneUserCreate;
-	@FXML
-	BorderPane paneLoginManager;
-	@FXML
-	Button buttonCreateProfile;
-	
-	
-	
-	
-	private static Stage stage = new Stage(StageStyle.DECORATED);
-	private static UserLoginManager userLoginManager = new UserLoginManager();
-	
-	private void initialize() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-				"UserLoginManager.fxml"));
-		try {
-			BorderPane rootLayout = (BorderPane) fxmlLoader.load();
-			Scene scene = new Scene(rootLayout);
-			stage.setScene(scene);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+	@Override
+	public void start(Stage stage) throws Exception {
+		ScreenPane mainContainer = new ScreenPane();
+		mainContainer.loadScreen("userLogin", UserLoginManager.loginFXML);
+		mainContainer.loadScreen("userCreate", UserLoginManager.createFXML);
+		mainContainer.setScreen("userLogin");
+
+		Scene scene = new Scene(mainContainer);
+
+		// xx.getChildren().remove(test);
+
+		stage.setScene(scene);
 		stage.show();
-		
 	}
 
-	public static void show() {
-		userLoginManager.initialize();
-		
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		launch(args);
 	}
-
-
 }
