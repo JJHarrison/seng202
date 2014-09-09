@@ -6,7 +6,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/extfx-0.3.jar"/>
 	<classpathentry kind="lib" path="lib/jfxtras-common-8.0-r2-20140908.080108-200.jar"/>
 	<classpathentry kind="lib" path="lib/jfxtras-controls-8.0-r2-20140908.080119-200.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/gson-2.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

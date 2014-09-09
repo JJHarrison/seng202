@@ -1,5 +1,7 @@
 package view.user;
 
+
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -49,8 +51,7 @@ public class UserLoginController {
 		buttonCreateProfile.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent arg0) {
-				System.out.println("Profile");
-				Persistent.newUser(new User("daniel", null, null));
+				
 			}
 		});
 		

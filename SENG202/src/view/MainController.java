@@ -1,12 +1,12 @@
 package view;
 
-import view.tile.Tile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import view.tile.Tile;
 
 public class MainController {
 

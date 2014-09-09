@@ -172,7 +172,7 @@ public class User {
 				Calendar.YEAR));
 		return age;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("%s", getName());

@@ -17,22 +17,18 @@
                <children>
                   <BorderPane layoutX="564.0" layoutY="164.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <center>
-                        <WebView fx:id="webViewTest" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets />
-                           </BorderPane.margin>
-                        </WebView>
+                        <AnchorPane />
                      </center>
                   </BorderPane>
-                  <VBox alignment="TOP_CENTER" layoutX="56.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: lightgreen;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox alignment="TOP_CENTER" layoutX="56.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <padding>
                         <Insets bottom="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <ToggleButton fx:id="buttonSummary" mnemonicParsing="false" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: lightblue;" />
-                        <ToggleButton fx:id="buttonGraph" mnemonicParsing="false" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: orange;" />
-                        <ToggleButton fx:id="buttonMap" mnemonicParsing="false" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: green;" />
-                        <ToggleButton fx:id="buttonTable" mnemonicParsing="false" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: magenta;" />
+                        <ToggleButton fx:id="buttonSummary" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: pink; -fx-background-radius: 50;" text="Summary" />
+                        <ToggleButton fx:id="buttonGraph" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: turquoise; -fx-background-radius: 50;" text="Graph" />
+                        <ToggleButton fx:id="buttonMap" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: salmon; -fx-background-radius: 50;" text="Map" />
+                        <ToggleButton fx:id="buttonTable" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: skyblue; -fx-background-radius: 50;" text="Table" />
                      </children>
                   </VBox>
                </children>

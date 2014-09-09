@@ -5,6 +5,8 @@
 
 package view;
 
+
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -13,25 +15,27 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
-	private Stage primaryStage;
+	private Stage stage;
 	private BorderPane rootLayout;
 
 	@Override
 	public void start(Stage primaryStage) {
 
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Fitr");
-		//this.primaryStage.initStyle(StageStyle.UNDECORATED);
+		stage = primaryStage;
+		stage.setTitle("Fitr");
+		stage.initStyle(StageStyle.UNIFIED);
+		
 
-		// Minimum size of the stage
-		this.primaryStage.setMinHeight(768);
-		this.primaryStage.setMinWidth(1366);
+		// Minimum size of the stage.
+		stage.setMinHeight(768);
+		stage.setMinWidth(1366);
 
 		try {
-			this.primaryStage.getIcons().add(
+			this.stage.getIcons().add(
 					new Image("/resources/heart11.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,8 +56,8 @@ public class Main extends Application {
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			stage.setScene(scene);
+			stage.show();
 
 		} catch (IOException e) {
 			e.printStackTrace();

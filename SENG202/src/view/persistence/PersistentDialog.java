@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 public class PersistentDialog {
 
 	private static Stage stage = new Stage(StageStyle.UTILITY);

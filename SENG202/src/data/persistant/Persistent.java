@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import user.User;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 
 
 /**
@@ -32,7 +32,6 @@ public class Persistent {
 		try {
 			prefs.flush();
 		} catch (BackingStoreException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -92,7 +91,7 @@ public class Persistent {
 	 * also adds a user.json and activity.json file to save data to
 	 * @param userName
 	 */
-	public static void newUser(User user) throws ValueException {
+	public static void newUser(User user) throws Exception {
 		String userName = user.getName();
 
 		if (! userNames.contains(userName)) {
@@ -103,11 +102,10 @@ public class Persistent {
 				// should go in its own try catch block?
 				new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName + "/" + userName + "Activity.fitr").createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
-			throw new ValueException("User already exists");
+			throw new Exception("User already exists");
 		}
 		
 		users.add(user);
@@ -167,7 +165,7 @@ public class Persistent {
 	}
 	
 	
-	public static void main(String args[]) throws BackingStoreException {
+	public static void main(String args[]) throws Exception {
 		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		init();
