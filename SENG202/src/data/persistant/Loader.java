@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import user.UserProfile;
+import user.User;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,13 +42,13 @@ public class Loader {
 	 * loads and returns a user profile form the json file at file path
 	 * @return EventContainer
 	 */
-	public static UserProfile loadUserProfile() {
+	public static User loadUserProfile() {
 		
-		UserProfile user = null;
+		User user = null;
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(Persistent.getProfileFilePath()));
-			user = gson.fromJson(br, UserProfile.class);
+			user = gson.fromJson(br, User.class);
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");

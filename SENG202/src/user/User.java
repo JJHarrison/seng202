@@ -14,7 +14,7 @@ import data.model.EventContainer;
  * 
  * @author Fitr.Team
  */
-public class UserProfile {
+public class User {
 	private Calendar dateofBirth;
 	private String name;
 	private double weight;
@@ -37,7 +37,7 @@ public class UserProfile {
 	 * @param gender
 	 *            Gender of the user.
 	 */
-	public UserProfile(String name, Calendar dateOfBirth, Gender gender) {
+	public User(String name, Calendar dateOfBirth, Gender gender) {
 		this.setDateofBirth(dateOfBirth);
 		this.setName(name);
 		this.setGender(gender);
@@ -171,6 +171,11 @@ public class UserProfile {
 		int age = (now.get(Calendar.YEAR) - this.getDateofBirth().get(
 				Calendar.YEAR));
 		return age;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("%s", getName());
 	}
 
 }

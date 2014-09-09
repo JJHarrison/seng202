@@ -3,7 +3,7 @@ package data.persistant;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import user.UserProfile;
+import user.User;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,7 +40,7 @@ public class Saver {
 	 * saves the user profile to a .json file
 	 * @param profile
 	 */
-	public static void SaveUser(UserProfile profile) {
+	public static void SaveUser(User profile) {
 		String profileString = gson.toJson(profile);
 		
 		try {

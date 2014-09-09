@@ -1,6 +1,5 @@
 package view;
 
-import data.persistant.Persistent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,20 +8,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
+import user.User;
+import data.persistant.Persistent;
 
-public class UserLoginController extends AnchorPane {
+public class UserLoginController {
 	@FXML
-	Button ButtonCreateProfile;
+	Button buttonCreateProfile;
 	
 	@FXML
-	Button ButtonLogin;
+	Button buttonLogin;
 	
 	@FXML
-	Button ButtonCancel;
+	Button buttonCancel;
 	
 	@FXML
-	ListView<String> UserList;
+	ListView<String> userList;
 
 	public UserLoginController() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
@@ -35,30 +35,30 @@ public class UserLoginController extends AnchorPane {
 			e.printStackTrace();
 		}
 		
-		ButtonCancel.setOnAction(new EventHandler<ActionEvent>() {
+		buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
 			
 			public void handle(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
 		
-		ButtonLogin.setOnAction(new EventHandler<ActionEvent>() {
+		buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent arg0) {
 				System.out.println("Login");
 			}
 		});
 		
-		ButtonCreateProfile.setOnAction(new EventHandler<ActionEvent>() {
+		buttonCreateProfile.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent arg0) {
 				System.out.println("Profile");
-				Persistent.newUser("user");
+				Persistent.newUser(new User());
 			}
 		});
 		
-		ObservableList<String> profileList = FXCollections.observableArrayList(Persistent.getUsers());
-		UserList.setItems(profileList);
+		ObservableList<User> profileList = FXCollections.observableArrayList(Persistent.getUsers());
+		userList.setItems(profileList);
 
 	}
 }

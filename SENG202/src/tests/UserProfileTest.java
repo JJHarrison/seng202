@@ -3,8 +3,8 @@ package tests;
 import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
-import user.UserProfile;
-import user.UserProfile.Gender;
+import user.User;
+import user.User.Gender;
 
 /**
  * Tests the functionality of the UserProfile class
@@ -13,7 +13,7 @@ import user.UserProfile.Gender;
  */
 public class UserProfileTest extends TestCase {
 
-	private UserProfile john;
+	private User john;
 
 	/**
 	 * Sets up the profile to be tested.
@@ -24,7 +24,7 @@ public class UserProfileTest extends TestCase {
 
 		// John Key's actual birthday
 		GregorianCalendar dob = new GregorianCalendar(1961, 8, 9);
-		john = new UserProfile("John Key", dob, Gender.MALE);
+		john = new User("John Key", dob, Gender.MALE);
 		john.setWeight(81.2);
 		john.setHeight(1.8);
 
