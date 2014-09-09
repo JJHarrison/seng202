@@ -48,16 +48,16 @@ public class Persistent {
 	 * returns the file path to the current users profile
 	 * @return profileFilePath
 	 */
-	public static String getProfileFilePath() {
-		return prefs.get("FilePath", null) + "/Fitr/Users/" + getCurrentUser() + "/" + getCurrentUser() + ".fitr";
+	public static String getProfileFilePath(String userName) {
+		return getFilePath() + "/Fitr/Users/" + userName + "/" + userName + ".fitr";
 	}
 	
 	/**
 	 * returns the file path to the current users activity data
 	 * @return ActivityFilePath
 	 */
-	public static String getActivityFilePath() {
-		return prefs.get("FilePath", null) + "/Fitr/Users/" + getCurrentUser() + "/" + getCurrentUser() + "Activity.fitr";
+	public static String getActivityFilePath(String userName) {
+		return getFilePath() + "/Fitr/Users/" + userName + "/" + userName + "Activity.fitr";
 	}
 	
 	/**
@@ -66,9 +66,9 @@ public class Persistent {
 	 */
 	public static boolean filePathSet() {
 		boolean pathSet = true;
-		File fp = new File((prefs.get("FilePath", null)));
+		File filePath = new File(getFilePath());
 		
-		if(fp == null || !fp.exists()) {
+		if(filePath == null || !filePath.exists()) {
 			pathSet = false;
 		} else {
 			pathSet = true;
@@ -80,7 +80,7 @@ public class Persistent {
 	 * sets up a new Fitr directory with a users sub directory at the file path 
 	 */
 	public static void setupDirectory() {
-		String filePath = prefs.get("FilePath", null);
+		String filePath = getFilePath();
 		if(filePath != null) {
 			new File(filePath + "/Fitr//Users").mkdirs();
 		}
@@ -95,12 +95,12 @@ public class Persistent {
 		String userName = user.getName();
 
 		if (! userNames.contains(userName)) {
-			new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName).mkdir();
+			new File(getFilePath() + "/Fitr/Users/" + userName).mkdir();
 			
 			try {
-				new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName + "/" + userName + ".fitr").createNewFile();
+				new File(getProfileFilePath(userName)).createNewFile();
 				// should go in its own try catch block?
-				new File(prefs.get("FilePath", null) + "/Fitr/Users/" + userName + "/" + userName + "Activity.fitr").createNewFile();
+				new File(getActivityFilePath(userName)).createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -117,9 +117,7 @@ public class Persistent {
 	 * @param user
 	 */
 	public static void setUser(User user) {
-
-		prefs.put("User", user.getName());
-		
+		prefs.put("User", user.getName());	
 	}
 	
 	/**
@@ -138,16 +136,23 @@ public class Persistent {
 		return users;
 	}
 	
-	public static void getUserNames() {
+	/**
+	 * gets the user names of all the profiles
+	 * @return userNames
+	 */
+	public static ObservableList<String> getUserNames() {
 		for(User user : users) {
 			userNames.add(user.getName());	
 		}
+		return userNames;
 	}
 	
-	
+	/**
+	 * loads all the profiles from the users directory into the ObservableList<User> users
+	 */
 	public static void init() {
-		if(prefs.get("FilePath", null) != null) {
-			File filePath = new File(prefs.get("FilePath", null) + "/Fitr/Users/");
+		if(getFilePath() != null) {
+			File filePath = new File(getFilePath() + "/Fitr/Users/");
 			File[] usersDir = filePath.listFiles();
 		
 			for(File userPath : usersDir) {
@@ -164,15 +169,14 @@ public class Persistent {
 		}
 	}
 	
-	
 	public static void main(String args[]) throws Exception {
 		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
-		User u = new User("samf", null, null);
-		setUser(u);
-		newUser(u);
+		//User u = new User("samf", null, null);
+		//setUser(u);
+		//newUser(u);
 		
 		
 		System.out.println(getFilePath());
