@@ -172,7 +172,7 @@ public class Persistent {
 		setupDirectory();
 		init();
 		System.out.println("______________________");
-		User u = new User("sam", null, null);
+		User u = new User("samf", null, null);
 		setUser(u);
 		newUser(u);
 		
@@ -184,7 +184,6 @@ public class Persistent {
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
 		}
-		
 		
 	}
 		
