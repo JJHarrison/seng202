@@ -3,7 +3,6 @@ package data.persistant;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.PrimitiveIterator.OfDouble;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -35,7 +34,10 @@ public class Persistent {
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}
-		setupDirectory();
+		//only creates new directory if it the selected one doesnt already exist
+		if(!new File(getFilePath()).exists()) {
+			setupDirectory();
+		}
 	}
 	
 	/**

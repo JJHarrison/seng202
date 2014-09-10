@@ -26,9 +26,7 @@ public class UserLoginManager extends Application {
 		stage.setScene(scene);
 		System.out.println(Persistent.getFilePath());
 		if (!Persistent.filePathSet()) {
-			System.out.println("filePath exists");
 			PersistentDialog.show(stage);
-			
 		}
 		
 		stage.show();
