@@ -72,7 +72,6 @@ public class Persistent {
 			filePath = new File(getFilePath());
 		}
 		
-		
 		if(filePath == null || !filePath.exists()) {
 			pathSet = false;
 		}
@@ -173,7 +172,6 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		
 		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		init();
