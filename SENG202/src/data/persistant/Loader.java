@@ -25,12 +25,12 @@ public class Loader {
 	 * loads and returns an event container form the json file at file path
 	 * @return EventContainer
 	 */
-	public static EventContainer loadEventContainer() {
+	public static EventContainer loadEventContainer(User user) {
 		
 		EventContainer ec = null;
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(Persistent.getActivityFilePath(Persistent.getCurrentUser())));
+			BufferedReader br = new BufferedReader(new FileReader(Persistent.getActivityFilePath(user.getName())));
 			ec = gson.fromJson(br, EventContainer.class);
 			
 		} catch (FileNotFoundException e) {
