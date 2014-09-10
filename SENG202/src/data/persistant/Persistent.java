@@ -66,7 +66,7 @@ public class Persistent {
 	 */
 	public static boolean filePathSet() {
 		boolean pathSet = true;
-		File filePath = new File(getFilePath());
+		File filePath = new File(getFilePath() + "/Fitr/");
 		
 		if(filePath == null || !filePath.exists()) {
 			pathSet = false;
@@ -170,7 +170,7 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		setFilePath("/home/daniel/Desktop");
+		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
