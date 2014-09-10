@@ -35,6 +35,7 @@ public class Persistent {
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}
+		setupDirectory();
 	}
 	
 	/**
@@ -113,6 +114,7 @@ public class Persistent {
 		}
 		
 		users.add(user);
+		userNames.add(user.getName());
 		Saver.SaveUser(user);
 	}
 
