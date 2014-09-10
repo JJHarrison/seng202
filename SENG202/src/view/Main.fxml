@@ -78,23 +78,22 @@
 				<ListView fx:id="eventSelector" fixedCellSize="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1" />
 				<AnchorPane prefHeight="200.0" prefWidth="200.0">
 					<children>
-						<ImageView fitHeight="75.0" fitWidth="75.0" layoutX="-37.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-							<image>
-								<Image url="@../resources/profile.jpg" />
-							</image>
-						</ImageView>
-						<Label layoutX="179.0" layoutY="54.0" text="Daniel van Wichen" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" />
+						<Label layoutX="179.0" layoutY="54.0" text="Daniel van Wichen" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+      						<ImageView fitHeight="75.0" fitWidth="75.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+      							<image>
+      								<Image url="@../resources/profile.jpg" />
+      							</image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+      						</ImageView>
 					</children>
 				</AnchorPane>
 				<CalendarView GridPane.rowIndex="2" />
 			</children>
 		</GridPane>
 	</left>
-	<bottom>
-		<Label text="Status Updates" BorderPane.alignment="CENTER_LEFT">
-			<BorderPane.margin>
-				<Insets bottom="1.0" left="5.0" top="1.0" />
-			</BorderPane.margin>
-		</Label>
-	</bottom>
 </BorderPane>

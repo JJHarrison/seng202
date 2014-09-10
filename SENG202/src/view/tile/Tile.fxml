@@ -9,21 +9,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="-Infinity" minHeight="600.0" minWidth="900.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" minHeight="600.0" minWidth="900.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.tile.TileController">
    <children>
-      <BorderPane layoutX="9.0" layoutY="9.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 5, 5); -fx-background-color: #E6E6E6;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <BorderPane layoutX="9.0" layoutY="9.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 5, 5); -fx-background-color: #E6E6E6;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <BorderPane layoutX="564.0" layoutY="164.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <center>
-                        <AnchorPane />
+                        <StackPane fx:id="tileView" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                   <VBox alignment="TOP_CENTER" layoutX="56.0" layoutY="58.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="20.0" top="20.0" />
-                     </padding>
                      <children>
                         <GridPane VBox.vgrow="SOMETIMES">
                            <columnConstraints>
@@ -36,10 +33,10 @@
                               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ToggleButton fx:id="buttonSummary" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: pink; -fx-background-radius: 50;" text="Summary" />
-                              <ToggleButton fx:id="buttonGraph" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: turquoise; -fx-background-radius: 50;" text="Graph" GridPane.rowIndex="1" />
-                              <ToggleButton fx:id="buttonMap" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: salmon; -fx-background-radius: 50;" text="Map" GridPane.rowIndex="2" />
-                              <ToggleButton fx:id="buttonTable" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: skyblue; -fx-background-radius: 50;" text="Table" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" onAction="#loadSummary" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: pink; -fx-background-radius: 50;" text="Summary" />
+                              <Button mnemonicParsing="false" onAction="#loadGraph" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: turquoise; -fx-background-radius: 50;" text="Graph" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#loadMap" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: salmon; -fx-background-radius: 50;" text="Map" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#loadTable" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: skyblue; -fx-background-radius: 50;" text="Table" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </children>

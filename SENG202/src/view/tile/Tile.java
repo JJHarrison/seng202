@@ -1,24 +1,36 @@
 package view.tile;
 
-import javafx.fxml.FXML;
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.web.WebView;
-
 
 public class Tile extends AnchorPane {
-	@FXML
-	WebView webViewTest;
 
-	public Tile() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-				"Tile.fxml"));
-		fxmlLoader.setController(this);
-		fxmlLoader.setRoot(this);
-		try {
-			fxmlLoader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    public Tile() {
+	super();
+	try {
+	    loadMainPane();
+	} catch (IOException e) {
+	    e.printStackTrace();
 	}
+    }
+
+    /**
+     * 
+     * @throws IOException
+     */
+    private void loadMainPane() throws IOException {
+	FXMLLoader loader = new FXMLLoader();
+	loader.setRoot(this);
+	loader.load(getClass().getResourceAsStream(ViewSwitcher.TILE));
+	
+	TileController tileController = loader.getController();
+	
+
+	ViewSwitcher.setMainController(tileController);
+	ViewSwitcher.loadView(ViewSwitcher.SUMMARY);
+    }
+
+
 }
