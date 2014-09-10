@@ -34,7 +34,10 @@ public class Persistent {
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}
-		setupDirectory();
+		//only creates new directory if it the selected one doesnt already exist
+		if(!new File(getFilePath()).exists()) {
+			setupDirectory();
+		}
 	}
 	
 	/**
