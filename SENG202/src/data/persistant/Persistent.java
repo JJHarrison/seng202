@@ -37,6 +37,9 @@ public class Persistent {
 		//only creates new directory if it the selected one doesnt already exist
 		if(!new File(getFilePath()).exists()) {
 			setupDirectory();
+		} else {
+			//if the Fitr dir already exists then use it.
+			Persistent.init();
 		}
 	}
 	
@@ -159,13 +162,13 @@ public class Persistent {
 	 * loads all the profiles from the users directory into the ObservableList<User> users
 	 */
 	public static void init() {
-		if(getFilePath() != null) {
+		if(getFilePath() != null && new File(getFilePath()).exists()) {
 			System.out.println("initialising");
 			File filePath = new File(getFilePath());
 			
 			//get files / directory in Fitr directory (gets users)
 			File[] Files = filePath.listFiles();
-		
+
 			for(File file : Files) {
 				System.out.println(file);
 				String userName = file.getName();
@@ -180,13 +183,13 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		/*setFilePath("/home/daniel/Desktop");
+		/*setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
-		//User u = new User("samf", null, null);
+		User u = new User("sam schofield", null, null);
 		//setUser(u);
-		//newUser(u);
+		newUser(u);
 		
 		
 		System.out.println(getFilePath());
@@ -195,8 +198,10 @@ public class Persistent {
 		ArrayList<User> a = new ArrayList<User>(getUsers());
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
-		}*/
+		}
+		*/
 		prefs.clear();
+		System.out.println("data cleared");
 		
 		
 	}
