@@ -23,16 +23,25 @@ public class Persistent {
 	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
 
 	/**
-	 * sets the FilePath preference 
+	 * sets the FilePath preference to a Fitr directory at location of filePath
 	 * @param filePath
 	 */
 	public static void setFilePath(String filePath) {
 		// filePath will be obtained from a file chooser so it will always be an existing file path so doesn't need to be checked
-		prefs.put("FilePath", filePath);
+		prefs.put("FilePath", filePath + "/Fitr/");
 		try {
 			prefs.flush();
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * sets up a new Fitr directory with a users sub directory at the file path 
+	 */
+	public static void setupDirectory() {
+		if(getFilePath() != null) {
+			new File(getFilePath()).mkdirs();
 		}
 	}
 	
@@ -49,7 +58,7 @@ public class Persistent {
 	 * @return profileFilePath
 	 */
 	public static String getProfileFilePath(String userName) {
-		return getFilePath() + "/Fitr/Users/" + userName + "/" + userName + ".fitr";
+		return getFilePath() + userName + "/" + userName + ".fitr";
 	}
 	
 	/**
@@ -57,7 +66,7 @@ public class Persistent {
 	 * @return ActivityFilePath
 	 */
 	public static String getActivityFilePath(String userName) {
-		return getFilePath() + "/Fitr/Users/" + userName + "/" + userName + "Activity.fitr";
+		return getFilePath() + userName + "/" + userName + "Activity.fitr";
 	}
 	
 	/**
@@ -66,7 +75,7 @@ public class Persistent {
 	 */
 	public static boolean filePathSet() {
 		boolean pathSet = true;
-		File filePath = new File(getFilePath() + "/Fitr/");
+		File filePath = new File(getFilePath());
 		
 		if(filePath == null || !filePath.exists()) {
 			pathSet = false;
@@ -74,15 +83,6 @@ public class Persistent {
 		return pathSet;
 	}
 	
-	/**
-	 * sets up a new Fitr directory with a users sub directory at the file path 
-	 */
-	public static void setupDirectory() {
-		String filePath = getFilePath();
-		if(filePath != null) {
-			new File(filePath + "/Fitr//Users").mkdirs();
-		}
-	}
 	
 	/**
 	 * creates a new directory in users with name user to store information in 
@@ -93,7 +93,7 @@ public class Persistent {
 		String userName = user.getName();
 
 		if (! userNames.contains(userName)) {
-			new File(getFilePath() + "/Fitr/Users/" + userName).mkdir();
+			new File(getFilePath() + userName).mkdir();
 			
 			try {
 				new File(getProfileFilePath(userName)).createNewFile();
@@ -150,16 +150,18 @@ public class Persistent {
 	 */
 	public static void init() {
 		if(getFilePath() != null) {
-			File filePath = new File(getFilePath() + "/Fitr/Users/");
-			File[] usersDir = filePath.listFiles();
+			System.out.println("initialising");
+			File filePath = new File(getFilePath());
+			
+			//get files / directory in Fitr directory (gets users)
+			File[] Files = filePath.listFiles();
 		
-			for(File userPath : usersDir) {
-				System.out.println(userPath);
-				String userName = userPath.getName();
+			for(File file : Files) {
+				System.out.println(file);
+				String userName = file.getName();
 				
-				if(new File(userPath + "/" + userName + ".fitr").exists()) {
-					System.out.println("---");
-					User newUser = Loader.loadUserProfile(new File(userPath + "/" + userName + ".fitr"));
+				if(new File(file + "/" + userName + ".fitr").exists()) { //check if the file is a user
+					User newUser = Loader.loadUserProfile(new File(file + "/" + userName + ".fitr"));
 					users.add(newUser);
 					userNames.add(newUser.getName());
 				}
@@ -168,13 +170,13 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		setFilePath("/home/daniel/Desktop");
+		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
-		User u = new User("samf", null, null);
-		setUser(u);
-		newUser(u);
+		//User u = new User("samf", null, null);
+		//setUser(u);
+		//newUser(u);
 		
 		
 		System.out.println(getFilePath());
