@@ -40,10 +40,10 @@ public class Saver {
 	 * saves the user profile to a .json file
 	 * @param profile
 	 */
-	public static void SaveUser(User profile) {
-		String profileString = gson.toJson(profile);
+	public static void SaveUser(User user) {
+		String profileString = gson.toJson(user);
 		try {
-			FileWriter writer = new FileWriter(Persistent.getProfileFilePath(Persistent.getCurrentUser()));
+			FileWriter writer = new FileWriter(Persistent.getProfileFilePath(user.getName()));
 			writer.write(profileString);
 			writer.close();
 		} catch (IOException e) {

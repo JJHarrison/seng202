@@ -176,7 +176,7 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		setFilePath("/home/daniel/Desktop");
+		/*setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
@@ -191,7 +191,7 @@ public class Persistent {
 		ArrayList<User> a = new ArrayList<User>(getUsers());
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
-		}
+		}*/
 		prefs.clear();
 		
 		
