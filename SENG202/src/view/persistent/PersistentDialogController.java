@@ -5,7 +5,6 @@ package view.persistent;
 
 import java.io.File;
 
-import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.property.StringPropertyBase;
 import javafx.event.ActionEvent;
@@ -15,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
 import data.persistant.Persistent;
 
 public class PersistentDialogController extends AnchorPane{

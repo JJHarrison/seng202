@@ -3,7 +3,6 @@ package view.tile;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.user.ScreenPane;
 
 
 public class testerTile extends Application {

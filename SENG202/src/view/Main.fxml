@@ -13,11 +13,9 @@
 <?import view.tile.*?>
 <?import extfx.scene.control.*?>
 
-<BorderPane fx:id="mainWindow" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainController">
+<BorderPane fx:id="mainWindow" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainController">
 	<top>
-		<StackPane prefHeight="29.0" prefWidth="200.0"
-			BorderPane.alignment="CENTER">
+		<StackPane prefHeight="29.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 			<children>
 				<MenuBar StackPane.alignment="TOP_LEFT">
 					<menus>
@@ -44,10 +42,7 @@
 		</StackPane>
 	</top>
 	<center>
-		<ScrollPane fx:id="pane" fitToWidth="true" hbarPolicy="NEVER"
-			maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-			prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;"
-			vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+		<ScrollPane fx:id="pane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
 			<content>
 				<VBox>
 					<children>
@@ -69,35 +64,26 @@
 	<left>
 		<GridPane BorderPane.alignment="CENTER">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity"
-					minWidth="-Infinity" prefWidth="250.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
-					prefHeight="80.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="1.7976931348623157E308"
-					minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
-					prefHeight="250.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<BorderPane.margin>
 				<Insets left="5.0" right="5.0" top="5.0" />
 			</BorderPane.margin>
 			<children>
-				<ListView fx:id="eventSelector" fixedCellSize="50.0"
-					prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;"
-					GridPane.rowIndex="1" />
+				<ListView fx:id="eventSelector" fixedCellSize="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1" />
 				<AnchorPane prefHeight="200.0" prefWidth="200.0">
 					<children>
-						<ImageView fitHeight="75.0" fitWidth="75.0" layoutX="-37.0"
-							layoutY="-37.0" pickOnBounds="true" preserveRatio="true"
-							AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<ImageView fitHeight="75.0" fitWidth="75.0" layoutX="-37.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<image>
 								<Image url="@../resources/profile.jpg" />
 							</image>
 						</ImageView>
-						<Label layoutX="179.0" layoutY="54.0" text="Daniel van Wichen"
-							AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" />
+						<Label layoutX="179.0" layoutY="54.0" text="Daniel van Wichen" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0" />
 					</children>
 				</AnchorPane>
 				<CalendarView GridPane.rowIndex="2" />
