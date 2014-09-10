@@ -1,4 +1,4 @@
-package view.user;
+package view.tile;
 
 import java.util.HashMap;
 import javafx.animation.KeyFrame;
@@ -17,11 +17,11 @@ import javafx.util.Duration;
  *
  * @author Daniel van Wichen
  */
-public class ScreenPane extends StackPane {
+public class TabPane extends StackPane {
 	// Holds the screens to be displayed
 	private HashMap<String, Node> screens = new HashMap<>();
 
-	public ScreenPane() {
+	public TabPane() {
 		super();
 	}
 
@@ -46,7 +46,7 @@ public class ScreenPane extends StackPane {
 		try {
 			FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
 			Parent loadScreen = (Parent) myLoader.load();
-			ScreenController myScreenControler = ((ScreenController) myLoader.getController());
+			TabController myScreenControler = ((TabController) myLoader.getController());
 			myScreenControler.setScreenPane(this);
 			addScreen(name, loadScreen);
 			return true;

@@ -1,5 +1,10 @@
 package view.user;
 
+import java.util.GregorianCalendar;
+
+import user.User;
+import user.User.Gender;
+import data.persistant.Persistent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,7 +24,24 @@ public class UserCreateController implements ScreenController {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				myScreenPane.setScreen("UserLogin");
+				myScreenPane.setScreen("userLogin");
+			}
+		});
+        
+        buttonCreate.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					User user = new  User("DanielvanWichen", new GregorianCalendar(), Gender.MALE);
+					//Persistent.setUser(user);
+					Persistent.newUser(user);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				myScreenPane.setScreen("userLogin");
+				
 			}
 		});
     }    

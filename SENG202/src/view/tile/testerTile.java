@@ -13,7 +13,7 @@ public class testerTile extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		arg0.setScene(new Scene(new ScreenPane()));
+		arg0.setScene(new Scene(new Tile()));
 		arg0.show();
 		//UserLoginManager.show();
 

@@ -25,10 +25,23 @@
                         <Insets bottom="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <ToggleButton fx:id="buttonSummary" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: pink; -fx-background-radius: 50;" text="Summary" />
-                        <ToggleButton fx:id="buttonGraph" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: turquoise; -fx-background-radius: 50;" text="Graph" />
-                        <ToggleButton fx:id="buttonMap" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: salmon; -fx-background-radius: 50;" text="Map" />
-                        <ToggleButton fx:id="buttonTable" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: skyblue; -fx-background-radius: 50;" text="Table" />
+                        <GridPane VBox.vgrow="SOMETIMES">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ToggleButton fx:id="buttonSummary" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: pink; -fx-background-radius: 50;" text="Summary" />
+                              <ToggleButton fx:id="buttonGraph" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: turquoise; -fx-background-radius: 50;" text="Graph" GridPane.rowIndex="1" />
+                              <ToggleButton fx:id="buttonMap" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: salmon; -fx-background-radius: 50;" text="Map" GridPane.rowIndex="2" />
+                              <ToggleButton fx:id="buttonTable" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: skyblue; -fx-background-radius: 50;" text="Table" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
                      </children>
                   </VBox>
                </children>

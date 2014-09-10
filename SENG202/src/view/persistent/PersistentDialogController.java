@@ -1,10 +1,11 @@
-package view.persistence;
+package view.persistent;
 
 
 
 
 import java.io.File;
 
+import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.property.StringPropertyBase;
 import javafx.event.ActionEvent;
@@ -66,7 +67,6 @@ public class PersistentDialogController extends AnchorPane{
 					labelWarning.setText("No path set!");
 				} else {
 					Persistent.setFilePath(file.getValue());
-					System.exit(0);
 				}
 				
 			}

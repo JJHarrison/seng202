@@ -1,11 +1,9 @@
-package view.user;
+package view.tile;
 
-/**
- *
- * @author Daniel van Wichen
- */
-public interface ScreenController {
+import view.user.ScreenPane;
 
+public interface TabController {
+	
 	/**
 	 * This method will allow the injection of the ScreenPane.
 	 * @param screenPage

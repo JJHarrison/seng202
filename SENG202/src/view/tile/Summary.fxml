@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="38.0" layoutY="36.0" text="Event Name">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="138.0" text="Date:" />
+      <Label layoutX="38.0" layoutY="184.0" text="Calories Burned:" />
+   </children>
+</AnchorPane>

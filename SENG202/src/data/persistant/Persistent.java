@@ -37,7 +37,7 @@ public class Persistent {
 	}
 	
 	/** 
-	 * gets the file path form preferences 
+	 * gets the file path from preferences 
 	 * @return FilePath 
 	 */
 	public static String getFilePath() {
@@ -66,12 +66,15 @@ public class Persistent {
 	 */
 	public static boolean filePathSet() {
 		boolean pathSet = true;
-		File filePath = new File(getFilePath());
+		File filePath = null;
+		
+		if (getFilePath() != null) {
+			filePath = new File(getFilePath());
+		}
+		
 		
 		if(filePath == null || !filePath.exists()) {
 			pathSet = false;
-		} else {
-			pathSet = true;
 		}
 		return pathSet;
 	}
@@ -170,13 +173,14 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
+		
 		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
-		//User u = new User("samf", null, null);
-		//setUser(u);
-		//newUser(u);
+		User u = new User("samf", null, null);
+		setUser(u);
+		newUser(u);
 		
 		
 		System.out.println(getFilePath());
@@ -186,6 +190,7 @@ public class Persistent {
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
 		}
+		
 		
 	}
 		

@@ -1,5 +1,7 @@
 package view.user;
 
+import view.persistent.PersistentDialog;
+import data.persistant.Persistent;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,10 +22,13 @@ public class UserLoginManager extends Application {
 		mainContainer.setScreen("userLogin");
 
 		Scene scene = new Scene(mainContainer);
-
-		// xx.getChildren().remove(test);
-
 		stage.setScene(scene);
+		System.out.println(Persistent.getFilePath());
+		if (!Persistent.filePathSet()) {
+			System.out.println("filePath exists");
+			PersistentDialog.show();
+		}
+		
 		stage.show();
 	}
 

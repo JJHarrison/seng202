@@ -26,16 +26,6 @@ public class UserLoginController implements ScreenController {
 	@FXML
 	private void initialize() {
 
-		//FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-		//		"UserLogin.fxml"));
-		//fxmlLoader.setController(this);
-		//fxmlLoader.setRoot(this);
-		try {
-			//fxmlLoader.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent arg0) {
@@ -66,4 +56,4 @@ public class UserLoginController implements ScreenController {
 		myScreenPane = screenPage;
 		
 	}
-}
+}  
