@@ -22,12 +22,12 @@ public class Saver {
 	 * Saves an event container to the file at file path
 	 * @param eventContainer
 	 */
-	public static void SaveActivityData(EventContainer eventContainer) {
+	public static void SaveActivityData(EventContainer eventContainer, User user) {
 		
 		String ECString = gson.toJson(eventContainer);
 
 		try {
-			FileWriter writer = new FileWriter(Persistent.getActivityFilePath(Persistent.getCurrentUser()));
+			FileWriter writer = new FileWriter(Persistent.getActivityFilePath(user.getName()));
 			writer.write(ECString);
 			writer.close();
 		} catch (IOException e) {
