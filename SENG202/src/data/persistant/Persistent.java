@@ -66,11 +66,7 @@ public class Persistent {
 	 */
 	public static boolean filePathSet() {
 		boolean pathSet = true;
-		File filePath = null;
-		
-		if (getFilePath() != null) {
-			filePath = new File(getFilePath());
-		}
+		File filePath = new File(getFilePath() + "/Fitr/");
 		
 		if(filePath == null || !filePath.exists()) {
 			pathSet = false;
