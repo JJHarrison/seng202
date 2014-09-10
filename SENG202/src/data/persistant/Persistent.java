@@ -3,6 +3,7 @@ package data.persistant;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.PrimitiveIterator.OfDouble;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -75,8 +76,13 @@ public class Persistent {
 	 */
 	public static boolean filePathSet() {
 		boolean pathSet = true;
-		File filePath = new File(getFilePath());
-		
+		File filePath;
+		if (getFilePath() == null) {
+			filePath = null;
+		} else {
+			filePath = new File(getFilePath());
+		}
+				
 		if(filePath == null || !filePath.exists()) {
 			pathSet = false;
 		}
@@ -170,7 +176,7 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		setFilePath("/Users/SamSchofield/Desktop");
+		setFilePath("/home/daniel/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
@@ -186,6 +192,7 @@ public class Persistent {
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
 		}
+		prefs.clear();
 		
 		
 	}

@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import data.persistant.Persistent;
 
 public class PersistentDialogController extends AnchorPane{
@@ -33,12 +34,10 @@ public class PersistentDialogController extends AnchorPane{
 	Property<String> file = new StringPropertyBase() {
 		
 		public String getName() {
-			// TODO Auto-generated method stub
 			return "file";
 		}
 		
 		public Object getBean() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 	};
@@ -67,6 +66,7 @@ public class PersistentDialogController extends AnchorPane{
 					labelWarning.setText("No path set!");
 				} else {
 					Persistent.setFilePath(file.getValue());
+					PersistentDialog.close();
 				}
 				
 			}

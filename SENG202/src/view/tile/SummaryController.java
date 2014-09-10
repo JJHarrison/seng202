@@ -4,8 +4,6 @@ package view.tile;
 import javafx.fxml.FXML;
 
 public class SummaryController implements TabController {
-	private
-	
 
 	@FXML
 	private void initialize() {
@@ -13,7 +11,7 @@ public class SummaryController implements TabController {
 	}
 
 	@Override
-	public void setScreenPane(view.user.ScreenPane screenPage) {
+	public void setScreenPane(TabPane tabPane) {
 		// TODO Auto-generated method stub
 		
 	}

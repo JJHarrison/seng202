@@ -31,7 +31,12 @@ public class PersistentDialog {
 		stage.show();
 	}
 
-	public static void show() {
+	public static void show(Stage parent) {
 		dialog.initialize(stage);
+		parent.hide();
+	}
+	
+	public static void close() {
+		stage.close();
 	}
 }

@@ -25,12 +25,20 @@ public class TabPane extends StackPane {
 		super();
 	}
 
-	// Add the screen to the collection
+	/**
+	 *  Add the screen to the collection
+	 * @param name
+	 * @param screen
+	 */
 	public void addScreen(String name, Node screen) {
 		screens.put(name, screen);
 	}
 
-	// Returns the Node with the appropriate name
+	/**
+	 * Returns the Node with the appropriate name
+	 * @param name
+	 * @return
+	 */
 	public Node getScreen(String name) {
 		return screens.get(name);
 	}
@@ -46,8 +54,8 @@ public class TabPane extends StackPane {
 		try {
 			FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
 			Parent loadScreen = (Parent) myLoader.load();
-			TabController myScreenControler = ((TabController) myLoader.getController());
-			myScreenControler.setScreenPane(this);
+			TabController myTabController = ((TabController) myLoader.getController());
+			myTabController.setScreenPane(this);
 			addScreen(name, loadScreen);
 			return true;
 		} catch (Exception e) {

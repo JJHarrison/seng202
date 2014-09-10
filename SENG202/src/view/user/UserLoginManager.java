@@ -20,16 +20,20 @@ public class UserLoginManager extends Application {
 		mainContainer.loadScreen("userLogin", UserLoginManager.loginFXML);
 		mainContainer.loadScreen("userCreate", UserLoginManager.createFXML);
 		mainContainer.setScreen("userLogin");
+		Persistent.init();
 
 		Scene scene = new Scene(mainContainer);
 		stage.setScene(scene);
 		System.out.println(Persistent.getFilePath());
 		if (!Persistent.filePathSet()) {
 			System.out.println("filePath exists");
-			PersistentDialog.show();
+			PersistentDialog.show(stage);
+			
 		}
 		
 		stage.show();
+		stage.centerOnScreen();
+		//stage.close();
 	}
 
 	/**
