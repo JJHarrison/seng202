@@ -5,10 +5,12 @@ import java.util.GregorianCalendar;
 import user.User;
 import user.User.Gender;
 import data.persistant.Persistent;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 
 public class UserCreateController implements ScreenController {
 	private ScreenPane myScreenPane;
@@ -19,6 +21,9 @@ public class UserCreateController implements ScreenController {
 	Button buttonCreate;
 	
 	@FXML
+	ComboBox<Gender> fieldGender;
+	
+	@FXML
     public void initialize() {
         buttonCancelCreate.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -27,6 +32,8 @@ public class UserCreateController implements ScreenController {
 				myScreenPane.setScreen("userLogin");
 			}
 		});
+        
+        fieldGender.setItems(FXCollections.observableArrayList(Gender.values()));
         
         buttonCreate.setOnAction(new EventHandler<ActionEvent>() {
 
