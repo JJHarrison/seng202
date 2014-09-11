@@ -21,6 +21,10 @@ public class Event {
 	private double averageSpeed;
 	private int totalHeartRate;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+	private Graph hearRateGraph;
+	private Graph stressLevelGraph;
+	private Graph speedGraph;
+	private Graph distanceGraph;
 
 	/**
 	 * Constructor.
@@ -219,6 +223,22 @@ public class Event {
 
 		double calories = weight * runMET * timeInHours;
 		return calories;
+	}
+	
+	public Graph getHeartRateGraph() {
+		return hearRateGraph;
+	}
+
+	public Graph getStressLevelGraph() {
+		return stressLevelGraph;
+	}
+
+	public Graph getspeedGraph() {
+		return speedGraph;
+	}
+
+	public Graph getDistanceGraph() {
+		return distanceGraph;
 	}
 
 	/**
