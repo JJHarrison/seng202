@@ -33,7 +33,7 @@ public class UserCreateController implements ScreenController {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					User user = new  User("DanielvanWichen", new GregorianCalendar(), Gender.MALE);
+					User user = new  User("Daniel van Wichen", new GregorianCalendar(), Gender.MALE);
 					//Persistent.setUser(user);
 					Persistent.newUser(user);
 				} catch (Exception e) {

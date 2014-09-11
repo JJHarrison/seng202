@@ -114,15 +114,19 @@ public class Persistent {
 				// should go in its own try catch block?
 				new File(getActivityFilePath(userName)).createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.printStackTrace();	
 			}
+			
+			users.add(user);
+			userNames.add(user.getName());
+			Saver.SaveUser(user);
+			
 		} else {
-			throw new Exception("User already exists");
+			System.out.println("User has already beeen created. try differnt username");
+			//throw new Exception("User already exists");
 		}
 		
-		users.add(user);
-		userNames.add(user.getName());
-		Saver.SaveUser(user);
+		
 	}
 
 	/**
@@ -189,12 +193,12 @@ public class Persistent {
 		setupDirectory();
 		init();
 		System.out.println("______________________");
-		User u = new User("sam schofield", null, null);
+		//*/User u = new User("sam schofield", null, null);
 		//setUser(u);
-		newUser(u);
+		//newUser(u);
 		
 		
-		System.out.println(getFilePath());
+		/*System.out.println(getFilePath());
 		System.out.println("Saved");
 		System.out.println("Users are: ");
 		ArrayList<User> a = new ArrayList<User>(getUsers());
