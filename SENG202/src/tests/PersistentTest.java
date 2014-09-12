@@ -9,23 +9,23 @@ import junit.framework.TestCase;
 public class PersistentTest extends TestCase {
 
 	public void testSetFilePath() {
-		Persistent.setFilePath("/Users/SamSchofield/Desktop");
+		Persistent.setFilePath("/Users/dan/Desktop");
 	}
 
 	public void testGetFilePath() {
-		assertEquals("/Users/SamSchofield/Desktop/Fitr/", Persistent.getFilePath());
+		assertEquals("/Users/dan/Desktop/Fitr/", Persistent.getFilePath());
 	}
 
 	public void testGetProfileFilePath() {
-		User u = new User("sam", null, null);
-		assertEquals("/Users/SamSchofield/Desktop/Fitr/sam/sam.fitr", Persistent.getProfileFilePath(u.getName()));
+		User u = new User("John", null, null);
+		assertEquals("/Users/dan/Desktop/Fitr/John/John.fitr", Persistent.getProfileFilePath(u.getName()));
 	}
 
 	public void testGetActivityFilePath() {
 	}
 
 	public void testFilePathSet() {
-		Persistent.setFilePath("/Users/SamSchofield/Desktop");
+		Persistent.setFilePath("/Users/dan/Desktop");
 		assertEquals(true, Persistent.filePathSet());
 	}
 
