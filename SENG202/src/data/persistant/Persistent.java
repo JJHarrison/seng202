@@ -36,7 +36,7 @@ public class Persistent {
 		}
 		
 		
-		//only creates new directory if it the selected one doesnt already exist
+		//only creates new directory if the selected one doesn't already exist
 		if(!new File(getFilePath()).exists()) {
 			setupDirectory();
 		} else {
