@@ -46,12 +46,10 @@ public class Main extends Application {
 	 * Initializes the root layout.
 	 */
 	public void initRootLayout() {
-		try {
-		    	
+		try {	
 			// Load root layout from FXML file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Main.fxml"));
-			
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.

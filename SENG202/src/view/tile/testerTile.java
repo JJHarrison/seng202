@@ -2,6 +2,7 @@ package view.tile;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class testerTile extends Application {
@@ -11,8 +12,13 @@ public class testerTile extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-	primaryStage.setScene(new Scene(new Tile()));
+	VBox vBox = new VBox();
+	vBox.minHeight(600);
+	vBox.minWidth(1200);
+	vBox.getChildren().add(new Tile());
+	primaryStage.setScene(new Scene(vBox));
 	primaryStage.show();
+	primaryStage.setHeight(700);
 
     }
 

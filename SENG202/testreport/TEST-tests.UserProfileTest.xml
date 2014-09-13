@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="daniel" name="tests.EventContainerTest" skipped="0" tests="1" time="0.057" timestamp="2014-09-13T21:17:21">
+<testsuite errors="0" failures="0" hostname="daniel" name="tests.UserProfileTest" skipped="0" tests="9" time="0.061" timestamp="2014-09-13T21:17:23">
   <properties>
     <property name="java.vendor" value="Oracle Corporation" />
     <property name="lib.dir" value="/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib" />
@@ -51,7 +51,7 @@
     <property name="ant.file.Ant-Test" value="/home/daniel/git/seng202_2014_team5_phase3/SENG202/build.xml" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tests.EventContainerTest filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/daniel/git/seng202_2014_team5_phase3/SENG202/testreport/TEST-tests.EventContainerTest.xml crashfile=/home/daniel/git/seng202_2014_team5_phase3/SENG202/junitvmwatcher8889745285655829389.properties propsfile=/home/daniel/git/seng202_2014_team5_phase3/SENG202/junit5489075731785656461.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner tests.UserProfileTest filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/daniel/git/seng202_2014_team5_phase3/SENG202/testreport/TEST-tests.UserProfileTest.xml crashfile=/home/daniel/git/seng202_2014_team5_phase3/SENG202/junitvmwatcher3446384029941929778.properties propsfile=/home/daniel/git/seng202_2014_team5_phase3/SENG202/junit449356542424378605.properties" />
     <property name="java.class.path" value="/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib/extfx-0.3.jar:/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib/gson-2.3.jar:/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib/jfxmessagebox-1.1.0.jar:/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib/jfxrt.jar:/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib/jfxtras-common-8.0-r2-20140908.080108-200.jar:/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib/jfxtras-controls-8.0-r2-20140908.080119-200.jar:/home/daniel/git/seng202_2014_team5_phase3/SENG202/lib/junit.jar:/home/daniel/git/seng202_2014_team5_phase3/SENG202/bin:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-launcher.jar:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant.jar:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit.jar:/opt/eclipse/plugins/org.apache.ant_1.9.2.v201404171502/lib/ant-junit4.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.2 compiled on July 8 2013" />
     <property name="project.name" value="seng202_2014_team05" />
@@ -77,7 +77,15 @@
     <property name="ant.project.invoked-targets" value="main" />
     <property name="mf.classpath" value="lib/extfx-0.3.jar lib/gson-2.3.jar lib/jfxmessagebox-1.1.0.jar lib/jfxrt.jar lib/jfxtras-common-8.0-r2-20140908.080108-200.jar lib/jfxtras-controls-8.0-r2-20140908.080119-200.jar lib/junit.jar" />
   </properties>
-  <testcase classname="tests.EventContainerTest" name="testAddEvent" time="0.004" />
+  <testcase classname="tests.UserProfileTest" name="testChangeHeight" time="0.002" />
+  <testcase classname="tests.UserProfileTest" name="testGetWeight" time="0.003" />
+  <testcase classname="tests.UserProfileTest" name="testGetName" time="0.001" />
+  <testcase classname="tests.UserProfileTest" name="testGetAge" time="0.0" />
+  <testcase classname="tests.UserProfileTest" name="testGetGender" time="0.0" />
+  <testcase classname="tests.UserProfileTest" name="testGetBMI" time="0.0" />
+  <testcase classname="tests.UserProfileTest" name="testChangeWeight" time="0.001" />
+  <testcase classname="tests.UserProfileTest" name="testToString" time="0.004" />
+  <testcase classname="tests.UserProfileTest" name="testGetHeight" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

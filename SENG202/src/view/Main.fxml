@@ -47,12 +47,13 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <content>
-                  <VBox fx:id="tileBox" prefWidth="100.0">
-                  </VBox>
-               </content>
-            </ScrollPane>
+            <StackPane fx:id="viewMainContent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+               	<fx:include fx:id="viewWeb" source="web/Web.fxml" />
+               	<fx:include fx:id="viewDash" source="dash/Dash.fxml" />
+               	<fx:include fx:id="viewAnalysis" source="analysis/Analysis.fxml" />
+               </children>
+            </StackPane>
          </children>
       </AnchorPane>
    </center>
