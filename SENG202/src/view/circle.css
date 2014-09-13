@@ -1,0 +1,10 @@
+.ToggleButton {
+    -fx-background-radius: 50;
+    -fx-background-color: derive(#87CEFA, -10%);
+}
+.ToggleButton:hover {
+    -fx-background-color: derive(#87CEFA, -5%);
+}
+.ToggleButton:selected {
+    -fx-background-color: salmon;
+}

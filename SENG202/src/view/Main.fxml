@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.media.*?>
@@ -13,7 +14,7 @@
 <?import view.tile.*?>
 <?import extfx.scene.control.*?>
 
-<BorderPane fx:id="mainWindow" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainController">
+<BorderPane fx:id="mainWindow" prefHeight="750.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainController">
 	<top>
 		<StackPane prefHeight="29.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 			<children>
@@ -41,59 +42,52 @@
 			</children>
 		</StackPane>
 	</top>
-	<center>
-		<ScrollPane fx:id="pane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
-			<content>
-				<VBox>
-					<children>
-						<Tile />
-						<Tile />
-						<Tile />
-						<Tile />
-					</children>
-				</VBox>
-			</content>
-			<BorderPane.margin>
-				<Insets right="5.0" />
-			</BorderPane.margin>
-		</ScrollPane>
-	</center>
 	<bottom>
 
 	</bottom>
-	<left>
-		<GridPane BorderPane.alignment="CENTER">
-			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
-			</columnConstraints>
-			<rowConstraints>
-				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" vgrow="SOMETIMES" />
-			</rowConstraints>
-			<BorderPane.margin>
-				<Insets left="5.0" right="5.0" top="5.0" />
-			</BorderPane.margin>
-			<children>
-				<ListView fx:id="eventSelector" fixedCellSize="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1" />
-				<AnchorPane prefHeight="200.0" prefWidth="200.0">
-					<children>
-						<Label layoutX="179.0" layoutY="54.0" text="Daniel van Wichen" AnchorPane.rightAnchor="0.0">
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox fx:id="tileBox" prefWidth="100.0">
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="400.0" prefHeight="400.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="300.0" minHeight="300.0" prefHeight="300.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane stylesheets="@circle.css">
+               <children>
+                  <ToggleButton fx:id="buttonDash" layoutX="14.0" layoutY="153.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Dash" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="20.0">
                      <font>
                         <Font size="16.0" />
-                     </font></Label>
-      						<ImageView fitHeight="75.0" fitWidth="75.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
-      							<image>
-      								<Image url="@../resources/profile.jpg" />
-      							</image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-      						</ImageView>
-					</children>
-				</AnchorPane>
-				<CalendarView GridPane.rowIndex="2" />
-			</children>
-		</GridPane>
-	</left>
+                     </font>
+                  </ToggleButton>
+                  <ToggleButton fx:id="buttonAnalysis" layoutX="43.0" layoutY="125.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Analysis" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="140.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </ToggleButton>
+                  <ToggleButton fx:id="buttonWeb" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Web" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="260.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </ToggleButton>
+               </children>
+            </AnchorPane>
+            <CalendarView GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </left>
 </BorderPane>

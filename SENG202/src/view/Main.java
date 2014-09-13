@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -27,13 +26,12 @@ public class Main extends Application {
 
 		stage = primaryStage;
 		stage.setTitle("Fitr");
-		stage.initStyle(StageStyle.UNIFIED);
 		
 
 		// Minimum size of the stage.
 		stage.setMinHeight(768);
 		stage.setMinWidth(1366);
-
+		
 		try {
 			this.stage.getIcons().add(
 					new Image("/resources/heart11.png"));
@@ -49,14 +47,17 @@ public class Main extends Application {
 	 */
 	public void initRootLayout() {
 		try {
+		    	
 			// Load root layout from FXML file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Main.fxml"));
 			rootLayout = (BorderPane) loader.load();
+			rootLayout.applyCss();
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
 			stage.setScene(scene);
+			stage.centerOnScreen();
 			stage.show();
 
 		} catch (IOException e) {

@@ -3,18 +3,38 @@ package view.tile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class TileController {
 
     /** Holder of a switchable view. */
     @FXML
-    private StackPane tileView;
-    
+    StackPane tileView;
     @FXML
-    void initialize() {
-	
-    }
+    VBox tile;
+    @FXML
+    AnchorPane tileTop;
+    @FXML
+    AnchorPane tileBottom;
+    @FXML
+    ToggleButton buttonSummary;
+    @FXML
+    ToggleButton buttonGraph;
+    @FXML
+    ToggleButton buttonMap;
+    @FXML
+    ToggleButton buttonTable;
+
+    public static VBox openTile;
+
+    ToggleGroup toggleGroup = new ToggleGroup();
+
+    public ViewSwitcher viewSwitcher = new ViewSwitcher(this);
 
     /**
      * Replaces the view displayed in the view holder with a new view.
@@ -27,23 +47,68 @@ public class TileController {
     }
 
     @FXML
+    private void initialize() {
+	tile.getChildren().remove(tileBottom); // So that the tiles are by
+					       // default closed.
+
+	toggleGroup.getToggles().addAll(buttonGraph, buttonMap, buttonSummary,
+		buttonTable);
+	toggleGroup.selectToggle(buttonSummary);
+
+    }
+
+    @FXML
     void loadSummary(ActionEvent event) {
-	ViewSwitcher.loadView(ViewSwitcher.SUMMARY);
+	toggleGroup.selectToggle(buttonSummary);
+	viewSwitcher.loadView(ViewSwitcher.SUMMARY);
     }
 
     @FXML
     void loadMap(ActionEvent event) {
-	ViewSwitcher.loadView(ViewSwitcher.MAP);
+	toggleGroup.selectToggle(buttonMap);
+	viewSwitcher.loadView(ViewSwitcher.MAP);
     }
 
     @FXML
     void loadGraph(ActionEvent event) {
-	ViewSwitcher.loadView(ViewSwitcher.GRAPH);
+	toggleGroup.selectToggle(buttonGraph);
+	viewSwitcher.loadView(ViewSwitcher.GRAPH);
     }
 
     @FXML
     void loadTable(ActionEvent event) {
-	ViewSwitcher.loadView(ViewSwitcher.TABLE);
+	toggleGroup.selectToggle(buttonTable);
+	viewSwitcher.loadView(ViewSwitcher.TABLE);
+    }
+
+    @FXML
+    void hideContent(MouseEvent event) {
+	if (openTile == tile) {
+	    tile.getChildren().remove(tileBottom);
+	    openTile = null;
+	} else if (openTile == null) {
+	    tile.getChildren().add(tileBottom);
+	    openTile = tile;
+	} else {
+	    openTile.getChildren().remove(1);
+	    tile.getChildren().add(tileBottom);
+	    openTile = tile;
+	}
+    }
+
+    @FXML
+    void hideContentButton(ActionEvent event) {
+	if (openTile == tile) {
+	    tile.getChildren().remove(tileBottom);
+	    openTile = null;
+	} else if (openTile == null) {
+	    tile.getChildren().add(tileBottom);
+	    openTile = tile;
+	} else {
+	    openTile.getChildren().remove(1);
+	    tile.getChildren().add(tileBottom);
+	    openTile = tile;
+	}
     }
 
 }

@@ -1,44 +1,36 @@
 package view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
 import view.tile.Tile;
+import data.model.Event;
 
 public class MainController {
+    @FXML
+    ToggleButton buttonDash;
+    @FXML
+    ToggleButton buttonAnalysis;
+    @FXML
+    ToggleButton buttonWeb;
+    @FXML
+    VBox tileBox;
 
-	@FXML
-	ListView<String> eventSelector;
+    ToggleGroup toggleGroup = new ToggleGroup();
 
-	@FXML
-	Tile mapTest;
+    @FXML
+    void initialize() {
+	toggleGroup.getToggles().addAll(buttonDash, buttonAnalysis, buttonWeb);
+	toggleGroup.selectToggle(buttonDash);
+    }
 
-	@FXML
-	ScrollPane pane;
-
-	@FXML
-	BorderPane mainWindow;
-
-	@FXML
-	private void initialize() {
-
-		ObservableList<String> list = FXCollections.observableArrayList();
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		list.add("11:24 - 12:45\nWalk with Dog");
-		eventSelector.setItems(list);
-	}
-
+    /**
+     * 
+     * @param event
+     *            The event to add
+     */
+    public void addEventTile(Event event) {
+	tileBox.getChildren().add(new Tile(event));
+    }
 }

@@ -15,17 +15,21 @@ public class ViewSwitcher {
     public static final String MAP = "map/Map.fxml";
     public static final String TABLE = "table/Table.fxml";
 
+    public ViewSwitcher(TileController tileController) {
+	this.tileController = tileController;
+    }
+    
     /** The main tile layout controller. */
-    private static TileController tileController;
+    private TileController tileController;
 
     /**
      * Stores the tile controller for later use in navigation tasks.
      *
-     * @param mainController
+     * @param tileController
      *            the main tile layout controller.
      */
-    public static void setMainController(TileController tileController) {
-	ViewSwitcher.tileController = tileController;
+    public void setMainController(TileController tileController) {
+	this.tileController = tileController;
     }
 
     /**
@@ -33,7 +37,7 @@ public class ViewSwitcher {
      * @param fxml
      *            The view to load up.
      */
-    public static void loadView(String fxml) {
+    public void loadView(String fxml) {
 	try {
 	    tileController.setView(FXMLLoader.load(ViewSwitcher.class
 		    .getResource(fxml)));
