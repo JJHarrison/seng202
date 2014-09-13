@@ -2,6 +2,8 @@ package tests;
 
 import java.util.GregorianCalendar;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 import junit.framework.TestCase;
 import user.User;
 import user.User.Gender;
@@ -29,12 +31,41 @@ public class UserProfileTest extends TestCase {
 		john.setHeight(1.8);
 
 	}
+	
+	/**
+	 * Tests getName function to make sure it returns the right name
+	 */
+	public void testGetName() {
+		assertEquals(john.getName(), "John Key");
+	}
+	
+	/**
+	 * Tests getWeight function to make sure it returns the right weight
+	 */
+	public void testGetWeight() {
+		assertEquals(john.getWeight(), 81.2);
+	}
 
+	/**
+	 * Tests getHeight function to make sure it returns the right height
+	 */
+	
+	public void testGetHeight() {
+		assertEquals(john.getHeight(), 1.8);
+	}
+	
 	/**
 	 * Tests the getAge function to make sure it returns the right age
 	 */
 	public void testGetAge() {
 		assertEquals(john.getAge(), 53);
+	}
+	
+	/**
+	 * Tests that the Gender enum has a value
+	 */
+	public void testGetGender() {
+		assertNotNull(john.getGender());
 	}
 
 	/**
@@ -64,6 +95,13 @@ public class UserProfileTest extends TestCase {
 		double bmi = john.getBMI();
 		assertTrue(bmi > 20);
 		assertTrue(bmi < 21);
+	}
+	
+	/**
+	 * Tests the toString override 
+	 */
+	public void testToString() {
+		assertEquals(john.toString(), "John Key");
 	}
 
 }

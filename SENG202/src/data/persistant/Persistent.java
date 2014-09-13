@@ -34,9 +34,14 @@ public class Persistent {
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}
-		//only creates new directory if it the selected one doesnt already exist
+		
+		
+		//only creates new directory if the selected one doesn't already exist
 		if(!new File(getFilePath()).exists()) {
 			setupDirectory();
+		} else {
+			//if the Fitr dir already exists then use it.
+			Persistent.init();
 		}
 	}
 	
@@ -109,15 +114,19 @@ public class Persistent {
 				// should go in its own try catch block?
 				new File(getActivityFilePath(userName)).createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.printStackTrace();	
 			}
+			
+			users.add(user);
+			userNames.add(user.getName());
+			Saver.SaveUser(user);
+			
 		} else {
-			throw new Exception("User already exists");
+			System.out.println("User has already beeen created. try differnt username");
+			//throw new Exception("User already exists");
 		}
 		
-		users.add(user);
-		userNames.add(user.getName());
-		Saver.SaveUser(user);
+		
 	}
 
 	/**
@@ -159,13 +168,13 @@ public class Persistent {
 	 * loads all the profiles from the users directory into the ObservableList<User> users
 	 */
 	public static void init() {
-		if(getFilePath() != null) {
+		if(getFilePath() != null && new File(getFilePath()).exists()) {
 			System.out.println("initialising");
 			File filePath = new File(getFilePath());
 			
 			//get files / directory in Fitr directory (gets users)
 			File[] Files = filePath.listFiles();
-		
+
 			for(File file : Files) {
 				System.out.println(file);
 				String userName = file.getName();
@@ -180,23 +189,25 @@ public class Persistent {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		/*setFilePath("/home/daniel/Desktop");
+		/*setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
 		init();
 		System.out.println("______________________");
-		//User u = new User("samf", null, null);
+		//*/User u = new User("sam schofield", null, null);
 		//setUser(u);
 		//newUser(u);
 		
 		
-		System.out.println(getFilePath());
+		/*System.out.println(getFilePath());
 		System.out.println("Saved");
 		System.out.println("Users are: ");
 		ArrayList<User> a = new ArrayList<User>(getUsers());
 		for(int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
-		}*/
+		}
+		*/
 		prefs.clear();
+		System.out.println("data cleared");
 		
 		
 	}

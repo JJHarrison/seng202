@@ -16,18 +16,18 @@ import data.model.EventContainer;
  */
 public class Saver {
 	
-	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	private static Gson gson = new GsonBuilder().create();//.setPrettyPrinting().create();
 	
 	/**
 	 * Saves an event container to the file at file path
 	 * @param eventContainer
 	 */
-	public static void SaveActivityData(EventContainer eventContainer) {
+	public static void SaveActivityData(EventContainer eventContainer, User user) {
 		
 		String ECString = gson.toJson(eventContainer);
 
 		try {
-			FileWriter writer = new FileWriter(Persistent.getActivityFilePath(Persistent.getCurrentUser()));
+			FileWriter writer = new FileWriter(Persistent.getActivityFilePath(user.getName()));
 			writer.write(ECString);
 			writer.close();
 		} catch (IOException e) {
