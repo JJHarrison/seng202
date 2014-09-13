@@ -10,9 +10,8 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import view.*?>
-<?import view.tile.*?>
 <?import extfx.scene.control.*?>
+<?import view.tile.*?>
 
 <BorderPane fx:id="mainWindow" prefHeight="750.0" styleClass="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainController">
 	<top>
@@ -69,24 +68,24 @@
          <children>
             <AnchorPane stylesheets="@circle.css">
                <children>
-                  <ToggleButton fx:id="buttonDash" layoutX="14.0" layoutY="153.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Dash" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="20.0">
+                  <ToggleButton fx:id="buttonDash" layoutX="14.0" layoutY="153.0" mnemonicParsing="false" onAction="#loadDash" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Dash" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="20.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton fx:id="buttonAnalysis" layoutX="43.0" layoutY="125.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Analysis" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="140.0">
+                  <ToggleButton fx:id="buttonAnalysis" layoutX="43.0" layoutY="125.0" mnemonicParsing="false" onAction="#loadAnalysis" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Analysis" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="140.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton fx:id="buttonWeb" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Web" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="260.0">
+                  <ToggleButton fx:id="buttonWeb" layoutX="50.0" layoutY="230.0" mnemonicParsing="false" onAction="#loadWeb" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Web" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="260.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </ToggleButton>
                </children>
             </AnchorPane>
-            <CalendarView GridPane.rowIndex="1" />
+            <CalendarView fx:id="calendarView" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </left>

@@ -51,8 +51,8 @@ public class Main extends Application {
 			// Load root layout from FXML file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Main.fxml"));
+			
 			rootLayout = (BorderPane) loader.load();
-			rootLayout.applyCss();
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
