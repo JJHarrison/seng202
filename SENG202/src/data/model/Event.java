@@ -25,6 +25,7 @@ public class Event {
 	private Graph stressLevelGraph;
 	private Graph speedGraph;
 	private Graph distanceGraph;
+	private Graph caloriesGraph;
 
 	/**
 	 * Constructor.
@@ -239,6 +240,26 @@ public class Event {
 
 	public Graph getDistanceGraph() {
 		return distanceGraph;
+	}
+	
+	public Graph getCaloriesGraph() {
+		// For calories, we only generate the graph if it doesn't exist
+		// already. That way if the user's weight has changed since the graph
+		// was generated, it will still be accurate.
+		// We could do this with the other graphs too but it shouldn't be
+		// needed and it will save space.
+		if (caloriesGraph != null) {
+			return caloriesGraph;
+		} else {
+			Graph g = new Graph("Calories Burned", "Time", "Calories");
+			for (DataPoint p: points) {
+				double weight = 75; // need to get user's actual weight
+				double calories = p.getDistance() * 1.03 * weight;
+				double time = p.getDate().getTimeInMillis() - this.getStartTime().getTimeInMillis();
+				g.addPoint(time, calories);
+			}
+			return g;
+		}
 	}
 
 	/**
