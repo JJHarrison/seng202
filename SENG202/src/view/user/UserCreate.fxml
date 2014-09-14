@@ -18,16 +18,37 @@
       </Label>
       <AnchorPane layoutX="144.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
          <children>
-            <DatePicker fx:id="fieldDate" layoutX="271.0" layoutY="68.0" promptText="dd/mm/yyyy" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="75.0" />
-            <Label layoutX="42.0" layoutY="23.0" text="Name:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
-            <Label layoutX="42.0" layoutY="53.0" text="Date of Birth:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="75.0" />
-            <Label layoutX="42.0" layoutY="86.0" text="Height:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="165.0" />
-            <Label layoutX="45.0" layoutY="122.0" text="Gender:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="120.0" />
-            <Label layoutX="43.0" layoutY="155.0" text="Weight:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="210.0" />
-            <TextField fx:id="fieldName" layoutX="205.0" layoutY="25.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="30.0" />
-            <ComboBox fx:id="fieldGender" layoutX="200.0" layoutY="120.0" prefWidth="150.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="120.0" />
-            <TextField fx:id="fieldHeight" layoutX="200.0" layoutY="168.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="165.0" />
-            <TextField fx:id="fieldWeight" layoutX="200.0" layoutY="205.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="210.0" />
+            <DatePicker fx:id="fieldDate" layoutX="271.0" layoutY="68.0" prefWidth="200.0" promptText="dd/mm/yyyy" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="75.0" />
+            <Label layoutX="42.0" layoutY="23.0" text="Name:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="42.0" layoutY="53.0" text="Date of Birth:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="75.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="42.0" layoutY="86.0" text="Height:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="165.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="45.0" layoutY="122.0" text="Gender:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="120.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="11.0" layoutY="198.0" text="Weight:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="210.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <TextField fx:id="fieldName" layoutX="205.0" layoutY="25.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="30.0" />
+            <ComboBox fx:id="fieldGender" layoutX="200.0" layoutY="120.0" prefWidth="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="120.0" />
+            <TextField fx:id="fieldHeight" layoutX="200.0" layoutY="168.0" prefWidth="250.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="165.0" />
+            <TextField fx:id="fieldWeight" layoutX="392.0" layoutY="162.0" prefWidth="250.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="210.0" />
+            <Label layoutX="21.0" layoutY="261.0" text="Resting Heart Rate:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="255.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField layoutX="160.0" layoutY="250.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="255.0" />
          </children>
       </AnchorPane>
    </children>

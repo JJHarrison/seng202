@@ -1,13 +1,16 @@
 package view;
 
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import view.tile.Tile;
-import data.model.Event;
+import javafx.util.Duration;
 import extfx.scene.control.CalendarView;
 
 public class MainController {
@@ -19,7 +22,7 @@ public class MainController {
     ToggleButton buttonWeb;
     @FXML
     VBox tileBox;
-    
+
     @FXML
     CalendarView calendarView;
     @FXML
@@ -30,8 +33,15 @@ public class MainController {
     StackPane viewAnalysis;
     @FXML
     StackPane viewMainContent;
-    
-    
+
+    @FXML
+    MenuItem menuImport;
+    @FXML
+    MenuItem menuExport;
+    @FXML
+    MenuItem menuClose;
+
+    FadeTransition ft;
 
     ToggleGroup toggleGroup = new ToggleGroup();
 
@@ -41,14 +51,29 @@ public class MainController {
 	toggleGroup.getToggles().addAll(buttonDash, buttonAnalysis, buttonWeb);
 	toggleGroup.selectToggle(buttonDash);
 	loadDash(null);
-	
+
+	menuClose.setOnAction(new EventHandler<ActionEvent>() {
+
+	    @Override
+	    public void handle(ActionEvent event) {
+		Platform.exit();
+
+	    }
+	});
+
     }
 
     @FXML
     void loadDash(ActionEvent event) {
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewDash);
-	calendarView.setOpacity(0);
+	ft = new FadeTransition(Duration.millis(500), viewDash);
+	ft.setFromValue(0);
+	ft.setToValue(1);
+	ft.play();
+	ft = new FadeTransition(Duration.millis(500), calendarView);
+	ft.setToValue(0);
+	ft.play();
 	calendarView.disableProperty().set(true);
 	toggleGroup.selectToggle(buttonDash);
     }
@@ -57,7 +82,13 @@ public class MainController {
     void loadAnalysis(ActionEvent event) {
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewAnalysis);
-	calendarView.setOpacity(1);
+	ft = new FadeTransition(Duration.millis(500), viewAnalysis);
+	ft.setFromValue(0);
+	ft.setToValue(1);
+	ft.play();
+	ft = new FadeTransition(Duration.millis(500), calendarView);
+	ft.setToValue(1);
+	ft.play();
 	calendarView.disableProperty().set(false);
 	toggleGroup.selectToggle(buttonAnalysis);
     }
@@ -66,10 +97,15 @@ public class MainController {
     void loadWeb() {
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewWeb);
-	calendarView.setOpacity(0);
+	ft = new FadeTransition(Duration.millis(500), viewWeb);
+	ft.setFromValue(0);
+	ft.setToValue(1);
+	ft.play();
+	ft = new FadeTransition(Duration.millis(500), calendarView);
+	ft.setToValue(0);
+	ft.play();
 	calendarView.disableProperty().set(true);
 	toggleGroup.selectToggle(buttonWeb);
     }
-    
-    
+
 }

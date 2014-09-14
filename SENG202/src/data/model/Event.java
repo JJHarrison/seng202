@@ -21,7 +21,7 @@ public class Event {
 	private double averageSpeed;
 	private int totalHeartRate;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-	private Graph hearRateGraph;
+	private Graph heartRateGraph;
 	private Graph stressLevelGraph;
 	private Graph speedGraph;
 	private Graph distanceGraph;
@@ -227,7 +227,7 @@ public class Event {
 	}
 	
 	public Graph getHeartRateGraph() {
-		return hearRateGraph;
+		return heartRateGraph;
 	}
 
 	public Graph getStressLevelGraph() {

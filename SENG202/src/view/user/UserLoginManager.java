@@ -1,44 +1,48 @@
 package view.user;
 
-import view.persistent.PersistentDialog;
-import data.persistant.Persistent;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import data.persistant.Persistent;
 
 /**
  *
  * @author Daniel van Wichen
  */
 public class UserLoginManager extends Application {
-	public static String loginFXML = "UserLogin.fxml";
-	public static String createFXML = "UserCreate.fxml";
+    public static String loginFXML = "UserLogin.fxml";
+    public static String createFXML = "UserCreate.fxml";
+    public static String persistFXML = "UserPersist.fxml";
+    
+    Stage stage = new Stage(StageStyle.UTILITY);
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		ScreenPane mainContainer = new ScreenPane();
-		mainContainer.loadScreen("userLogin", UserLoginManager.loginFXML);
-		mainContainer.loadScreen("userCreate", UserLoginManager.createFXML);
-		mainContainer.setScreen("userLogin");
-		Persistent.init();
+    @Override
+    public void start(Stage stage) throws Exception {
+	stage = this.stage;
 
-		Scene scene = new Scene(mainContainer);
-		stage.setScene(scene);
-		System.out.println(Persistent.getFilePath());
-		if (!Persistent.filePathSet()) {
-			PersistentDialog.show(stage);
-		}
-		
-		stage.show();
-		stage.centerOnScreen();
-		//stage.close();
-	}
+	ScreenPane mainContainer = new ScreenPane();
+	mainContainer.loadScreen("userLogin", UserLoginManager.loginFXML);
+	mainContainer.loadScreen("userCreate", UserLoginManager.createFXML);
+	mainContainer.loadScreen("userPersist", UserLoginManager.persistFXML);
 
-	/**
-	 * 
-	 * @param args
+	/*
+	 * initialize the persistent class.
 	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
+	Persistent.initialize();
+
+	Scene scene = new Scene(mainContainer);
+	stage.setScene(scene);
+	stage.show();
+	stage.centerOnScreen();
+	stage.setResizable(false);
+    }
+
+    /**
+     * 
+     * @param args
+     */
+    public static void main(String[] args) {
+	launch(args);
+    }
 }

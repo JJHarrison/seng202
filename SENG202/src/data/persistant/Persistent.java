@@ -41,7 +41,7 @@ public class Persistent {
 			setupDirectory();
 		} else {
 			//if the Fitr dir already exists then use it.
-			Persistent.init();
+			Persistent.initialize();
 		}
 	}
 	
@@ -167,7 +167,7 @@ public class Persistent {
 	/**
 	 * loads all the profiles from the users directory into the ObservableList<User> users
 	 */
-	public static void init() {
+	public static void initialize() {
 		if(getFilePath() != null && new File(getFilePath()).exists()) {
 			System.out.println("initialising");
 			File filePath = new File(getFilePath());
