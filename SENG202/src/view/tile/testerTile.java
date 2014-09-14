@@ -1,5 +1,6 @@
 package view.tile;
 
+import data.model.Event;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -15,7 +16,7 @@ public class testerTile extends Application {
 	VBox vBox = new VBox();
 	vBox.minHeight(600);
 	vBox.minWidth(1200);
-	vBox.getChildren().add(new Tile());
+	vBox.getChildren().add(new Tile(new Event("Yay I got this working")));
 	primaryStage.setScene(new Scene(vBox));
 	primaryStage.show();
 	primaryStage.setHeight(700);

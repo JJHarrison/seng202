@@ -7,6 +7,8 @@ package view;
 
 import java.io.IOException;
 
+import user.User;
+import data.model.EventContainer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +18,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static EventContainer eventContainer;
+    public static User user;
+    
     private Stage stage;
     private BorderPane rootLayout;
 

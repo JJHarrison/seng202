@@ -1,5 +1,6 @@
 package view.analysis;
 
+import data.model.Event;
 import view.tile.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
@@ -11,8 +12,7 @@ public class AnalysisController {
 
     @FXML
     void initialize() {
-	tileBox.getChildren().addAll(new Tile(), new Tile(), new Tile(),
-		new Tile(), new Tile(), new Tile());
+	tileBox.getChildren().addAll(new Tile(new Event("Yay")));
     }
 
 }

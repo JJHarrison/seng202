@@ -18,7 +18,7 @@
          <children>
             <AnchorPane fx:id="tileTop" maxHeight="100.0" minHeight="100.0" onMouseClicked="#hideContent" prefHeight="100.0" style="-fx-background-color: derive(-fx-base, -20%);" VBox.vgrow="ALWAYS">
                <children>
-                  <Label layoutX="43.0" layoutY="35.0" text="Walk in the Woods" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
+                  <Label fx:id="labelEventName" layoutX="43.0" layoutY="35.0" text="Walk in the Woods" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -69,7 +69,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <StackPane fx:id="tileView" layoutX="250.0" layoutY="123.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <StackPane fx:id="tileView" layoutX="250.0" layoutY="123.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <fx:include fx:id="viewSummary" source="summary/Summary.fxml" />
+                        <fx:include fx:id="viewMap" source="map/Map.fxml" />
+                        <fx:include fx:id="viewTable" source="table/Table.fxml" />
+                        <fx:include fx:id="viewGraph" source="graph/Graph.fxml" />
+                     </children>
+                   </StackPane>
                </children>
                <VBox.margin>
                   <Insets />

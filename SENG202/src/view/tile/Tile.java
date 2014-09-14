@@ -2,18 +2,18 @@ package view.tile;
 
 import java.io.IOException;
 
-import data.model.Event;
-import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import data.model.Event;
 
 public class Tile extends AnchorPane {
     
-    public ObjectProperty<Event> event;
+    public Event event;
+    public static String TILE = "Tile.fxml";
     
     public Tile(Event event) {
 	super();
-	this.event.setValue(event);
+	this.event = event;
 	try {
 	    loadMainPane();
 	} catch (IOException e) {
@@ -21,21 +21,20 @@ public class Tile extends AnchorPane {
 	}
     }
 
-    private ViewSwitcher viewSwitcher;
-
     /**
      * 
      * @throws IOException
      */
     private void loadMainPane() throws IOException {
 	FXMLLoader loader = new FXMLLoader();
+	loader.setLocation(getClass().getResource("Tile.fxml"));
 	loader.setRoot(this);
-	loader.load(getClass().getResourceAsStream(ViewSwitcher.TILE));
-
+	loader.load(getClass().getResourceAsStream(Tile.TILE));
+	
 	TileController tileController = loader.getController();
-	viewSwitcher = tileController.viewSwitcher;
-	viewSwitcher.setMainController(tileController);
-	viewSwitcher.loadView(ViewSwitcher.SUMMARY);
+	tileController.event = event;
+	tileController.fill();
+	
     }
 
 }

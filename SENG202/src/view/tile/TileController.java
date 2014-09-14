@@ -1,8 +1,15 @@
 package view.tile;
 
+import javax.swing.border.TitledBorder;
+
+import org.omg.CORBA.INITIALIZE;
+
+import data.model.Event;
+import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
@@ -30,11 +37,23 @@ public class TileController {
     @FXML
     ToggleButton buttonTable;
 
+    @FXML
+    StackPane viewSummary;
+    @FXML
+    StackPane viewMap;
+    @FXML
+    StackPane viewGraph;
+    @FXML
+    StackPane viewTable;
+
+    @FXML
+    Label labelEventName;
+
+    public Event event;
+
     public static VBox openTile;
 
     ToggleGroup toggleGroup = new ToggleGroup();
-
-    public ViewSwitcher viewSwitcher = new ViewSwitcher(this);
 
     /**
      * Replaces the view displayed in the view holder with a new view.
@@ -48,37 +67,36 @@ public class TileController {
 
     @FXML
     private void initialize() {
+	tileView.getChildren().clear();
 	tile.getChildren().remove(tileBottom); // So that the tiles are by
 					       // default closed.
-
 	toggleGroup.getToggles().addAll(buttonGraph, buttonMap, buttonSummary,
 		buttonTable);
-	toggleGroup.selectToggle(buttonSummary);
-
+	buttonSummary.fire();
     }
 
     @FXML
     void loadSummary(ActionEvent event) {
 	toggleGroup.selectToggle(buttonSummary);
-	viewSwitcher.loadView(ViewSwitcher.SUMMARY);
+	setView(viewSummary);
     }
 
     @FXML
     void loadMap(ActionEvent event) {
 	toggleGroup.selectToggle(buttonMap);
-	viewSwitcher.loadView(ViewSwitcher.MAP);
+	setView(viewMap);
     }
 
     @FXML
     void loadGraph(ActionEvent event) {
 	toggleGroup.selectToggle(buttonGraph);
-	viewSwitcher.loadView(ViewSwitcher.GRAPH);
+	setView(viewGraph);
     }
 
     @FXML
     void loadTable(ActionEvent event) {
 	toggleGroup.selectToggle(buttonTable);
-	viewSwitcher.loadView(ViewSwitcher.TABLE);
+	setView(viewTable);
     }
 
     @FXML
@@ -108,6 +126,12 @@ public class TileController {
 	    openTile.getChildren().remove(1);
 	    tile.getChildren().add(tileBottom);
 	    openTile = tile;
+	}
+    }
+
+    public void fill() {
+	if (event != null) {
+	    labelEventName.setText(event.getEventName());
 	}
     }
 
