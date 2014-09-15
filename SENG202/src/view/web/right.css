@@ -3,7 +3,7 @@
     -fx-content-display:graphic-only;
     -fx-background-size: 35;
     -fx-background-position:center;
-    -fx-background-image: url("left.png");
+    -fx-background-image: url("right.png");
     -fx-background-repeat: no-repeat;
 }
 .Button:hover {

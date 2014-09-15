@@ -1,0 +1,10 @@
+.Button {
+    -fx-background-radius: 0;
+    -fx-background-color: derive(#87CEFA, -10%);
+}
+.Button:hover {
+    -fx-background-color: derive(#87CEFA, -5%);
+}
+.Button:armed {
+    -fx-background-color: derive(#87CEFA, -10%);
+}
