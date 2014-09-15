@@ -22,7 +22,7 @@ public class testerTile extends Application {
 	calendar = new GregorianCalendar();
 	calendar.add(Calendar.HOUR, 3);
 	event.setFinishTime(calendar);
-	
+
 	VBox vBox = new VBox();
 	vBox.minHeight(600);
 	vBox.minWidth(1200);

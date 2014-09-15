@@ -20,7 +20,7 @@ public class Main extends Application {
 
     public static EventContainer eventContainer;
     public static User user;
-    
+
     private Stage stage;
     private BorderPane rootLayout;
 

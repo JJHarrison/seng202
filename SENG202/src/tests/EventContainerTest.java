@@ -13,28 +13,28 @@ import data.model.EventContainer;
  */
 public class EventContainerTest extends TestCase {
 
-	private EventContainer ec;
+    private EventContainer ec;
 
-	/**
-	 * Sets up the event container that will be tested.
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+    /**
+     * Sets up the event container that will be tested.
+     */
+    @Override
+    protected void setUp() throws Exception {
+	super.setUp();
 
-		ec = new EventContainer();
-	}
+	ec = new EventContainer();
+    }
 
-	/**
-	 * Tests adding an event to the event container.
-	 */
-	public void testAddEvent() {
-		Event event = new Event("Test Event");
-		event.setStartTime(new GregorianCalendar());
-		ec.addEvent(event);
+    /**
+     * Tests adding an event to the event container.
+     */
+    public void testAddEvent() {
+	Event event = new Event("Test Event");
+	event.setStartTime(new GregorianCalendar());
+	ec.addEvent(event);
 
-		assertEquals(ec.getEvents(event.getStartTime().getTime()).get(0), event);
-		assertEquals(true, true);
-	}
+	assertEquals(ec.getEvents(event.getStartTime().getTime()).get(0), event);
+	assertEquals(true, true);
+    }
 
 }

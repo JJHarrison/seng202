@@ -14,7 +14,7 @@ public class UserLoginManager extends Application {
     public static String loginFXML = "UserLogin.fxml";
     public static String createFXML = "UserCreate.fxml";
     public static String persistFXML = "UserPersist.fxml";
-    
+
     Stage stage = new Stage(StageStyle.UTILITY);
 
     @Override
