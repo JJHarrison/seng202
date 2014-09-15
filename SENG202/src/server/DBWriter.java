@@ -29,8 +29,6 @@ public class DBWriter {
     private PreparedStatement readStatement = null;
     
     
-    
-    
     public void writeUser(User user) throws Exception {
     	try{
     		connect = DriverManager.getConnection(url, admin, password);
@@ -44,8 +42,7 @@ public class DBWriter {
 		    preparedStatement.setString(5, "password");
 		    preparedStatement.setString(6, user.genderForDB());
 		    preparedStatement.setDouble(7, user.getBMI());
-    		preparedStatement.executeUpdate();
-    		      
+    		preparedStatement.executeUpdate();	      
     	} catch(SQLException e){
     		e.printStackTrace();
     	} finally {
@@ -95,9 +92,7 @@ public class DBWriter {
 		    preparedStatement.setDouble(8, event.getAverageSpeed()); //average_speed
 		    preparedStatement.setInt(9, 100); //total_heart_rate
 		    preparedStatement.setInt(10, event.getAverageHeartRate()); //average_heart_rate
-		    preparedStatement.executeUpdate();
-    		
-    		      
+		    preparedStatement.executeUpdate();	      
     	} catch(SQLException e){
     		e.printStackTrace();
     	} finally {
@@ -132,9 +127,7 @@ public class DBWriter {
 		    preparedStatement.setDouble(7,point.getAltitude());
 		    preparedStatement.setDouble(8,point.getSpeed());
 		    preparedStatement.setDouble(9,point.getDistance());
-		    preparedStatement.executeUpdate();
-    		
-    		      
+		    preparedStatement.executeUpdate();		      
     	} catch(SQLException e){
     		e.printStackTrace();
     	} finally {
@@ -161,10 +154,6 @@ public class DBWriter {
 		john.setWeight(81.2);
 		john.setHeight(1.8);	
 		DBWriter dbw = new DBWriter();
-		
-		
-		
-
 		ArrayList<DataPoint> points;
 		Calendar c1;
 		Calendar c2;
