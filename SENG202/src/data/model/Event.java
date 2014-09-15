@@ -15,6 +15,8 @@ import java.util.GregorianCalendar;
  */
 public class Event implements Serializable{
 
+	private static final long serialVersionUID = 2803079853022188247L;
+	
 	private String eventName;
 	private Calendar startTime = new GregorianCalendar();
 	private Calendar finishTime = new GregorianCalendar();
