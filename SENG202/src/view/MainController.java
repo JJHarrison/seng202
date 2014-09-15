@@ -75,7 +75,6 @@ public class MainController {
 	ft.setToValue(0);
 	ft.play();
 	calendarView.disableProperty().set(true);
-	toggleGroup.selectToggle(buttonDash);
     }
 
     @FXML
@@ -90,7 +89,6 @@ public class MainController {
 	ft.setToValue(1);
 	ft.play();
 	calendarView.disableProperty().set(false);
-	toggleGroup.selectToggle(buttonAnalysis);
     }
 
     @FXML
@@ -105,7 +103,6 @@ public class MainController {
 	ft.setToValue(0);
 	ft.play();
 	calendarView.disableProperty().set(true);
-	toggleGroup.selectToggle(buttonWeb);
     }
 
 }
