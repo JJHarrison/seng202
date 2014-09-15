@@ -12,7 +12,7 @@ public class AnalysisController {
 
     @FXML
     void initialize() {
-	tileBox.getChildren().addAll(new Tile(new Event("Yay")));
+	tileBox.getChildren().addAll(new Tile(new Event("Yay")), new Tile(new Event("Jay")), new Tile(new Event("Wins")));
     }
 
 }

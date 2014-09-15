@@ -22,6 +22,8 @@ public class User {
 	private Gender gender;
 	private double BMI;
 	private EventContainer events;
+	
+	private static int userId;
 
 	public enum Gender {
 		MALE, FEMALE

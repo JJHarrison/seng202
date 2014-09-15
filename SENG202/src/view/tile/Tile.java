@@ -32,8 +32,7 @@ public class Tile extends AnchorPane {
 	loader.load(getClass().getResourceAsStream(Tile.TILE));
 	
 	TileController tileController = loader.getController();
-	tileController.event = event;
-	tileController.fill();
+	tileController.fill(event);
 	
     }
 

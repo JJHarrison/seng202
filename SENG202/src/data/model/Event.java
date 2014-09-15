@@ -3,6 +3,7 @@ package data.model;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * This class provides an abstract version of activity events provided by a
@@ -13,8 +14,8 @@ import java.util.Calendar;
  */
 public class Event {
 	private String eventName;
-	private Calendar startTime;
-	private Calendar finishTime;
+	private Calendar startTime = new GregorianCalendar();
+	private Calendar finishTime = new GregorianCalendar();
 	private int numPoints;
 	private double distance;
 	private double maxSpeed;
@@ -201,6 +202,12 @@ public class Event {
 		String duration = String.format("%02d:%02d:%02d", seconds / 3600,
 				(seconds % 3600) / 60, (seconds % 60));
 		return duration;
+	}
+	
+	public String getTimeString() {
+	    SimpleDateFormat tf = new SimpleDateFormat("h:mm a");
+	    
+	    return String.format("%s - %s ", tf.format(startTime.getTime()), tf.format(finishTime.getTime()));
 	}
 
 	/**

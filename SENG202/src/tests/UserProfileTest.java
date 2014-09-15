@@ -2,8 +2,6 @@ package tests;
 
 import java.util.GregorianCalendar;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import junit.framework.TestCase;
 import user.User;
 import user.User.Gender;

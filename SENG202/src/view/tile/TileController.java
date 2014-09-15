@@ -1,11 +1,5 @@
 package view.tile;
 
-import javax.swing.border.TitledBorder;
-
-import org.omg.CORBA.INITIALIZE;
-
-import data.model.Event;
-import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import data.model.Event;
 
 public class TileController {
 
@@ -48,6 +43,8 @@ public class TileController {
 
     @FXML
     Label labelEventName;
+    @FXML
+    Label labelEventTime;
 
     public Event event;
 
@@ -129,9 +126,11 @@ public class TileController {
 	}
     }
 
-    public void fill() {
+    public void fill(Event event) {
+	this.event = event;
 	if (event != null) {
 	    labelEventName.setText(event.getEventName());
+	    labelEventTime.setText(event.getTimeString());
 	}
     }
 

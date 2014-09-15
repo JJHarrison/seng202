@@ -7,12 +7,14 @@ import javafx.scene.web.WebView;
 public class WebController {
     
     @FXML
-    final WebView webView = new WebView();
-    final WebEngine webEngine = webView.getEngine();
+    WebView webView;
+    
+    WebEngine webEngine;
     
     @FXML
     void initialize() {
-	webEngine.load("https://www.google.co.nz/");
+	webEngine = webView.getEngine();
+	webEngine.load("https://www.google.co.nz");
     }
 
 }
