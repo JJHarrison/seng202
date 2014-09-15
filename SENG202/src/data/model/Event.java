@@ -25,6 +25,7 @@ public class Event implements Serializable{
 	private double averageSpeed;
 	private int averageHeartRate;
 	private int maxHeartRate;
+	private double caloriesBurned;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	
 	private Graph heartRateGraph;
@@ -66,9 +67,9 @@ public class Event implements Serializable{
 		
 		startTime = points.get(0).getDate();
 		finishTime = points.get(points.size() - 1).getDate();	
-
 		averageHeartRate = totalHR / numPoints;
 		averageSpeed = distance / getDuration();
+		setCaloriesBurned();
 	}
 
 	/**
@@ -219,13 +220,16 @@ public class Event implements Serializable{
 	 * 
 	 * @return The calories burned for the activity events.
 	 */
-	public double getCaloriesBurned() {
+	private void setCaloriesBurned() {
 		int weight = 75;
 		double runMET = 7.5;
 		double timeInHours = getDuration();
 		double calories = weight * runMET * timeInHours;
-		
-		return calories;
+		caloriesBurned = calories;
+	}
+	
+	public double getCaloriesBurned() {
+		return caloriesBurned;
 	}
 	
 
@@ -283,19 +287,6 @@ public Graph getHeartRateGraph() {
 			}
 			return g;
 		}
-	}
-
-	/**
-	 * Returns a String representation of the events name.
-	 * 
-	 * @return The events name as a String.
-	 */
-	@Override
-	public String toString() {
-		return getEventName()
-				+ "\n"
-				+ new SimpleDateFormat("dd/MM/yyyy").format(getStartTime()
-						.getTime());
 	}
 }
 
