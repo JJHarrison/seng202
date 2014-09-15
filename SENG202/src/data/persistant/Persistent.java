@@ -19,10 +19,8 @@ import user.User;
 public class Persistent {
 
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
-	private static ObservableList<User> users = FXCollections
-			.observableList(new ArrayList<User>());
-	private static ObservableList<String> userNames = FXCollections
-			.observableList(new ArrayList<String>());
+	private static ObservableList<User> users = FXCollections.observableList(new ArrayList<User>());
+	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
 
 	/**
 	 * sets the FilePath preference to a Fitr directory at location of filePath
@@ -47,6 +45,15 @@ public class Persistent {
 			Persistent.initialize();
 		}
 	}
+	
+	/**
+	 * gets the file path from preferences
+	 * 
+	 * @return FilePath
+	 */
+	public static String getFilePath() {
+		return prefs.get("FilePath", null);
+	}
 
 	/**
 	 * sets up a new Fitr directory with a users sub directory at the file path
@@ -58,30 +65,12 @@ public class Persistent {
 	}
 
 	/**
-	 * gets the file path from preferences
-	 * 
-	 * @return FilePath
-	 */
-	public static String getFilePath() {
-		return prefs.get("FilePath", null);
-	}
-
-	/**
 	 * returns the file path to the current users profile
 	 * 
 	 * @return profileFilePath
 	 */
 	public static String getProfileFilePath(String userName) {
 		return getFilePath() + userName + "/" + userName + ".fitr";
-	}
-
-	/**
-	 * returns the file path to the current users activity data
-	 * 
-	 * @return ActivityFilePath
-	 */
-	public static String getActivityFilePath(String userName) {
-		return getFilePath() + userName + "/" + userName + "Activity.fitr";
 	}
 
 	/**
@@ -118,8 +107,6 @@ public class Persistent {
 
 			try {
 				new File(getProfileFilePath(userName)).createNewFile();
-				// should go in its own try catch block?
-				new File(getActivityFilePath(userName)).createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -207,7 +194,7 @@ public class Persistent {
 
 	public static void main(String args[]) throws Exception {
 
-		/*setFilePath("/Users/SamSchofield/Desktop");
+		setFilePath("/Users/SamSchofield/Desktop");
 		setupDirectory();
 		initialize();
 		System.out.println("______________________"); 
@@ -227,7 +214,7 @@ public class Persistent {
 		for (int i = 0; i < a.size(); i++) {
 			System.out.println(a.get(i));
 		}
-*/
+
 		prefs.clear();
 		//System.out.println("data cleared");
 
