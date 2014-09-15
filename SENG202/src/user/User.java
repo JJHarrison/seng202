@@ -49,7 +49,7 @@ public class User implements Serializable {
 		this.setName(name);
 		this.setGender(gender);
 		this.setEvents(new EventContainer());
-		userID = Persistent.getLastUserID() + 1;
+		userID = Persistent.getLastUserID();
 	}
 
 	/**
@@ -200,5 +200,24 @@ public class User implements Serializable {
 		} else {
 			return "F";
 		}
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		User a = new User("a", null, null);
+		Persistent.newUser(a);
+		
+		User z = new User("a", null, null);
+		Persistent.newUser(z);
+		
+		User b = new User("b", null, null);
+		Persistent.newUser(b);
+		
+		User c = new User("c", null, null);
+		Persistent.newUser(b);
+		
+		System.out.println(a.getUserId());
+		System.out.println(b.getUserId());
+		System.out.println(c.getUserId());
 	}
 }

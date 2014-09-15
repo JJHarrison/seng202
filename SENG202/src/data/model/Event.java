@@ -32,7 +32,7 @@ public class Event implements Serializable {
     // private Graph stressLevelGraph;
     // private Graph speedGraph;
     // private Graph distanceGraph;
-    private Graph caloriesGraph;
+    // private Graph caloriesGraph;
 
     /**
      * Constructor
@@ -152,6 +152,10 @@ public class Event implements Serializable {
     public Calendar getFinishTime() {
 	return finishTime;
     }
+    
+    public ArrayList<DataPoint> getPoints() {
+    	return points;
+    }
 
     /**
      * Returns the duration of the activity event.
@@ -207,66 +211,5 @@ public class Event implements Serializable {
 
     public double getCaloriesBurned() {
 	return caloriesBurned;
-    }
-
-    public Graph getHeartRateGraph() {
-	Graph g = new Graph("Heart Rate", "Time (s)", "Heart Rate (bpm)");
-	for (DataPoint p : points) {
-	    double hr = p.getHeartRate();
-	    double time = p.getDate().getTimeInMillis()
-		    - this.getStartTime().getTimeInMillis();
-	    g.addPoint(time, hr);
-	}
-	return g;
-    }
-
-    public Graph getStressLevelGraph() {
-	Graph g = new Graph("Stress Level", "Time (s)", "Stress");
-	// TODO
-	return g;
-    }
-
-    public Graph getSpeedGraph() {
-	Graph g = new Graph("Speed", "Time (s)", "Speed (m/s)");
-	for (DataPoint p : points) {
-	    double speed = p.getSpeed();
-	    double time = p.getDate().getTimeInMillis()
-		    - this.getStartTime().getTimeInMillis();
-	    g.addPoint(time, speed);
-	}
-	return g;
-    }
-
-    public Graph getDistanceGraph() {
-	Graph g = new Graph("Distance Travelled", "Time (s)", "Distance (m)");
-	for (DataPoint p : points) {
-	    double dist = p.getDistance();
-	    double time = p.getDate().getTimeInMillis()
-		    - this.getStartTime().getTimeInMillis();
-	    g.addPoint(time, dist);
-	}
-	return g;
-    }
-
-    public Graph getCaloriesGraph() {
-	// For calories, we only generate the graph if it doesn't exist
-	// already. That way if the user's weight has changed since the graph
-	// was generated, it will still be accurate.
-	// We could do this with the other graphs too but it shouldn't be
-	// needed and it will save space.
-	if (caloriesGraph != null) {
-	    return caloriesGraph;
-	} else {
-	    Graph g = new Graph("Calories Burned", "Time (s)", "Calories");
-	    for (DataPoint p : points) {
-		double weight = 75; // need to get user's actual weight
-		double calories = p.getDistance() * 1.03 * weight; // check this
-								   // formula
-		double time = p.getDate().getTimeInMillis()
-			- this.getStartTime().getTimeInMillis();
-		g.addPoint(time, calories);
-	    }
-	    return g;
-	}
     }
 }
