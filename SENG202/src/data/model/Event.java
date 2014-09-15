@@ -1,5 +1,6 @@
 package data.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,7 +13,7 @@ import java.util.GregorianCalendar;
  * 
  * @author Fitr.Team
  */
-public class Event {
+public class Event implements Serializable{
 	private String eventName;
 	private Calendar startTime = new GregorianCalendar();
 	private Calendar finishTime = new GregorianCalendar();

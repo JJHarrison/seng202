@@ -1,5 +1,6 @@
 package user;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -14,7 +15,7 @@ import data.model.EventContainer;
  * 
  * @author Fitr.Team
  */
-public class User {
+public class User implements Serializable{
 	private Calendar dateofBirth;
 	private String name;
 	private double weight;
@@ -22,8 +23,6 @@ public class User {
 	private Gender gender;
 	private double BMI;
 	private EventContainer events;
-	
-	private static int userId;
 
 	public enum Gender {
 		MALE, FEMALE
@@ -180,4 +179,14 @@ public class User {
 		return String.format("%s", getName());
 	}
 
+
+	
+	public String genderForDB(){
+		if (this.getGender() == Gender.MALE){
+			return "M";
+		}
+		else{
+			return "F";
+		}
+	}
 }

@@ -1,5 +1,6 @@
 package data.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.LinkedList;
  * 
  * @author Fitr.Team
  */
-public class EventContainer {
+public class EventContainer implements Serializable {
 	private HashMap<String, LinkedList<Event>> days;
 
 	/**

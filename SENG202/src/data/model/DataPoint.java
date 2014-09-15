@@ -1,5 +1,6 @@
 package data.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -15,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
  * 
  * @author Fitr.Team
  */
-public class DataPoint {
+public class DataPoint implements Serializable {
 	private Calendar date;
 	private int heartRate;
 	private double latitude;

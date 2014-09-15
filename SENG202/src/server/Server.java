@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import user.User;
+
 public class Server {
 	private ServerSocket server;
 	private Socket connection;
@@ -18,6 +20,7 @@ public class Server {
 	// private String host = "localhost";
 	final private int portNumber = 8888;
 	final private int maxQueue = 10;
+	private DBWriter dbw;
 
 	/*
 	 * Still need to look into threading for the client sockets
@@ -62,7 +65,7 @@ public class Server {
 		// Once a client connects a socket is open for the server and client
 		connection = server.accept();
 		System.out.println(String.format(startMessage()
-				+ " Now connected to %s", connection.getInetAddress()
+				+ " Now connected to <client> at [%s]", connection.getInetAddress()
 				.getHostName()));
 	}
 
@@ -76,36 +79,41 @@ public class Server {
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
 		System.out
-				.println(startMessage() + " Streams are now ready to be used");
+				.println(startMessage() + " IO streams are now ready to be used");
 	}
 
-	/*
-	 * This will need to be changed once we are sending actual information that
-	 * the server will store
-	 */
+	
+	
+	public User getUserFromClient() throws IOException, ClassNotFoundException{
+		User uploadedUser;
+		uploadedUser = (User) input.readObject();			
+		System.out.println(startMessage() + " User sent user: "
+				+ uploadedUser.getName());			
+		sendMessage(uploadedUser.getName());
+		
+		return uploadedUser;
+	}
+	
+	
+	
+	
 	public void whileTransfering() throws IOException {
-		String clientMessage = null;
 		System.out.println(startMessage() + " Ready for transfer...\n");
+		String clientMessage = null;
+		User uploadedUser = null;
+		dbw = new DBWriter();
+		
 		do {
 			try {
-				// Will need to send a string to from the client describing what
-				// is being sent
-				// maybe a comment that would also be stored with the file
+				uploadedUser = getUserFromClient();
+				try {
+					//dbw.writeUser(uploadedUser);
+					//System.out.println("seeing if shit happened: " +  uploadedUser.getEvents().getAllEvents().next());
+					System.out.println(uploadedUser.getName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				clientMessage = (String) input.readObject();
-				// Prints that we have received the object
-				System.out.println(startMessage() + " User sent: "
-						+ clientMessage);
-				/*
-				 * This is where we need to process the file being sent from the
-				 * client... --We must decide where it will be stored --We must
-				 * decide how it will be stored --Probably need to have some
-				 * container/storage class --I think we will also need some
-				 * checks here, or decide if that client will perform a check
-				 * also/instead
-				 */
-				// send a confirmation to the client that the message was
-				// received correctly
-				sendMessage(clientMessage);
 			} catch (ClassNotFoundException e) {
 				System.out.println(startMessage()
 						+ " I don't know what to do with that type of object");
@@ -113,6 +121,9 @@ public class Server {
 		} while (!clientMessage.equals("END"));
 	}
 
+	
+	
+	
 	/**
 	 * Closes the streams and socket once the connection is lost
 	 */
@@ -136,7 +147,6 @@ public class Server {
 	private void sendMessage(String message) {
 		try {
 			output.writeObject(message);
-			output.flush();
 			System.out.println(startMessage()
 					+ " Sent confirmation to the <Client>\n");
 		} catch (IOException e) {
