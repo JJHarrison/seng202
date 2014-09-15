@@ -10,5 +10,5 @@
     -fx-opacity:0.5;
 }
 .Button:armed {
-    -fx-background-color: derive(-fx-base, -10%);
+    -fx-background-color: derive(-fx-base, -20%);
 }

@@ -14,7 +14,7 @@ public class WebController {
     @FXML
     void initialize() {
 	webEngine = webView.getEngine();
-	webEngine.load("https://www.google.co.nz");
+	webEngine.load("https://duckduckgo.com/");
     }
 
 }

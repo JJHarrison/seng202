@@ -1,5 +1,13 @@
 package view.tile.map;
 
-public class MapController {
+import data.model.Event;
 
+public class MapController {
+    
+    private Event event;
+
+    public void fill(Event event) {
+	this.event = event;
+    }
+    
 }
