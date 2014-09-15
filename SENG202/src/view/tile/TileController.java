@@ -1,5 +1,9 @@
 package view.tile;
 
+import view.tile.graph.GraphController;
+import view.tile.map.MapController;
+import view.tile.summary.SummaryController;
+import view.tile.table.TableController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -45,6 +49,15 @@ public class TileController {
     Label labelEventName;
     @FXML
     Label labelEventTime;
+    
+    @FXML
+    GraphController viewGraphController;
+    @FXML
+    MapController viewMapController;
+    @FXML
+    SummaryController viewSummaryController;
+    @FXML
+    TableController viewTableController;
 
     public Event event;
 
@@ -131,6 +144,7 @@ public class TileController {
 	if (event != null) {
 	    labelEventName.setText(event.getEventName());
 	    labelEventTime.setText(event.getTimeString());
+	    
 	}
     }
 

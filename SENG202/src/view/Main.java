@@ -7,14 +7,13 @@ package view;
 
 import java.io.IOException;
 
-import user.User;
-import data.model.EventContainer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import user.User;
+import data.model.EventContainer;
 
 public class Main extends Application {
 
@@ -31,14 +30,14 @@ public class Main extends Application {
 	stage.setTitle("Fitr");
 
 	// Minimum size of the stage.
-	stage.setMinHeight(768);
+	stage.setMinHeight(700);
 	stage.setMinWidth(1366);
 
-	try {
+	/*try {
 	    this.stage.getIcons().add(new Image("/resources/heart11.png"));
 	} catch (Exception e) {
 	    e.printStackTrace();
-	}
+	}*/
 
 	initRootLayout();
     }
