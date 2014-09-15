@@ -32,6 +32,7 @@ public class Main extends Application {
 	// Minimum size of the stage.
 	stage.setMinHeight(700);
 	stage.setMinWidth(1366);
+	stage.setMaximized(true);
 
 	/*try {
 	    this.stage.getIcons().add(new Image("/resources/heart11.png"));
