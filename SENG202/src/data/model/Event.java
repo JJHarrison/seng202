@@ -234,20 +234,41 @@ public class Event implements Serializable{
 		return calories;
 	}
 	
-	public Graph getHeartRateGraph() {
-		return heartRateGraph;
+
+public Graph getHeartRateGraph() {
+		Graph g = new Graph("Heart Rate", "Time (s)", "Heart Rate (bpm)");
+		for (DataPoint p: points) {
+			double hr = p.getHeartRate();
+			double time = p.getDate().getTimeInMillis() - this.getStartTime().getTimeInMillis();
+			g.addPoint(time, hr);
+		}
+		return g;
 	}
 
 	public Graph getStressLevelGraph() {
-		return stressLevelGraph;
+		Graph g = new Graph("Stress Level", "Time (s)", "Stress");
+		// stuff
+		return g;
 	}
 
-	public Graph getspeedGraph() {
-		return speedGraph;
+	public Graph getSpeedGraph() {
+		Graph g = new Graph("Speed", "Time (s)", "Speed (m/s)");
+		for (DataPoint p: points) {
+			double speed = p.getSpeed();
+			double time = p.getDate().getTimeInMillis() - this.getStartTime().getTimeInMillis();
+			g.addPoint(time, speed);
+		}
+		return g;
 	}
 
 	public Graph getDistanceGraph() {
-		return distanceGraph;
+		Graph g = new Graph("Distance Travelled", "Time (s)", "Distance (m)");
+		for (DataPoint p: points) {
+			double dist = p.getDistance();
+			double time = p.getDate().getTimeInMillis() - this.getStartTime().getTimeInMillis();
+			g.addPoint(time, dist);
+		}
+		return g;
 	}
 	
 	public Graph getCaloriesGraph() {
@@ -259,10 +280,10 @@ public class Event implements Serializable{
 		if (caloriesGraph != null) {
 			return caloriesGraph;
 		} else {
-			Graph g = new Graph("Calories Burned", "Time", "Calories");
+			Graph g = new Graph("Calories Burned", "Time (s)", "Calories");
 			for (DataPoint p: points) {
 				double weight = 75; // need to get user's actual weight
-				double calories = p.getDistance() * 1.03 * weight;
+				double calories = p.getDistance() * 1.03 * weight; // check this formula
 				double time = p.getDate().getTimeInMillis() - this.getStartTime().getTimeInMillis();
 				g.addPoint(time, calories);
 			}
@@ -283,3 +304,6 @@ public class Event implements Serializable{
 						.getTime());
 	}
 }
+
+
+
