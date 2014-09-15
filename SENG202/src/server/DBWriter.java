@@ -36,8 +36,7 @@ public class DBWriter {
 				    + "VALUES (?, ?, ?, ?, ?, ?, ?)",
 			    Statement.RETURN_GENERATED_KEYS);
 	    preparedStatement.setString(1, user.getName());
-	    preparedStatement.setTimestamp(2, new Timestamp(user
-		    .getDateofBirth().getTimeInMillis()));
+	    preparedStatement.setTimestamp(2, new Timestamp(user.getDateofBirth().getTimeInMillis()));
 	    preparedStatement.setDouble(3, user.getWeight());
 	    preparedStatement.setDouble(4, user.getHeight());
 	    preparedStatement.setString(5, "password");
@@ -63,6 +62,7 @@ public class DBWriter {
 	}
     }
 
+    
     public void getUserID() {
 	int id;
 	try {
@@ -78,6 +78,7 @@ public class DBWriter {
 	}
     }
 
+    
     public void writeEvent(Event event) {
 	try {
 	    connect = DriverManager.getConnection(url, admin, password);
@@ -118,6 +119,27 @@ public class DBWriter {
 	}
     }
 
+    
+    public boolean isEventStored(Event event){
+    	boolean isThere = false;
+    	String query;
+    	try {
+			connect = DriverManager.getConnection(url, admin, password);
+			statement = connect.createStatement();
+			query = String.format("SELECT * FROM FITR.EVENT where event_name = \"%s\"", event.getEventName());
+			resultSet = statement.executeQuery(query);
+			if(resultSet.next()){
+				isThere = true;
+				System.out.println(resultSet.getString("event_name"));
+			}
+    	} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return isThere;
+    }
+    
+    
+    
     public void writeDataPoint(Event event, DataPoint point) {
 	try {
 	    connect = DriverManager.getConnection(url, admin, password);
@@ -157,6 +179,14 @@ public class DBWriter {
 	}
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
     public static void main(String[] args) {
 	User john = new User("Test1", new GregorianCalendar(1961, 8, 9),
 		Gender.MALE);
@@ -216,7 +246,8 @@ public class DBWriter {
 	try {
 	    // dbw.writeUser(john);
 	    // dbw.writeEvent(e);
-	    dbw.writeDataPoint(e, p2);
+	    // dbw.writeDataPoint(e, p2);
+		System.out.println(dbw.isEventStored(e));
 	    // dbw.getUserID();
 	} catch (Exception ex) {
 	    ex.printStackTrace();
