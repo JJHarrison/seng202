@@ -62,7 +62,7 @@
 	<jar destfile="${jar.dir}/seng202_2014_team05_phase02.jar" basedir="${build.dir}">
 		<zipgroupfileset dir="${lib.dir}" includes="**/*.jar" />
 		<manifest>
-			<attribute name="Main-Class" value="view.MainApp"/>
+			<attribute name="Main-Class" value="view.Main"/>
 			<attribute name="Class-Path" value="${mf.classpath}"/>
 		</manifest>
 	</jar>
