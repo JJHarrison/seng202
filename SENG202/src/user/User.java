@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import data.model.EventContainer;
+import data.persistant.Persistent;
 
 /**
  * This class provides an abstract version of a user profile. The profile
@@ -27,6 +28,7 @@ public class User implements Serializable {
 	private Gender gender;
 	private double BMI;
 	private EventContainer events;
+	private int userID;
 
 	public enum Gender {
 		MALE, FEMALE
@@ -47,6 +49,7 @@ public class User implements Serializable {
 		this.setName(name);
 		this.setGender(gender);
 		this.setEvents(new EventContainer());
+		userID = Persistent.getLastUserID() + 1;
 	}
 
 	/**
@@ -162,6 +165,14 @@ public class User implements Serializable {
 	 */
 	public void setEvents(EventContainer events) {
 		this.events = events;
+	}
+	
+	/**
+	 * returns the user id for a user so that it can be stored in the database
+	 * @return
+	 */
+	public int getUserId() {
+		return userID;
 	}
 
 	/**

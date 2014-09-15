@@ -127,13 +127,17 @@ public class Persistent {
 			users.add(user);
 			userNames.add(user.getName());
 			Saver.SaveUser(user);
-
+			prefs.putInt("LastUserID", prefs.getInt("LastUserID", 0) + 1);
 		} else {
 			System.out
 					.println("User has already beeen created. try differnt username");
 			// throw new Exception("User already exists");
 		}
 
+	}
+
+	public static int getLastUserID() {
+		return prefs.getInt("LastUserID", 0);
 	}
 
 	/**
@@ -192,14 +196,8 @@ public class Persistent {
 				String userName = file.getName();
 
 				if (new File(file + "/" + userName + ".fitr").exists()) { // check
-					// if
-					// the
-					// file
-					// is
-					// a
-					// user
-					User newUser = Loader.loadUserProfile(new File(file + "/"
-							+ userName + ".fitr"));
+					// if the file is a user
+					User newUser = Loader.loadUserProfile(new File(file + "/"+ userName + ".fitr"));
 					users.add(newUser);
 					userNames.add(newUser.getName());
 				}
@@ -208,19 +206,30 @@ public class Persistent {
 	}
 
 	public static void main(String args[]) throws Exception {
-		/*
-		 * setFilePath("/Users/SamSchofield/Desktop"); setupDirectory(); init();
-		 * System.out.println("______________________"); //User u = new
-		 * User("sam schofield", null, null); //setUser(u); //newUser(u);
-		 * 
-		 * 
-		 * /*System.out.println(getFilePath()); System.out.println("Saved");
-		 * System.out.println("Users are: "); ArrayList<User> a = new
-		 * ArrayList<User>(getUsers()); for(int i = 0; i < a.size(); i++) {
-		 * System.out.println(a.get(i)); }
-		 */
+
+		/*setFilePath("/Users/SamSchofield/Desktop");
+		setupDirectory();
+		initialize();
+		System.out.println("______________________"); 
+		User u = new User("a", null, null);
+		User v = new User("b", null, null);
+		//setUser(u);
+		newUser(u);
+		newUser(v);
+		System.out.println(prefs.getInt("LastUserID", 0));
+		
+
+		System.out.println(getFilePath());
+		System.out.println("Saved");
+		System.out.println("Users are: ");
+		
+		ArrayList<User> a = new ArrayList<User>(users);
+		for (int i = 0; i < a.size(); i++) {
+			System.out.println(a.get(i));
+		}
+*/
 		prefs.clear();
-		System.out.println("data cleared");
+		//System.out.println("data cleared");
 
 	}
 
