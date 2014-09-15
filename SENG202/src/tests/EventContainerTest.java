@@ -16,22 +16,23 @@ import data.model.DataPoint;;
  */
 public class EventContainerTest extends TestCase {
 
-	private EventContainer ec;
+    private EventContainer ec;
 
-	/**
-	 * Sets up the event container that will be tested.
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+    /**
+     * Sets up the event container that will be tested.
+     */
+    @Override
+    protected void setUp() throws Exception {
+	super.setUp();
 
-		ec = new EventContainer();
-	}
+	ec = new EventContainer();
+    }
+
 
 	/**
 	 * Tests adding an event to the event container.
 	 */
-	public void testAddEvent() {
+	public void testAddEvent1() {
 		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 		points = new ArrayList<DataPoint>();
 		Calendar c3 = new GregorianCalendar(2005, // Year
@@ -61,8 +62,9 @@ public class EventContainerTest extends TestCase {
 		Event event = new Event("Test Event", points);
 		ec.addEvent(event);
 
-		assertEquals(ec.getEvents(event.getStartTime().getTime()).get(0), event);
-		assertEquals(true, true);
-	}
+
+	assertEquals(ec.getEvents(event.getStartTime().getTime()).get(0), event);
+	assertEquals(true, true);
+    }
 
 }

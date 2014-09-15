@@ -7,10 +7,10 @@ import javafx.scene.layout.AnchorPane;
 import data.model.Event;
 
 public class Tile extends AnchorPane {
-    
+
     public Event event;
     public static String TILE = "Tile.fxml";
-    
+
     public Tile(Event event) {
 	super();
 	this.event = event;
@@ -30,10 +30,10 @@ public class Tile extends AnchorPane {
 	loader.setLocation(getClass().getResource("Tile.fxml"));
 	loader.setRoot(this);
 	loader.load(getClass().getResourceAsStream(Tile.TILE));
-	
+
 	TileController tileController = loader.getController();
 	tileController.fill(event);
-	
+
     }
 
 }

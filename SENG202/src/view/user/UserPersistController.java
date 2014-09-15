@@ -61,7 +61,7 @@ public class UserPersistController {
 		    labelWarning.setText("No path set!");
 		} else {
 		    Persistent.setFilePath(file.getValue());
-		    //PersistentDialog.close();
+		    // PersistentDialog.close();
 		}
 
 	    }

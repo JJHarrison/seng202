@@ -5,12 +5,12 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 public class WebController {
-    
+
     @FXML
     WebView webView;
-    
+
     WebEngine webEngine;
-    
+
     @FXML
     void initialize() {
 	webEngine = webView.getEngine();
