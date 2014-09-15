@@ -1,5 +1,8 @@
 package view.analysis;
 
+import java.util.ArrayList;
+
+import data.model.DataPoint;
 import data.model.Event;
 import view.tile.Tile;
 import javafx.fxml.FXML;
@@ -12,7 +15,8 @@ public class AnalysisController {
 
     @FXML
     void initialize() {
-	tileBox.getChildren().addAll(new Tile(new Event("Yay")), new Tile(new Event("Jay")), new Tile(new Event("Wins")));
+    	ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+	tileBox.getChildren().addAll(new Tile(new Event("Yay", points)), new Tile(new Event("Jay", points)), new Tile(new Event("Wins", points)));
     }
 
 }

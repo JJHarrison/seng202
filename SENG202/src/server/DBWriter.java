@@ -159,7 +159,7 @@ public class DBWriter {
 		Calendar c2;
 		DataPoint p1;
 		DataPoint p2;
-		Event e = new Event("My Event");
+		
 
 		// set start and finish times 3 minutes apart
 		c1 = new GregorianCalendar(2005, // Year
@@ -175,8 +175,7 @@ public class DBWriter {
 				45, // Minute
 				28); // Second
 
-		e.setStartTime(c1);
-		e.setFinishTime(c2);
+		
 
 		// set up data points
 		points = new ArrayList<DataPoint>();
@@ -204,8 +203,7 @@ public class DBWriter {
 
 		points.add(p1);
 		points.add(p2);
-		e.addDataPoint(p1);
-		e.addDataPoint(p2);
+		Event e = new Event("My Event", points);
 		
 		
 		try {

@@ -24,7 +24,6 @@ import data.model.EventContainer;
  */
 public class FileLoader {
 	private InputStream inputStream;
-	private ArrayList<Event> events = new ArrayList<Event>();
 	private EventContainer eventContainer = new EventContainer();
 
 	/**
@@ -66,18 +65,25 @@ public class FileLoader {
 		BufferedReader br = null;
 		String line = "";
 		DataPoint lastPoint = null;
-		Event currentEvent = new Event("");
+		Event currentEvent = null;
+		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+		String currentName = null;
 
 		try {
 			br = new BufferedReader(new InputStreamReader(inputStream));
 
 			while ((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
+				
 				if (isValidLine(line) || line.startsWith("#start")) {
 					if (dataLine[0].contains("#start")) {
-						currentEvent = new Event(dataLine[1]);
-						events.add(currentEvent);
-						eventContainer.addEvent(currentEvent); // we should be using EventContainer not an arrayList???
+						// we need to add create an event and add the points from before start
+						if(!points.isEmpty()) {
+							currentEvent = new Event(currentName, points);
+							eventContainer.addEvent(currentEvent); 
+							points.clear();
+						}
+						currentName = dataLine[1];
 						lastPoint = null;
 					} else {
 						String[] dateString = dataLine[0].split("/");
@@ -102,7 +108,7 @@ public class FileLoader {
 								.longitude(longitude).altitude(altitude)
 								.prevDataPoint(lastPoint).build();
 
-						currentEvent.addDataPoint(point);
+						points.add(point);
 						lastPoint = point;
 					}
 				}
@@ -123,10 +129,6 @@ public class FileLoader {
 				+ ",(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
 		
 		return line.matches(dataLine);
-	}
-
-	public ArrayList<Event> getEvents() {
-		return events;
 	}
 
 	private void clearStream() {

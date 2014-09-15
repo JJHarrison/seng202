@@ -142,7 +142,7 @@ public class Client {
 		
 		
 		
-		Event e = new Event("My Event");
+		
 
 		// set start and finish times 3 minutes apart
 		Calendar c1 = new GregorianCalendar(2005, // Year
@@ -158,8 +158,8 @@ public class Client {
 				45, // Minute
 				28); // Second
 
-		e.setStartTime(c1);
-		e.setFinishTime(c2);
+		//e.setStartTime(c1);
+		//e.setFinishTime(c2);
 
 		// set up data points
 		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
@@ -187,8 +187,7 @@ public class Client {
 
 		points.add(p1);
 		points.add(p2);
-		e.addDataPoint(p1);
-		e.addDataPoint(p2);
+		Event e = new Event("My Event", points);
 		EventContainer ec = new EventContainer();
 		ec.addEvent(e);
 		u.setEvents(ec);

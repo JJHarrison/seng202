@@ -1,8 +1,10 @@
 package view.tile;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import data.model.DataPoint;
 import data.model.Event;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,12 +18,14 @@ public class testerTile extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-	Event event = new Event("Yay I got this working");
-	Calendar calendar = new GregorianCalendar();
-	event.setStartTime(calendar);
+    	ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+	Event event = new Event("Yay I got this working", points);
+	//Calendar calendar = new GregorianCalendar();
+	/*event.setStartTime(calendar);
 	calendar = new GregorianCalendar();
 	calendar.add(Calendar.HOUR, 3);
 	event.setFinishTime(calendar);
+	*/
 	
 	VBox vBox = new VBox();
 	vBox.minHeight(600);

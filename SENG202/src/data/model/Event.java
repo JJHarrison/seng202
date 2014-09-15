@@ -14,15 +14,17 @@ import java.util.GregorianCalendar;
  * @author Fitr.Team
  */
 public class Event implements Serializable{
+
 	private String eventName;
 	private Calendar startTime = new GregorianCalendar();
 	private Calendar finishTime = new GregorianCalendar();
-	private int numPoints;
 	private double distance;
 	private double maxSpeed;
 	private double averageSpeed;
-	private int totalHeartRate;
+	private int averageHeartRate;
+	private int maxHeartRate;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+	
 	private Graph heartRateGraph;
 	private Graph stressLevelGraph;
 	private Graph speedGraph;
@@ -30,13 +32,41 @@ public class Event implements Serializable{
 	private Graph caloriesGraph;
 
 	/**
-	 * Constructor.
-	 * 
+	 * Constructor 
 	 * @param eventName
-	 *            The name of the event.
+	 * @param points All data points for the event
 	 */
-	public Event(String eventName) {
+	public Event(String eventName, ArrayList<DataPoint> points) {
 		this.eventName = eventName;
+		this.points = points;
+		calculate();
+	}
+	
+	/**
+	 * Calculates max and average speed,  using the data points
+	 */
+	private void calculate() {
+		int numPoints = points.size();
+		int totalHR = 0;
+		
+		for(DataPoint point : points) {
+			distance += point.getDistance();
+			totalHR += point.getHeartRate();
+			
+			if (maxSpeed < point.getSpeed()) {
+				maxSpeed = point.getSpeed();
+			}
+			
+			if(maxHeartRate < point.getHeartRate()) {
+				maxHeartRate = point.getHeartRate();
+			}
+		}
+		
+		startTime = points.get(0).getDate();
+		finishTime = points.get(points.size() - 1).getDate();	
+
+		averageHeartRate = totalHR / numPoints;
+		averageSpeed = distance / getDuration();
 	}
 
 	/**
@@ -44,46 +74,6 @@ public class Event implements Serializable{
 	 */
 	public void printEventName() {
 		System.out.println(eventName);
-	}
-
-	/**
-	 * Sets the start time of the activity event.
-	 * 
-	 * @param c
-	 *            The start time of the event.
-	 */
-	public void setStartTime(Calendar c) {
-		this.startTime = c;
-	}
-
-	/**
-	 * Sets the finish time of the activity event.
-	 * 
-	 * @param c
-	 *            The finish time of the event.
-	 */
-	public void setFinishTime(Calendar c) {
-		this.finishTime = c;
-	}
-
-	/**
-	 * Adds a dataPoint to the activity event.
-	 * 
-	 * @param p
-	 *            The dataPoint to be added to the activity event.
-	 */
-	public void addDataPoint(DataPoint p) {
-		points.add(p);
-		distance += p.getDistance();
-		averageSpeed = calculateAverageSpeed(p);
-		numPoints += 1;
-		finishTime = p.getDate();
-		startTime = this.getDataPoints().get(0).getDate();
-		totalHeartRate += p.getHeartRate();
-
-		if (maxSpeed < p.getSpeed()) {
-			maxSpeed = p.getSpeed();
-		}
 	}
 
 	/**
@@ -111,11 +101,6 @@ public class Event implements Serializable{
 		return summary;
 	}
 
-	private double calculateAverageSpeed(DataPoint p) {
-		double newAverageSpeed = ((numPoints * averageSpeed) + p.getSpeed())
-				/ (numPoints + 1);
-		return newAverageSpeed;
-	}
 
 	/**
 	 * Returns the average speed of the activity event.
@@ -125,16 +110,7 @@ public class Event implements Serializable{
 	public double getAverageSpeed() {
 		return averageSpeed;
 	}
-
-	/**
-	 * Returns the average heart rate of the activity event.
-	 * 
-	 * @return The average heart rate in beats per minute.
-	 */
-	public int getAverageHeartRate() {
-		return totalHeartRate / numPoints;
-	}
-
+	
 	/**
 	 * Returns the max speed of the activity event.
 	 * 
@@ -142,6 +118,24 @@ public class Event implements Serializable{
 	 */
 	public double getMaxSpeed() {
 		return maxSpeed;
+	}
+
+	/**
+	 * Returns the average heart rate of the activity event.
+	 * 
+	 * @return The average heart rate in beats per minute.
+	 */
+	public int getAverageHeartRate() {
+		return averageHeartRate;
+	}
+	
+	/**
+	 * Returns the max heart rate of the activity event.
+	 * 
+	 * @return The max heart rate in beats per minute.
+	 */
+	public int getMaxHeartRate() {
+		return maxHeartRate;
 	}
 
 	/**
@@ -159,7 +153,7 @@ public class Event implements Serializable{
 	 * @return A String of containing the activity event name.
 	 */
 	public String getEventName() {
-		return this.eventName;
+		return eventName;
 	}
 
 	/**
@@ -168,7 +162,7 @@ public class Event implements Serializable{
 	 * @return The start time of the activity event as a calendar object.
 	 */
 	public Calendar getStartTime() {
-		return this.startTime;
+		return startTime;
 	}
 
 	/**
@@ -177,7 +171,7 @@ public class Event implements Serializable{
 	 * @return The finish time of the activity event as a calendar object
 	 */
 	public Calendar getFinishTime() {
-		return this.finishTime;
+		return finishTime;
 	}
 
 	/**
@@ -185,7 +179,6 @@ public class Event implements Serializable{
 	 * 
 	 * @return The duration for the activity event in hours.
 	 */
-
 	public double getDuration() {
 		return (finishTime.getTimeInMillis() - startTime.getTimeInMillis())
 				/ (1000.0 * 60 * 60);
@@ -198,8 +191,7 @@ public class Event implements Serializable{
 	 * @return A string of the activity events duration.
 	 */
 	public String getDurationString() {
-		long seconds = ((finishTime.getTimeInMillis() - startTime
-				.getTimeInMillis()) / 1000);
+		long seconds = ((finishTime.getTimeInMillis() - startTime.getTimeInMillis()) / 1000);
 		String duration = String.format("%02d:%02d:%02d", seconds / 3600,
 				(seconds % 3600) / 60, (seconds % 60));
 		return duration;
@@ -229,8 +221,8 @@ public class Event implements Serializable{
 		int weight = 75;
 		double runMET = 7.5;
 		double timeInHours = getDuration();
-
 		double calories = weight * runMET * timeInHours;
+		
 		return calories;
 	}
 	
