@@ -15,14 +15,11 @@ import data.model.Event;
  *
  */
 public class EventTest extends TestCase {
-	
-	private Event e;
-	private ArrayList<DataPoint> points;
-	private DataPoint p1;
-	private DataPoint p2;
 
-
-
+    private Event e;
+    private ArrayList<DataPoint> points;
+    private DataPoint p1;
+    private DataPoint p2;
 
     /**
      * Sets up the events to be tested
@@ -30,9 +27,6 @@ public class EventTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
 	super.setUp();
-
-
-
 
 	// set up data points
 	points = new ArrayList<DataPoint>();
@@ -49,40 +43,34 @@ public class EventTest extends TestCase {
 		43, // Minute
 		5); // Second
 
-		p1 = new DataPoint.Builder().date(c3).heartRate(120)
-				.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
-				.prevDataPoint(null).build();
+	p1 = new DataPoint.Builder().date(c3).heartRate(120)
+		.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
+		.prevDataPoint(null).build();
 
-		p2 = new DataPoint.Builder().date(c4).heartRate(125)
-				.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
-				.prevDataPoint(p1).build();
+	p2 = new DataPoint.Builder().date(c4).heartRate(125)
+		.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
+		.prevDataPoint(p1).build();
 
-	
+	points.add(p1);
+	points.add(p2);
+	e = new Event("My Event", points);
+    }
 
-		points.add(p1);
-		points.add(p2);
-		e = new Event("My Event", points);
-	}
+    /**
+     * Tests the getEventName function to make sure it returns the correct name
+     * of the event
+     */
+    public void testGetEventName() {
+	assertEquals("My Event", e.getEventName());
+    }
 
+    public void testAverageHR() {
+	assertEquals((120 + 125) / 2, e.getAverageHeartRate());
+    }
 
-
-    
-
-	/**
-	 * Tests the getEventName function to make sure it returns the correct name
-	 * of the event
-	 */
-	public void testGetEventName() {
-		assertEquals("My Event",e.getEventName());
-	}
-	
-	public void testAverageHR() {
-		assertEquals((120 + 125) / 2, e.getAverageHeartRate());
-	}
-	
-	public void testMaxHR() {
-		assertEquals(125, e.getMaxHeartRate());
-	}
+    public void testMaxHR() {
+	assertEquals(125, e.getMaxHeartRate());
+    }
 
     /**
      * Tests the getDataPoints function to make sure it returns the dataPoints

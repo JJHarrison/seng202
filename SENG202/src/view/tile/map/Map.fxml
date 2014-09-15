@@ -6,19 +6,19 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TreeTableView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-padding: 0; -fx-border-color: transparent;">
-        <columns>
-          <TreeTableColumn editable="false" prefWidth="75.0" resizable="false" text="C1" />
-          <TreeTableColumn prefWidth="75.0" resizable="false" text="C2" />
-        </columns>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <StackPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </StackPane.margin>
-         <columnResizePolicy>
-            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TreeTableView>
+         <children>
+            <AnchorPane minWidth="-Infinity" prefWidth="480.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <WebView minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </StackPane>

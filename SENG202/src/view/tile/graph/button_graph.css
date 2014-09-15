@@ -1,5 +1,5 @@
 .ToggleButton {
-    -fx-background-radius: 50;
+    -fx-background-radius: 2;
     -fx-background-color: derive(#87CEFA, -10%);
 }
 .ToggleButton:hover {
