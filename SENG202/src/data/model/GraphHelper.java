@@ -54,4 +54,15 @@ public class GraphHelper {
 	    }
 	    return g;
 	}
+	
+	public static Graph getAltitudeGraph(Event e) {
+		Graph g = new Graph("Altitude", "Time (s)", "Altitude (m)");
+		for (DataPoint p : e.getPoints()) {
+		    double alt = p.getAltitude();
+		    double time = p.getDate().getTimeInMillis()
+			    - e.getStartTime().getTimeInMillis();
+		    g.addPoint(time, alt);
+		}
+		return g;
+	}
 }
