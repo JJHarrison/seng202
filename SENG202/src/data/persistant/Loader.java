@@ -10,7 +10,6 @@ import user.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
 /**
  * A loader class used for loading an event container from a json file
  * 
@@ -18,26 +17,26 @@ import com.google.gson.GsonBuilder;
  */
 public class Loader {
 
-	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	/**
-	 * loads and returns a user profile form the json file at file path
-	 * 
-	 * @return EventContainer
-	 */
-	public static User loadUserProfile(File filepath) {
+    /**
+     * loads and returns a user profile form the json file at file path
+     * 
+     * @return EventContainer
+     */
+    public static User loadUserProfile(File filepath) {
 
-		User user = null;
+	User user = null;
 
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filepath));// Persistent.getProfileFilePath()));
-			user = gson.fromJson(br, User.class);
+	try {
+	    BufferedReader br = new BufferedReader(new FileReader(filepath));// Persistent.getProfileFilePath()));
+	    user = gson.fromJson(br, User.class);
 
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found");
-			e.printStackTrace();
-		}
-		return user;
+	} catch (FileNotFoundException e) {
+	    System.out.println("File not found");
+	    e.printStackTrace();
 	}
+	return user;
+    }
 
 }

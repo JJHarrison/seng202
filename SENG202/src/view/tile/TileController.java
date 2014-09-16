@@ -49,7 +49,7 @@ public class TileController {
     Label labelEventName;
     @FXML
     Label labelEventTime;
-    
+
     @FXML
     private GraphController graphController;
     @FXML
@@ -144,12 +144,12 @@ public class TileController {
 	if (event != null) {
 	    labelEventName.setText(event.getEventName());
 	    labelEventTime.setText(event.getTimeString());
-	    
+
 	    mapController.fill(event);
 	    summaryController.fill(event);
 	    graphController.fill(event);
 	    tableController.fill(event);
-	    
+
 	}
     }
 

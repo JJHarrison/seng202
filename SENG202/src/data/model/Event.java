@@ -28,12 +28,6 @@ public class Event implements Serializable {
     private double caloriesBurned;
     private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 
-    // private Graph heartRateGraph;
-    // private Graph stressLevelGraph;
-    // private Graph speedGraph;
-    // private Graph distanceGraph;
-    // private Graph caloriesGraph;
-
     /**
      * Constructor
      * 
@@ -152,9 +146,9 @@ public class Event implements Serializable {
     public Calendar getFinishTime() {
 	return finishTime;
     }
-    
+
     public ArrayList<DataPoint> getPoints() {
-    	return points;
+	return points;
     }
 
     /**
@@ -212,51 +206,57 @@ public class Event implements Serializable {
     public double getCaloriesBurned() {
 	return caloriesBurned;
     }
+
     /**
-     * A method which takes a datapoint and returns a string of the location in the form "lat,long"
+     * A method which takes a datapoint and returns a string of the location in
+     * the form "lat,long"
      * 
-     * @param point A single datapoint
+     * @param point
+     *            A single datapoint
      * @return A string of the location of the datapoint in the form "lat,long"
      */
     public String getPointString(DataPoint point) {
-    	String latStr;
-    	String lonStr;
-    	StringBuilder pointString = new StringBuilder();
-    	
-    	latStr = String.format("%s", point.getLatitude());
-    	try {
-    		latStr = latStr.substring(0, 12);
-		} catch (StringIndexOutOfBoundsException e) {
-		}
-		lonStr = String.format("%s", point.getLongitude());
-		try {
-			lonStr = lonStr.substring(0, 12);
-		} catch (StringIndexOutOfBoundsException e) {
-		}
-		pointString.append(latStr);
-		pointString.append(",");
-		pointString.append(lonStr);
-		return pointString.toString();
+	String latStr;
+	String lonStr;
+	StringBuilder pointString = new StringBuilder();
+
+	latStr = String.format("%s", point.getLatitude());
+	try {
+	    latStr = latStr.substring(0, 12);
+	} catch (StringIndexOutOfBoundsException e) {
 	}
-    
+	lonStr = String.format("%s", point.getLongitude());
+	try {
+	    lonStr = lonStr.substring(0, 12);
+	} catch (StringIndexOutOfBoundsException e) {
+	}
+	pointString.append(latStr);
+	pointString.append(",");
+	pointString.append(lonStr);
+	return pointString.toString();
+    }
+
     /**
-     * This method creates a string of Point Locations which is the path taken for the event
-     * @return A string of locations, in the form "lat, long", which is a path for the event.
+     * This method creates a string of Point Locations which is the path taken
+     * for the event
+     * 
+     * @return A string of locations, in the form "lat, long", which is a path
+     *         for the event.
      */
     public String getPathString() {
-    	int MAX_POINTS = 68; // Due to 2048 char limit for static maps.
-    	ArrayList<DataPoint> dataPoints = getDataPoints();
-    	int dataSize = dataPoints.size();
-    	StringBuilder pathBuilder = new StringBuilder();
-    	
-    	pathBuilder.append(getPointString(dataPoints.get(0)));
-		pathBuilder.append("|");
-    	for (int i = 1; i < dataSize - 1; i+=((dataSize-1)/MAX_POINTS)+1) {
-    		pathBuilder.append(getPointString(dataPoints.get(i)));
-    		pathBuilder.append("|");
-    	}
-    	pathBuilder.append(getPointString(dataPoints.get(dataSize - 1)));
-		
-		return pathBuilder.toString();
+	int MAX_POINTS = 68; // Due to 2048 char limit for static maps.
+	ArrayList<DataPoint> dataPoints = getDataPoints();
+	int dataSize = dataPoints.size();
+	StringBuilder pathBuilder = new StringBuilder();
+
+	pathBuilder.append(getPointString(dataPoints.get(0)));
+	pathBuilder.append("|");
+	for (int i = 1; i < dataSize - 1; i += ((dataSize - 1) / MAX_POINTS) + 1) {
+	    pathBuilder.append(getPointString(dataPoints.get(i)));
+	    pathBuilder.append("|");
+	}
+	pathBuilder.append(getPointString(dataPoints.get(dataSize - 1)));
+
+	return pathBuilder.toString();
     }
 }

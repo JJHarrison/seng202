@@ -12,10 +12,14 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </StackPane.margin>
          <children>
-            <TableView layoutX="288.0" layoutY="117.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView layoutX="288.0" layoutY="117.0" stylesheets="@table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn editable="false" prefWidth="75.0" text="Time" />
-                <TableColumn editable="false" text="Speed" />
+                <TableColumn editable="false" prefWidth="100.0" text="Time" />
+                  <TableColumn editable="false" prefWidth="100.0" text="Heart Rate" />
+                  <TableColumn editable="false" prefWidth="100.0" text="Altitude" />
+                  <TableColumn editable="false" prefWidth="100.0" text="Latitude" />
+                  <TableColumn editable="false" prefWidth="100.0" text="Longitude" />
+                  <TableColumn editable="false" prefWidth="150.0" text="Distance (km)" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -34,11 +34,10 @@ public class Main extends Application {
 	stage.setMinWidth(1366);
 	stage.setMaximized(true);
 
-	/*try {
-	    this.stage.getIcons().add(new Image("/resources/heart11.png"));
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}*/
+	/*
+	 * try { this.stage.getIcons().add(new Image("/resources/heart11.png"));
+	 * } catch (Exception e) { e.printStackTrace(); }
+	 */
 
 	initRootLayout();
     }
