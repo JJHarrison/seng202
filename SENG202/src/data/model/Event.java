@@ -224,9 +224,15 @@ public class Event implements Serializable {
     	StringBuilder pointString = new StringBuilder();
     	
     	latStr = String.format("%s", point.getLatitude());
-		latStr.substring(0, 12);
+    	try {
+    		latStr = latStr.substring(0, 12);
+		} catch (StringIndexOutOfBoundsException e) {
+		}
 		lonStr = String.format("%s", point.getLongitude());
-		lonStr.substring(0, 12);
+		try {
+			lonStr = lonStr.substring(0, 12);
+		} catch (StringIndexOutOfBoundsException e) {
+		}
 		pointString.append(latStr);
 		pointString.append(",");
 		pointString.append(lonStr);
