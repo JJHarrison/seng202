@@ -212,4 +212,36 @@ public class Event implements Serializable {
     public double getCaloriesBurned() {
 	return caloriesBurned;
     }
+    
+    public String getPointString(DataPoint point) {
+    	String latStr;
+    	String lonStr;
+    	StringBuilder pointString = new StringBuilder();
+    	
+    	latStr = String.format("%s", point.getLatitude());
+		latStr.substring(0, 12);
+		lonStr = String.format("%s", point.getLongitude());
+		lonStr.substring(0, 12);
+		pointString.append(latStr);
+		pointString.append(",");
+		pointString.append(lonStr);
+		return pointString.toString();
+	}
+    
+    public String getPathString() {
+    	int MAX_POINTS = 68; // Due to 2048 char limit for static maps.
+    	ArrayList<DataPoint> dataPoints = getDataPoints();
+    	int dataSize = dataPoints.size();
+    	StringBuilder pathBuilder = new StringBuilder();
+    	
+    	pathBuilder.append(getPointString(dataPoints.get(0)));
+		pathBuilder.append("|");
+    	for (int i = 1; i < dataSize - 1; i+=((dataSize-1)/MAX_POINTS)+1) {
+    		pathBuilder.append(getPointString(dataPoints.get(i)));
+    		pathBuilder.append("|");
+    	}
+    	pathBuilder.append(getPointString(dataPoints.get(dataSize - 1)));
+		
+		return pathBuilder.toString();
+    }
 }
