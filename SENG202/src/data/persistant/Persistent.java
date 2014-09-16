@@ -118,8 +118,7 @@ public class Persistent {
 	    Saver.SaveUser(user);
 	    prefs.putInt("LastUserID", prefs.getInt("LastUserID", 0) + 1);
 	} else {
-	    System.out
-		    .println("User has already beeen created. try differnt username");
+	    System.out.println("User has already beeen created. try different username");
 	    // throw new Exception("User already exists");
 	}
 
@@ -197,7 +196,7 @@ public class Persistent {
 
     public static void main(String args[]) throws Exception {
 
-	setFilePath("/Users/SamSchofield/Desktop");
+	/*setFilePath("/Users/SamSchofield/Desktop");
 	setupDirectory();
 	initialize();
 	System.out.println("______________________");
@@ -217,7 +216,7 @@ public class Persistent {
 	    System.out.println(a.get(i));
 	}
 
-	prefs.clear();
+	prefs.clear();*/
 	// System.out.println("data cleared");
 
     }

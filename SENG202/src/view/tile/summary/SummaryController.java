@@ -2,6 +2,7 @@ package view.tile.summary;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import data.model.Event;
 
 public class SummaryController {
@@ -23,18 +24,35 @@ public class SummaryController {
 
     @FXML
     Label labelAverageHR;
-
-    private Event event;
+    
+    @FXML
+    Label labelCalories;
+    
+    @FXML
+    Label labelWarning;
+    
+    @FXML
+    AnchorPane paneWarning;
+    
+    @FXML
+    void initialize() {
+	paneWarning.setOpacity(0);
+    }
 
     public void fill(Event event) {
-	this.event = event;
 	labelDuration.setText(event.getDurationString());
-	labelDistance.setText(String.format("%f", event.getDistance()));
-	labelAverageHR
-		.setText(String.format("%d", event.getAverageHeartRate()));
-	labelAverageSpeed.setText(String.format("%f", event.getAverageSpeed()));
-	labelMaxSpeed.setText(String.format("%f", event.getMaxSpeed()));
-	labelMaxHR.setText(String.format("%d", event.getMaxHeartRate()));
+	labelDistance.setText(event.getDistanceString());
+	labelAverageHR.setText(event.avgHRString());
+	labelAverageSpeed.setText(event.avgSpeedString());
+	labelMaxSpeed.setText(event.maxSpeedString());
+	labelMaxHR.setText(event.maxHRString());
+	labelCalories.setText(event.getCaloriesString());
+	
+	if (event.getRISK()) {
+	    paneWarning.setOpacity(1);
+	    labelWarning.setText("You are going to DIE!");
+	}
+	
     }
 
 }

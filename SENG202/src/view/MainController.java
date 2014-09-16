@@ -47,9 +47,6 @@ public class MainController {
 
     @FXML
     void initialize() {
-	viewMainContent.getChildren().clear();
-	toggleGroup.getToggles().addAll(buttonDash, buttonAnalysis, buttonWeb);
-	toggleGroup.selectToggle(buttonDash);
 	loadDash(null);
 
 	menuClose.setOnAction(new EventHandler<ActionEvent>() {
@@ -60,11 +57,16 @@ public class MainController {
 
 	    }
 	});
+	
+	toggleGroup.getToggles().addAll(buttonAnalysis, buttonDash, buttonWeb);
+	buttonDash.fire();
 
     }
 
     @FXML
     void loadDash(ActionEvent event) {
+	toggleGroup.selectToggle(buttonDash);
+
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewDash);
 	ft = new FadeTransition(Duration.millis(500), viewDash);
@@ -79,6 +81,8 @@ public class MainController {
 
     @FXML
     void loadAnalysis(ActionEvent event) {
+	toggleGroup.selectToggle(buttonAnalysis);
+
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewAnalysis);
 	ft = new FadeTransition(Duration.millis(500), viewAnalysis);
@@ -93,6 +97,8 @@ public class MainController {
 
     @FXML
     void loadWeb() {
+	toggleGroup.selectToggle(buttonWeb);
+	
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewWeb);
 	ft = new FadeTransition(Duration.millis(500), viewWeb);

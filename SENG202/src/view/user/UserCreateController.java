@@ -1,16 +1,12 @@
 package view.user;
 
-import java.util.GregorianCalendar;
-
-import user.User;
-import user.User.Gender;
-import data.persistant.Persistent;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import user.User.Gender;
 
 public class UserCreateController implements ScreenController {
     private ScreenPane myScreenPane;
@@ -41,10 +37,10 @@ public class UserCreateController implements ScreenController {
 	    @Override
 	    public void handle(ActionEvent event) {
 		try {
-		    User user = new User("Daniel van Wichen",
-			    new GregorianCalendar(), Gender.MALE);
+		    //User user = new User("Daniel van Wichen",
+			//    new GregorianCalendar(), Gender.MALE);
 		    // Persistent.setUser(user);
-		    Persistent.newUser(user);
+		    //Persistent.newUser(user);
 		} catch (Exception e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();

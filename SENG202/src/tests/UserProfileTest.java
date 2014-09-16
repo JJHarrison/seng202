@@ -1,10 +1,7 @@
 package tests;
 
-import java.util.GregorianCalendar;
-
 import junit.framework.TestCase;
 import user.User;
-import user.User.Gender;
 
 /**
  * Tests the functionality of the UserProfile class
@@ -23,10 +20,10 @@ public class UserProfileTest extends TestCase {
 	super.setUp();
 
 	// John Key's actual birthday
-	GregorianCalendar dob = new GregorianCalendar(1961, 8, 9);
-	john = new User("John Key", dob, Gender.MALE);
+	//GregorianCalendar dob = new GregorianCalendar(1961, 8, 9);
+	/*john = new User("John Key", dob, Gender.MALE);
 	john.setWeight(81.2);
-	john.setHeight(1.8);
+	john.setHeight(1.8);*/
 
     }
 

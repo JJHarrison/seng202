@@ -5,15 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
-import data.model.DataPoint;
-import data.model.Event;
-import data.model.EventContainer;
 import user.User;
-import user.User.Gender;
 
 public class Client {
     private Socket clientSocket;
@@ -132,7 +126,7 @@ public class Client {
 	return "[" + getCurrentTime() + "]<Client>";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
 	Client c = new Client();
 	c.setupConnection();
 	// Just test strings at the moment, will need to build on this when we
@@ -197,6 +191,6 @@ public class Client {
 	// c.transferToServer("Message one");
 	// c.transferToServer("Message two");
 	// c.transferToServer("Message three");
-	c.closeStuff();
+	c.closeStuff();*/
     }
 }

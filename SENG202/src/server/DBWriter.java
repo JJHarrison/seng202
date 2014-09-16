@@ -7,12 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import user.User;
-import user.User.Gender;
 import data.model.DataPoint;
 import data.model.Event;
 
@@ -179,7 +175,7 @@ public class DBWriter {
     }
 
     public static void main(String[] args) {
-	User john = new User("Test1", new GregorianCalendar(1961, 8, 9),
+	/*User john = new User("Test1", new GregorianCalendar(1961, 8, 9),
 		Gender.MALE);
 	john.setWeight(81.2);
 	john.setHeight(1.8);
@@ -243,5 +239,6 @@ public class DBWriter {
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}
+    }*/
     }
 }

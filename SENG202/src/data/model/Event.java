@@ -20,13 +20,19 @@ public class Event implements Serializable {
     private String eventName;
     private Calendar startTime = new GregorianCalendar();
     private Calendar finishTime = new GregorianCalendar();
-    private double distance;
+    private double distance; // in meters
     private double maxSpeed;
     private double averageSpeed;
     private int averageHeartRate;
     private int maxHeartRate;
     private double caloriesBurned;
     private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+    
+    private boolean RISK = true;
+//TODO sdfghjsdfghgdshsasghjsasghdsdfhjdsdghsdghsdhjdsdghjdsdfghjhfdsdhdsdfghsdhdsdfghgdsdfghjhfdsdghjhgfdsdfghjhgfdsdfghgfds
+    public boolean getRISK() {
+	return RISK;
+    }
 
     /**
      * Constructor
@@ -152,13 +158,13 @@ public class Event implements Serializable {
     }
 
     /**
-     * Returns the duration of the activity event.
+     * Returns the duration of the activity seconds.
      * 
-     * @return The duration for the activity event in hours.
+     * @return The duration for the activity event in seconds.
      */
-    public double getDuration() {
+    public long getDuration() {
 	return (finishTime.getTimeInMillis() - startTime.getTimeInMillis())
-		/ (1000.0 * 60 * 60);
+		/ 1000;
     }
 
     /**
@@ -168,11 +174,49 @@ public class Event implements Serializable {
      * @return A string of the activity events duration.
      */
     public String getDurationString() {
-	long seconds = ((finishTime.getTimeInMillis() - startTime
-		.getTimeInMillis()) / 1000);
-	String duration = String.format("%02d:%02d:%02d", seconds / 3600,
-		(seconds % 3600) / 60, (seconds % 60));
-	return duration;
+	StringBuilder durationString = new StringBuilder();
+	long duration = getDuration();
+	long days = duration / (3600 * 24);
+	duration -= days * 3600 * 24;
+	long hours = duration / 3600;
+	duration -= hours * 3600;
+	long minutes = duration / 60;
+	duration -= minutes * 60;
+	long seconds = duration;
+
+	if (days > 0) {
+	    durationString.append(String.format("%d day%s %d hour%s", days,
+		    days == 1 ? "" : "s", hours, hours == 1 ? "" : "s"));
+	} else if (hours > 0) {
+	    durationString.append(String.format("%d hour%s %d minute%s", hours,
+		    hours == 1 ? "" : "s", minutes, minutes == 1 ? "" : "s"));
+	} else if (minutes > 0) {
+	    durationString.append(String.format("%d minute%s %d second%s",
+		    minutes, minutes == 1 ? "" : "s", seconds,
+		    seconds == 1 ? "" : "s"));
+	} else {
+	    durationString.append(String.format("%d second%s", seconds,
+		    seconds == 1 ? "" : "s"));
+	}
+
+	return durationString.toString();
+    }
+
+    /**
+     * Returns a nicely formatted distance string for use in the GUI.
+     * 
+     * @return The formatted distance string.
+     */
+    public String getDistanceString() {
+	String distanceString;
+	if (getDistance() >= 1000.0) {
+	    distanceString = String.format("%.2f km", getDistance());
+	} else {
+	    distanceString = String.format("%d meter%s", (int) getDistance(),
+		    getDistance() == 1.0 ? "" : "s");
+	}
+
+	return distanceString;
     }
 
     public String getTimeString() {
@@ -196,9 +240,9 @@ public class Event implements Serializable {
      * @return The calories burned for the activity events.
      */
     private void setCaloriesBurned() {
-	int weight = 75;
-	double runMET = 7.5;
-	double timeInHours = getDuration();
+	int weight = 75; //TODO
+	double runMET = 7.5; //TODO
+	double timeInHours = (double) getDuration() / 3600;
 	double calories = weight * runMET * timeInHours;
 	caloriesBurned = calories;
     }
@@ -258,5 +302,25 @@ public class Event implements Serializable {
 	pathBuilder.append(getPointString(dataPoints.get(dataSize - 1)));
 
 	return pathBuilder.toString();
+    }
+
+    public String avgHRString() {
+	return String.format("%d bpm", getAverageHeartRate());
+    }
+
+    public String maxHRString() {
+	return String.format("%d bpm", getMaxHeartRate());
+    }
+
+    public String avgSpeedString() {
+	return String.format("%.2f km / h", getAverageSpeed()*3.6);
+    }
+
+    public String maxSpeedString() {
+	return String.format("%.2f km / h", getMaxSpeed()*3.6);
+    }
+    
+    public String getCaloriesString() {
+	return String.format("%.0f", getCaloriesBurned());
     }
 }

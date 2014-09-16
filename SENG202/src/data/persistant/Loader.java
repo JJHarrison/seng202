@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * A loader class used for loading an event container from a json file
+ * A loader class used for loading an event container from a JSON file
  * 
  * @author SamSchofield
  */
@@ -20,7 +20,7 @@ public class Loader {
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     /**
-     * loads and returns a user profile form the json file at file path
+     * loads and returns a user profile from the JSON file at file path
      * 
      * @return EventContainer
      */
@@ -29,7 +29,7 @@ public class Loader {
 	User user = null;
 
 	try {
-	    BufferedReader br = new BufferedReader(new FileReader(filepath));// Persistent.getProfileFilePath()));
+	    BufferedReader br = new BufferedReader(new FileReader(filepath));
 	    user = gson.fromJson(br, User.class);
 
 	} catch (FileNotFoundException e) {

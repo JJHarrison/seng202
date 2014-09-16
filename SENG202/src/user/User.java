@@ -27,6 +27,7 @@ public class User implements Serializable {
     private double height;
     private Gender gender;
     private double BMI;
+    private int averageHeartRate;
     private EventContainer events;
     private int userID;
 
@@ -35,20 +36,31 @@ public class User implements Serializable {
     }
 
     /**
-     * Constructor.
      * 
      * @param name
-     *            Name of the user.
+     *            Name of user
      * @param dateOfBirth
-     *            Date of birth of the user.
+     *            Birth date of user.
      * @param gender
-     *            Gender of the user.
+     *            Gender of user (MALE or FEMALE).
+     * @param weight
+     *            Weight of user.
+     * @param height
+     *            Height of user.
+     * @param events
+     *            For testing, but if set to NULL creates a new event container
      */
-    public User(String name, Calendar dateOfBirth, Gender gender) {
-	this.setDateofBirth(dateOfBirth);
-	this.setName(name);
-	this.setGender(gender);
-	this.setEvents(new EventContainer());
+    public User(String name, Calendar dateOfBirth, Gender gender,
+	    double weight, double height, EventContainer events,
+	    int averageHeartRate) {
+	this.name = name;
+	this.dateofBirth = dateOfBirth;
+	this.gender = gender;
+	this.weight = weight;
+	this.height = height;
+	this.averageHeartRate = averageHeartRate;
+	this.BMI = calculateBMI();
+	this.events = (events == null) ? new EventContainer() : events;
 	userID = Persistent.getLastUserID();
     }
 
@@ -60,7 +72,7 @@ public class User implements Serializable {
      */
     public void setWeight(double weight) {
 	this.weight = weight;
-	calculateAndSetBMI();
+	this.BMI = calculateBMI();
     }
 
     /**
@@ -80,7 +92,7 @@ public class User implements Serializable {
      */
     public void setHeight(double height) {
 	this.height = height;
-	calculateAndSetBMI();
+	this.BMI = calculateBMI();
     }
 
     /**
@@ -96,8 +108,8 @@ public class User implements Serializable {
      * Calculates the BMI of the user based on their height and weight and sets
      * it to their user profile.
      */
-    public void calculateAndSetBMI() {
-	this.BMI = weight / (Math.pow(height, 2));
+    private double calculateBMI() {
+	return weight / (Math.pow(height, 2));
     }
 
     /**
@@ -203,21 +215,19 @@ public class User implements Serializable {
 	}
     }
 
-    public static void main(String[] args) throws Exception {
-	User a = new User("a", null, null);
-	Persistent.newUser(a);
+    /**
+     * 
+     * @return
+     */
+    public int getAverageHeartRate() {
+	return averageHeartRate;
+    }
 
-	User z = new User("a", null, null);
-	Persistent.newUser(z);
-
-	User b = new User("b", null, null);
-	Persistent.newUser(b);
-
-	User c = new User("c", null, null);
-	Persistent.newUser(b);
-
-	System.out.println(a.getUserId());
-	System.out.println(b.getUserId());
-	System.out.println(c.getUserId());
+    /**
+     * 
+     * @param averageHeartRate
+     */
+    public void setAverageHeartRate(int averageHeartRate) {
+	this.averageHeartRate = averageHeartRate;
     }
 }
