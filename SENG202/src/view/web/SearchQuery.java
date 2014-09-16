@@ -16,7 +16,7 @@ public class SearchQuery {
 	public static String getQuery(String inputQuery) {
 		String query = url;
 		try {
-			query.concat(URLEncoder.encode(inputQuery, "UTF=8"));
+			query = query + (URLEncoder.encode(inputQuery, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

@@ -32,7 +32,7 @@
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <TextField maxWidth="300.0" prefHeight="40.0" style="-fx-background-color: white; -fx-background-radius: 0;" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <TextField fx:id="textFieldSearch" maxWidth="300.0" onAction="#searchField" prefHeight="40.0" style="-fx-background-color: white; -fx-background-radius: 0;" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -40,7 +40,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Search" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#searchButton" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Search" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="300.0" />
                      </GridPane.margin>
