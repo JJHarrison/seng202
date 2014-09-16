@@ -37,13 +37,13 @@ public class TileController {
     ToggleButton buttonTable;
 
     @FXML
-    StackPane viewSummary;
+    StackPane summary;
     @FXML
-    StackPane viewMap;
+    StackPane map;
     @FXML
-    StackPane viewGraph;
+    StackPane graph;
     @FXML
-    StackPane viewTable;
+    StackPane table;
 
     @FXML
     Label labelEventName;
@@ -51,13 +51,13 @@ public class TileController {
     Label labelEventTime;
     
     @FXML
-    GraphController viewGraphController;
+    private GraphController graphController;
     @FXML
-    MapController viewMapController;
+    private MapController mapController;
     @FXML
-    SummaryController viewSummaryController;
+    private SummaryController summaryController;
     @FXML
-    TableController viewTableController;
+    private TableController tableController;
 
     public Event event;
 
@@ -88,25 +88,25 @@ public class TileController {
     @FXML
     void loadSummary(ActionEvent event) {
 	toggleGroup.selectToggle(buttonSummary);
-	setView(viewSummary);
+	setView(summary);
     }
 
     @FXML
     void loadMap(ActionEvent event) {
 	toggleGroup.selectToggle(buttonMap);
-	setView(viewMap);
+	setView(map);
     }
 
     @FXML
     void loadGraph(ActionEvent event) {
 	toggleGroup.selectToggle(buttonGraph);
-	setView(viewGraph);
+	setView(graph);
     }
 
     @FXML
     void loadTable(ActionEvent event) {
 	toggleGroup.selectToggle(buttonTable);
-	setView(viewTable);
+	setView(table);
     }
 
     @FXML
@@ -144,6 +144,11 @@ public class TileController {
 	if (event != null) {
 	    labelEventName.setText(event.getEventName());
 	    labelEventTime.setText(event.getTimeString());
+	    
+	    mapController.fill(event);
+	    summaryController.fill(event);
+	    graphController.fill(event);
+	    tableController.fill(event);
 	    
 	}
     }

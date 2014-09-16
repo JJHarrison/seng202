@@ -27,14 +27,14 @@ public class WebController {
 
 	@FXML
 	void searchButton(ActionEvent event) {
-		if (!textFieldSearch.getText().matches("[\\s]*")) {
+		if (! 	textFieldSearch.getText().trim().isEmpty()) {
 			webEngine.load(SearchQuery.getQuery(textFieldSearch.getText()));
 		}
 	}
 
 	@FXML
 	void searchField(ActionEvent event) {
-		if (!textFieldSearch.getText().matches("[\\s]*")) {
+		if (! textFieldSearch.getText().trim().isEmpty()) {
 			webEngine.load(SearchQuery.getQuery(textFieldSearch.getText()));
 		}
 	}
