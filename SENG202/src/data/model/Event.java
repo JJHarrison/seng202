@@ -212,7 +212,12 @@ public class Event implements Serializable {
     public double getCaloriesBurned() {
 	return caloriesBurned;
     }
-    
+    /**
+     * A method which takes a datapoint and returns a string of the location in the form "lat,long"
+     * 
+     * @param point A single datapoint
+     * @return A string of the location of the datapoint in the form "lat,long"
+     */
     public String getPointString(DataPoint point) {
     	String latStr;
     	String lonStr;
@@ -228,6 +233,10 @@ public class Event implements Serializable {
 		return pointString.toString();
 	}
     
+    /**
+     * This method creates a string of Point Locations which is the path taken for the event
+     * @return A string of locations, in the form "lat, long", which is a path for the event.
+     */
     public String getPathString() {
     	int MAX_POINTS = 68; // Due to 2048 char limit for static maps.
     	ArrayList<DataPoint> dataPoints = getDataPoints();
