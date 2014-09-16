@@ -22,12 +22,12 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="Button" stylesheets="@left.css" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#backAction" prefHeight="35.0" prefWidth="35.0" styleClass="Button" stylesheets="@left.css" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="Button" stylesheets="@right.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#forwardAction" prefHeight="35.0" prefWidth="35.0" styleClass="Button" stylesheets="@right.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
