@@ -71,10 +71,10 @@
                   </GridPane>
                   <StackPane fx:id="tileView" layoutX="250.0" layoutY="123.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <fx:include fx:id="viewSummary" source="summary/Summary.fxml" />
-                        <fx:include fx:id="viewMap" source="map/Map.fxml" />
-                        <fx:include fx:id="viewTable" source="table/Table.fxml" />
-                        <fx:include fx:id="viewGraph" source="graph/Graph.fxml" />
+                        <fx:include fx:id="summary" source="summary/Summary.fxml" />
+                        <fx:include fx:id="map" source="map/Map.fxml" />
+                        <fx:include fx:id="table" source="table/Table.fxml" />
+                        <fx:include fx:id="graph" source="graph/Graph.fxml" />
                      </children>
                    </StackPane>
                </children>
