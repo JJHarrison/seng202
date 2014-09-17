@@ -42,7 +42,7 @@
                               <Insets left="10.0" top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labelDuration" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" text="1 hr 3 min" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Label fx:id="labelDuration" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -58,7 +58,7 @@
                               <Insets left="10.0" top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labelDistance" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" text="120.3 km" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Label fx:id="labelDistance" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -87,7 +87,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="labelCalories" alignment="BOTTOM_RIGHT" prefHeight="120.0" text="396" textFill="#1AAB07" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="15.0">
+                              <Label fx:id="labelCalories" alignment="BOTTOM_RIGHT" prefHeight="120.0" textFill="#1AAB07" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="15.0">
                                  <font>
                                     <Font size="96.0" />
                                  </font>
@@ -117,7 +117,7 @@
                               <Insets left="10.0" top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labelAverageHR" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" text="75 bpm" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Label fx:id="labelAverageHR" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -133,7 +133,7 @@
                               <Insets left="10.0" top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labelMaxHR" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" text="128 bpm" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Label fx:id="labelMaxHR" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -164,7 +164,7 @@
                               <Insets left="10.0" top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labelAverageSpeed" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" text="12.12 kph" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                        <Label fx:id="labelAverageSpeed" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -180,7 +180,7 @@
                               <Insets left="10.0" top="10.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="labelMaxSpeed" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" text="19.63 kph" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Label fx:id="labelMaxSpeed" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: derive(-fx-base, -10%);" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -199,7 +199,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelWarning" layoutX="160.0" layoutY="13.0" text="Brachycardia detected" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="labelWarning" layoutX="160.0" layoutY="13.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>

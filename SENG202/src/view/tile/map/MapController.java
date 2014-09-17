@@ -2,6 +2,7 @@ package view.tile.map;
 
 import java.util.ArrayList;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,8 @@ public class MapController {
     ImageView mapView;
 
     private Event event;
+    
+    private Image image;
 
     private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?";
     private static String parameterPath = "path=color:0x3BF783|";
@@ -24,14 +27,41 @@ public class MapController {
 
     public void fill(Event event) {
 	this.event = event;
-	fillMap();
+	
+	Task<Void> task = new Task<Void>() {
+
+	    @Override
+	    protected Void call() throws Exception {
+		getImage();
+		return null;
+	    }
+	    
+	    @Override
+	    protected void succeeded() {
+		fillMap();
+	    }
+	};
+	
+	Thread thread = new Thread(task);
+	thread.start();
+	
+	
+	
+	/*Platform.runLater(new Runnable() {
+	    
+	    @Override
+	    public void run() {
+		fillMap();
+		
+	    }
+	});*/
     }
 
     private void fillMap() {
-	mapView.setImage(getImage());
+	mapView.setImage(image);
     }
 
-    private Image getImage() {
+    private void getImage() {
 	StringBuilder stringMapRequest = new StringBuilder();
 	stringMapRequest.append(urlStaticMap);
 	stringMapRequest.append(parameterSize);
@@ -53,9 +83,7 @@ public class MapController {
 	stringMapRequest.append(parameterPath);
 	stringMapRequest.append(event.getPathString());
 
-	Image mapImage = new Image(stringMapRequest.toString());
-
-	return mapImage;
+	image = new Image(stringMapRequest.toString());
     }
 
 }

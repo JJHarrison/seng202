@@ -1,49 +1,79 @@
 package view.analysis;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import view.tile.Tile;
-import data.model.DataPoint;
 import data.model.Event;
 
 public class AnalysisController {
 
     @FXML
     VBox tileBox;
-
+    
+    Tile tile1;
+    Tile tile2;
+    Tile tile3;
+    
     @FXML
     void initialize() {
-	ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-	Calendar c3 = new GregorianCalendar(2005, // Year
-		5, // Month
-		10, // Day
-		23, // Hour
-		42, // Minute
-		28); // Second
-	Calendar c4 = new GregorianCalendar(2005, // Year
-		5, // Month
-		10, // Day
-		23, // Hour
-		43, // Minute
-		5); // Second
 
-	DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
-		.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
-		.prevDataPoint(null).build();
+    }
 
-	DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
-		.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
-		.prevDataPoint(p1).build();
+    public void addTiles(Event event1, Event event2, Event event3) {
+	tileBox.getChildren().clear();
+	
+	Task<Void> task = new Task<Void>() {
 
-	points.add(p1);
-	points.add(p2);
-	tileBox.getChildren().addAll(new Tile(new Event("Yay", points)),
-		new Tile(new Event("Jay", points)),
-		new Tile(new Event("Wins", points)));
+	    @Override
+	    protected Void call() throws Exception {
+		tile1 = new Tile(event1);
+		return null;
+	    }
+	    
+	    @Override
+	    protected void succeeded() {
+		tileBox.getChildren().add(tile1);
+	    }
+	};
+	
+	Thread thread = new Thread(task);
+	thread.start();
+	
+	Task<Void> task1 = new Task<Void>() {
+
+	    @Override
+	    protected Void call() throws Exception {
+		tile2 = new Tile(event2);
+		return null;
+	    }
+	    
+	    @Override
+	    protected void succeeded() {
+		tileBox.getChildren().add(tile2);
+	    }
+	};
+	
+	Thread thread1 = new Thread(task1);
+	thread1.start();
+	
+	Task<Void> task2 = new Task<Void>() {
+
+	    @Override
+	    protected Void call() throws Exception {
+		tile3 = new Tile(event3);
+		return null;
+	    }
+	    
+	    @Override
+	    protected void succeeded() {
+		tileBox.getChildren().add(tile3);
+	    }
+	};
+	
+	Thread thread2 = new Thread(task2);
+	thread2.start();
+
     }
 
 }
