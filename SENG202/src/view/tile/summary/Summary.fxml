@@ -194,12 +194,12 @@
             </AnchorPane>
             <AnchorPane fx:id="paneWarning" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F98794;" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <children>
-                  <Label layoutX="23.0" layoutY="13.0" text="Warning:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                  <Label layoutX="23.0" layoutY="13.0" text="Health Alert:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelWarning" layoutX="160.0" layoutY="13.0" text="Brachycardia detected" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="labelWarning" layoutX="160.0" layoutY="13.0" text="Brachycardia detected" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="24.0" />
                      </font>
