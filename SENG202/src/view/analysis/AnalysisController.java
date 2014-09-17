@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import data.model.DataPoint;
-import data.model.Event;
-import view.tile.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import view.tile.Tile;
+import data.model.DataPoint;
+import data.model.Event;
 
 public class AnalysisController {
 

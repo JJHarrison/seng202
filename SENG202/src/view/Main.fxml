@@ -68,29 +68,35 @@
         </rowConstraints>
          <children>
             <CalendarView fx:id="calendarView" GridPane.rowIndex="1" />
-            <VBox alignment="TOP_CENTER" spacing="10.0" stylesheets="@circle.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <VBox alignment="TOP_CENTER" stylesheets="@circle.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
-                  <ToggleButton fx:id="buttonDash" mnemonicParsing="false" onAction="#loadDash" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Dash">
+                  <ToggleButton fx:id="buttonDash" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadDash" prefHeight="75.0" style="-fx-background-radius: 0;" styleClass="ToggleButton" text="Dash">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="36.0" />
                      </font>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </ToggleButton>
-                  <ToggleButton fx:id="buttonAnalysis" mnemonicParsing="false" onAction="#loadAnalysis" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Analysis">
+                  <ToggleButton fx:id="buttonAnalysis" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadAnalysis" prefHeight="75.0" style="-fx-background-radius: 0;" styleClass="ToggleButton" text="Analysis">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="36.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </ToggleButton>
-                  <ToggleButton fx:id="buttonWeb" mnemonicParsing="false" onAction="#loadWeb" prefHeight="100.0" prefWidth="100.0" styleClass="ToggleButton" text="Web">
+                  <ToggleButton fx:id="buttonWeb" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadWeb" prefHeight="75.0" style="-fx-background-radius: 0;" styleClass="ToggleButton" text="Web">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="36.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </ToggleButton>
                </children>
                <GridPane.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </GridPane.margin>
             </VBox>
          </children>

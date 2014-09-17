@@ -6,5 +6,5 @@
     -fx-background-color: derive(#87CEFA, -5%);
 }
 .ToggleButton:selected {
-    -fx-background-color: #F98794;
+    -fx-background-color: derive(#87CEFA, -20%);
 }

@@ -8,6 +8,7 @@ package view;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -55,8 +56,13 @@ public class Main extends Application {
 	    // Show the scene containing the root layout.
 	    Scene scene = new Scene(rootLayout);
 	    stage.setScene(scene);
-	    stage.centerOnScreen();
-	    stage.show();
+	    Platform.runLater(new Runnable() {
+
+		@Override
+		public void run() {
+		    stage.show();
+		}
+	    });
 
 	} catch (IOException e) {
 	    e.printStackTrace();

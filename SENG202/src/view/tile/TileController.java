@@ -1,9 +1,5 @@
 package view.tile;
 
-import view.tile.graph.GraphController;
-import view.tile.map.MapController;
-import view.tile.summary.SummaryController;
-import view.tile.table.TableController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,6 +10,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import view.tile.graph.GraphController;
+import view.tile.map.MapController;
+import view.tile.summary.SummaryController;
+import view.tile.table.TableController;
 import data.model.Event;
 
 public class TileController {

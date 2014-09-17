@@ -9,7 +9,7 @@ public class GraphHelper {
 	    double hr = p.getHeartRate();
 	    double time = p.getDate().getTimeInMillis()
 		    - e.getStartTime().getTimeInMillis();
-	    g.addPoint(time, hr);
+	    g.addPoint(time / 1000, hr);
 	}
 	return g;
     }
@@ -26,7 +26,7 @@ public class GraphHelper {
 	    double speed = p.getSpeed();
 	    double time = p.getDate().getTimeInMillis()
 		    - e.getStartTime().getTimeInMillis();
-	    g.addPoint(time, speed);
+	    g.addPoint(time / 1000, speed);
 	}
 	return g;
     }
@@ -37,7 +37,7 @@ public class GraphHelper {
 	    double dist = p.getDistance();
 	    double time = p.getDate().getTimeInMillis()
 		    - e.getStartTime().getTimeInMillis();
-	    g.addPoint(time, dist);
+	    g.addPoint(time / 1000, dist);
 	}
 	return g;
     }
@@ -48,9 +48,11 @@ public class GraphHelper {
 	    double weight = u.getWeight();
 	    double calories = p.getDistance() * 1.03 * weight; // check this
 							       // formula
+	    
+	    ////////////////////////////// Put calories burned in datapoint....
 	    double time = p.getDate().getTimeInMillis()
 		    - e.getStartTime().getTimeInMillis();
-	    g.addPoint(time, calories);
+	    g.addPoint(time / 1000, calories);
 	}
 	return g;
     }
@@ -61,7 +63,7 @@ public class GraphHelper {
 	    double alt = p.getAltitude();
 	    double time = p.getDate().getTimeInMillis()
 		    - e.getStartTime().getTimeInMillis();
-	    g.addPoint(time, alt);
+	    g.addPoint(time / 1000, alt);
 	}
 	return g;
     }

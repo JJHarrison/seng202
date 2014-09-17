@@ -87,7 +87,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="labelCalories" alignment="BOTTOM_RIGHT" prefHeight="120.0" text="396" textFill="LIGHTSKYBLUE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="15.0">
+                              <Label fx:id="labelCalories" alignment="BOTTOM_RIGHT" prefHeight="120.0" text="396" textFill="#1AAB07" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="15.0">
                                  <font>
                                     <Font size="96.0" />
                                  </font>

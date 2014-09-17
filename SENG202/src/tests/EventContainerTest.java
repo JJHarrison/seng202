@@ -5,9 +5,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
+import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
-import data.model.DataPoint;
 
 ;
 

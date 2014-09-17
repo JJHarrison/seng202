@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.tile.graph.GraphController">
+<StackPane prefHeight="500.0" prefWidth="900.0" stylesheets="@chart.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.tile.graph.GraphController">
    <children>
       <GridPane hgap="10.0" vgap="10.0">
         <columnConstraints>
@@ -21,9 +21,9 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </StackPane.margin>
          <children>
-            <LineChart>
+            <LineChart fx:id="lineChart">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <NumberAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
@@ -45,32 +45,32 @@
                   <Insets />
                </GridPane.margin>
                <children>
-                  <ToggleButton mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Heart Rate">
+                  <ToggleButton fx:id="buttonHR" mnemonicParsing="false" onAction="#actionHR" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Heart Rate">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Stress" GridPane.columnIndex="5">
+                  <ToggleButton fx:id="buttonStress" mnemonicParsing="false" onAction="#actionStress" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Stress" GridPane.columnIndex="5">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Calories" GridPane.columnIndex="3">
+                  <ToggleButton fx:id="buttonCalories" mnemonicParsing="false" onAction="#actionCalories" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Calories" GridPane.columnIndex="3">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Speed" GridPane.columnIndex="1">
+                  <ToggleButton fx:id="buttonSpeed" mnemonicParsing="false" onAction="#actionSpeed" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Speed" GridPane.columnIndex="1">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Distance" GridPane.columnIndex="2">
+                  <ToggleButton fx:id="buttonDistance" mnemonicParsing="false" onAction="#actionDistance" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Distance" GridPane.columnIndex="2">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Altitude" GridPane.columnIndex="4">
+                  <ToggleButton fx:id="buttonAltitude" mnemonicParsing="false" onAction="#actionAltitude" prefHeight="40.0" prefWidth="110.0" styleClass="ToggleButton" text="Altitude" GridPane.columnIndex="4">
                      <font>
                         <Font size="16.0" />
                      </font>

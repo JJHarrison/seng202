@@ -28,8 +28,11 @@ public class MapController {
     }
 
     private void fillMap() {
-	StringBuilder stringMapRequest = new StringBuilder();
+	mapView.setImage(getImage());
+    }
 
+    private Image getImage() {
+	StringBuilder stringMapRequest = new StringBuilder();
 	stringMapRequest.append(urlStaticMap);
 	stringMapRequest.append(parameterSize);
 
@@ -51,7 +54,8 @@ public class MapController {
 	stringMapRequest.append(event.getPathString());
 
 	Image mapImage = new Image(stringMapRequest.toString());
-	mapView.setImage(mapImage);
+
+	return mapImage;
     }
 
 }

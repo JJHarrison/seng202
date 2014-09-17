@@ -1,6 +1,6 @@
 package data.model;
 
-import java.util.ArrayList;
+import javafx.scene.chart.XYChart;
 
 /**
  * This class provides a basic model for graphs, which can be used in the GUI.
@@ -13,7 +13,7 @@ public class Graph {
     private String title;
     private String xName;
     private String yName;
-    ArrayList<double[]> points;
+    XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
 
     /**
      * Constructor
@@ -29,7 +29,7 @@ public class Graph {
 	this.title = title;
 	this.xName = xName;
 	this.yName = yName;
-	this.points = new ArrayList<double[]>();
+	series.setName(title);
     }
 
     /**
@@ -41,8 +41,7 @@ public class Graph {
      *            y value
      */
     public void addPoint(double x, double y) {
-	double[] p = { x, y };
-	this.points.add(p);
+	series.getData().add(new XYChart.Data<Number, Number>(x, y));
     }
 
     /**
@@ -77,7 +76,7 @@ public class Graph {
      * 
      * @return points
      */
-    public ArrayList<double[]> getPoints() {
-	return points;
+    public XYChart.Series<Number, Number> getPoints() {
+	return series;
     }
 }

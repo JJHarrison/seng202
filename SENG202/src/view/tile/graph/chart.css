@@ -1,0 +1,12 @@
+.chart {
+    -fx-font-family: Tahoma;
+    -fx-font-size: 1.2em;
+    -fx-text-fill: #4682b4;   
+    -fx-legend-visible:false;
+    -fx-create-symbols:false  
+}
+
+.chart-series-line {    
+    -fx-stroke-width: 2px;
+    -fx-effect: null;
+}
