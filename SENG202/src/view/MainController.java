@@ -126,11 +126,11 @@ public class MainController {
 
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewDash);
-	ft = new FadeTransition(Duration.millis(500), viewDash);
+	ft = new FadeTransition(Duration.millis(250), viewDash);
 	ft.setFromValue(0);
 	ft.setToValue(1);
 	ft.play();
-	ft = new FadeTransition(Duration.millis(500), calendarView);
+	ft = new FadeTransition(Duration.millis(250), calendarView);
 	ft.setToValue(0);
 	ft.play();
 	calendarView.disableProperty().set(true);
@@ -142,11 +142,11 @@ public class MainController {
 
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewAnalysis);
-	ft = new FadeTransition(Duration.millis(500), viewAnalysis);
+	ft = new FadeTransition(Duration.millis(250), viewAnalysis);
 	ft.setFromValue(0);
 	ft.setToValue(1);
 	ft.play();
-	ft = new FadeTransition(Duration.millis(500), calendarView);
+	ft = new FadeTransition(Duration.millis(250), calendarView);
 	ft.setToValue(1);
 	ft.play();
 	calendarView.disableProperty().set(false);
@@ -158,11 +158,11 @@ public class MainController {
 	
 	viewMainContent.getChildren().clear();
 	viewMainContent.getChildren().add(viewWeb);
-	ft = new FadeTransition(Duration.millis(500), viewWeb);
+	ft = new FadeTransition(Duration.millis(250), viewWeb);
 	ft.setFromValue(0);
 	ft.setToValue(1);
 	ft.play();
-	ft = new FadeTransition(Duration.millis(500), calendarView);
+	ft = new FadeTransition(Duration.millis(250), calendarView);
 	ft.setToValue(0);
 	ft.play();
 	calendarView.disableProperty().set(true);
