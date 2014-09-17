@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="600.0" prefWidth="200.0">
          <children>
 	            <FlowPane alignment="CENTER" layoutX="86.0" layoutY="10.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -10%);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 	               <children>
@@ -27,6 +28,7 @@
                   </Label>
                </children>
             </FlowPane>
+            <PieChart layoutX="53.0" layoutY="79.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
          </children>
       </AnchorPane>
    </children>

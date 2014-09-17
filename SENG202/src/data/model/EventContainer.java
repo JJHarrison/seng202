@@ -2,6 +2,7 @@ package data.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -83,5 +84,20 @@ public class EventContainer implements Serializable {
      */
     private String dateString(Date date) {
 	return new SimpleDateFormat("dd/MM/yyyy").format(date.getTime());
+    }
+    
+
+    /**
+     * Used in DB.
+     * @return All of the events as a collection.
+     */
+    public Collection<Event> getAllEvents() {
+	LinkedList<Event> events = new LinkedList<Event>();
+	
+	for (LinkedList<Event> list_i : days.values()) {
+	    events.addAll(list_i);
+	}
+	
+	return events;
     }
 }
