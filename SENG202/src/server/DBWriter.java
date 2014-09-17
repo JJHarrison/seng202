@@ -29,6 +29,40 @@ public class DBWriter {
 
     // private PreparedStatement readStatement = null;
 
+    public void getUserID() {
+    	int id;
+    	try {
+    	    connect = DriverManager.getConnection(url, admin, password);
+    	    statement = connect.createStatement();
+    	    resultSet = statement.executeQuery("select * from FITR.USER");
+    	    while (resultSet.next()) {
+    		id = resultSet.getInt("user_id");
+    		System.out.println(id);
+    	    }
+    	} catch (Exception e) {
+    	    e.printStackTrace();
+    	}
+        }
+
+    public boolean isUserStored(User user){
+    	boolean isThere = false;
+    	String query = String.format("SELECT * FROM FITR.USER where user_id = \"%s\"", user.getName());
+    	
+    	try {
+			connect = DriverManager.getConnection(url, admin, password);
+			statement = connect.createStatement();
+			resultSet = statement.executeQuery(query);
+			if(resultSet.next()){
+				isThere = true;
+				System.out.println("User exists in database");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	
+    	return isThere;
+    }
+    
     public void writeUserProfile(User user) throws Exception {
     	try {
     	    connect = DriverManager.getConnection(url, admin, password);
@@ -66,23 +100,42 @@ public class DBWriter {
     	}
         }
 
-    public void getUserID() {
-    	int id;
-    	try {
-    	    connect = DriverManager.getConnection(url, admin, password);
-    	    statement = connect.createStatement();
-    	    resultSet = statement.executeQuery("select * from FITR.USER");
-    	    while (resultSet.next()) {
-    		id = resultSet.getInt("user_id");
-    		System.out.println(id);
-    	    }
-    	} catch (Exception e) {
-    	    e.printStackTrace();
+    public void writeUser(User user){
+    	if(! isUserStored(user)){
+    		try {
+				writeUserProfile(user);
+				//
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	}
-        }
-
+    }
+    			
+			
+    	
+ 
         
-        public void writeEventInfo(User user, Event event) {
+        
+
+    
+    public boolean isEventStored(Event event){
+    	boolean isThere = false;
+    	String query = String.format("SELECT * FROM FITR.EVENT where event_name = \"%s\"", event.getEventName());;
+    	try {
+			connect = DriverManager.getConnection(url, admin, password);
+			statement = connect.createStatement();
+			resultSet = statement.executeQuery(query);
+			if(resultSet.next()){
+				isThere = true;
+			}
+    	} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return isThere;
+    }
+    
+    public void writeEventInfo(User user, Event event) {
     	try {
     	    connect = DriverManager.getConnection(url, admin, password);
     	    statement = connect.createStatement();
@@ -121,79 +174,67 @@ public class DBWriter {
     	    }
     	}
         }
-
-        
-        public boolean isEventStored(Event event){
-        	boolean isThere = false;
-        	String query;
-        	try {
-    			connect = DriverManager.getConnection(url, admin, password);
-    			statement = connect.createStatement();
-    			query = String.format("SELECT * FROM FITR.EVENT where event_name = \"%s\"", event.getEventName());
-    			resultSet = statement.executeQuery(query);
-    			if(resultSet.next()){
-    				isThere = true;
-    				System.out.println(resultSet.getString("event_name"));
+    
+    public void writeEvent(User user, Event event){
+    	if(! isEventStored(event)){
+    		try{
+    			writeEventInfo(user, event);
+    			for(DataPoint point : event.getDataPoints()){
+    				writeDataPoint(event, point);
     			}
-        	} catch (SQLException e) {
+    		}
+    		catch (Exception e){
     			e.printStackTrace();
     		}
-        	return isThere;
-        }
-        
-        
-        public void writeEvent(User user, Event event){
-        	if(! isEventStored(event)){
-        		try{
-        			writeEventInfo(user, event);
-        			for(DataPoint point : event.getDataPoints()){
-        				writeDataPoint(event, point);
-        			}
-        		}
-        		catch (Exception e){
-        			e.printStackTrace();
-        		}
-        	}
-        }
-        
-        public void writeDataPoint(Event event, DataPoint point) {
-    	try {
-    	    connect = DriverManager.getConnection(url, admin, password);
-    	    statement = connect.createStatement();
-    	    preparedStatement = connect
-    		    .prepareStatement(
-    			    "INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    			    Statement.RETURN_GENERATED_KEYS);
-    	    preparedStatement.setString(1, event.getEventName()); // event_name
-    	    preparedStatement.setTimestamp(2, new Timestamp(event
-    		    .getStartTime().getTimeInMillis()));
-    	    preparedStatement.setTimestamp(3, new Timestamp(point.getDate()
-    		    .getTimeInMillis()));
-    	    preparedStatement.setInt(4, point.getHeartRate());
-    	    preparedStatement.setDouble(5, point.getLatitude());
-    	    preparedStatement.setDouble(6, point.getLongitude());
-    	    preparedStatement.setDouble(7, point.getAltitude());
-    	    preparedStatement.setDouble(8, point.getSpeed());
-    	    preparedStatement.setDouble(9, point.getDistance());
-    	    preparedStatement.executeUpdate();
-    	} catch (SQLException e) {
-    	    e.printStackTrace();
-    	} finally {
-    	    try {
-    		if (resultSet != null) {
-    		    resultSet.close();
-    		}
-    		if (statement != null) {
-    		    statement.close();
-    		}
-    		if (connect != null) {
-    		    connect.close();
-    		}
-    	    } catch (SQLException e) {
-    		e.printStackTrace();
-    	    }
     	}
-     }
+    }
+    
+    public void writeDataPoint(Event event, DataPoint point) {
+	try {
+	    connect = DriverManager.getConnection(url, admin, password);
+	    statement = connect.createStatement();
+	    preparedStatement = connect
+		    .prepareStatement(
+			    "INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			    Statement.RETURN_GENERATED_KEYS);
+	    preparedStatement.setString(1, event.getEventName()); // event_name
+	    preparedStatement.setTimestamp(2, new Timestamp(event
+		    .getStartTime().getTimeInMillis()));
+	    preparedStatement.setTimestamp(3, new Timestamp(point.getDate()
+		    .getTimeInMillis()));
+	    preparedStatement.setInt(4, point.getHeartRate());
+	    preparedStatement.setDouble(5, point.getLatitude());
+	    preparedStatement.setDouble(6, point.getLongitude());
+	    preparedStatement.setDouble(7, point.getAltitude());
+	    preparedStatement.setDouble(8, point.getSpeed());
+	    preparedStatement.setDouble(9, point.getDistance());
+	    preparedStatement.executeUpdate();
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	} finally {
+	    try {
+		if (resultSet != null) {
+		    resultSet.close();
+		}
+		if (statement != null) {
+		    statement.close();
+		}
+		if (connect != null) {
+		    connect.close();
+		}
+	    } catch (SQLException e) {
+		e.printStackTrace();
+	    }
+	}
+ }
+    
+        
+        
+        
+        
+        
+        
+        
         
     public static void main(String[] args) {
     	DBWriter dbw = new DBWriter();
