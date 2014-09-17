@@ -272,8 +272,10 @@ public class User implements Serializable {
     	points.add(p1);
     	points.add(p2);
     	Event event = new Event("My Event", points);
+    	Event event2 = new Event("My Event2", points);
     	EventContainer events = new EventContainer();
     	events.addEvent(event);
+    	events.addEvent(event2);
     	User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9), Gender.MALE, 85.3, 1.9, events, 120);
     	return mock;
     }

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.ListIterator;
+
 import user.User;
 import user.User.Gender;
 import data.model.DataPoint;
@@ -46,15 +48,14 @@ public class DBWriter {
 
     public boolean isUserStored(User user){
     	boolean isThere = false;
-    	String query = String.format("SELECT * FROM FITR.USER where user_id = \"%s\"", user.getName());
-    	
+    	String query = String.format("SELECT * FROM FITR.USER where user_id = \"%s\"", user.getUserId());    	
     	try {
 			connect = DriverManager.getConnection(url, admin, password);
 			statement = connect.createStatement();
 			resultSet = statement.executeQuery(query);
 			if(resultSet.next()){
 				isThere = true;
-				System.out.println("User exists in database");
+				System.out.println("User exists in database"); //test
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,8 +70,7 @@ public class DBWriter {
     	    statement = connect.createStatement();
     	    preparedStatement = connect
     		    .prepareStatement(
-    			    "INSERT into fitr.user (user_id, username, dateofbirth, weight, height, password, gender, bmi) "
-    				    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+    			    "INSERT into fitr.user VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
     			    Statement.RETURN_GENERATED_KEYS);
     	    preparedStatement.setInt(1, user.getUserId());
     	    preparedStatement.setString(2, user.getName());
@@ -104,8 +104,9 @@ public class DBWriter {
     	if(! isUserStored(user)){
     		try {
 				writeUserProfile(user);
-				//
-				
+				for(Event event : user.getEvents().getAllEvents()){
+					writeEvent(user, event);
+				}				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -277,16 +278,19 @@ public class DBWriter {
 
 		points.add(p1);
 		points.add(p2);
-		Event e = new Event("My Event", points);
-
+		Event e = new Event("My Event333", points);
+		mocky.getEvents().addEvent(e);
 		try {
-		     dbw.writeUserProfile(mocky);
+		    // dbw.writeUserProfile(mocky);
 		    // dbw.writeEvent(e);
 		    // dbw.writeDataPoint(e, p2);
 			// System.out.println(dbw.isEventStored(e));
-			//dbw.writeEventInfo(e);
+			//dbw.writeEventInfo(mocky, e);
 		    // dbw.getUserID();
-			dbw.writeEvent(mocky, e);
+			//dbw.writeEvent(mocky, e);
+			dbw.writeUser(mocky);
+			mocky.getEvents().addEvent(e);
+			dbw.writeUser(mocky);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
