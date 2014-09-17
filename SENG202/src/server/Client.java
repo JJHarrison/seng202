@@ -132,65 +132,15 @@ public class Client {
 	return "[" + getCurrentTime() + "]<Client>";
     }
 
+    
+    
+    
     public static void main(String[] args) {
 	Client c = new Client();
 	c.setupConnection();
-	// Just test strings at the moment, will need to build on this when we
-	// know what we are actually sending
-	User u = new User("New User", new GregorianCalendar(1961, 8, 9),
-		Gender.MALE);
-	u.setWeight(81.2);
-	u.setHeight(1.8);
 
-	// set start and finish times 3 minutes apart
-	@SuppressWarnings("unused")
-	Calendar c1 = new GregorianCalendar(2005, // Year
-		5, // Month
-		10, // Day
-		23, // Hour
-		42, // Minute
-		28); // Second
-	@SuppressWarnings("unused")
-	Calendar c2 = new GregorianCalendar(2005, // Year
-		5, // Month
-		10, // Day
-		23, // Hour
-		45, // Minute
-		28); // Second
-
-	// e.setStartTime(c1);
-	// e.setFinishTime(c2);
-
-	// set up data points
-	ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-	Calendar c3 = new GregorianCalendar(2005, // Year
-		5, // Month
-		10, // Day
-		23, // Hour
-		42, // Minute
-		28); // Second
-	Calendar c4 = new GregorianCalendar(2005, // Year
-		5, // Month
-		10, // Day
-		23, // Hour
-		43, // Minute
-		5); // Second
-
-	// p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
-	DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
-		.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
-		.prevDataPoint(null).build();
-	// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
-	DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
-		.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
-		.prevDataPoint(p1).build();
-
-	points.add(p1);
-	points.add(p2);
-	Event e = new Event("My Event", points);
-	EventContainer ec = new EventContainer();
-	ec.addEvent(e);
-	u.setEvents(ec);
+	User u = User.mockUser();
+	//System.out.println(u.getName());
 
 	c.transferToServer(u);
 

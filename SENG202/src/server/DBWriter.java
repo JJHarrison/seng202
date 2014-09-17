@@ -1,6 +1,5 @@
 package server;
 
-import DBWriter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,8 +13,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import user.User;
+import user.User.Gender;
 import data.model.DataPoint;
 import data.model.Event;
+import data.persistant.Persistent;
 
 public class DBWriter {
     private Connection connect = null;
@@ -195,62 +196,19 @@ public class DBWriter {
      }
         
     public static void main(String[] args) {
-    	User john = new User("Test1", new GregorianCalendar(1961, 8, 9),
-    			Gender.MALE);
-		/*	try {
-			Persistent.newUser(john);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		User john2 = new User("Test2", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE);
-
+    	DBWriter dbw = new DBWriter();
+    	User mocky = User.mockUser();
+    	
 		try {
-			Persistent.newUser(john2);
+			Persistent.newUser(mocky);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		User john3 = new User("Test3", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE);
-		try {
-			Persistent.newUser(john3);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		System.out.println(john.getUserId());
-		System.out.println(john2.getUserId());
-		System.out.println(john3.getUserId());
-
-	*/	
 		
-		
-		john.setWeight(81.2);
-		john.setHeight(1.8);
-		DBWriter dbw = new DBWriter();
 		ArrayList<DataPoint> points;
-		@SuppressWarnings("unused")
-		Calendar c1;
-		@SuppressWarnings("unused")
-		Calendar c2;
-		DataPoint p1;
-		DataPoint p2;
 
-		// set start and finish times 3 minutes apart
-		c1 = new GregorianCalendar(2005, // Year
-			5, // Month
-			10, // Day
-			23, // Hour
-			42, // Minute
-			28); // Second
-		c2 = new GregorianCalendar(2005, // Year
-			5, // Month
-			10, // Day
-			23, // Hour
-			45, // Minute
-			28); // Second
+		
 
 		// set up data points
 		points = new ArrayList<DataPoint>();
@@ -268,11 +226,11 @@ public class DBWriter {
 			5); // Second
 
 		// p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
-		p1 = new DataPoint.Builder().date(c3).heartRate(120)
+		DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
 			.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
 			.prevDataPoint(null).build();
 		// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
-		p2 = new DataPoint.Builder().date(c4).heartRate(125)
+		DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
 			.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
 			.prevDataPoint(p1).build();
 
@@ -281,13 +239,13 @@ public class DBWriter {
 		Event e = new Event("My Event", points);
 
 		try {
-		     dbw.writeUserProfile(john);
+		     dbw.writeUserProfile(mocky);
 		    // dbw.writeEvent(e);
 		    // dbw.writeDataPoint(e, p2);
 			// System.out.println(dbw.isEventStored(e));
 			//dbw.writeEventInfo(e);
 		    // dbw.getUserID();
-			dbw.writeEvent(john, e);
+			dbw.writeEvent(mocky, e);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}

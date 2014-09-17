@@ -1,9 +1,12 @@
 package user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import data.model.DataPoint;
+import data.model.Event;
 import data.model.EventContainer;
 import data.persistant.Persistent;
 
@@ -229,5 +232,49 @@ public class User implements Serializable {
      */
     public void setAverageHeartRate(int averageHeartRate) {
 	this.averageHeartRate = averageHeartRate;
+    }
+    
+    
+    
+    
+    /**
+     * TEMPORY PLEASE DONT DELETE!!!!!!
+     * Tired of making new users to test my code, please leave this here till end of project
+     * @return
+     */
+   
+    public static User mockUser(){
+    	ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+    	
+    	// set up data points
+    	Calendar c3 = new GregorianCalendar(2005, // Year
+    		5, // Month
+    		10, // Day
+    		23, // Hour
+    		42, // Minute
+    		28); // Second
+    	Calendar c4 = new GregorianCalendar(2005, // Year
+    		5, // Month
+    		10, // Day
+    		23, // Hour
+    		43, // Minute
+    		5); // Second    	
+    	
+    	// p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
+    	DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
+    		.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
+    		.prevDataPoint(null).build();
+    	// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
+    	DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
+    		.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
+    		.prevDataPoint(p1).build();
+    	
+    	points.add(p1);
+    	points.add(p2);
+    	Event event = new Event("My Event", points);
+    	EventContainer events = new EventContainer();
+    	events.addEvent(event);
+    	User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9), Gender.MALE, 85.3, 1.9, events, 120);
+    	return mock;
     }
 }
