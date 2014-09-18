@@ -36,10 +36,8 @@ public class PersistentTest extends TestCase {
 	
 	public void testFilePathSetWrong() {
 		Persistent.clear();
-		
 		Persistent.setFilePath(personalFilePath + "/1");
-		System.out.println("_____");
-		assertEquals(true, Persistent.filePathSet());
+		assertEquals(false, Persistent.filePathSet());
 	}
 	
 

@@ -30,7 +30,6 @@ public class Persistent {
 	 * @param filePath
 	 */
 	public static void setFilePath(String filePath) {
-		// filePath will be obtained from a file chooser so will always be an existing
 		prefs.put("FilePath", filePath + "/Fitr/");
 		try {
 			prefs.flush();
@@ -38,13 +37,24 @@ public class Persistent {
 			e.printStackTrace();
 		}
 
-		// only creates new directory if the selected one doesn't already exist
-		if (!new File(getFilePath()).exists()) {
-			System.out.println("Setting up directory" + filePath);
-			setupDirectory();
-		} else {
-			// if the Fitr directory already exists then use it.
-			Persistent.initialize();
+		if(new File(filePath).exists()) {
+			// only creates new directory if the selected one doesn't already exist
+			if (!new File(getFilePath()).exists()) {
+				setupDirectory();
+			} else {
+				// if the Fitr directory already exists then use it.
+				Persistent.initialize();
+			}
+		}
+	}
+
+
+	/**
+	 * sets up a new Fitr directory with a users sub directory at the file path
+	 */
+	public static void setupDirectory() {
+		if (getFilePath() != null) {
+			new File(getFilePath()).mkdirs();
 		}
 	}
 
@@ -56,16 +66,7 @@ public class Persistent {
 	public static String getFilePath() {
 		return prefs.get("FilePath", null);
 	}
-
-	/**
-	 * sets up a new Fitr directory with a users sub directory at the file path
-	 */
-	public static void setupDirectory() {
-		if (getFilePath() != null) {
-			new File(getFilePath()).mkdirs();
-		}
-	}
-
+	
 	/**
 	 * returns the file path to the current users profile
 	 * 
@@ -83,13 +84,10 @@ public class Persistent {
 	public static boolean filePathSet() {
 		boolean pathSet = true;
 		File filePath;
-		System.out.println(getFilePath());
 		if (getFilePath() == null) {
 			filePath = null;
 		} else {
-			System.out.println(getFilePath() + "is not null");
 			filePath = new File(getFilePath());
-			System.out.println("File path exists = " + filePath.exists());
 		}
 
 		if (filePath == null || !filePath.exists()) {
@@ -201,6 +199,11 @@ public class Persistent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public static void exit() throws BackingStoreException {
+		prefs.flush();
 	}
 
 	public static void main(String args[]) throws Exception {
