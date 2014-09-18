@@ -143,7 +143,9 @@ public class DataPoint implements Serializable {
 		} else {
 			this.distance = 0.0;
 			this.speed = 0.0;
-			this.stressLevel = 1.0;
+			double stress = 0.0;
+			stress = (200 / Math.PI) * Math.atan(stress);
+			setStressLevel(stress);
 		}
 	}
 
