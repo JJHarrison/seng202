@@ -47,6 +47,7 @@ public class Event implements Serializable {
 		this.eventName = eventName;
 		this.points = points;
 		calculate();
+		calculateStress();
 	}
 
 	/**
@@ -73,6 +74,32 @@ public class Event implements Serializable {
 		finishTime = points.get(points.size() - 1).getDate();
 		averageHeartRate = totalHR / numPoints;
 		averageSpeed = distance / getDuration();
+	}
+	
+	private void calculateStress() {
+		double sf = calculateStressFactor();
+		double stress;
+		
+		for (DataPoint p: points) {
+			stress = sf * (p.getHeartRate() / p.getSpeed());
+			p.setStressLevel(stress);
+		}
+	}
+	
+	private double calculateStressFactor() {
+		double totalSpeed = 0.0;
+		int totalHeartRate = 0;
+		double avgSpeed, avgHeartRate;
+		
+		for (DataPoint p: points) {
+			totalSpeed += p.getSpeed();
+			totalHeartRate += p.getHeartRate();
+		}
+		
+		avgSpeed = totalSpeed / points.size();
+		avgHeartRate = (float)totalHeartRate / points.size();
+		
+		return avgSpeed / avgHeartRate;
 	}
 
 	/**
