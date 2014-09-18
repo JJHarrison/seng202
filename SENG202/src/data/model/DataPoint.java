@@ -271,7 +271,7 @@ public class DataPoint implements Serializable {
 	 * @return calories burnt 
 	 */
 	public double calculateCalories() {
-		double weight = Persistent.getCurrentUser().getWeight();
+		double weight = 75;//Persistent.getCurrentUser().getWeight();
 		double runMET = 7.5;
 		double timeInHours = (double) duration / 3600;
 		double calories = weight * runMET * timeInHours;

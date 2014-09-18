@@ -40,6 +40,7 @@ public class Persistent {
 
 		// only creates new directory if the selected one doesn't already exist
 		if (!new File(getFilePath()).exists()) {
+			System.out.println("Setting up directory" + filePath);
 			setupDirectory();
 		} else {
 			// if the Fitr directory already exists then use it.
@@ -82,10 +83,13 @@ public class Persistent {
 	public static boolean filePathSet() {
 		boolean pathSet = true;
 		File filePath;
+		System.out.println(getFilePath());
 		if (getFilePath() == null) {
 			filePath = null;
 		} else {
+			System.out.println(getFilePath() + "is not null");
 			filePath = new File(getFilePath());
+			System.out.println("File path exists = " + filePath.exists());
 		}
 
 		if (filePath == null || !filePath.exists()) {
@@ -187,6 +191,15 @@ public class Persistent {
 					userNames.add(newUser.getName());
 				}
 			}
+		}
+	}
+	
+	public static void clear() {
+		try {
+			prefs.clear();
+		} catch (BackingStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
