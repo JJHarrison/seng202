@@ -116,6 +116,7 @@ public class Persistent {
 
 			users.add(user);
 			userNames.add(user.getName());
+			System.out.println("Saving");
 			Saver.SaveUser(user);
 			prefs.putInt("LastUserID", prefs.getInt("LastUserID", 0) + 1);
 		} else {
