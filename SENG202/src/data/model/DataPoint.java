@@ -31,6 +31,7 @@ public class DataPoint implements Serializable {
 	private double distance;
 	private double duration;
 	private double caloriesBurned;
+	private double stressLevel;
 
 	/**
 	 * Builder for DataPoint class
@@ -138,10 +139,11 @@ public class DataPoint implements Serializable {
 			this.distance = calculateDistance(builder.previousPointPoint);
 			this.speed = calculateSpeed(calculateDeltaTime(builder.previousPointPoint));
 			this.duration = calculateDeltaTime(builder.previousPointPoint);
-			caloriesBurned = calculateCalories();
+			this.caloriesBurned = calculateCalories();
 		} else {
 			this.distance = 0.0;
 			this.speed = 0.0;
+			this.stressLevel = 1.0;
 		}
 	}
 
@@ -280,6 +282,14 @@ public class DataPoint implements Serializable {
 	
 	public double getCalories() {
 		return caloriesBurned;
+	}
+	
+	public double getStressLevel() {
+		return stressLevel;
+	}
+	
+	public void setStressLevel(double stressLevel) {
+		this.stressLevel = stressLevel;
 	}
 
 	/**

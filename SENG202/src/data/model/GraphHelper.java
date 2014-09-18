@@ -16,7 +16,12 @@ public class GraphHelper {
 
 	public static Graph getStressLevelGraph(Event e) {
 		Graph g = new Graph("Stress Level", "Time (s)", "Stress");
-		// TODO
+		for (DataPoint p : e.getPoints()) {
+			double stress = p.getStressLevel();
+			double time = p.getDate().getTimeInMillis()
+					- e.getStartTime().getTimeInMillis();
+			g.addPoint(time / 1000, stress);
+		}
 		return g;
 	}
 
