@@ -20,263 +20,262 @@ import data.persistant.Persistent;
  * @author Fitr.Team
  */
 public class User implements Serializable {
-    /**
+	/**
      * 
      */
-    private static final long serialVersionUID = -5891761384182212793L;
-    private Calendar dateofBirth;
-    private String name;
-    private double weight;
-    private double height;
-    private Gender gender;
-    private double BMI;
-    private int averageHeartRate;
-    private EventContainer events;
-    private int userID;
+	private static final long serialVersionUID = -5891761384182212793L;
+	private Calendar dateofBirth;
+	private String name;
+	private double weight;
+	private double height;
+	private Gender gender;
+	private double BMI;
+	private int averageHeartRate;
+	private EventContainer events;
+	private int userID;
 
-    public enum Gender {
-	MALE, FEMALE
-    }
-
-    /**
-     * 
-     * @param name
-     *            Name of user
-     * @param dateOfBirth
-     *            Birth date of user.
-     * @param gender
-     *            Gender of user (MALE or FEMALE).
-     * @param weight
-     *            Weight of user.
-     * @param height
-     *            Height of user.
-     * @param events
-     *            For testing, but if set to NULL creates a new event container
-     */
-    public User(String name, Calendar dateOfBirth, Gender gender,
-	    double weight, double height, EventContainer events,
-	    int averageHeartRate) {
-	this.name = name;
-	this.dateofBirth = dateOfBirth;
-	this.gender = gender;
-	this.weight = weight;
-	this.height = height;
-	this.averageHeartRate = averageHeartRate;
-	this.BMI = calculateBMI();
-	this.events = (events == null) ? new EventContainer() : events;
-	userID = Persistent.getLastUserID();
-    }
-
-    /**
-     * Sets the weight for the users profile, must be in kg.
-     * 
-     * @param weight
-     *            Weight of the user in kg.
-     */
-    public void setWeight(double weight) {
-	this.weight = weight;
-	this.BMI = calculateBMI();
-    }
-
-    /**
-     * Returns the weight of the user in kg.
-     * 
-     * @return
-     */
-    public double getWeight() {
-	return weight;
-    }
-
-    /**
-     * Set the height for the users profile, must be in m.
-     * 
-     * @param height
-     *            Height of the user in m.
-     */
-    public void setHeight(double height) {
-	this.height = height;
-	this.BMI = calculateBMI();
-    }
-
-    /**
-     * Returns the height of the user in m.
-     * 
-     * @return
-     */
-    public double getHeight() {
-	return height;
-    }
-
-    /**
-     * Calculates the BMI of the user based on their height and weight and sets
-     * it to their user profile.
-     */
-    private double calculateBMI() {
-	return weight / (Math.pow(height, 2));
-    }
-
-    /**
-     * @return the BMI
-     */
-    public double getBMI() {
-	return BMI;
-    }
-
-    /**
-     * @return the dateofBirth
-     */
-    public Calendar getDateofBirth() {
-	return dateofBirth;
-    }
-
-    /**
-     * @param dateofBirth
-     *            the dateofBirth to set
-     */
-    public void setDateofBirth(Calendar dateofBirth) {
-	this.dateofBirth = dateofBirth;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-	return name;
-    }
-
-    /**
-     * @param name
-     *            The name to set
-     */
-    public void setName(String name) {
-	this.name = name;
-    }
-
-    /**
-     * @return the gender
-     */
-    public Gender getGender() {
-	return gender;
-    }
-
-    /**
-     * @param gender
-     *            the gender to set
-     */
-    public void setGender(Gender gender) {
-	this.gender = gender;
-    }
-
-    /**
-     * @return the events
-     */
-    public EventContainer getEvents() {
-	return events;
-    }
-
-    /**
-     * @param events
-     *            the events to set
-     */
-    public void setEvents(EventContainer events) {
-	this.events = events;
-    }
-
-    /**
-     * returns the user id for a user so that it can be stored in the database
-     * 
-     * @return
-     */
-    public int getUserId() {
-	return userID;
-    }
-
-    /**
-     * Returns the age of the user in years.
-     * 
-     * @return The age of the user in years.
-     */
-    public int getAge() {
-	// Need to add some functionality to prevent negative or 0 ages being
-	// returned.
-	Calendar now = new GregorianCalendar();
-	int age = (now.get(Calendar.YEAR) - this.getDateofBirth().get(
-		Calendar.YEAR));
-	return age;
-    }
-
-    @Override
-    public String toString() {
-	return String.format("%s", getName());
-    }
-
-    public String genderForDB() {
-	if (this.getGender() == Gender.MALE) {
-	    return "M";
-	} else {
-	    return "F";
+	public enum Gender {
+		MALE, FEMALE
 	}
-    }
 
-    /**
-     * 
-     * @return
-     */
-    public int getAverageHeartRate() {
-	return averageHeartRate;
-    }
+	/**
+	 * 
+	 * @param name
+	 *            Name of user
+	 * @param dateOfBirth
+	 *            Birth date of user.
+	 * @param gender
+	 *            Gender of user (MALE or FEMALE).
+	 * @param weight
+	 *            Weight of user.
+	 * @param height
+	 *            Height of user.
+	 * @param events
+	 *            For testing, but if set to NULL creates a new event container
+	 */
+	public User(String name, Calendar dateOfBirth, Gender gender,
+			double weight, double height, EventContainer events,
+			int averageHeartRate) {
+		this.name = name;
+		this.dateofBirth = dateOfBirth;
+		this.gender = gender;
+		this.weight = weight;
+		this.height = height;
+		this.averageHeartRate = averageHeartRate;
+		this.BMI = calculateBMI();
+		this.events = (events == null) ? new EventContainer() : events;
+		userID = Persistent.getLastUserID();
+	}
 
-    /**
-     * 
-     * @param averageHeartRate
-     */
-    public void setAverageHeartRate(int averageHeartRate) {
-	this.averageHeartRate = averageHeartRate;
-    }
-    
-    
-    
-    
-    /**
-     * TEMPORY PLEASE DONT DELETE!!!!!!
-     * Tired of making new users to test my code, please leave this here till end of project
-     * @return
-     */
-   
-    public static User mockUser(){
-    	ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-    	
-    	// set up data points
-    	Calendar c3 = new GregorianCalendar(2005, // Year
-    		5, // Month
-    		10, // Day
-    		23, // Hour
-    		42, // Minute
-    		28); // Second
-    	Calendar c4 = new GregorianCalendar(2005, // Year
-    		5, // Month
-    		10, // Day
-    		23, // Hour
-    		43, // Minute
-    		5); // Second    	
-    	
-    	// p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
-    	DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
-    		.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
-    		.prevDataPoint(null).build();
-    	// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
-    	DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
-    		.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
-    		.prevDataPoint(p1).build();
-    	
-    	points.add(p1);
-    	points.add(p2);
-    	Event event = new Event("My Event", points);
-    	Event event2 = new Event("My Event2", points);
-    	EventContainer events = new EventContainer();
-    	events.addEvent(event);
-    	events.addEvent(event2);
-    	User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9), Gender.MALE, 85.3, 1.9, events, 120);
-    	return mock;
-    }
+	/**
+	 * Sets the weight for the users profile, must be in kg.
+	 * 
+	 * @param weight
+	 *            Weight of the user in kg.
+	 */
+	public void setWeight(double weight) {
+		this.weight = weight;
+		this.BMI = calculateBMI();
+	}
+
+	/**
+	 * Returns the weight of the user in kg.
+	 * 
+	 * @return
+	 */
+	public double getWeight() {
+		return weight;
+	}
+
+	/**
+	 * Set the height for the users profile, must be in m.
+	 * 
+	 * @param height
+	 *            Height of the user in m.
+	 */
+	public void setHeight(double height) {
+		this.height = height;
+		this.BMI = calculateBMI();
+	}
+
+	/**
+	 * Returns the height of the user in m.
+	 * 
+	 * @return
+	 */
+	public double getHeight() {
+		return height;
+	}
+
+	/**
+	 * Calculates the BMI of the user based on their height and weight and sets
+	 * it to their user profile.
+	 */
+	private double calculateBMI() {
+		return weight / (Math.pow(height, 2));
+	}
+
+	/**
+	 * @return the BMI
+	 */
+	public double getBMI() {
+		return BMI;
+	}
+
+	/**
+	 * @return the dateofBirth
+	 */
+	public Calendar getDateofBirth() {
+		return dateofBirth;
+	}
+
+	/**
+	 * @param dateofBirth
+	 *            the dateofBirth to set
+	 */
+	public void setDateofBirth(Calendar dateofBirth) {
+		this.dateofBirth = dateofBirth;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 *            The name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public Gender getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender
+	 *            the gender to set
+	 */
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the events
+	 */
+	public EventContainer getEvents() {
+		return events;
+	}
+
+	/**
+	 * @param events
+	 *            the events to set
+	 */
+	public void setEvents(EventContainer events) {
+		this.events = events;
+	}
+
+	/**
+	 * returns the user id for a user so that it can be stored in the database
+	 * 
+	 * @return
+	 */
+	public int getUserId() {
+		return userID;
+	}
+
+	/**
+	 * Returns the age of the user in years.
+	 * 
+	 * @return The age of the user in years.
+	 */
+	public int getAge() {
+		// Need to add some functionality to prevent negative or 0 ages being
+		// returned.
+		Calendar now = new GregorianCalendar();
+		int age = (now.get(Calendar.YEAR) - this.getDateofBirth().get(
+				Calendar.YEAR));
+		return age;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s", getName());
+	}
+
+	public String genderForDB() {
+		if (this.getGender() == Gender.MALE) {
+			return "M";
+		} else {
+			return "F";
+		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getAverageHeartRate() {
+		return averageHeartRate;
+	}
+
+	/**
+	 * 
+	 * @param averageHeartRate
+	 */
+	public void setAverageHeartRate(int averageHeartRate) {
+		this.averageHeartRate = averageHeartRate;
+	}
+
+	/**
+	 * TEMPORY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
+	 * code, please leave this here till end of project
+	 * 
+	 * @return
+	 */
+
+	public static User mockUser() {
+		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
+
+		// set up data points
+		Calendar c3 = new GregorianCalendar(2005, // Year
+				5, // Month
+				10, // Day
+				23, // Hour
+				42, // Minute
+				28); // Second
+		Calendar c4 = new GregorianCalendar(2005, // Year
+				5, // Month
+				10, // Day
+				23, // Hour
+				43, // Minute
+				5); // Second
+
+		// p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
+		DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
+				.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
+				.prevDataPoint(null).build();
+		// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
+		DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
+				.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
+				.prevDataPoint(p1).build();
+
+		points.add(p1);
+		points.add(p2);
+		Event event = new Event("My Event", points);
+		Event event2 = new Event("My Event2", points);
+		EventContainer events = new EventContainer();
+		events.addEvent(event);
+		events.addEvent(event2);
+		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
+				Gender.MALE, 85.3, 1.9, events, 120);
+		return mock;
+	}
 }

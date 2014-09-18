@@ -11,79 +11,76 @@ import data.model.Event;
 
 public class MapController {
 
-    @FXML
-    ImageView mapView;
+	@FXML
+	ImageView mapView;
 
-    private Event event;
-    
-    private Image image;
+	private Event event;
 
-    private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?";
-    private static String parameterPath = "path=color:0x3BF783|";
-    private static String parameterStart = "markers=label:S|";
-    private static String parameterFinish = "markers=label:F|";
-    private static String parameterSize = "size=640x480&zoom=19";
-    private static String parameterType = "maptype=roadmap";
+	private Image image;
 
-    public void fill(Event event) {
-	this.event = event;
-	
-	Task<Void> task = new Task<Void>() {
+	private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?";
+	private static String parameterPath = "path=color:0x3BF783|";
+	private static String parameterStart = "markers=label:S|";
+	private static String parameterFinish = "markers=label:F|";
+	private static String parameterSize = "size=640x480&zoom=19";
+	private static String parameterType = "maptype=roadmap";
 
-	    @Override
-	    protected Void call() throws Exception {
-		getImage();
-		return null;
-	    }
-	    
-	    @Override
-	    protected void succeeded() {
-		fillMap();
-	    }
-	};
-	
-	Thread thread = new Thread(task);
-	thread.start();
-	
-	
-	
-	/*Platform.runLater(new Runnable() {
-	    
-	    @Override
-	    public void run() {
-		fillMap();
-		
-	    }
-	});*/
-    }
+	public void fill(Event event) {
+		this.event = event;
 
-    private void fillMap() {
-	mapView.setImage(image);
-    }
+		Task<Void> task = new Task<Void>() {
 
-    private void getImage() {
-	StringBuilder stringMapRequest = new StringBuilder();
-	stringMapRequest.append(urlStaticMap);
-	stringMapRequest.append(parameterSize);
+			@Override
+			protected Void call() throws Exception {
+				getImage();
+				return null;
+			}
 
-	stringMapRequest.append("&");
-	stringMapRequest.append(parameterStart);
-	stringMapRequest.append(event.getPointString(event.getPoints().get(0)));
+			@Override
+			protected void succeeded() {
+				fillMap();
+			}
+		};
 
-	stringMapRequest.append("&");
-	stringMapRequest.append(parameterFinish);
-	ArrayList<DataPoint> points = event.getDataPoints();
-	stringMapRequest
-		.append(event.getPointString(points.get(points.size() - 1)));
+		Thread thread = new Thread(task);
+		thread.start();
 
-	stringMapRequest.append("&");
-	stringMapRequest.append(parameterType);
+		/*
+		 * Platform.runLater(new Runnable() {
+		 * 
+		 * @Override public void run() { fillMap();
+		 * 
+		 * } });
+		 */
+	}
 
-	stringMapRequest.append("&");
-	stringMapRequest.append(parameterPath);
-	stringMapRequest.append(event.getPathString());
+	private void fillMap() {
+		mapView.setImage(image);
+	}
 
-	image = new Image(stringMapRequest.toString());
-    }
+	private void getImage() {
+		StringBuilder stringMapRequest = new StringBuilder();
+		stringMapRequest.append(urlStaticMap);
+		stringMapRequest.append(parameterSize);
+
+		stringMapRequest.append("&");
+		stringMapRequest.append(parameterStart);
+		stringMapRequest.append(event.getPointString(event.getPoints().get(0)));
+
+		stringMapRequest.append("&");
+		stringMapRequest.append(parameterFinish);
+		ArrayList<DataPoint> points = event.getDataPoints();
+		stringMapRequest
+				.append(event.getPointString(points.get(points.size() - 1)));
+
+		stringMapRequest.append("&");
+		stringMapRequest.append(parameterType);
+
+		stringMapRequest.append("&");
+		stringMapRequest.append(parameterPath);
+		stringMapRequest.append(event.getPathString());
+
+		image = new Image(stringMapRequest.toString());
+	}
 
 }

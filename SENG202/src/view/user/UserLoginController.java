@@ -9,49 +9,49 @@ import user.User;
 import data.persistant.Persistent;
 
 public class UserLoginController implements ScreenController {
-    @FXML
-    private ScreenPane myScreenPane;
+	@FXML
+	private ScreenPane myScreenPane;
 
-    @FXML
-    Button buttonCreateProfile;
-    @FXML
-    Button buttonLogin;
-    @FXML
-    Button buttonCancel;
-    @FXML
-    ListView<User> userList;
+	@FXML
+	Button buttonCreateProfile;
+	@FXML
+	Button buttonLogin;
+	@FXML
+	Button buttonCancel;
+	@FXML
+	ListView<User> userList;
 
-    @FXML
-    private void initialize() {
+	@FXML
+	private void initialize() {
 
-	buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+		buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
 
-	    public void handle(ActionEvent arg0) {
-		System.exit(0);
-	    }
-	});
+			public void handle(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 
-	buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
+		buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
 
-	    public void handle(ActionEvent arg0) {
-		System.out.println("Login");
-	    }
-	});
+			public void handle(ActionEvent arg0) {
+				System.out.println("Login");
+			}
+		});
 
-	buttonCreateProfile.setOnAction(new EventHandler<ActionEvent>() {
+		buttonCreateProfile.setOnAction(new EventHandler<ActionEvent>() {
 
-	    public void handle(ActionEvent arg0) {
-		myScreenPane.setScreen("userCreate");
-	    }
-	});
+			public void handle(ActionEvent arg0) {
+				myScreenPane.setScreen("userCreate");
+			}
+		});
 
-	userList.setItems(Persistent.getUsers());
+		userList.setItems(Persistent.getUsers());
 
-    }
+	}
 
-    @Override
-    public void setScreenPane(ScreenPane screenPage) {
-	myScreenPane = screenPage;
+	@Override
+	public void setScreenPane(ScreenPane screenPage) {
+		myScreenPane = screenPage;
 
-    }
+	}
 }

@@ -14,70 +14,70 @@ import data.persistant.Persistent;
 
 public class UserPersistController {
 
-    @FXML
-    Button buttonBrowse;
-    @FXML
-    Button buttonOk;
-    @FXML
-    Button buttonCancel;
+	@FXML
+	Button buttonBrowse;
+	@FXML
+	Button buttonOk;
+	@FXML
+	Button buttonCancel;
 
-    @FXML
-    Label labelWarning;
-    @FXML
-    Label labelFilepath;
+	@FXML
+	Label labelWarning;
+	@FXML
+	Label labelFilepath;
 
-    Property<String> file = new StringPropertyBase() {
+	Property<String> file = new StringPropertyBase() {
 
-	public String getName() {
-	    return "file";
-	}
-
-	public Object getBean() {
-	    return null;
-	}
-    };
-
-    DirectoryChooser fileChooser = new DirectoryChooser();
-
-    @FXML
-    private void initialize() {
-	file.setValue("");
-	labelWarning.setText("");
-	labelFilepath.setText("");
-
-	labelFilepath.textProperty().bind(file);
-
-	buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
-
-	    public void handle(ActionEvent event) {
-		System.exit(0);
-	    }
-	});
-
-	buttonOk.setOnAction(new EventHandler<ActionEvent>() {
-
-	    public void handle(ActionEvent event) {
-		if (labelFilepath.getText().equals("")) {
-		    labelWarning.setText("No path set!");
-		} else {
-		    Persistent.setFilePath(file.getValue());
-		    // PersistentDialog.close();
+		public String getName() {
+			return "file";
 		}
 
-	    }
-	});
-
-	buttonBrowse.setOnAction(new EventHandler<ActionEvent>() {
-
-	    public void handle(ActionEvent event) {
-		File fileBrowser = fileChooser.showDialog(null);
-		if (fileBrowser != null) {
-		    file.setValue(fileBrowser.getAbsolutePath());
+		public Object getBean() {
+			return null;
 		}
+	};
 
-	    }
-	});
+	DirectoryChooser fileChooser = new DirectoryChooser();
 
-    }
+	@FXML
+	private void initialize() {
+		file.setValue("");
+		labelWarning.setText("");
+		labelFilepath.setText("");
+
+		labelFilepath.textProperty().bind(file);
+
+		buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+
+			public void handle(ActionEvent event) {
+				System.exit(0);
+			}
+		});
+
+		buttonOk.setOnAction(new EventHandler<ActionEvent>() {
+
+			public void handle(ActionEvent event) {
+				if (labelFilepath.getText().equals("")) {
+					labelWarning.setText("No path set!");
+				} else {
+					Persistent.setFilePath(file.getValue());
+					// PersistentDialog.close();
+				}
+
+			}
+		});
+
+		buttonBrowse.setOnAction(new EventHandler<ActionEvent>() {
+
+			public void handle(ActionEvent event) {
+				File fileBrowser = fileChooser.showDialog(null);
+				if (fileBrowser != null) {
+					file.setValue(fileBrowser.getAbsolutePath());
+				}
+
+			}
+		});
+
+	}
 
 }

@@ -6,10 +6,10 @@ package view.user;
  */
 public interface ScreenController {
 
-    /**
-     * This method will allow the injection of the ScreenPane.
-     * 
-     * @param screenPage
-     */
-    public void setScreenPane(ScreenPane screenPage);
+	/**
+	 * This method will allow the injection of the ScreenPane.
+	 * 
+	 * @param screenPage
+	 */
+	public void setScreenPane(ScreenPane screenPage);
 }
