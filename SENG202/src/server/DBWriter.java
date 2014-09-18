@@ -148,7 +148,7 @@ public class DBWriter {
     			writeEventInfo(user, event);
     			// adds each of the datapoints that the event contained.
     			for(DataPoint point : event.getDataPoints()){
-    				writeDataPoint(event, point);
+    				writeDataPoint(user, event, point);
     			}
     		}
     		catch (Exception e){
@@ -249,25 +249,26 @@ public class DBWriter {
     * @param event The event that the point belongs to.
     * @param point The point that will be added to the database.
     */
-    public void writeDataPoint(Event event, DataPoint point) {
+    public void writeDataPoint(User user, Event event, DataPoint point) {
 	try {
 	    connect = DriverManager.getConnection(url, admin, password);
 	    statement = connect.createStatement();
 	    preparedStatement = connect
 		    .prepareStatement(
-			    "INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			    "INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 			    Statement.RETURN_GENERATED_KEYS);
-	    preparedStatement.setString(1, event.getEventName()); // event_name to be added to the db
-	    preparedStatement.setTimestamp(2, new Timestamp(event
+	    preparedStatement.setInt(1, user.getUserId()); // user_id to be added to the db
+	    preparedStatement.setString(2, event.getEventName()); // event_name to be added to the db
+	    preparedStatement.setTimestamp(3, new Timestamp(event
 		    .getStartTime().getTimeInMillis())); // event_startime to be added to the db
-	    preparedStatement.setTimestamp(3, new Timestamp(point.getDate()
+	    preparedStatement.setTimestamp(4, new Timestamp(point.getDate()
 		    .getTimeInMillis())); // the timepoint that will be added to the db
-	    preparedStatement.setInt(4, point.getHeartRate()); // the heartrate that will be added to the db
-	    preparedStatement.setDouble(5, point.getLatitude()); // the latitude that will be added to the db
-	    preparedStatement.setDouble(6, point.getLongitude()); // the longitude that will be added to the db
-	    preparedStatement.setDouble(7, point.getAltitude()); // the altitude that will be added to the db
-	    preparedStatement.setDouble(8, point.getSpeed()); // the speed that will be added to the db
-	    preparedStatement.setDouble(9, point.getDistance()); // the distance that will be added to the db
+	    preparedStatement.setInt(5, point.getHeartRate()); // the heartrate that will be added to the db
+	    preparedStatement.setDouble(6, point.getLatitude()); // the latitude that will be added to the db
+	    preparedStatement.setDouble(7, point.getLongitude()); // the longitude that will be added to the db
+	    preparedStatement.setDouble(8, point.getAltitude()); // the altitude that will be added to the db
+	    preparedStatement.setDouble(9, point.getSpeed()); // the speed that will be added to the db
+	    preparedStatement.setDouble(10, point.getDistance()); // the distance that will be added to the db
 	    preparedStatement.executeUpdate(); // execute the query/upload to the database
 	} catch (SQLException e) {
 	    e.printStackTrace();
@@ -290,52 +291,13 @@ public class DBWriter {
     
         
     public static void main(String[] args) {
-    	/*DBWriter dbw = new DBWriter();
+    	DBWriter dbw = new DBWriter();
     	User mocky = User.mockUser();
-    	
-		try {
-			Persistent.newUser(mocky);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		
-		
-		ArrayList<DataPoint> points;
-
-		
-
-		// set up data points
-		points = new ArrayList<DataPoint>();
-		Calendar c3 = new GregorianCalendar(2005, // Year
-			5, // Month
-			11, // Day
-			14, // Hour
-			19, // Minute
-			8); // Second
-		Calendar c4 = new GregorianCalendar(2005, // Year
-			5, // Month
-			11, // Day
-			14, // Hour
-			20, // Minute
-			9); // Second
-
-		// p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
-		DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
-			.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
-			.prevDataPoint(null).build();
-		// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
-		DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
-			.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
-			.prevDataPoint(p1).build();
-
-		points.add(p1);
-		points.add(p2);
-		Event e = new Event("My Event3", points);
-		//mocky.getEvents().addEvent(e);
+    	//mocky.setUserID(2);
 		try {
 			dbw.writeUser(mocky);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
-		}*/
+		}
 	    }
 }

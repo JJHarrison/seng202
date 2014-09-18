@@ -20,7 +20,7 @@ public class AnalysisController {
 
 	}
 
-	public void addTiles(Event event1, Event event2, Event event3) {
+	public void addTiles(final Event event1, final Event event2, final Event event3) {
 		tileBox.getChildren().clear();
 
 		Task<Void> task = new Task<Void>() {

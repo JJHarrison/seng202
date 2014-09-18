@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.lang.Math;
 
 /**
  * This class provides an abstract version of activity events provided by a
@@ -47,6 +48,7 @@ public class Event implements Serializable {
 		this.eventName = eventName;
 		this.points = points;
 		calculate();
+		calculateStress();
 	}
 
 	/**
@@ -73,6 +75,38 @@ public class Event implements Serializable {
 		finishTime = points.get(points.size() - 1).getDate();
 		averageHeartRate = totalHR / numPoints;
 		averageSpeed = distance / getDuration();
+	}
+	
+	private void calculateStress() {
+		double sf = calculateStressFactor();
+		double stress;
+		
+		for (DataPoint p: points) {
+			if (p.getSpeed() != 0) {
+				stress = sf * (p.getHeartRate() / p.getSpeed());
+				stress = (200 / Math.PI) * Math.atan(stress);
+				p.setStressLevel(stress);
+			}
+		}
+	}
+	
+	private double calculateStressFactor() {
+		double totalSpeed = 0.0;
+		int totalHeartRate = 0;
+		double avgSpeed, avgHeartRate;
+		
+		for (DataPoint p: points) {
+			totalSpeed += p.getSpeed();
+			totalHeartRate += p.getHeartRate();
+		}
+		
+		avgSpeed = totalSpeed / (points.size() - 1);
+		avgHeartRate = (float)totalHeartRate / points.size();
+		
+		if (avgHeartRate == 0) {
+			return 1.0;
+		}
+		return avgSpeed / avgHeartRate;
 	}
 
 	/**
