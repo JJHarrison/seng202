@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import data.persistant.Persistent;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -28,6 +29,8 @@ public class DataPoint implements Serializable {
 	private double altitude;
 	private double speed;
 	private double distance;
+	private double duration;
+	private double caloriesBurned;
 
 	/**
 	 * Builder for DataPoint class
@@ -118,33 +121,6 @@ public class DataPoint implements Serializable {
 		}
 	}
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param date
-	 *            The current date at this point.
-	 * @param heartrate
-	 *            The current heart rate at this point.
-	 * @param latitude
-	 *            The current latitude at this point.
-	 * @param longitude
-	 *            The current longitude at this point.
-	 * @param altitude
-	 *            The current altitude at this point.
-	 * @param previousPointPoint
-	 *            The previous point, used for distance calculations.
-	 */
-	/*
-	 * public DataPoint(Calendar date, int heartrate, double latitude, double
-	 * longitude, double altitude, DataPoint previousPointPoint) { this.date =
-	 * date; this.heartRate = heartrate; this.latitude =latitude; this.longitude
-	 * = longitude; this.altitude = altitude;
-	 * 
-	 * if (previousPointPoint != null) { this.distance =
-	 * calculateDistance(previousPointPoint); this.speed =
-	 * calculateSpeed(calculateDeltaTime(previousPointPoint)); } else {
-	 * this.distance = 0.0; this.speed = 0.0; } }
-	 */
 
 	/**
 	 * constructor for DataPoint Set data point values using builder
@@ -157,10 +133,12 @@ public class DataPoint implements Serializable {
 		this.latitude = builder.latitude;
 		this.longitude = builder.longitude;
 		this.altitude = builder.altitude;
-
+		
 		if (builder.previousPointPoint != null) {
 			this.distance = calculateDistance(builder.previousPointPoint);
 			this.speed = calculateSpeed(calculateDeltaTime(builder.previousPointPoint));
+			this.duration = calculateDeltaTime(builder.previousPointPoint);
+			caloriesBurned = calculateCalories();
 		} else {
 			this.distance = 0.0;
 			this.speed = 0.0;
@@ -284,6 +262,24 @@ public class DataPoint implements Serializable {
 	 */
 	public double getDistance() {
 		return distance;
+	}
+	
+	/**
+	 * calculates the calories burnt from the last point to the current point 
+	 * @return 
+	 * 
+	 * @return calories burnt 
+	 */
+	public double calculateCalories() {
+		double weight = Persistent.getCurrentUser().getWeight();
+		double runMET = 7.5;
+		double timeInHours = (double) duration / 3600;
+		double calories = weight * runMET * timeInHours;
+		return calories;
+	}
+	
+	public double getCalories() {
+		return caloriesBurned;
 	}
 
 	/**

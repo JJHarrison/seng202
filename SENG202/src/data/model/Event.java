@@ -59,7 +59,7 @@ public class Event implements Serializable {
 		for (DataPoint point : points) {
 			distance += point.getDistance();
 			totalHR += point.getHeartRate();
-
+			caloriesBurned += point.getCalories();
 			if (maxSpeed < point.getSpeed()) {
 				maxSpeed = point.getSpeed();
 			}
@@ -73,7 +73,6 @@ public class Event implements Serializable {
 		finishTime = points.get(points.size() - 1).getDate();
 		averageHeartRate = totalHR / numPoints;
 		averageSpeed = distance / getDuration();
-		setCaloriesBurned();
 	}
 
 	/**
@@ -236,29 +235,20 @@ public class Event implements Serializable {
 	}
 
 	/**
-	 * Returns an estimation of calories burned during the activity event.
-	 * 
-	 * @return The calories burned for the activity events.
+	 * returns calories burned for the event 
+	 * @return calories burned
 	 */
-	private void setCaloriesBurned() {
-		int weight = 75; // TODO
-		double runMET = 7.5; // TODO
-		double timeInHours = (double) getDuration() / 3600;
-		double calories = weight * runMET * timeInHours;
-		caloriesBurned = calories;
-	}
-
 	public double getCaloriesBurned() {
 		return caloriesBurned;
 	}
 
 	/**
-	 * A method which takes a datapoint and returns a string of the location in
-	 * the form "lat,long"
+	 * A method which takes a dataPoint and returns a string of the location in
+	 * the form "lat, long"
 	 * 
 	 * @param point
-	 *            A single datapoint
-	 * @return A string of the location of the datapoint in the form "lat,long"
+	 *            A single dataPoint
+	 * @return A string of the location of the dataPoint in the form "lat,long"
 	 */
 	public String getPointString(DataPoint point) {
 		String latStr;

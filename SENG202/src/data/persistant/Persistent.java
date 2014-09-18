@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
+import data.model.EventContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import user.User;
@@ -23,6 +24,7 @@ public class Persistent {
 			.observableList(new ArrayList<User>());
 	private static ObservableList<String> userNames = FXCollections
 			.observableList(new ArrayList<String>());
+	private static User currentUser;
 
 	/**
 	 * sets the FilePath preference to a Fitr directory at location of filePath
@@ -135,7 +137,7 @@ public class Persistent {
 	 * @param user
 	 */
 	public static void setUser(User user) {
-		prefs.put("User", user.getName());
+		currentUser = user;
 	}
 
 	/**
@@ -143,8 +145,8 @@ public class Persistent {
 	 * 
 	 * @return currenUser
 	 */
-	public static String getCurrentUser() {
-		return prefs.get("User", null);
+	public static User getCurrentUser() {
+		return currentUser;
 	}
 
 	/**
@@ -213,6 +215,14 @@ public class Persistent {
 		 * prefs.clear();
 		 */
 		// System.out.println("data cleared");
+		
+		EventContainer e = new EventContainer();
+		User u = new User("Sam", null, null, 0, 0, e, 0);
+		//User v = new User("Dan", null, null, 0, 0, e, 0);
+		setUser(u);
+		System.out.println(getCurrentUser());
+		
+		
 
 	}
 
