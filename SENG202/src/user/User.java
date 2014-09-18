@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import data.loader.FileLoader;
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
@@ -276,7 +277,14 @@ public class User implements Serializable {
 		Event event2 = new Event("My Event", points2);
 		EventContainer events = new EventContainer();
 		events.addEvent(event);
-		events.addEvent(event2);
+		events.addEvent(event2);/*
+		System.out.println("A");
+		FileLoader fl = new FileLoader();
+		fl.load();
+		EventContainer ec = fl.getEventContainer();
+		for(Event e : ec.getAllEvents()) {
+			System.out.println(e.getEventName());
+		}*/
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
 				Gender.MALE, 85.3, 1.9, events, 120);
 		mock.setUserID(1);
