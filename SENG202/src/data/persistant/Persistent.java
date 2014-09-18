@@ -20,10 +20,8 @@ import user.User;
 public class Persistent {
 
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
-	private static ObservableList<User> users = FXCollections
-			.observableList(new ArrayList<User>());
-	private static ObservableList<String> userNames = FXCollections
-			.observableList(new ArrayList<String>());
+	private static ObservableList<User> users = FXCollections.observableList(new ArrayList<User>());
+	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
 	private static User currentUser;
 
 	/**
@@ -32,8 +30,7 @@ public class Persistent {
 	 * @param filePath
 	 */
 	public static void setFilePath(String filePath) {
-		// filePath will be obtained from a file chooser so it will always be an
-		// existing file path so doesn't need to be checked
+		// filePath will be obtained from a file chooser so will always be an existing
 		prefs.put("FilePath", filePath + "/Fitr/");
 		try {
 			prefs.flush();
@@ -45,7 +42,7 @@ public class Persistent {
 		if (!new File(getFilePath()).exists()) {
 			setupDirectory();
 		} else {
-			// if the Fitr dir already exists then use it.
+			// if the Fitr directory already exists then use it.
 			Persistent.initialize();
 		}
 	}
@@ -120,8 +117,7 @@ public class Persistent {
 			Saver.SaveUser(user);
 			prefs.putInt("LastUserID", prefs.getInt("LastUserID", 0) + 1);
 		} else {
-			System.out
-					.println("User has already beeen created. try different username");
+			System.out.println("User has already beeen created. try different username");
 			// throw new Exception("User already exists");
 		}
 
@@ -176,20 +172,17 @@ public class Persistent {
 	 */
 	public static void initialize() {
 		if (getFilePath() != null && new File(getFilePath()).exists()) {
-			System.out.println("initialising");
 			File filePath = new File(getFilePath());
 
 			// get files / directory in Fitr directory (gets users)
 			File[] Files = filePath.listFiles();
 
 			for (File file : Files) {
-				System.out.println(file);
 				String userName = file.getName();
 
-				if (new File(file + "/" + userName + ".fitr").exists()) { // check
-					// if the file is a user
-					User newUser = Loader.loadUserProfile(new File(file + "/"
-							+ userName + ".fitr"));
+				if (new File(file + "/" + userName + ".fitr").exists()) { 
+					// check if the file is a user
+					User newUser = Loader.loadUserProfile(new File(file + "/"+ userName + ".fitr"));
 					users.add(newUser);
 					userNames.add(newUser.getName());
 				}

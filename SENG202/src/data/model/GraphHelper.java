@@ -44,15 +44,9 @@ public class GraphHelper {
 
 	public static Graph getCaloriesGraph(Event e, User u) {
 		Graph g = new Graph("Calories Burned", "Time (s)", "Calories");
-		for (DataPoint p : e.getPoints()) {
-			double weight = u.getWeight();
-			double calories = p.getDistance() * 1.03 * weight; // check this
-			// formula
-
-			// //////////////////////////// Put calories burned in datapoint....
-			double time = p.getDate().getTimeInMillis()
-					- e.getStartTime().getTimeInMillis();
-			g.addPoint(time / 1000, calories);
+		for (DataPoint p : e.getPoints()) {	
+			double time = p.getDate().getTimeInMillis()- e.getStartTime().getTimeInMillis();
+			g.addPoint(time / 1000, p.getCalories());
 		}
 		return g;
 	}
