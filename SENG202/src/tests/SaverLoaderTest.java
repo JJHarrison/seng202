@@ -9,7 +9,7 @@ import data.persistant.Persistent;
 import data.persistant.Saver;
 import junit.framework.TestCase;
 
-public class SaverTest extends TestCase {
+public class SaverLoaderTest extends TestCase {
 	
 	public void testSaveUser() throws Exception {
 		Persistent.setFilePath("/Users/SamSchofield/Desktop");

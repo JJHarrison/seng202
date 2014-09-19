@@ -1,6 +1,7 @@
 package view.user;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.StringPropertyBase;
@@ -60,7 +61,12 @@ public class UserPersistController {
 				if (labelFilepath.getText().equals("")) {
 					labelWarning.setText("No path set!");
 				} else {
-					Persistent.setFilePath(file.getValue());
+					try {
+						Persistent.setFilePath(file.getValue());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					// PersistentDialog.close();
 				}
 
