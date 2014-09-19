@@ -243,7 +243,7 @@ public class DBWriter {
     /**
      * Writes the event information to the database.
      * @param user The user who the event belongs to
-     * @param event The event thats information will be added to the database
+     * @param event The event thats information will be added to the database 
      */
     private void writeEventInfo(User user, Event event) {
     	try {
