@@ -114,6 +114,8 @@ public class FileLoader {
 						points.add(point);
 						lastPoint = point;
 					}
+				} else {
+					
 				}
 			}
 
@@ -136,12 +138,30 @@ public class FileLoader {
 		return eventContainer;
 	}
 
+	/**
+	 * checks that the data line from the csv file if valid 
+	 * i.e that it has all the required fields and they are an appropriate value
+	 * @param line
+	 * @return isValid
+	 */
 	public boolean isValidLine(String line) { // this doesnt work
-		String dataLine = "(\\d){2}/(\\d){2}/(\\d){4},(\\d){2}:(\\d){2}:(\\d){2}"
-				+ ",(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
+		boolean isValid = true;
+		//String dataLine = "(\\d){2}/(\\d){2}/(\\d){4},(\\d){2}:(\\d){2}:(\\d){2}"
+			//	+ ",(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
+		String z = "(\\d){2}/(\\d){2}/(\\d){4},";
+		String y = "(\\d){2}:(\\d){2}:(\\d){2},";
+		String x = "(\\d){2,3},(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
+		String reg = z + y + x;
+		
+		if(line.length() == 0) {
+			isValid = false;
+		} else if(!line.matches(reg)) {
+			isValid = false;
+		}
+		
 
-		//return line.matches(dataLine);
-		return true;
+		//return 
+		return isValid;
 	}
 
 	private void clearStream() {
