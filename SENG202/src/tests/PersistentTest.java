@@ -2,8 +2,11 @@ package tests;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.prefs.BackingStoreException;
 
+import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 import user.User;
+import user.User.Gender;
 import junit.framework.TestCase;
 import data.persistant.Persistent;
 
@@ -49,7 +52,7 @@ public class PersistentTest extends TestCase {
 		Persistent.setFilePath(personalFilePath);
 		User u = new User(username, null, null, 0, 0, null, 0);
 		assertEquals(fitrFilePath + username + "/" + username + ".fitr",Persistent.getProfileFilePath(u.getName()));
-		 
+		
 	}
 	
 	/**
@@ -80,29 +83,51 @@ public class PersistentTest extends TestCase {
 		assertEquals(fitrFilePath, Persistent.getFilePath());
 	}
 
-	/*
+	
 	public void testNewUser() throws Exception {	
 		String username = "Stan";
-		User u = new User(username, null, null, 0, 0, null, 0);
+		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
 		Persistent.newUser(u);
 		assertEquals(true, new File(fitrFilePath + "/" + username).exists());
 	}
 	
-	public void testSetUser() {
+	public void testSetUser() throws Exception {
+		String username = "Stan";
+		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
+		Persistent.newUser(u);
+		System.out.println("Users are:");
+		Persistent.setUser(u);
+		//assertEquals(u, Persistent.getCurrentUser());
+	}
+	
+	public void testSetNonExistingUser() throws Exception {
+		String username = "Fred";
+		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
+		//Persistent.setUser(u);
+		
+		
 	}
 
 	public void testGetCurrentUser() {
+		Persistent.getCurrentUser();
 	}
 
 	public void testGetUsers() {
+		Persistent.getUsers();
 	}
 
 	public void testGetUserNames() {
+		Persistent.getUserNames();
 	}
 
 	public void testInit() {
+		Persistent.initialize();
 	}
-*/
+	
+	public void testExit() throws BackingStoreException {
+		Persistent.exit();
+	}
+
 	
 }
 
