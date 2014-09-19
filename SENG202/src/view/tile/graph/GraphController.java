@@ -3,7 +3,6 @@ package view.tile.graph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import data.model.Event;

@@ -20,7 +20,7 @@ public class Warning extends AnchorPane {
 			e.printStackTrace();
 		}
 
-		WarningController warningController = loader.getController();
+		//WarningController warningController = loader.getController();
 
 	}
 

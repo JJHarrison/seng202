@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import data.loader.FileLoader;
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;

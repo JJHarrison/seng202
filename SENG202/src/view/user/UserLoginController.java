@@ -1,57 +1,58 @@
 package view.user;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import user.User;
+import view.Main;
+import view.user.UserManagementController.View;
 import data.persistant.Persistent;
 
-public class UserLoginController implements ScreenController {
-	@FXML
-	private ScreenPane myScreenPane;
+public class UserLoginController implements Switchable {
+	private UserManagementController controller;
 
-	@FXML
-	Button buttonCreateProfile;
-	@FXML
-	Button buttonLogin;
-	@FXML
-	Button buttonCancel;
+	@Override
+	public void setController(UserManagementController controller) {
+		this.controller = controller;
+	}
+
 	@FXML
 	ListView<User> userList;
 
 	@FXML
-	private void initialize() {
-
-		buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-
-		buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent arg0) {
-				System.out.println("Login");
-			}
-		});
-
-		buttonCreateProfile.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent arg0) {
-				myScreenPane.setScreen("userCreate");
-			}
-		});
-
+	void initialize() {
 		userList.setItems(Persistent.getUsers());
+	}
+
+	@FXML
+	void actionCreateProfile(ActionEvent event) {
+		controller.setView(View.CREATE);
+	}
+
+	@FXML
+	void actionLogin(ActionEvent event) {
+		User user = userList.getSelectionModel().getSelectedItem();
+		if (user != null) {
+			UserLoginManager.stage.close();
+			Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+					Main main = new Main();
+					main.start(new Stage());
+
+				}
+			});
+		}
+		
 
 	}
 
-	@Override
-	public void setScreenPane(ScreenPane screenPage) {
-		myScreenPane = screenPage;
-
+	@FXML
+	void actionCancel(ActionEvent event) {
+		Platform.exit();
 	}
+
 }
