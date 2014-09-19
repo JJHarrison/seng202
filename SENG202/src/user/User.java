@@ -259,7 +259,7 @@ public class User implements Serializable {
 	public boolean equals(Object other) {
 		boolean same = false;
 		User u = (User) other;
-		if(name == u.getName()) {
+		if(name.equals(u.getName())) {
 			same = true;
 		}
 		return same;
