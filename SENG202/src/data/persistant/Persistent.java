@@ -33,7 +33,7 @@ public class Persistent {
 	public static void setFilePath(String filePath) throws FileNotFoundException {
 		// check that filePath is valid
 		if(new File(filePath).exists()) { 
-			prefs.put("FilePath", filePath + "/Fitr/");
+			prefs.put("FilePath", filePath + "/.Fitr/");
 			try {
 				prefs.flush();
 			} catch (BackingStoreException e) {
@@ -86,6 +86,7 @@ public class Persistent {
 	 * @return pathSet
 	 */
 	public static boolean filePathSet() {
+		System.out.println("Checking filepath");
 		boolean pathSet = true;
 		File filePath;
 		if (getFilePath() == null) {
@@ -94,9 +95,10 @@ public class Persistent {
 			filePath = new File(getFilePath());
 		}
 
-		if (filePath == null) {
+		if (filePath == null || !filePath.exists()) {
 			pathSet = false;
 		}
+		System.out.println(pathSet);
 		return pathSet;
 	}
 
