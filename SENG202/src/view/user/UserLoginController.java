@@ -3,6 +3,7 @@ package view.user;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import user.User;
@@ -18,6 +19,9 @@ public class UserLoginController implements Switchable {
 		this.controller = controller;
 	}
 
+	@FXML
+	Label loginWarning;
+	
 	@FXML
 	ListView<User> userList;
 
@@ -36,6 +40,7 @@ public class UserLoginController implements Switchable {
 		User user = userList.getSelectionModel().getSelectedItem();
 		if (user != null) {
 			UserLoginManager.stage.close();
+			Persistent.setUser(user);
 			Platform.runLater(new Runnable() {
 
 				@Override
@@ -45,8 +50,9 @@ public class UserLoginController implements Switchable {
 
 				}
 			});
+		} else {
+			loginWarning.setText("User must be selected");
 		}
-		
 
 	}
 

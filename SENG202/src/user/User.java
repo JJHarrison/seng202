@@ -1,13 +1,10 @@
 package user;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import data.loader.FileLoader;
-import data.model.DataPoint;
-import data.model.Event;
 import data.model.EventContainer;
 import data.persistant.Persistent;
 
@@ -257,11 +254,12 @@ public class User implements Serializable {
 	
 	@Override
 	public boolean equals(Object other) {
-		boolean same = false;
+		/*boolean same = false;
 		User u = (User) other;
 		if(name == u.getName()) {
 			same = true;
 		}
-		return same;
+		return same;*/
+		return true;
 	}
 }
