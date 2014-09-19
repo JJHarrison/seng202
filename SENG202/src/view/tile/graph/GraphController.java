@@ -71,11 +71,11 @@ public class GraphController {
 	}
 
 	public void fillCaloriesGraph(Event event) {
-		// Graph graph = GraphHelper.getCaloriesGraph(event, null);
-		// lineChart.getXAxis().setLabel(graph.getXName());
-		// lineChart.getYAxis().setLabel(graph.getYName());
+		Graph graph = GraphHelper.getCaloriesGraph(event, null);
+		lineChart.getXAxis().setLabel(graph.getXName());
+		lineChart.getYAxis().setLabel(graph.getYName());
 		lineChart.getData().clear();
-		// lineChart.getData().add(graph.getPoints());
+		lineChart.getData().add(graph.getPoints());
 	}
 
 	public void fillDistanceGraph(Event event) {
