@@ -8,31 +8,35 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="paneUserLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.user.UserLoginController">
+<AnchorPane fx:id="paneUserLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.user.UserPersistController">
    <children>
-      <Button fx:id="buttonCancel" layoutX="300.0" layoutY="261.0" mnemonicParsing="false" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Button fx:id="buttonLogin" layoutX="155.0" layoutY="261.0" mnemonicParsing="false" prefWidth="100.0" text="Ok" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="110.0" />
-      <ListView fx:id="userList" fixedCellSize="50.0" layoutX="200.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0" />
+      <Button layoutX="300.0" layoutY="261.0" mnemonicParsing="false" onAction="#actionCancel" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button layoutX="155.0" layoutY="261.0" mnemonicParsing="false" onAction="#actionOk" prefWidth="100.0" text="Ok" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="110.0" />
       <Label layoutX="54.0" layoutY="14.0" text="Select Save Location" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="buttonCreateProfile" layoutX="40.0" layoutY="365.0" mnemonicParsing="false" prefWidth="100.0" text="Browse..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-      <Label layoutX="127.0" layoutY="193.0" text="Location:" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <Button layoutX="40.0" layoutY="365.0" mnemonicParsing="false" onAction="#actionBrowse" prefWidth="100.0" text="Browse..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+      <Label layoutX="127.0" layoutY="193.0" text="Location:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="labelFilepath" layoutX="244.0" layoutY="201.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+      <Label fx:id="labelFilepath" layoutX="244.0" layoutY="201.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font name="System Italic" size="16.0" />
          </font>
          <tooltip>
-            <Tooltip fx:id="tooltipFilepath" />
+            <Tooltip fx:id="tooltipFilepath" autoHide="true" consumeAutoHidingEvents="false" />
          </tooltip>
       </Label>
       <Label layoutX="66.0" layoutY="64.0" text="Select a location to save your data" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNoFileSet" layoutX="7.0" layoutY="337.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0">
          <font>
             <Font size="16.0" />
          </font>

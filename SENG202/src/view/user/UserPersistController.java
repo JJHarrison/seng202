@@ -2,88 +2,75 @@ package view.user;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.StringPropertyBase;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.stage.DirectoryChooser;
+import view.user.UserManagementController.View;
 import data.persistant.Persistent;
 
-public class UserPersistController {
+public class UserPersistController implements Switchable {
 
+	private UserManagementController controller;
 	@FXML
-	Button buttonBrowse;
-	@FXML
-	Button buttonOk;
-	@FXML
-	Button buttonCancel;
-
-	@FXML
-	Label labelWarning;
+	Tooltip tooltipFilepath;
 	@FXML
 	Label labelFilepath;
+	@FXML
+	Label labelNoFileSet;
+	
+	private DirectoryChooser chooser = new DirectoryChooser();
+	private File file;
+	
+	@FXML
+	void initalize() {
+	}
 
-	Property<String> file = new StringPropertyBase() {
-
-		public String getName() {
-			return "file";
-		}
-
-		public Object getBean() {
-			return null;
-		}
-	};
-
-	DirectoryChooser fileChooser = new DirectoryChooser();
+	@Override
+	public void setController(UserManagementController controller) {
+		this.controller = controller;
+	}
 
 	@FXML
-	private void initialize() {
-		file.setValue("");
-		labelWarning.setText("");
-		labelFilepath.setText("");
-
-		labelFilepath.textProperty().bind(file);
-
-		buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent event) {
-				System.exit(0);
+	void actionBrowse(ActionEvent event) {
+		chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		file = chooser.showDialog(null);
+		if (file != null) {
+			try {
+				labelFilepath.setText(file.getCanonicalPath());
+				tooltipFilepath.setText(file.getCanonicalPath());
+			} catch (IOException e) {
+				labelFilepath.setText(file.getAbsolutePath());
+				tooltipFilepath.setText(file.getAbsolutePath());
 			}
-		});
-
-		buttonOk.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent event) {
-				if (labelFilepath.getText().equals("")) {
-					labelWarning.setText("No path set!");
-				} else {
-					try {
-						Persistent.setFilePath(file.getValue());
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					// PersistentDialog.close();
-				}
-
-			}
-		});
-
-		buttonBrowse.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent event) {
-				File fileBrowser = fileChooser.showDialog(null);
-				if (fileBrowser != null) {
-					file.setValue(fileBrowser.getAbsolutePath());
-				}
-
-			}
-		});
-
+		}
 	}
+
+	@FXML
+	void actionOk(ActionEvent event) {
+		if (file != null) {
+			try {
+				Persistent.setFilePath(file.getAbsolutePath());
+				controller.setView(View.LOGIN);
+			} catch (FileNotFoundException e) {
+				labelNoFileSet.setText("Your system is screwed");
+				e.printStackTrace();
+			}
+			
+		} else {
+			labelNoFileSet.setText("Please set a valid filepath");
+		}
+		
+	}
+
+	@FXML
+	void actionCancel(ActionEvent event) {
+		Platform.exit();
+	}
+
 
 }
