@@ -214,16 +214,15 @@ public class DBWriter {
     	    connect = DriverManager.getConnection(url, admin, password);
     	    preparedStatement = connect
     		    .prepareStatement(
-    			    "INSERT into fitr.user VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+    			    "INSERT into fitr.user VALUES (?, ?, ?, ?, ?, ?, ?)",
     			    Statement.RETURN_GENERATED_KEYS);
     	    preparedStatement.setInt(1, user.getUserId()); // add user_id
     	    preparedStatement.setString(2, user.getName()); //add name to the db
     	    preparedStatement.setTimestamp(3, new Timestamp(user.getDateofBirth().getTimeInMillis())); //add DOB to the db
     	    preparedStatement.setDouble(4, user.getWeight()); //add weight to the db
     	    preparedStatement.setDouble(5, user.getHeight()); //add height to the db
-    	    preparedStatement.setString(6, "password"); //DEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLLLLLTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEE
-    	    preparedStatement.setString(7, user.genderForDB()); //add gender to the db
-    	    preparedStatement.setDouble(8, user.getBMI()); //add bmi to the db
+    	    preparedStatement.setString(6, user.genderForDB()); //add gender to the db
+    	    preparedStatement.setDouble(7, user.getBMI()); //add bmi to the db
     	    preparedStatement.executeUpdate(); //execute the query/upload the db
     	} catch (SQLException e) {
     	    e.printStackTrace();
@@ -259,12 +258,12 @@ public class DBWriter {
     		    .getStartTime().getTimeInMillis())); // start_time
     	    preparedStatement.setTimestamp(4, new Timestamp(event
     		    .getFinishTime().getTimeInMillis())); // end_time
-    	    preparedStatement.setInt(5, 1337); // num_points
-    	    preparedStatement.setDouble(6, event.getDistance()); // distance
-    	    preparedStatement.setDouble(7, event.getMaxSpeed()); // max_speed
-    	    preparedStatement.setDouble(8, event.getAverageSpeed()); // average_speed
-    	    preparedStatement.setInt(9, 100); // total_heart_rate
-    	    preparedStatement.setInt(10, event.getAverageHeartRate()); // average_heart_rate
+    	    preparedStatement.setDouble(5, event.getDistance()); // num_points
+    	    preparedStatement.setDouble(6, event.getMaxSpeed()); // distance
+    	    preparedStatement.setDouble(7, event.getAverageSpeed()); // max_speed
+    	    preparedStatement.setInt(8, event.getAverageHeartRate()); // average_speed
+    	    preparedStatement.setInt(9, event.getMaxHeartRate()); // max_heart_rate
+    	    preparedStatement.setDouble(10, event.getCaloriesBurned()); // average_heart_rate
     	    preparedStatement.executeUpdate();
     	} catch (SQLException e) {
     	    e.printStackTrace();
@@ -293,7 +292,7 @@ public class DBWriter {
 	    connect = DriverManager.getConnection(url, admin, password);
 	    preparedStatement = connect
 		    .prepareStatement(
-			    "INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			    "INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 			    Statement.RETURN_GENERATED_KEYS);
 	    preparedStatement.setInt(1, user.getUserId()); // user_id to be added to the db
 	    preparedStatement.setString(2, event.getEventName()); // event_name to be added to the db
@@ -307,6 +306,7 @@ public class DBWriter {
 	    preparedStatement.setDouble(8, point.getAltitude()); // the altitude that will be added to the db
 	    preparedStatement.setDouble(9, point.getSpeed()); // the speed that will be added to the db
 	    preparedStatement.setDouble(10, point.getDistance()); // the distance that will be added to the db
+	    preparedStatement.setDouble(11, point.getCalories()); //the calories burned that will be added to the db
 	    preparedStatement.executeUpdate(); // execute the query/upload to the database
 	} catch (SQLException e) {
 	    e.printStackTrace();
@@ -326,12 +326,12 @@ public class DBWriter {
     
         
     public static void main(String[] args) {
-    	//DBWriter dbw = new DBWriter();
-    	//User mocky = User.mockUser();
+    	DBWriter dbw = new DBWriter();
+    	User mocky = User.mockUser();
     	
     	//mocky.setUserID(2);
 		try {
-			//dbw.writeUser(mocky);
+			dbw.writeUser(mocky);
 			//dbw.updateUserProfile(mocky);
 		} catch (Exception ex) {
 		    ex.printStackTrace();

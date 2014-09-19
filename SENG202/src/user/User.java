@@ -251,7 +251,7 @@ public class User implements Serializable {
 		//*/
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
 				Gender.MALE, 85.3, 1.9, ec, 120);
-		mock.setUserID(1);
+		//mock.setUserID(1);
 		return mock;
 	}
 }
