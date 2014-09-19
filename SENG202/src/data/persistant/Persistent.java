@@ -90,7 +90,7 @@ public class Persistent {
 		File filePath;
 		if (getFilePath() == null) {
 			filePath = null;
-		} else {
+		} else { 
 			filePath = new File(getFilePath());
 		}
 
@@ -105,8 +105,10 @@ public class Persistent {
 	 * also adds a user.json and activity.json file to save data to
 	 * 
 	 * @param userName
+	 * @return TODO
 	 */
-	public static void newUser(User user) throws Exception {
+	public static boolean newUser(User user) throws Exception {
+		boolean userAdded;
 		String userName = user.getName();
 		System.out.println(users.contains(user));
 		System.out.println(userNames.contains(user.getName()));
@@ -124,11 +126,13 @@ public class Persistent {
 			
 			Saver.SaveUser(user);
 			prefs.putInt("LastUserID", prefs.getInt("LastUserID", 0) + 1);
+			userAdded = true;
 		} else {
+			userAdded = false;
 			System.out.println("User has already beeen created. try different username");
 			// throw new Exception("User already exists");
 		}
-
+		return userAdded;
 	}
 
 	public static int getLastUserID() {
