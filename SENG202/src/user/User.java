@@ -5,13 +5,13 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import data.loader.FileLoader;
-<<<<<<< HEAD
+
 import data.model.EventContainer;
-=======
+
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer; 
->>>>>>> refs/remotes/origin/master
+
 import data.persistant.Persistent;
 
 /**
@@ -267,7 +267,9 @@ public class User implements Serializable {
 			if(name.equals(u.getName())) {
 				same = true;
 			}
+		}
 		return true;
 	}
 	
 }
+
