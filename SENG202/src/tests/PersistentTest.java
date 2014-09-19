@@ -13,6 +13,8 @@ import data.persistant.Persistent;
 public class PersistentTest extends TestCase {
 	private String personalFilePath = "/Users/SamSchofield/Desktop";
 	private String fitrFilePath = personalFilePath + "/Fitr/";
+	String username = "Stan";
+	User user = new User(username, null, Gender.MALE, 70, 170, null, 60);
 
 	/**
 	 * tests that a valid file path can be set
@@ -48,10 +50,8 @@ public class PersistentTest extends TestCase {
 	 * @throws FileNotFoundException
 	 */
 	public void testGetProfileFilePath() throws FileNotFoundException {
-		String username = "John";
 		Persistent.setFilePath(personalFilePath);
-		User u = new User(username, null, null, 0, 0, null, 0);
-		assertEquals(fitrFilePath + username + "/" + username + ".fitr",Persistent.getProfileFilePath(u.getName()));
+		assertEquals(fitrFilePath + username + "/." + username + ".fitr",Persistent.getProfileFilePath(user.getName()));
 		
 	}
 	
@@ -79,45 +79,56 @@ public class PersistentTest extends TestCase {
 	 */
 	public void testSetupDirectory() throws FileNotFoundException {
 		Persistent.setFilePath(personalFilePath);
+		Persistent.setupDirectory();
 		assertEquals(true, new File(Persistent.getFilePath()).exists());
 		assertEquals(fitrFilePath, Persistent.getFilePath());
 	}
 
 	
 	public void testNewUser() throws Exception {	
-		String username = "Stan";
-		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
-		Persistent.newUser(u);
+		Persistent.newUser(user);
 		assertEquals(true, new File(fitrFilePath + "/" + username).exists());
 	}
 	
 	public void testSetUser() throws Exception {
-		String username = "Stan";
-		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
-		Persistent.newUser(u);
-		System.out.println("Users are:");
-		Persistent.setUser(u);
-		//assertEquals(u, Persistent.getCurrentUser());
+		Persistent.newUser(user);
+		Persistent.setUser(user);
+		assertEquals(user, Persistent.getCurrentUser());
 	}
 	
 	public void testSetNonExistingUser() throws Exception {
 		String username = "Fred";
 		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
-		//Persistent.setUser(u);
+		Persistent.setUser(u);
+		assertNotSame(u, Persistent.getCurrentUser());
+	}
+
+	public void testGetCurrentUser() throws Exception {
+		Persistent.newUser(user);
+		Persistent.setUser(user);
+		assertEquals(user, Persistent.getCurrentUser());
+	}
+
+	public void testGetUsers() throws Exception {
+		User u1 = new User("sam", null, Gender.FEMALE, 10, 10, null, 0);
+		Persistent.clear();
+		Persistent.newUser(user);
+		Persistent.newUser(u1);
+		Persistent.exit();
 		
 		
+		assertEquals(2,Persistent.getUsers().size());
 	}
 
-	public void testGetCurrentUser() {
-		Persistent.getCurrentUser();
-	}
-
-	public void testGetUsers() {
-		Persistent.getUsers();
-	}
-
-	public void testGetUserNames() {
-		Persistent.getUserNames();
+	public void testGetUserNames() throws Exception {
+		User u1 = new User("sam", null, Gender.FEMALE, 10, 10, null, 0);
+		Persistent.clear();
+		Persistent.newUser(user);
+		Persistent.newUser(u1);
+		Persistent.exit();
+		
+		assertEquals(true, Persistent.getUserNames().contains("sam"));
+		assertEquals(true, Persistent.getUserNames().contains(username));
 	}
 
 	public void testInit() {
