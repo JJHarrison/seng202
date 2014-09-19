@@ -1,12 +1,12 @@
 package data.persistant;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
-import data.model.EventContainer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import user.User;
@@ -25,26 +25,30 @@ public class Persistent {
 	private static User currentUser;
 
 	/**
-	 * sets the FilePath preference to a Fitr directory at location of filePath
-	 * 
+	 * Sets the FilePath preference to a Fitr directory at location of filePath
+	 * Will only set a valid file path 
 	 * @param filePath
+	 * @throws FileNotFoundException 
 	 */
-	public static void setFilePath(String filePath) {
-		prefs.put("FilePath", filePath + "/Fitr/");
-		try {
-			prefs.flush();
-		} catch (BackingStoreException e) {
-			e.printStackTrace();
-		}
-
-		if(new File(filePath).exists()) {
+	public static void setFilePath(String filePath) throws FileNotFoundException {
+		// check that filePath is valid
+		if(new File(filePath).exists()) { 
+			prefs.put("FilePath", filePath + "/Fitr/");
+			try {
+				prefs.flush();
+			} catch (BackingStoreException e) {
+				e.printStackTrace();
+			}
+			
 			// only creates new directory if the selected one doesn't already exist
 			if (!new File(getFilePath()).exists()) {
 				setupDirectory();
-			} else {
-				// if the Fitr directory already exists then use it.
+			} else { // if the Fitr directory already exists then use it.
 				Persistent.initialize();
 			}
+		} else {
+			//System.out.println("FILEPATH DOESNT EXIST");
+			throw new FileNotFoundException();
 		}
 	}
 
@@ -90,7 +94,7 @@ public class Persistent {
 			filePath = new File(getFilePath());
 		}
 
-		if (filePath == null || !filePath.exists()) {
+		if (filePath == null) {
 			pathSet = false;
 		}
 		return pathSet;
@@ -105,7 +109,7 @@ public class Persistent {
 	public static void newUser(User user) throws Exception {
 		String userName = user.getName();
 
-		if (!userNames.contains(userName)) {
+		if (!userNames.contains(user.getName())) {
 			new File(getFilePath() + userName).mkdir();
 
 			try {
@@ -116,6 +120,7 @@ public class Persistent {
 
 			users.add(user);
 			userNames.add(user.getName());
+			
 			Saver.SaveUser(user);
 			prefs.putInt("LastUserID", prefs.getInt("LastUserID", 0) + 1);
 		} else {
@@ -135,7 +140,17 @@ public class Persistent {
 	 * @param user
 	 */
 	public static void setUser(User user) {
-		currentUser = user;
+		//System.out.println("_----_");
+		for(User u : users) {
+			System.out.println(u);
+		}
+		//System.out.println("_----_");
+		if(users.contains(user)){
+		//	System.out.println("YAY");
+			currentUser = user;
+		} else {
+			//System.out.println("NAY");
+		}
 	}
 
 	/**
@@ -177,16 +192,18 @@ public class Persistent {
 			File filePath = new File(getFilePath());
 
 			// get files / directory in Fitr directory (gets users)
-			File[] Files = filePath.listFiles();
-
-			for (File file : Files) {
-				String userName = file.getName();
-
+			File[] files = filePath.listFiles();
+			
+			for (File file : files) {
+				String userName = file.getName(); 
+				
 				if (new File(file + "/" + userName + ".fitr").exists()) { 
 					// check if the file is a user
 					User newUser = Loader.loadUserProfile(new File(file + "/"+ userName + ".fitr"));
-					users.add(newUser);
-					userNames.add(newUser.getName());
+					
+					if(newUser != null && !userNames.contains(newUser.getName())){						users.add(newUser);
+						userNames.add(newUser.getName());
+					}
 				}
 			}
 		}
@@ -206,8 +223,9 @@ public class Persistent {
 		prefs.flush();
 	}
 
+	
 	public static void main(String args[]) throws Exception {
-
+		clear();
 		/*
 		 * setFilePath("/Users/SamSchofield/Desktop"); setupDirectory();
 		 * initialize(); System.out.println("______________________"); User u =
@@ -222,8 +240,8 @@ public class Persistent {
 		 * a.size(); i++) { System.out.println(a.get(i)); }
 		 * 
 		 * prefs.clear();
-		 */
-		// System.out.println("data cleared");
+		 *
+		 System.out.println("data cleared");
 		
 		EventContainer e = new EventContainer();
 		User u = new User("Sam", null, null, 0, 0, e, 0);
@@ -234,5 +252,6 @@ public class Persistent {
 		
 
 	}
-
+*/
+	}
 }

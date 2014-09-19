@@ -87,8 +87,8 @@ public class Server {
     public User getUserFromClient() throws IOException, ClassNotFoundException {
 	User uploadedUser;
 	uploadedUser = (User) input.readObject();
-	System.out.println(startMessage() + " User sent user: "
-		+ uploadedUser.getName());
+	System.out.println(startMessage() + " <Client> sent the user: ["
+		+ uploadedUser.getName() + "]");
 	sendMessage(uploadedUser.getName());
 
 	return uploadedUser;
@@ -104,10 +104,10 @@ public class Server {
 	    try {
 		uploadedUser = getUserFromClient();
 		try {
+			System.out.println(startMessage() + " Adding user [" 
+					+ uploadedUser.getName() + "] to the database...");
 		    dbw.writeUser(uploadedUser);
-		    // System.out.println("seeing if shit happened: " +
-		    // uploadedUser.getEvents().getAllEvents().next());
-		    System.out.println(uploadedUser.getName());
+		    System.out.println(startMessage() + " Complete!\n");
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}

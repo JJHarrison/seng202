@@ -1,6 +1,7 @@
 package view.user;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.application.Platform;
@@ -52,8 +53,14 @@ public class UserPersistController implements Switchable {
 	@FXML
 	void actionOk(ActionEvent event) {
 		if (file != null) {
-			Persistent.setFilePath(file.getAbsolutePath());
-			controller.setView(View.LOGIN);
+			try {
+				Persistent.setFilePath(file.getAbsolutePath());
+				controller.setView(View.LOGIN);
+			} catch (FileNotFoundException e) {
+				labelNoFileSet.setText("Your system is screwed");
+				e.printStackTrace();
+			}
+			
 		} else {
 			labelNoFileSet.setText("Please set a valid filepath");
 		}
@@ -64,5 +71,6 @@ public class UserPersistController implements Switchable {
 	void actionCancel(ActionEvent event) {
 		Platform.exit();
 	}
+
 
 }

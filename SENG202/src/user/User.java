@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import data.loader.FileLoader;
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
@@ -244,49 +245,23 @@ public class User implements Serializable {
 	 * @return
 	 */
 	public static User mockUser() {
-		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-		ArrayList<DataPoint> points2 = new ArrayList<DataPoint>();
-		// set up data points
-		Calendar c1 = new GregorianCalendar(2004, 5, 10, 11, 42, 28); // Second
-		Calendar c2 = new GregorianCalendar(2004, 5, 10, 11, 43, 5); // Second
-		Calendar c3 = new GregorianCalendar(2005, 5, 10, 23, 42, 28); // Second
-		Calendar c4 = new GregorianCalendar(2005, 5, 10, 23, 43, 5); // Second
-
-		// p1 = new DataPoint(c3, 120, 30.2553368, -97.83891084, 50.0, null);
-		DataPoint p1 = new DataPoint.Builder().date(c1).heartRate(120)
-				.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
-				.prevDataPoint(null).build();
-		// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
-		DataPoint p2 = new DataPoint.Builder().date(c2).heartRate(125)
-				.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
-				.prevDataPoint(p1).build();
-		DataPoint p3 = new DataPoint.Builder().date(c3).heartRate(120)
-				.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
-				.prevDataPoint(null).build();
-		// p2 = new DataPoint(c4, 125, 30.25499189, -97.83913958, 51.0, p1);
-		DataPoint p4 = new DataPoint.Builder().date(c4).heartRate(125)
-				.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
-				.prevDataPoint(p1).build();
-
-		points.add(p1);
-		points.add(p2);
-		points2.add(p3);
-		points2.add(p4);
-		Event event = new Event("My Event", points);
-		Event event2 = new Event("My Event", points2);
-		EventContainer events = new EventContainer();
-		events.addEvent(event);
-		events.addEvent(event2);/*
-		System.out.println("A");
 		FileLoader fl = new FileLoader();
 		fl.load();
 		EventContainer ec = fl.getEventContainer();
-		for(Event e : ec.getAllEvents()) {
-			System.out.println(e.getEventName());
-		}*/
+		//*/
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE, 85.3, 1.9, events, 120);
+				Gender.MALE, 85.3, 1.9, ec, 120);
 		mock.setUserID(1);
 		return mock;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		boolean same = false;
+		User u = (User) other;
+		if(name == u.getName()) {
+			same = true;
+		}
+		return same;
 	}
 }

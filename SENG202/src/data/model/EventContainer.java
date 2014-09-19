@@ -38,20 +38,23 @@ public class EventContainer implements Serializable {
 		String dateString = dateString(e.getStartTime().getTime());
 		if (days.containsKey(dateString)) {
 			// find the correct position to add the event
-			LinkedList<Event> day = days.get(dateString);
-			for (int i = 0; i < days.size(); i++) {
+			LinkedList<Event> day = days.get(dateString); // gets events on that day
+			int size = day.size();
+			for (int i = 0; i < size; i++) {
 				// reached the right index.
+				
 				if (e.getStartTime().before(day.get(i).getStartTime())) {
 					// add e at i
 					day.add(i, e);
-				}
-				// e is the latest event
-				else if (i == days.size() - 1) {
+					break;
+				} else if (i == day.size() - 1) {// e is the latest event
 					// add e to the end of the list
 					day.add(e);
+					break;
 				}
 			}
 		} else {
+			// create new key date string with value linked list
 			LinkedList<Event> day = new LinkedList<Event>();
 			day.add(e);
 			days.put(dateString, day);

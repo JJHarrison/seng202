@@ -25,6 +25,7 @@ import data.model.EventContainer;
 public class FileLoader {
 	private InputStream inputStream;
 	private EventContainer eventContainer = new EventContainer();
+	public ArrayList<Event> events = new ArrayList<Event>();
 
 	/**
 	 * Creates a FileLoader with a particular input file
@@ -82,6 +83,7 @@ public class FileLoader {
 						if (!points.isEmpty()) {
 							currentEvent = new Event(currentName, points);
 							eventContainer.addEvent(currentEvent);
+							events.add(currentEvent);
 							points.clear();
 						}
 						currentName = dataLine[1];
@@ -134,14 +136,27 @@ public class FileLoader {
 		return eventContainer;
 	}
 
-	public boolean isValidLine(String line) {
+	public boolean isValidLine(String line) { // this doesnt work
 		String dataLine = "(\\d){2}/(\\d){2}/(\\d){4},(\\d){2}:(\\d){2}:(\\d){2}"
 				+ ",(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
 
-		return line.matches(dataLine);
+		//return line.matches(dataLine);
+		return true;
 	}
 
 	private void clearStream() {
 		inputStream = null;
+	}
+	
+	public static void main(String[] args) {
+		FileLoader f = new FileLoader();
+		f.load();
+		
+		EventContainer eC = f.getEventContainer();
+		System.out.println(eC.getAllEvents().size());
+		for (Event e : eC.getAllEvents()) {
+			System.out.print(e.getEventName() + "\n");
+			//System.out.print(e.getStartTime().get(Calendar.MINUTE) + "\n");
+		}
 	}
 }
