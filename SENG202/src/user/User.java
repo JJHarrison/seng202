@@ -254,4 +254,14 @@ public class User implements Serializable {
 		mock.setUserID(1);
 		return mock;
 	}
+	
+	@Override
+	public boolean equals(Object other) {
+		boolean same = false;
+		User u = (User) other;
+		if(name == u.getName()) {
+			same = true;
+		}
+		return same;
+	}
 }
