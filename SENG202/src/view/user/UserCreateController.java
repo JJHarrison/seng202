@@ -79,6 +79,8 @@ public class UserCreateController implements Switchable {
 			labelCreateWarning.setText("Please provide your name");
 		} else if (!name.matches("([a-zA-Z]|[\\s])*")) {
 			labelCreateWarning.setText("Please enter a valid name");
+		} else if (Persistent.getUserNames().contains(name)) {
+			labelCreateWarning.setText("User already exists");
 		} else if (date == null) {
 			labelCreateWarning.setText("Birthdate not set");
 		} else if (gender == null) {
