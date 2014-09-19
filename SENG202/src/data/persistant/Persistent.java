@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import user.User;
 
+
 /**
  * static class for keeping track of preferences, file paths etc
  * 
@@ -33,7 +34,7 @@ public class Persistent {
 	public static void setFilePath(String filePath) throws FileNotFoundException {
 		// check that filePath is valid
 		if(new File(filePath).exists()) { 
-			prefs.put("FilePath", filePath + "/.Fitr/");
+			prefs.put("FilePath", filePath + "/Fitr/");
 			try {
 				prefs.flush();
 			} catch (BackingStoreException e) {
@@ -77,7 +78,7 @@ public class Persistent {
 	 * @return profileFilePath
 	 */
 	public static String getProfileFilePath(String userName) {
-		return getFilePath() + userName + "/" + userName + ".fitr";
+		return getFilePath() + userName + "/." + userName + ".fitr";
 	}
 
 	/**
@@ -200,13 +201,15 @@ public class Persistent {
 
 			// get files / directory in Fitr directory (gets users)
 			File[] files = filePath.listFiles();
+
+			
 			
 			for (File file : files) {
 				String userName = file.getName(); 
 				
-				if (new File(file + "/" + userName + ".fitr").exists()) { 
+				if (new File(file + "/." + userName + ".fitr").exists()) { 
 					// check if the file is a user
-					User newUser = Loader.loadUserProfile(new File(file + "/"+ userName + ".fitr"));
+					User newUser = Loader.loadUserProfile(new File(file + "/."+ userName + ".fitr"));
 					
 					if(newUser != null && !users.contains(newUser)){						users.add(newUser);
 						userNames.add(newUser.getName());
