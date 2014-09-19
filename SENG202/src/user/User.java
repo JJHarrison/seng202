@@ -268,7 +268,7 @@ public class User implements Serializable {
 				same = true;
 			}
 		}
-		return true;
+		return same;
 	}
 	
 }
