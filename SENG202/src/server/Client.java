@@ -62,7 +62,7 @@ public class Client {
     /**
      * To transfer information to the server.
      * 
-     * @param message
+     * @param message 
      */
     public void transferToServer(User traffic) {
     	if(output != null){
