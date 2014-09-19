@@ -30,23 +30,30 @@ public class DBWriter {
     private String admin = "fitr.admin";
     private String password = "password";
 
-    // private PreparedStatement readStatement = null;
-
-    /*
-    public void getUserID() {
-    	int id;
-    	try {
-    	    connect = DriverManager.getConnection(url, admin, password);
-    	    statement = connect.createStatement();
-    	    resultSet = statement.executeQuery("select * from FITR.USER");
-    	    while (resultSet.next()) {
-    		id = resultSet.getInt("user_id");
-    	    }
-    	} catch (Exception e) {
-    	    e.printStackTrace();
+    
+    
+    /**
+     * Will check the database to see if the users profile has already been added to the database.
+     * If the user is not a participant of the database their user profile information will be added to the database.
+     * If the user is already a participant of the database it will skip that step.
+     * Following this ALL events of the users profile will be checked for participation in the database and will
+     * be added if they are not inside the database.
+     * @param user The users profile that will be uploaded
+     */
+    public void writeUser(User user){
+    	if(! isUserStored(user)){
+    		// if the user is not in the database it will add it
+    		writeUserProfile(user);
     	}
-        }
-        */
+    	else{
+    		// if the user is in the database it will update it
+    		updateUserProfile(user);
+    	}
+    	// add all events associated with the users profile to the database
+    	for(Event event : user.getEvents().getAllEvents()){
+			writeEvent(user, event);
+		}
+    }
 
     /**
      * Checks the database to see if the user is already a participant of the user table.
@@ -55,7 +62,7 @@ public class DBWriter {
      * @param user The user that will be searched for inside the mysql database
      * @return True if the user is a participant of the database, false otherwise.
      */
-    public boolean isUserStored(User user){
+    private boolean isUserStored(User user){
     	boolean isThere = false;
     	// the query to be sent to the database to find the user_id
     	String query = String.format("SELECT * FROM FITR.USER where user_id = \"%s\"", user.getUserId());    	
@@ -91,7 +98,7 @@ public class DBWriter {
      * This will update the users weight, height and bmi inside the database.
      * @param user This profile will be updated in the datebase
      */
-    public void updateUserProfile(User user){
+    private void updateUserProfile(User user){
     	String query = String.format("UPDATE FITR.USER SET "
     			+ "weight = ?,"
     			+ "height = ?,"
@@ -130,7 +137,7 @@ public class DBWriter {
      * @param event The event that will be checks for participation in the database
      * @return True if the event is a participant of the database, false otherwise.
      */
-    public boolean isEventStored(User user, Event event){
+    private boolean isEventStored(User user, Event event){
     	boolean isThere = false;
     	// query to see if the event is stored in the database
     	String query = "select user_user_id, event_name, start_time from fitr.event";
@@ -172,30 +179,7 @@ public class DBWriter {
     	}
     	return isThere;
     }
-    
-    /**
-     * Will check the database to see if the users profile has already been added to the database.
-     * If the user is not a participant of the database their user profile information will be added to the database.
-     * If the user is already a participant of the database it will skip that step.
-     * Following this ALL events of the users profile will be checked for participation in the database and will
-     * be added if they are not inside the database.
-     * @param user The users profile that will be uploaded
-     */
-    public void writeUser(User user){
-    	if(! isUserStored(user)){
-    		// if the user is not in the database it will add it
-    		writeUserProfile(user);
-    	}
-    	else{
-    		// if the user is in the database it will update it
-    		updateUserProfile(user);
-    	}
-    	// add all events associated with the users profile to the database
-    	for(Event event : user.getEvents().getAllEvents()){
-			writeEvent(user, event);
-		}
-    }
-      
+          
     /**
      * Writes a single event to the database.
      * First a check is made to see if the event is already stored using isEventStored()
@@ -204,7 +188,7 @@ public class DBWriter {
      * @param user The user who the events belong to.
      * @param event The event that will be uploaded to the database.
      */
-    public void writeEvent(User user, Event event){
+    private void writeEvent(User user, Event event){
     	if(! isEventStored(user, event)){
     		try{
     			// if the event is not in the database, upload it
@@ -225,7 +209,7 @@ public class DBWriter {
      * @param user The user whose profile will be added to the database
      * @throws Exception
      */
-    public void writeUserProfile(User user){
+    private void writeUserProfile(User user){
     	try {
     	    connect = DriverManager.getConnection(url, admin, password);
     	    preparedStatement = connect
@@ -262,7 +246,7 @@ public class DBWriter {
      * @param user The user who the event belongs to
      * @param event The event thats information will be added to the database
      */
-    public void writeEventInfo(User user, Event event) {
+    private void writeEventInfo(User user, Event event) {
     	try {
     	    connect = DriverManager.getConnection(url, admin, password);
     	    preparedStatement = connect
@@ -304,7 +288,7 @@ public class DBWriter {
     * @param event The event that the point belongs to.
     * @param point The point that will be added to the database.
     */
-    public void writeDataPoint(User user, Event event, DataPoint point) {
+    private void writeDataPoint(User user, Event event, DataPoint point) {
 	try {
 	    connect = DriverManager.getConnection(url, admin, password);
 	    preparedStatement = connect
@@ -342,12 +326,12 @@ public class DBWriter {
     
         
     public static void main(String[] args) {
-    	DBWriter dbw = new DBWriter();
-    	User mocky = User.mockUser();
+    	//DBWriter dbw = new DBWriter();
+    	//User mocky = User.mockUser();
     	
     	//mocky.setUserID(2);
 		try {
-			dbw.writeUser(mocky);
+			//dbw.writeUser(mocky);
 			//dbw.updateUserProfile(mocky);
 		} catch (Exception ex) {
 		    ex.printStackTrace();

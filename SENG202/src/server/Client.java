@@ -35,9 +35,10 @@ public class Client {
 	    System.out.println(startMessage() + " connection accepted by ["
 		    + hostName + "]\n");
 	} catch (IOException e) {
-	    e.printStackTrace();
 	    System.out.println(startMessage()
-		    + " uh oh something wrong happened");
+		    + " uh oh something wrong happened...");
+	    System.out.println(startMessage()
+			    + " maybe the server is taking a break");
 	}
     }
 
@@ -64,15 +65,18 @@ public class Client {
      * @param message
      */
     public void transferToServer(User traffic) {
-	try {
-	    System.out.println(startMessage() + " attempting to send ["
-		    + traffic.getName() + "]...");
-	    output.writeObject(traffic);
-	    readConfirmation();
-	    System.out.println(startMessage() + " succesful!\n");
-	} catch (IOException e) {
-	    System.out.println(startMessage() + " FAILED!!\n");
-	}
+    	if(output != null){
+    		try {
+    		    System.out.println(startMessage() + " attempting to send user ["
+    			    + traffic.getName() + "]...");
+    		    output.writeObject(traffic);
+    		    readConfirmation();
+    		    System.out.println(startMessage() + " Transfer was successful!\n");
+    		} catch (IOException e) {
+    		    System.out.println(startMessage() + " Transfer FAILED!!\n");
+    		}	
+    	}
+    	
     }
 
     /**
@@ -99,15 +103,17 @@ public class Client {
      * Closes the I/O Streams and the connection to the server
      */
     public void closeStuff() {
-	try {
-	    System.out.println(startMessage() + " closing connection...");
-	    output.writeObject("END");
-	    input.close();
-	    output.close();
-	    clientSocket.close();
-	    System.out.println(startMessage() + " connection closed!");
-	} catch (Exception e) {
-	    e.printStackTrace();
+	if(output != null || input != null || clientSocket != null){
+		try {
+		    System.out.println(startMessage() + " closing connection...");
+		    output.writeObject("END");
+		    input.close();
+		    output.close();
+		    clientSocket.close();
+		    System.out.println(startMessage() + " connection successfully closed!");
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
 	}
     }
 
@@ -138,9 +144,7 @@ public class Client {
     public static void main(String[] args) {
 	Client c = new Client();
 	c.setupConnection();
-
 	User u = User.mockUser();
-
 	c.transferToServer(u);
 	c.closeStuff();
     }
