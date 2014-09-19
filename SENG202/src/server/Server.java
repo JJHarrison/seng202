@@ -137,7 +137,7 @@ public class Server {
      * received.
      * 
      * @param message
-     *            The message that was received from the client.
+     *            The message that was received from the client. 
      */
     private void sendMessage(String message) {
 	try {

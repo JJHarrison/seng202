@@ -5,7 +5,13 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import data.loader.FileLoader;
+<<<<<<< HEAD
 import data.model.EventContainer;
+=======
+import data.model.DataPoint;
+import data.model.Event;
+import data.model.EventContainer; 
+>>>>>>> refs/remotes/origin/master
 import data.persistant.Persistent;
 
 /**
@@ -248,18 +254,20 @@ public class User implements Serializable {
 		//*/
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
 				Gender.MALE, 85.3, 1.9, ec, 120);
-		mock.setUserID(1);
+		//mock.setUserID(1);
 		return mock;
 	}
 	
 	@Override
 	public boolean equals(Object other) {
-		/*boolean same = false;
-		User u = (User) other;
-		if(name == u.getName()) {
-			same = true;
-		}
-		return same;*/
+			
+		boolean same = false;
+		if(other != null){
+			User u = (User) other;
+			if(name.equals(u.getName())) {
+				same = true;
+			}
 		return true;
 	}
+	
 }

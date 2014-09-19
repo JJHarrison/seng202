@@ -108,8 +108,9 @@ public class Persistent {
 	 */
 	public static void newUser(User user) throws Exception {
 		String userName = user.getName();
-
-		if (!userNames.contains(user.getName())) {
+		System.out.println(users.contains(user));
+		System.out.println(userNames.contains(user.getName()));
+		if (!users.contains(user)) {
 			new File(getFilePath() + userName).mkdir();
 
 			try {
@@ -201,7 +202,7 @@ public class Persistent {
 					// check if the file is a user
 					User newUser = Loader.loadUserProfile(new File(file + "/"+ userName + ".fitr"));
 					
-					if(newUser != null && !userNames.contains(newUser.getName())){						users.add(newUser);
+					if(newUser != null && !users.contains(newUser)){						users.add(newUser);
 						userNames.add(newUser.getName());
 					}
 				}

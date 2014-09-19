@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * A Saver class used for saving an event container to a json file
+ * A Saver class used for saving an event container to a JSON file
  * 
  * @author SamSchofield
  */
@@ -18,7 +18,7 @@ public class Saver {
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	/**
-	 * saves the user profile to a .json file
+	 * saves the user profile to a JSON file
 	 * 
 	 * @param profile
 	 */
