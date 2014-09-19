@@ -140,13 +140,8 @@ public class Client {
 	c.setupConnection();
 
 	User u = User.mockUser();
-	//System.out.println(u.getName());
 
 	c.transferToServer(u);
-
-	// c.transferToServer("Message one");
-	// c.transferToServer("Message two");
-	// c.transferToServer("Message three");
 	c.closeStuff();
     }
 }

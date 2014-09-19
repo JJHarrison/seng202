@@ -32,7 +32,7 @@ public class DBWriter {
 
     // private PreparedStatement readStatement = null;
 
-    
+    /*
     public void getUserID() {
     	int id;
     	try {
@@ -46,6 +46,7 @@ public class DBWriter {
     	    e.printStackTrace();
     	}
         }
+        */
 
     /**
      * Checks the database to see if the user is already a participant of the user table.
@@ -68,8 +69,56 @@ public class DBWriter {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}    	
+		}finally {
+    	    try {
+    		if (resultSet != null) {
+    		    resultSet.close();
+    		}
+    		if (statement != null) {
+    		    statement.close();
+    		}
+    		if (connect != null) {
+    		    connect.close();
+    		}
+    	    } catch (SQLException e) {
+    		e.printStackTrace();
+    	    }
+    	}
     	return isThere;
+    }
+    
+    /**
+     * This will update the users weight, height and bmi inside the database.
+     * @param user This profile will be updated in the datebase
+     */
+    public void updateUserProfile(User user){
+    	String query = String.format("UPDATE FITR.USER SET "
+    			+ "weight = ?,"
+    			+ "height = ?,"
+    			+ "bmi = ?"
+    			+ " where user_id = \"%s\"", user.getUserId());
+    	try{
+    		connect = DriverManager.getConnection(url, admin, password);
+    		preparedStatement = connect.prepareStatement(query);
+    		preparedStatement.setDouble(1, user.getWeight());
+    		preparedStatement.setDouble(2, user.getHeight());
+    		preparedStatement.setDouble(3, user.getBMI());   		
+    		preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+    	    try {
+    		if (preparedStatement != null) {
+    		    preparedStatement.close();
+    		}
+    		if (connect != null) {
+    		    connect.close();
+    		}
+    	    } catch (SQLException e) {
+    		e.printStackTrace();
+    	    }
+    	}    	
     }
     
     /**
@@ -98,7 +147,7 @@ public class DBWriter {
 				eventName = resultSet.getString("event_name");
 				eventStart = resultSet.getTimestamp("start_time");
 				userID = resultSet.getInt("user_user_id");
-				
+				// check to see if the event is contained in the databae
 				if(eventStart.equals(checkTime) && (userID == user.getUserId())){
 					// if the event is inside the database change isThere to true
 					isThere = true;
@@ -106,7 +155,21 @@ public class DBWriter {
 			}
     	} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}finally {
+    	    try {
+    		if (resultSet != null) {
+    		    resultSet.close();
+    		}
+    		if (statement != null) {
+    		    statement.close();
+    		}
+    		if (connect != null) {
+    		    connect.close();
+    		}
+    	    } catch (SQLException e) {
+    		e.printStackTrace();
+    	    }
+    	}
     	return isThere;
     }
     
@@ -120,14 +183,14 @@ public class DBWriter {
      */
     public void writeUser(User user){
     	if(! isUserStored(user)){
-    		try {
-    			// if the user is not already in the database, add it
-				writeUserProfile(user);				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+    		// if the user is not in the database it will add it
+    		writeUserProfile(user);
     	}
-    	// add all events associated with the users profile
+    	else{
+    		// if the user is in the database it will update it
+    		updateUserProfile(user);
+    	}
+    	// add all events associated with the users profile to the database
     	for(Event event : user.getEvents().getAllEvents()){
 			writeEvent(user, event);
 		}
@@ -162,10 +225,9 @@ public class DBWriter {
      * @param user The user whose profile will be added to the database
      * @throws Exception
      */
-    public void writeUserProfile(User user) throws Exception {
+    public void writeUserProfile(User user){
     	try {
     	    connect = DriverManager.getConnection(url, admin, password);
-    	    statement = connect.createStatement();
     	    preparedStatement = connect
     		    .prepareStatement(
     			    "INSERT into fitr.user VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -183,11 +245,8 @@ public class DBWriter {
     	    e.printStackTrace();
     	} finally {
     	    try {
-    		if (resultSet != null) {
-    		    resultSet.close();
-    		}
-    		if (statement != null) {
-    		    statement.close();
+    		if (preparedStatement != null) {
+    		    preparedStatement.close();
     		}
     		if (connect != null) {
     		    connect.close();
@@ -206,7 +265,6 @@ public class DBWriter {
     public void writeEventInfo(User user, Event event) {
     	try {
     	    connect = DriverManager.getConnection(url, admin, password);
-    	    statement = connect.createStatement();
     	    preparedStatement = connect
     		    .prepareStatement(
     			    "INSERT into fitr.event VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -217,7 +275,7 @@ public class DBWriter {
     		    .getStartTime().getTimeInMillis())); // start_time
     	    preparedStatement.setTimestamp(4, new Timestamp(event
     		    .getFinishTime().getTimeInMillis())); // end_time
-    	    preparedStatement.setInt(5, 123); // num_points
+    	    preparedStatement.setInt(5, 1337); // num_points
     	    preparedStatement.setDouble(6, event.getDistance()); // distance
     	    preparedStatement.setDouble(7, event.getMaxSpeed()); // max_speed
     	    preparedStatement.setDouble(8, event.getAverageSpeed()); // average_speed
@@ -228,11 +286,8 @@ public class DBWriter {
     	    e.printStackTrace();
     	} finally {
     	    try {
-    		if (resultSet != null) {
-    		    resultSet.close();
-    		}
-    		if (statement != null) {
-    		    statement.close();
+    		if (preparedStatement != null) {
+    		    preparedStatement.close();
     		}
     		if (connect != null) {
     		    connect.close();
@@ -252,7 +307,6 @@ public class DBWriter {
     public void writeDataPoint(User user, Event event, DataPoint point) {
 	try {
 	    connect = DriverManager.getConnection(url, admin, password);
-	    statement = connect.createStatement();
 	    preparedStatement = connect
 		    .prepareStatement(
 			    "INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -274,11 +328,8 @@ public class DBWriter {
 	    e.printStackTrace();
 	} finally {
 	    try {
-		if (resultSet != null) {
-		    resultSet.close();
-		}
-		if (statement != null) {
-		    statement.close();
+		if (preparedStatement != null) {
+		    preparedStatement.close();
 		}
 		if (connect != null) {
 		    connect.close();
@@ -293,9 +344,11 @@ public class DBWriter {
     public static void main(String[] args) {
     	DBWriter dbw = new DBWriter();
     	User mocky = User.mockUser();
+    	
     	//mocky.setUserID(2);
 		try {
 			dbw.writeUser(mocky);
+			//dbw.updateUserProfile(mocky);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		}
