@@ -114,8 +114,6 @@ public class FileLoader {
 						points.add(point);
 						lastPoint = point;
 					}
-				} else {
-					
 				}
 			}
 
@@ -144,10 +142,8 @@ public class FileLoader {
 	 * @param line
 	 * @return isValid
 	 */
-	public boolean isValidLine(String line) { // this doesnt work
+	public boolean isValidLine(String line) { 
 		boolean isValid = true;
-		//String dataLine = "(\\d){2}/(\\d){2}/(\\d){4},(\\d){2}:(\\d){2}:(\\d){2}"
-			//	+ ",(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
 		String z = "(\\d){2}/(\\d){2}/(\\d){4},";
 		String y = "(\\d){2}:(\\d){2}:(\\d){2},";
 		String x = "(\\d){2,3},(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
@@ -156,11 +152,10 @@ public class FileLoader {
 		if(line.length() == 0) {
 			isValid = false;
 		} else if(!line.matches(reg)) {
+
 			isValid = false;
 		}
-		
 
-		//return 
 		return isValid;
 	}
 
