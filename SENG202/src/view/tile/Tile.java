@@ -27,9 +27,9 @@ public class Tile extends AnchorPane {
 	 */
 	private void loadMainPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("Tile.fxml"));
+		loader.setLocation(getClass().getResource(TILE));
 		loader.setRoot(this);
-		loader.load(getClass().getResourceAsStream(Tile.TILE));
+		loader.load(getClass().getResourceAsStream(TILE));
 
 		TileController tileController = loader.getController();
 		tileController.fill(event);

@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Set;
 
 /**
  * This class is abstract version of an activity event container. The activity

@@ -1,7 +1,10 @@
 package view.user;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import data.persistant.Persistent;
@@ -11,31 +14,41 @@ import data.persistant.Persistent;
  * @author Daniel van Wichen
  */
 public class UserLoginManager extends Application {
-	public static String loginFXML = "UserLogin.fxml";
-	public static String createFXML = "UserCreate.fxml";
-	public static String persistFXML = "UserPersist.fxml";
+	public static String userManagementFXML = "UserManagement.fxml";
+	public static String userCreateFXML = "UserCreate.fxml";
+	public static String userLoginFXML = "UserLogin.fxml";
+	public static String userPersistFXML = "UserPersist.fxml";
+	
+	public static Stage stage;
 
-	Stage stage = new Stage(StageStyle.UTILITY);
+	StackPane userManagementView = new StackPane();
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		stage = this.stage;
-
-		ScreenPane mainContainer = new ScreenPane();
-		mainContainer.loadScreen("userLogin", UserLoginManager.loginFXML);
-		mainContainer.loadScreen("userCreate", UserLoginManager.createFXML);
-		mainContainer.loadScreen("userPersist", UserLoginManager.persistFXML);
+		stage = new Stage(StageStyle.UTILITY);
+		UserLoginManager.stage = stage;
 
 		/*
 		 * initialize the persistent class.
 		 */
 		Persistent.initialize();
 
-		Scene scene = new Scene(mainContainer);
-		stage.setScene(scene);
-		stage.show();
-		stage.centerOnScreen();
-		stage.setResizable(false);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource(userManagementFXML));
+		loader.setRoot(userManagementView);
+		StackPane root = loader.load(getClass().getResourceAsStream(
+				userManagementFXML));
+		stage.setScene(new Scene(root));
+		stage.setTitle("User Management");
+
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				UserLoginManager.stage.show();
+			}
+		});
+
 	}
 
 	/**
@@ -45,4 +58,5 @@ public class UserLoginManager extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
