@@ -258,10 +258,14 @@ public class User implements Serializable {
 	@Override
 	public boolean equals(Object other) {
 		boolean same = false;
-		User u = (User) other;
-		if(name.equals(u.getName())) {
-			same = true;
+		if(other != null){
+			User u = (User) other;
+			if(name.equals(u.getName())) {
+				same = true;
+			}
 		}
+		
 		return same;
 	}
+	
 }
