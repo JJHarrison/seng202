@@ -153,6 +153,7 @@ public class FileLoader {
 		f.load();
 		
 		EventContainer eC = f.getEventContainer();
+		System.out.println(eC.getAllEvents().size());
 		for (Event e : eC.getAllEvents()) {
 			System.out.print(e.getEventName() + "\n");
 			//System.out.print(e.getStartTime().get(Calendar.MINUTE) + "\n");
