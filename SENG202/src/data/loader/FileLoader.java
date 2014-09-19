@@ -80,7 +80,9 @@ public class FileLoader {
 					if (dataLine[0].contains("#start")) {
 						// we need to add create an event and add the points
 						// from before start
+					
 						if (!points.isEmpty()) {
+							
 							currentEvent = new Event(currentName, points);
 							eventContainer.addEvent(currentEvent);
 							events.add(currentEvent);
@@ -91,7 +93,7 @@ public class FileLoader {
 					} else {
 						String[] dateString = dataLine[0].split("/");
 						String[] time = dataLine[1].split(":");
-
+	
 						// months start from 0...
 						Calendar date = new GregorianCalendar(
 								Integer.parseInt(dateString[2]), // Year
@@ -115,6 +117,11 @@ public class FileLoader {
 						lastPoint = point;
 					}
 				}
+			}
+			
+			if(currentName != null && points.size() != 0) {
+				currentEvent = new Event(currentName, points);
+				eventContainer.addEvent(currentEvent);
 			}
 
 		} catch (FileNotFoundException e) {

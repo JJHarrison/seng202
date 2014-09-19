@@ -348,4 +348,17 @@ public class Event implements Serializable {
 	public String getCaloriesString() {
 		return String.format("%.0f", getCaloriesBurned());
 	}
+	
+	@Override
+	public boolean equals(Object other) {
+		boolean equal = false;
+		if(other != null && other.getClass() == Event.class) {
+			Event e = (Event) other;
+			if(e.getStartTime().equals(startTime) && e.getEventName().equals(eventName)) {
+				equal = true;
+			}
+		}
+		return equal;
+		
+	}
 }
