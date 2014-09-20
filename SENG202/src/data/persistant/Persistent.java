@@ -138,7 +138,7 @@ public class Persistent {
 		return userAdded;
 	}
 
-	public static int getLastUserID() {
+	public static int getUserID() {
 		return prefs.getInt("LastUserID", 0);
 	}
 
