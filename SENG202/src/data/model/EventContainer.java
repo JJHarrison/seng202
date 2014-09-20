@@ -116,6 +116,7 @@ public class EventContainer implements Serializable {
 		
 		for(int i = 0; i < 7; i++) {
 			if (days.containsKey(dateString(date.getTime()))) {
+				System.out.println("--" + date.DAY_OF_WEEK);
 				events.addAll(days.get(dateString(date.getTime())));
 			}
 			date.set(Calendar.DAY_OF_WEEK, i);

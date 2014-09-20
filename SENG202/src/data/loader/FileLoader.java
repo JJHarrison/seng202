@@ -78,6 +78,7 @@ public class FileLoader {
 							System.out.println("adding " + points.size() + " Points to event: " + eventName);
 							eventContainer.addEvent(new Event(eventName, points));
 							points = new ArrayList<DataPoint>();
+							lastPoint = null;
 						}
 						
 						eventName =  dataLine[1]; 
@@ -212,10 +213,16 @@ public class FileLoader {
 		EventContainer eC = f.getEventContainer();
 		System.out.println("----" + eC.getLastDate());
 		//02/01/2006
-		Date week = new Calendar.Builder().setDate(2005, 3, 12).build().getTime();
+		Date week = new Calendar.Builder().setDate(2005, 6, 9).build().getTime();
 		for (Event e : eC.getWeekEvents(week)) {
-			//System.out.print(e.getEventName() + "\n");
-			System.out.println(e.getEventName());
+		//for (Event e : eC.getAllEvents()) {
+			System.out.println(e.getStartTime().get(Calendar.DAY_OF_MONTH) + "/" + 
+			e.getStartTime().get(Calendar.MONTH) + "/" + 
+			e.getStartTime().get(Calendar.YEAR));
+			//System.out.println(e.getEventName());
+			//for (DataPoint p : e.getDataPoints()) {
+				//System.out.println(p.getDistance());
+			//}
 		}
 		//String l = "10/04/2005,23:42:28,69,30.2553368,-97.83891084,239.5";
 		//System.out.println(f.isValidLine(l));
