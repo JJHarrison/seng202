@@ -159,6 +159,8 @@ public class FileLoader {
 		if(line.length() == 0) {
 			isValid = false;
 		} else if(!line.matches(reg)) {
+			// the line must pass the regex before checking validity of the values
+			// otherwise it will break as isInRange() does not check if it can parse the string
 			String[] values = line.split(",");
 			if ((values.length == 6)
 				&& (isDateValid(values[0]))
@@ -176,12 +178,27 @@ public class FileLoader {
 		inputStream = null;
 	}
 
-	
+	/**
+	 * Checks to see if the value is in a range of [low, high] (inclusive).
+	 * There are no checks to see if the value is valid to be parsed to double,
+	 * this must be handled by the function caller.
+	 * @param value The value that will be checked to see if it is in the range
+	 * @param low The lower bound of the range
+	 * @param high The higher bound of the range
+	 * @return True if the value is in the range, false otherwise
+	 */
 	public boolean isInRange(String value, double low, double high){
 		double d = Double.parseDouble(value);
 		return (d >= low && d <= high);
 	}
 	
+	/**
+	 * Check to see if the date is within a valid date format
+	 * The date that is accepted is the standard New Zealand format dd/mm/yyyy ...
+	 *  [1-31]/[1,12]/[2000,2100] 
+	 * @param date The date that will be checked
+	 * @return True if the value is a valid date, false otherwise
+	 */
 	public boolean isDateValid(String date){
 		String[] values = date.split("/");
 		return (isInRange(values[0], 1, 31)
@@ -189,6 +206,12 @@ public class FileLoader {
 			&& isInRange(values[2], 2000, 2100));
 	}
 	
+	/**
+	 * Check to see if the time is a valid time format
+	 * The time that will be accepted is hh:mm:ss [0,23]:[0,59],[0,59]
+	 * @param time The time that will be checked
+	 * @return True if the value is a valid time, false otherwise
+	 */
 	public boolean isTimeValid(String time){
 		String[] values = time.split(":");
 		return (isInRange(values[0], 0, 23))
@@ -196,15 +219,30 @@ public class FileLoader {
 				&& isInRange(values[2], 0, 59);
 	}
 	
+	/**
+	 * Checks to see if the heart rate is within a valid range of [20,220]
+	 * @param hr The heart rate that will be checked
+	 * @return True if the heart rate is valid, false otherwise
+	 */
 	public boolean isHeartrateValid(String hr){
 		return isInRange(hr, 20, 220);
 	}
 	
+	/**
+	 * Checks to see if the latitude is within a valid range of [-90,90]
+	 * @param lat The latitude that will be checked 
+	 * @return True if the latitude is valid, false otherwise
+	 */
 	public boolean isLatitudeValid(String lat){
 		String[] values = lat.split("\\.");		
 		return (isInRange(lat, -90, 90) &&  values[1].length() >= 5);
 	}
 	
+	/**
+	 * Checks to see if the longitude is within a valid range of [-180,180]
+	 * @param lng The longitude that will be checked 
+	 * @return True if the longitude is valid, false otherwise
+	 */
 	public boolean isLongitudeValid(String lng){
 		String[] values = lng.split("\\.");		
 		return (isInRange(lng, -180, 180) &&  values[1].length() >= 5);
