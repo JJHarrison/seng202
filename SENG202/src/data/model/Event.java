@@ -29,14 +29,6 @@ public class Event implements Serializable {
 	private double caloriesBurned;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 
-	private boolean RISK = true;
-
-	// TODO
-	// sdfghjsdfghgdshsasghjsasghdsdfhjdsdghsdghsdhjdsdghjdsdfghjhfdsdhdsdfghsdhdsdfghgdsdfghjhfdsdghjhgfdsdfghjhgfdsdfghgfds
-	public boolean getRISK() {
-		return RISK;
-	}
-
 	/**
 	 * Constructor
 	 * 
