@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.Date;
 
 import data.model.DataPoint;
 import data.model.Event;
@@ -211,9 +211,11 @@ public class FileLoader {
 		
 		EventContainer eC = f.getEventContainer();
 		System.out.println("----" + eC.getLastDate());
-		for (Event e : eC.getAllEvents()) {
+		//02/01/2006
+		Date week = new Calendar.Builder().setDate(2005, 3, 12).build().getTime();
+		for (Event e : eC.getWeekEvents(week)) {
 			//System.out.print(e.getEventName() + "\n");
-			//System.out.print(e.getStartTime().get(Calendar.MINUTE) + "\n");
+			System.out.println(e.getEventName());
 		}
 		//String l = "10/04/2005,23:42:28,69,30.2553368,-97.83891084,239.5";
 		//System.out.println(f.isValidLine(l));
