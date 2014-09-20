@@ -47,7 +47,6 @@ public class SummaryController {
 		labelMaxSpeed.setText(event.maxSpeedString());
 		labelMaxHR.setText(event.maxHRString());
 		labelCalories.setText(event.getCaloriesString());
-
 	}
 
 }

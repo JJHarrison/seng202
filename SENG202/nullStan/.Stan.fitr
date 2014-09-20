@@ -1,0 +1,12 @@
+{
+  "name": "Stan",
+  "weight": 70.0,
+  "height": 170.0,
+  "gender": "MALE",
+  "BMI": 0.002422145328719723,
+  "averageHeartRate": 60,
+  "events": {
+    "days": {}
+  },
+  "userID": 2
+}

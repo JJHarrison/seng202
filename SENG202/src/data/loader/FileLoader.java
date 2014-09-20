@@ -68,7 +68,7 @@ public class FileLoader {
 		DataPoint lastPoint = null;
 		Event currentEvent = null;
 		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-		String currentName = null;
+		String currentName = null; 
 
 		try {
 			br = new BufferedReader(new InputStreamReader(inputStream));
@@ -159,16 +159,58 @@ public class FileLoader {
 		if(line.length() == 0) {
 			isValid = false;
 		} else if(!line.matches(reg)) {
-
-			isValid = false;
+			String[] values = line.split(",");
+			if ((values.length == 6)
+				&& (isDateValid(values[0]))
+				&& (isTimeValid(values[1]))
+				&& (isHeartrateValid(values[2]))
+				&& (isLatitudeValid(values[3]))){
+				isValid = false;
+			}
+			
 		}
-
 		return isValid;
 	}
 
 	private void clearStream() {
 		inputStream = null;
 	}
+
+	
+	public boolean isInRange(String value, double low, double high){
+		double d = Double.parseDouble(value);
+		return (d >= low && d <= high);
+	}
+	
+	public boolean isDateValid(String date){
+		String[] values = date.split("/");
+		return (isInRange(values[0], 1, 31)
+			&& isInRange(values[1], 1, 12)
+			&& isInRange(values[2], 2000, 2100));
+	}
+	
+	public boolean isTimeValid(String time){
+		String[] values = time.split(":");
+		return (isInRange(values[0], 0, 23))
+				&& isInRange(values[1], 0, 59)
+				&& isInRange(values[2], 0, 59);
+	}
+	
+	public boolean isHeartrateValid(String hr){
+		return isInRange(hr, 20, 220);
+	}
+	
+	public boolean isLatitudeValid(String lat){
+		String[] values = lat.split("\\.");		
+		return (isInRange(lat, -90, 90) &&  values[1].length() >= 5);
+	}
+	
+	public boolean isLongitudeValid(String lng){
+		String[] values = lng.split("\\.");		
+		return (isInRange(lng, -180, 180) &&  values[1].length() >= 5);
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		FileLoader f = new FileLoader();
@@ -180,5 +222,7 @@ public class FileLoader {
 			System.out.print(e.getEventName() + "\n");
 			//System.out.print(e.getStartTime().get(Calendar.MINUTE) + "\n");
 		}
+		//String l = "10/04/2005,23:42:28,69,30.2553368,-97.83891084,239.5";
+		//System.out.println(f.isValidLine(l));
 	}
 }

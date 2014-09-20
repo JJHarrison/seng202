@@ -30,7 +30,7 @@ public class Event implements Serializable {
 	private int maxHeartRate;
 	private double caloriesBurned;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-	
+
 	private boolean hasTachycardia = false;
 	private boolean hasBradycardia = false;
 
@@ -41,13 +41,13 @@ public class Event implements Serializable {
 	 * @param points
 	 *            All data points for the event
 	 */
-	
+
 	public Event(String eventName, ArrayList<DataPoint> points) {
 		this.eventName = eventName;
 		this.points = points;
 		calculate();
 		calculateStress();
-		calculateWarnings();
+		// calculateWarnings();
 	}
 
 	/**
@@ -75,12 +75,12 @@ public class Event implements Serializable {
 		averageHeartRate = totalHR / numPoints;
 		averageSpeed = distance / getDuration();
 	}
-	
+
 	private void calculateStress() {
 		double sf = calculateStressFactor();
 		double stress;
-		
-		for (DataPoint p: points) {
+
+		for (DataPoint p : points) {
 			if (p.getSpeed() != 0) {
 				stress = sf * (p.getHeartRate() / p.getSpeed());
 				stress = (200 / Math.PI) * Math.atan(stress);
@@ -88,32 +88,33 @@ public class Event implements Serializable {
 			}
 		}
 	}
-	
+
 	private void calculateWarnings() {
-		/*
-		for (DataPoint p: points) {
-			if (p.getHeartRate() > 207 - (0.7 
-				* Persistent.getCurrentUser().getAge())) {
-				hasTachycardia = true;
-			} else if (p.getHeartRate() < 60) {
-				hasBradycardia = true;
+		if (Persistent.getCurrentUser() != null) {
+			for (DataPoint p : points) {
+				if (p.getHeartRate() > 207 - (0.7 * Persistent.getCurrentUser()
+						.getAge())) {
+					hasTachycardia = true;
+				} else if (p.getHeartRate() < 60) {
+					hasBradycardia = true;
+				}
 			}
-		}*/
+		}
 	}
-	
+
 	private double calculateStressFactor() {
 		double totalSpeed = 0.0;
 		int totalHeartRate = 0;
 		double avgSpeed, avgHeartRate;
-		
-		for (DataPoint p: points) {
+
+		for (DataPoint p : points) {
 			totalSpeed += p.getSpeed();
 			totalHeartRate += p.getHeartRate();
 		}
-		
+
 		avgSpeed = totalSpeed / (points.size() - 1);
-		avgHeartRate = (float)totalHeartRate / points.size();
-		
+		avgHeartRate = (float) totalHeartRate / points.size();
+
 		if (avgHeartRate == 0) {
 			return 1.0;
 		}
@@ -280,7 +281,8 @@ public class Event implements Serializable {
 	}
 
 	/**
-	 * returns calories burned for the event 
+	 * returns calories burned for the event
+	 * 
 	 * @return calories burned
 	 */
 	public double getCaloriesBurned() {
@@ -339,11 +341,11 @@ public class Event implements Serializable {
 
 		return pathBuilder.toString();
 	}
-	
+
 	public boolean hasTachycardia() {
 		return hasTachycardia;
 	}
-	
+
 	public boolean hasBradycardia() {
 		return hasBradycardia;
 	}
@@ -367,17 +369,18 @@ public class Event implements Serializable {
 	public String getCaloriesString() {
 		return String.format("%.0f", getCaloriesBurned());
 	}
-	
+
 	@Override
 	public boolean equals(Object other) {
 		boolean equal = false;
-		if(other != null && other.getClass() == Event.class) {
+		if (other != null && other.getClass() == Event.class) {
 			Event e = (Event) other;
-			if(e.getStartTime().equals(startTime) && e.getEventName().equals(eventName)) {
+			if (e.getStartTime().equals(startTime)
+					&& e.getEventName().equals(eventName)) {
 				equal = true;
 			}
 		}
 		return equal;
-		
+
 	}
 }
