@@ -63,7 +63,7 @@ public class User implements Serializable {
 		this.averageHeartRate = averageHeartRate;
 		this.BMI = calculateBMI();
 		this.events = (events == null) ? new EventContainer() : events;
-		userID = Persistent.getLastUserID();
+		userID = Persistent.getUserID();
 	}
 
 	/**
