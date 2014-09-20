@@ -90,12 +90,14 @@ public class Event implements Serializable {
 	}
 	
 	private void calculateWarnings() {
-		for (DataPoint p: points) {
-			if (p.getHeartRate() > 207 - (0.7 
-				* Persistent.getCurrentUser().getAge())) {
-				hasTachycardia = true;
-			} else if (p.getHeartRate() < 60) {
-				hasBradycardia = true;
+		if (Persistent.getCurrentUser() != null) {
+			for (DataPoint p: points) {
+				if (p.getHeartRate() > 207 - (0.7 
+					* Persistent.getCurrentUser().getAge())) {
+					hasTachycardia = true;
+				} else if (p.getHeartRate() < 60) {
+					hasBradycardia = true;
+				}
 			}
 		}
 	}
