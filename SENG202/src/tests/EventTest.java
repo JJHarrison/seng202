@@ -20,7 +20,8 @@ public class EventTest extends TestCase {
 	private ArrayList<DataPoint> points;
 	private DataPoint p1;
 	private DataPoint p2;
-
+	
+	
 	/**
 	 * Sets up the events to be tested
 	 */

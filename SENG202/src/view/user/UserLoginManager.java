@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import data.persistant.Persistent;
@@ -26,7 +27,8 @@ public class UserLoginManager extends Application {
 	public void start(Stage stage) throws Exception {
 		stage = new Stage(StageStyle.UTILITY);
 		UserLoginManager.stage = stage;
-
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setResizable(false);
 		/*
 		 * initialize the persistent class.
 		 */

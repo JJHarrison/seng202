@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.lang.Math;
 
+import data.persistant.Persistent;
+
 /**
  * This class provides an abstract version of activity events provided by a
  * fitness tracking device. Each event consists of a collection of dataPoints
@@ -28,14 +30,9 @@ public class Event implements Serializable {
 	private int maxHeartRate;
 	private double caloriesBurned;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-
-	private boolean RISK = true;
-
-	// TODO
-	// sdfghjsdfghgdshsasghjsasghdsdfhjdsdghsdghsdhjdsdghjdsdfghjhfdsdhdsdfghsdhdsdfghgdsdfghjhfdsdghjhgfdsdfghjhgfdsdfghgfds
-	public boolean getRISK() {
-		return RISK;
-	}
+	
+	private boolean hasTachycardia = false;
+	private boolean hasBradycardia = false;
 
 	/**
 	 * Constructor
@@ -44,11 +41,13 @@ public class Event implements Serializable {
 	 * @param points
 	 *            All data points for the event
 	 */
+	
 	public Event(String eventName, ArrayList<DataPoint> points) {
 		this.eventName = eventName;
 		this.points = points;
 		calculate();
 		calculateStress();
+		calculateWarnings();
 	}
 
 	/**
@@ -86,6 +85,17 @@ public class Event implements Serializable {
 				stress = sf * (p.getHeartRate() / p.getSpeed());
 				stress = (200 / Math.PI) * Math.atan(stress);
 				p.setStressLevel(stress);
+			}
+		}
+	}
+	
+	private void calculateWarnings() {
+		for (DataPoint p: points) {
+			if (p.getHeartRate() > 207 - (0.7 
+				* Persistent.getCurrentUser().getAge())) {
+				hasTachycardia = true;
+			} else if (p.getHeartRate() < 60) {
+				hasBradycardia = true;
 			}
 		}
 	}
@@ -327,6 +337,14 @@ public class Event implements Serializable {
 		pathBuilder.append(getPointString(dataPoints.get(dataSize - 1)));
 
 		return pathBuilder.toString();
+	}
+	
+	public boolean hasTachycardia() {
+		return hasTachycardia;
+	}
+	
+	public boolean hasBradycardia() {
+		return hasBradycardia;
 	}
 
 	public String avgHRString() {
