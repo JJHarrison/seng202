@@ -109,7 +109,7 @@ public class FileLoader {
 		String[] time = line[1].split(":");
 		
 		Calendar date = new Calendar.Builder()
-		.setDate(Integer.parseInt(dateString[2]), Integer.parseInt(dateString[1]), Integer.parseInt(dateString[0]))
+		.setDate(Integer.parseInt(dateString[2]), Integer.parseInt(dateString[1])-1, Integer.parseInt(dateString[0]))
 		.setTimeOfDay(Integer.parseInt(time[0]), Integer.parseInt(time[1]), Integer.parseInt(time[2]))
 		.build();
 		
@@ -210,9 +210,9 @@ public class FileLoader {
 		f.load();
 		
 		EventContainer eC = f.getEventContainer();
-		System.out.println(eC.getAllEvents().size());
+		System.out.println("----" + eC.getLastDate());
 		for (Event e : eC.getAllEvents()) {
-			System.out.print(e.getEventName() + "\n");
+			//System.out.print(e.getEventName() + "\n");
 			//System.out.print(e.getStartTime().get(Calendar.MINUTE) + "\n");
 		}
 		//String l = "10/04/2005,23:42:28,69,30.2553368,-97.83891084,239.5";

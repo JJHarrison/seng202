@@ -10,7 +10,7 @@ public class GraphHelper {
 			double hr = p.getHeartRate();
 			double time = p.getDate().getTimeInMillis()
 					- e.getStartTime().getTimeInMillis();
-			g.addPoint(t, hr);
+			g.addPoint(time, hr);
 			t++;
 		}
 		return g;

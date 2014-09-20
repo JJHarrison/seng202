@@ -346,6 +346,10 @@ public class Event implements Serializable {
 
 		return pathBuilder.toString();
 	}
+	
+	public void getLastday() {
+		
+	}
 
 	public boolean hasBradycardia() {
 		return hasBradycardia;

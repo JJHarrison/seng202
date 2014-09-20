@@ -2,6 +2,8 @@ package data.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -103,5 +105,18 @@ public class EventContainer implements Serializable {
 		}
 
 		return events;
+	}
+	
+	public Date getLastDate() {
+		Calendar lastDate = new Calendar.Builder().build();
+		for(String dateLine : days.keySet()){
+			String[] dL = dateLine.split("/");
+			Calendar date = new Calendar.Builder().setDate(Integer.parseInt(dL[2]), Integer.parseInt(dL[1]) - 1, Integer.parseInt(dL[0])).build();
+			if(lastDate.before(date)) {
+				lastDate = date;
+			}
+		}
+
+		return lastDate.getTime();
 	}
 }
