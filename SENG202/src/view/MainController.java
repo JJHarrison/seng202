@@ -68,6 +68,8 @@ public class MainController {
 					Date oldValue, Date newValue) {
 				viewAnalysisController.clearTiles();
 				
+				System.out.println(Persistent.getCurrentUser());
+				
 				for (Event event : Persistent.getCurrentUser().getEvents().getEvents(newValue)) {
 					viewAnalysisController.addTile(event);
 				}
@@ -75,7 +77,7 @@ public class MainController {
 			}
 		});
 		
-		selectedDate.set(new Date());
+		selectedDate.set(new Date(2005-1900, 3, 28));
 		
 		loadDash(null);
 

@@ -32,7 +32,7 @@ public class Main extends Application {
 		stage.setMinHeight(700);
 		stage.setMinWidth(1366);
 		stage.setMaximized(true);
-
+		
 		initRootLayout();
 	}
 

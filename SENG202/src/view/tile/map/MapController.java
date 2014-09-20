@@ -19,10 +19,10 @@ public class MapController {
 	private Image image;
 
 	private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?";
-	private static String parameterPath = "path=color:0x3BF783|";
+	private static String parameterPath = "path=color:blue|";
 	private static String parameterStart = "markers=label:S|";
 	private static String parameterFinish = "markers=label:F|";
-	private static String parameterSize = "size=640x480&zoom=19";
+	private static String parameterSize = "size=640x480";
 	private static String parameterType = "maptype=roadmap";
 
 	public void fill(Event event) {

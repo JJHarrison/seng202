@@ -90,6 +90,7 @@ public class Event implements Serializable {
 	}
 	
 	private void calculateWarnings() {
+		/*
 		for (DataPoint p: points) {
 			if (p.getHeartRate() > 207 - (0.7 
 				* Persistent.getCurrentUser().getAge())) {
@@ -97,7 +98,7 @@ public class Event implements Serializable {
 			} else if (p.getHeartRate() < 60) {
 				hasBradycardia = true;
 			}
-		}
+		}*/
 	}
 	
 	private double calculateStressFactor() {
@@ -254,7 +255,7 @@ public class Event implements Serializable {
 	public String getDistanceString() {
 		String distanceString;
 		if (getDistance() >= 1000.0) {
-			distanceString = String.format("%.2f km", getDistance());
+			distanceString = String.format("%.2f km", getDistance() / 1000);
 		} else {
 			distanceString = String.format("%d meter%s", (int) getDistance(),
 					getDistance() == 1.0 ? "" : "s");
