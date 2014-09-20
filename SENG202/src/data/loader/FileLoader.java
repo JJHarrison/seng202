@@ -150,15 +150,13 @@ public class FileLoader {
 	 * @return isValid
 	 */
 	public boolean isValidLine(String line) { 
-		boolean isValid = true;
+		boolean isValid = false;
 		String z = "(\\d){2}/(\\d){2}/(\\d){4},";
 		String y = "(\\d){2}:(\\d){2}:(\\d){2},";
 		String x = "(\\d){2,3},(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
 		String reg = z + y + x;
 		
-		if(line.length() == 0) {
-			isValid = false;
-		} else if(!line.matches(reg)) {
+		 if(line.matches(reg)) {
 			// the line must pass the regex before checking validity of the values
 			// otherwise it will break as isInRange() does not check if it can parse the string
 			String[] values = line.split(",");
@@ -166,8 +164,9 @@ public class FileLoader {
 				&& (isDateValid(values[0]))
 				&& (isTimeValid(values[1]))
 				&& (isHeartrateValid(values[2]))
-				&& (isLatitudeValid(values[3]))){
-				isValid = false;
+				&& (isLatitudeValid(values[3]))
+				&& (isLongitudeValid(values[4]))){
+				isValid = true;
 			}
 			
 		}
@@ -249,18 +248,17 @@ public class FileLoader {
 	}
 	
 	
-	
 	public static void main(String[] args) {
 		FileLoader f = new FileLoader();
-		f.load();
+		/*f.load();
 		
 		EventContainer eC = f.getEventContainer();
 		System.out.println(eC.getAllEvents().size());
 		for (Event e : eC.getAllEvents()) {
 			System.out.print(e.getEventName() + "\n");
 			//System.out.print(e.getStartTime().get(Calendar.MINUTE) + "\n");
-		}
-		//String l = "10/04/2005,23:42:28,69,30.2553368,-97.83891084,239.5";
-		//System.out.println(f.isValidLine(l));
+		}*/
+		String l = "10/04/2005,23:42:28,69,30.2553368,-97.83891084,50";
+		System.out.println(f.isValidLine(l));
 	}
 }
