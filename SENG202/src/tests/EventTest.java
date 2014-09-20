@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import user.User;
 import junit.framework.TestCase;
 import data.model.DataPoint;
 import data.model.Event;
+import data.model.EventContainer;
+import data.persistant.Persistent;
 
 /**
  * Tests for the event class functionality
@@ -21,6 +24,7 @@ public class EventTest extends TestCase {
 	private DataPoint p1;
 	private DataPoint p2;
 	
+	private User user;
 	
 	/**
 	 * Sets up the events to be tested
@@ -44,17 +48,19 @@ public class EventTest extends TestCase {
 				43, // Minute
 				5); // Second
 
-		p1 = new DataPoint.Builder().date(c3).heartRate(120)
+		p1 = new DataPoint.Builder().date(c3).heartRate(59) // don't change hr
 				.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
 				.prevDataPoint(null).build();
 
-		p2 = new DataPoint.Builder().date(c4).heartRate(125)
+		p2 = new DataPoint.Builder().date(c4).heartRate(195) // don't change hr
 				.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
 				.prevDataPoint(p1).build();
 
 		points.add(p1);
 		points.add(p2);
 		e = new Event("My Event", points);
+		
+		user = User.mockUser();
 	}
 
 	/**
@@ -66,11 +72,11 @@ public class EventTest extends TestCase {
 	}
 
 	public void testAverageHR() {
-		assertEquals((120 + 125) / 2, e.getAverageHeartRate());
+		assertEquals((59 + 195) / 2, e.getAverageHeartRate());
 	}
 
 	public void testMaxHR() {
-		assertEquals(125, e.getMaxHeartRate());
+		assertEquals(195, e.getMaxHeartRate());
 	}
 
 	/**
@@ -104,6 +110,21 @@ public class EventTest extends TestCase {
 		assertEquals(p2, points.get(points.size() - 1));
 		points.add(p1);
 		assertEquals(p1, points.get(points.size() - 1));
+	}
+	
+	public void testTachycardia() {
+		Calendar c = new GregorianCalendar(2000, 01,01);
+		user.setDateofBirth(c);
+		EventContainer ec = new EventContainer();
+		ec.addEvent(e);
+		user.setEvents(ec);
+		Persistent.setUser(user);
+		assertEquals(e.hasBradycardia(), true);
+		assertEquals(e.hasTachycardia(), false); // 14 years old
+		c = new GregorianCalendar(1950, 01, 01);
+		user.setDateofBirth(c);
+		assertEquals(e.hasTachycardia(), true); // 64 years old
+		
 	}
 
 }
