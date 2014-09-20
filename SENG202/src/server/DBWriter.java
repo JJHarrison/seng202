@@ -8,18 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.sun.xml.internal.bind.v2.runtime.reflect.ListIterator;
 
 import user.User;
-import user.User.Gender;
 import data.model.DataPoint;
 import data.model.Event;
-import data.persistant.Persistent;
 
 public class DBWriter {
     private Connection connect = null;

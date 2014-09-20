@@ -1,13 +1,10 @@
 package tests;
 
-import java.io.File;
-
+import junit.framework.TestCase;
 import user.User;
 import user.User.Gender;
-import data.persistant.Loader;
 import data.persistant.Persistent;
 import data.persistant.Saver;
-import junit.framework.TestCase;
 
 public class SaverLoaderTest extends TestCase {
 	

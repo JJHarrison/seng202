@@ -3,9 +3,8 @@ package user;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import data.loader.FileLoader;
 
-import data.model.EventContainer;
+import data.loader.FileLoader;
 import data.model.EventContainer;
 import data.persistant.Persistent;
 

@@ -1,13 +1,7 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
-import view.analysis.AnalysisController;
-import data.model.DataPoint;
-import data.model.Event;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -20,8 +14,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import view.analysis.AnalysisController;
+import data.model.Event;
+import data.persistant.Persistent;
 import extfx.scene.control.CalendarView;
 
 public class MainController {
@@ -31,8 +27,6 @@ public class MainController {
 	ToggleButton buttonAnalysis;
 	@FXML
 	ToggleButton buttonWeb;
-	@FXML
-	VBox tileBox;
 
 	@FXML
 	CalendarView calendarView;
@@ -65,43 +59,24 @@ public class MainController {
 	void initialize() {
 		// TODO Test
 		selectedDate = calendarView.selectedDateProperty();
+		
 
-		MainController.selectedDate.addListener(new ChangeListener<Object>() {
+		MainController.selectedDate.addListener(new ChangeListener<Date>() {
 
 			@Override
-			public void changed(ObservableValue<? extends Object> observable,
-					Object oldValue, Object newValue) {
-				Date date = (Date) newValue;
-				ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-				Calendar c3 = new GregorianCalendar();
-				c3.setTime(date);
-				Calendar c4 = new GregorianCalendar();
-				c4.setTime(date);
-				c4.add(Calendar.SECOND, 6);
-
-				DataPoint p1 = new DataPoint.Builder().date(c3).heartRate(120)
-						.latitude(30.2553368).longitude(-97.83891084)
-						.altitude(50.0).prevDataPoint(null).build();
-
-				DataPoint p2 = new DataPoint.Builder().date(c4).heartRate(125)
-						.latitude(30.25499189).longitude(-97.83913958)
-						.altitude(51.0).prevDataPoint(p1).build();
-
-				points.add(p1);
-				points.add(p2);
-
-				Event event1 = new Event("A Walk in the Woods", points);
-				Event event2 = new Event("A Long Walk on the Beach", points);
-				Event event3 = new Event("Police chase (a narrow escape)",
-						points);
-
-				viewAnalysisController.addTiles(event1, event2, event3);
-
+			public void changed(ObservableValue<? extends Date> observable,
+					Date oldValue, Date newValue) {
+				viewAnalysisController.clearTiles();
+				
+				for (Event event : Persistent.getCurrentUser().getEvents().getEvents(newValue)) {
+					viewAnalysisController.addTile(event);
+				}
+				
 			}
 		});
-
+		
 		selectedDate.set(new Date());
-
+		
 		loadDash(null);
 
 		menuClose.setOnAction(new EventHandler<ActionEvent>() {

@@ -5,15 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
-import data.model.DataPoint;
-import data.model.Event;
-import data.model.EventContainer;
 import user.User;
-import user.User.Gender; 
 
 public class Client {
     private Socket clientSocket;
