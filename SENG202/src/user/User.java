@@ -3,21 +3,9 @@ package user;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import data.loader.FileLoader;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://bitbucket.org/djt104/seng202_2014_team5_phase3.git
 import data.model.EventContainer;
-<<<<<<< HEAD
-=======
-
-import data.model.DataPoint;
-import data.model.Event;
-import data.model.EventContainer; 
-
->>>>>>> branch 'master' of https://bitbucket.org/djt104/seng202_2014_team5_phase3.git
 import data.persistant.Persistent;
 
 /**
