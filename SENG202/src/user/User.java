@@ -3,9 +3,8 @@ package user;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import data.loader.FileLoader;
 
-import data.model.EventContainer;
+import data.loader.FileLoader;
 import data.model.EventContainer;
 import data.persistant.Persistent;
 
@@ -30,6 +29,7 @@ public class User implements Serializable {
 	private Gender gender;
 	private double BMI;
 	private int averageHeartRate;
+	private int restingHeartRate;
 	private EventContainer events;
 	private int userID;
 
@@ -231,6 +231,14 @@ public class User implements Serializable {
 	 */
 	public void setAverageHeartRate(int averageHeartRate) {
 		this.averageHeartRate = averageHeartRate;
+	}
+	
+	public int getRestingHeartRate() {
+		return restingHeartRate;
+	}
+	
+	public void setRestingHeartRate(int hr) {
+		this.restingHeartRate = hr;
 	}
 
 	public void setUserID(int id) {

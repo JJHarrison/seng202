@@ -13,13 +13,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import user.User;
 import data.model.EventContainer;
 
 public class Main extends Application {
 
 	public static EventContainer eventContainer;
-	public static User user;
 
 	private Stage stage;
 	private BorderPane rootLayout;
@@ -34,11 +32,6 @@ public class Main extends Application {
 		stage.setMinHeight(700);
 		stage.setMinWidth(1366);
 		stage.setMaximized(true);
-
-		/*
-		 * try { this.stage.getIcons().add(new Image("/resources/heart11.png"));
-		 * } catch (Exception e) { e.printStackTrace(); }
-		 */
 
 		initRootLayout();
 	}

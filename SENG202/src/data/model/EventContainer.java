@@ -74,7 +74,7 @@ public class EventContainer implements Serializable {
 		if (days.containsKey(dateString)) {
 			return days.get(dateString);
 		} else {
-			return null;
+			return new LinkedList<Event>();
 		}
 	}
 
