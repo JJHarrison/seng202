@@ -5,13 +5,11 @@ import user.User;
 public class GraphHelper {
 	public static Graph getHeartRateGraph(Event e) {
 		Graph g = new Graph("Heart Rate", "Time (s)", "Heart Rate (bpm)");
-		double t = 0;
 		for (DataPoint p : e.getPoints()) {
 			double hr = p.getHeartRate();
 			double time = p.getDate().getTimeInMillis()
 					- e.getStartTime().getTimeInMillis();
-			g.addPoint(time, hr);
-			t++;
+			g.addPoint(time / 1000, hr);
 		}
 		return g;
 	}
