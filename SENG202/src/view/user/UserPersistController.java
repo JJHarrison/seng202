@@ -38,7 +38,7 @@ public class UserPersistController implements Switchable {
 	@FXML
 	void actionBrowse(ActionEvent event) {
 		chooser.setInitialDirectory(new File(System.getProperty("user.home")));
-		file = chooser.showDialog(null);
+		file = chooser.showDialog(UserLoginManager.stage);
 		if (file != null) {
 			try {
 				labelFilepath.setText(file.getCanonicalPath());

@@ -18,7 +18,6 @@ public class UserLoginManager extends Application {
 	public static String userCreateFXML = "UserCreate.fxml";
 	public static String userLoginFXML = "UserLogin.fxml";
 	public static String userPersistFXML = "UserPersist.fxml";
-	
 	public static Stage stage;
 
 	StackPane userManagementView = new StackPane();

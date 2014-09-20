@@ -80,7 +80,9 @@ public class FileLoader {
 					if (dataLine[0].contains("#start")) {
 						// we need to add create an event and add the points
 						// from before start
+					
 						if (!points.isEmpty()) {
+							
 							currentEvent = new Event(currentName, points);
 							eventContainer.addEvent(currentEvent);
 							events.add(currentEvent);
@@ -91,7 +93,7 @@ public class FileLoader {
 					} else {
 						String[] dateString = dataLine[0].split("/");
 						String[] time = dataLine[1].split(":");
-
+	
 						// months start from 0...
 						Calendar date = new GregorianCalendar(
 								Integer.parseInt(dateString[2]), // Year
@@ -116,6 +118,11 @@ public class FileLoader {
 					}
 				}
 			}
+			
+			if(currentName != null && points.size() != 0) {
+				currentEvent = new Event(currentName, points);
+				eventContainer.addEvent(currentEvent);
+			}
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -136,12 +143,27 @@ public class FileLoader {
 		return eventContainer;
 	}
 
-	public boolean isValidLine(String line) { // this doesnt work
-		String dataLine = "(\\d){2}/(\\d){2}/(\\d){4},(\\d){2}:(\\d){2}:(\\d){2}"
-				+ ",(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
+	/**
+	 * checks that the data line from the csv file if valid 
+	 * i.e that it has all the required fields and they are an appropriate value
+	 * @param line
+	 * @return isValid
+	 */
+	public boolean isValidLine(String line) { 
+		boolean isValid = true;
+		String z = "(\\d){2}/(\\d){2}/(\\d){4},";
+		String y = "(\\d){2}:(\\d){2}:(\\d){2},";
+		String x = "(\\d){2,3},(\\-)?(\\d)+.(\\d)+,(\\-)?(\\d)+.(\\d)+,(\\d){2,3}(.(\\d))?";
+		String reg = z + y + x;
+		
+		if(line.length() == 0) {
+			isValid = false;
+		} else if(!line.matches(reg)) {
 
-		//return line.matches(dataLine);
-		return true;
+			isValid = false;
+		}
+
+		return isValid;
 	}
 
 	private void clearStream() {

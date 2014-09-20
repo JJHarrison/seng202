@@ -42,8 +42,9 @@ public class EventContainer implements Serializable {
 			int size = day.size();
 			for (int i = 0; i < size; i++) {
 				// reached the right index.
-				
-				if (e.getStartTime().before(day.get(i).getStartTime())) {
+				if (e.equals(day.get(i))) {
+					break;
+				}else if (e.getStartTime().before(day.get(i).getStartTime())) {
 					// add e at i
 					day.add(i, e);
 					break;
