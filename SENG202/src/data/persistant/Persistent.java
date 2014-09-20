@@ -77,8 +77,8 @@ public class Persistent {
 	 * 
 	 * @return profileFilePath
 	 */
-	public static String getProfileFilePath(String userName) {
-		return getFilePath() + userName + "/." + userName + ".fitr";
+	public static String getProfileFilePath(String userID) {
+		return getFilePath() + userID + "/." + userID + ".fitr";
 	}
 
 	/**
@@ -112,14 +112,14 @@ public class Persistent {
 	 */
 	public static boolean newUser(User user) throws Exception {
 		boolean userAdded;
-		String userName = user.getName();
+		String userID = Integer.toString(user.getUserId());
 		System.out.println(users.contains(user));
 		System.out.println(userNames.contains(user.getName()));
 		if (!users.contains(user)) {
-			new File(getFilePath() + userName).mkdir();
+			new File(getFilePath() + userID).mkdir();
 
 			try {
-				new File(getProfileFilePath(userName)).createNewFile();
+				new File(getProfileFilePath(userID)).createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -128,7 +128,7 @@ public class Persistent {
 			userNames.add(user.getName());
 			
 			Saver.SaveUser(user);
-			prefs.putInt("LastUserID", prefs.getInt("UserID", 0) + 1);
+			prefs.putInt("UserID", prefs.getInt("UserID", 0) + 1);
 			userAdded = true;
 		} else {
 			userAdded = false;
@@ -205,11 +205,11 @@ public class Persistent {
 			
 			
 			for (File file : files) {
-				String userName = file.getName(); 
+				String userID = file.getName(); 
 				
-				if (new File(file + "/." + userName + ".fitr").exists()) { 
+				if (new File(file + "/." + userID + ".fitr").exists()) { 
 					// check if the file is a user
-					User newUser = Loader.loadUserProfile(new File(file + "/."+ userName + ".fitr"));
+					User newUser = Loader.loadUserProfile(new File(file + "/."+ userID + ".fitr"));
 					
 					if(newUser != null && !users.contains(newUser)){						
 						users.add(newUser);
