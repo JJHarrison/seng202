@@ -30,6 +30,7 @@ public class User implements Serializable {
 	private Gender gender;
 	private double BMI;
 	private int averageHeartRate;
+	private int restingHeartRate;
 	private EventContainer events;
 	private int userID;
 
@@ -231,6 +232,14 @@ public class User implements Serializable {
 	 */
 	public void setAverageHeartRate(int averageHeartRate) {
 		this.averageHeartRate = averageHeartRate;
+	}
+	
+	public int getRestingHeartRate() {
+		return restingHeartRate;
+	}
+	
+	public void setRestingHeartRate(int hr) {
+		this.restingHeartRate = hr;
 	}
 
 	public void setUserID(int id) {
