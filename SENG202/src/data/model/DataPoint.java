@@ -340,6 +340,10 @@ public class DataPoint implements Serializable {
 	public Property<String> getSpeedProperty() {
 		return new SimpleStringProperty(String.format("%.2f", getSpeed()));
 	}
+	
+	public SimpleDoubleProperty getAltitudeProperty() {
+		return new SimpleDoubleProperty(altitude);
+	}
 
 	public SimpleIntegerProperty getHeartRateProperty() {
 		return new SimpleIntegerProperty(getHeartRate());

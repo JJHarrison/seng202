@@ -39,21 +39,24 @@ public class GraphHelper {
 	}
 
 	public static Graph getDistanceGraph(Event e) {
+		double d = 0;
 		Graph g = new Graph("Distance Travelled", "Time (s)", "Distance (m)");
 		for (DataPoint p : e.getPoints()) {
-			double dist = p.getDistance();
 			double time = p.getDate().getTimeInMillis()
 					- e.getStartTime().getTimeInMillis();
-			g.addPoint(time / 1000, dist);
+			d += p.getDistance();
+			g.addPoint(time / 1000, d);
 		}
 		return g;
 	}
 
 	public static Graph getCaloriesGraph(Event e, User u) {
+		double c = 0;
 		Graph g = new Graph("Calories Burned", "Time (s)", "Calories");
 		for (DataPoint p : e.getPoints()) {	
 			double time = p.getDate().getTimeInMillis()- e.getStartTime().getTimeInMillis();
-			g.addPoint(time / 1000, p.getCalories());
+			c += p.getCalories();
+			g.addPoint(time / 1000, c);
 		}
 		return g;
 	}

@@ -44,14 +44,6 @@ public class MapController {
 
 		Thread thread = new Thread(task);
 		thread.start();
-
-		/*
-		 * Platform.runLater(new Runnable() {
-		 * 
-		 * @Override public void run() { fillMap();
-		 * 
-		 * } });
-		 */
 	}
 
 	private void fillMap() {
@@ -79,6 +71,8 @@ public class MapController {
 		stringMapRequest.append("&");
 		stringMapRequest.append(parameterPath);
 		stringMapRequest.append(event.getPathString());
+		
+		System.out.println(stringMapRequest.length());
 
 		image = new Image(stringMapRequest.toString());
 	}

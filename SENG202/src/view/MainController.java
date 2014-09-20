@@ -70,14 +70,14 @@ public class MainController {
 				
 				System.out.println(Persistent.getCurrentUser());
 				
-				for (Event event : Persistent.getCurrentUser().getEvents().getEvents(newValue)) {
+				for (Event event : Persistent.getCurrentUser().getEvents().getWeekEvents(newValue)) {
 					viewAnalysisController.addTile(event);
 				}
 				
 			}
 		});
 		
-		selectedDate.set(new Date(2005-1900, 3, 28));
+		selectedDate.set(Persistent.getCurrentUser().getEvents().getLastDate());
 		
 		loadDash(null);
 

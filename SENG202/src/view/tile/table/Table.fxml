@@ -12,14 +12,14 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </StackPane.margin>
          <children>
-            <TableView fixedCellSize="35.0" layoutX="288.0" layoutY="117.0" stylesheets="@table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tableView" fixedCellSize="35.0" layoutX="288.0" layoutY="117.0" stylesheets="@table.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn editable="false" prefWidth="100.0" text="Time" />
-                  <TableColumn editable="false" prefWidth="100.0" text="Heart Rate" />
-                  <TableColumn editable="false" prefWidth="100.0" text="Altitude (m)" />
-                  <TableColumn editable="false" prefWidth="100.0" text="Latitude" />
-                  <TableColumn editable="false" prefWidth="100.0" text="Longitude" />
-                  <TableColumn editable="false" prefWidth="150.0" text="Distance (km)" />
+                <TableColumn fx:id="tableTime" editable="false" prefWidth="100.0" text="Time" />
+                  <TableColumn fx:id="tableHR" editable="false" prefWidth="100.0" text="Heart Rate" />
+                  <TableColumn fx:id="tableAltitude" editable="false" prefWidth="100.0" text="Altitude (m)" />
+                  <TableColumn fx:id="tableLatitude" editable="false" prefWidth="100.0" text="Latitude" />
+                  <TableColumn fx:id="tableLongitude" editable="false" prefWidth="100.0" text="Longitude" />
+                  <TableColumn fx:id="tableDistance" editable="false" prefWidth="100.0" text="Distance (m)" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

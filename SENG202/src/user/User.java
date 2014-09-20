@@ -28,7 +28,6 @@ public class User implements Serializable {
 	private double height;
 	private Gender gender;
 	private double BMI;
-	private int averageHeartRate;
 	private int restingHeartRate;
 	private EventContainer events;
 	private int userID;
@@ -54,13 +53,13 @@ public class User implements Serializable {
 	 */
 	public User(String name, Calendar dateOfBirth, Gender gender,
 			double weight, double height, EventContainer events,
-			int averageHeartRate) {
+			int restingHeartRate) {
 		this.name = name;
 		this.dateofBirth = dateOfBirth;
 		this.gender = gender;
 		this.weight = weight;
 		this.height = height;
-		this.averageHeartRate = averageHeartRate;
+		this.restingHeartRate = restingHeartRate;
 		this.BMI = calculateBMI();
 		this.events = (events == null) ? new EventContainer() : events;
 		userID = Persistent.getUserID();
@@ -221,8 +220,8 @@ public class User implements Serializable {
 	 * 
 	 * @return
 	 */
-	public int getAverageHeartRate() {
-		return averageHeartRate;
+	public int getRestingHeartRate() {
+		return restingHeartRate;
 	}
 
 	/**
@@ -230,15 +229,7 @@ public class User implements Serializable {
 	 * @param averageHeartRate
 	 */
 	public void setAverageHeartRate(int averageHeartRate) {
-		this.averageHeartRate = averageHeartRate;
-	}
-	
-	public int getRestingHeartRate() {
-		return restingHeartRate;
-	}
-	
-	public void setRestingHeartRate(int hr) {
-		this.restingHeartRate = hr;
+		this.restingHeartRate = averageHeartRate;
 	}
 
 	public void setUserID(int id) {
@@ -276,4 +267,3 @@ public class User implements Serializable {
 	}
 
 }
-
