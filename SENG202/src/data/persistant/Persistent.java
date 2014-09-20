@@ -128,7 +128,7 @@ public class Persistent {
 			userNames.add(user.getName());
 			
 			Saver.SaveUser(user);
-			prefs.putInt("LastUserID", prefs.getInt("LastUserID", 0) + 1);
+			prefs.putInt("LastUserID", prefs.getInt("UserID", 0) + 1);
 			userAdded = true;
 		} else {
 			userAdded = false;
@@ -139,7 +139,7 @@ public class Persistent {
 	}
 
 	public static int getUserID() {
-		return prefs.getInt("LastUserID", 0);
+		return prefs.getInt("UserID", 0);
 	}
 
 	/**
@@ -211,7 +211,8 @@ public class Persistent {
 					// check if the file is a user
 					User newUser = Loader.loadUserProfile(new File(file + "/."+ userName + ".fitr"));
 					
-					if(newUser != null && !users.contains(newUser)){						users.add(newUser);
+					if(newUser != null && !users.contains(newUser)){						
+						users.add(newUser);
 						userNames.add(newUser.getName());
 					}
 				}
