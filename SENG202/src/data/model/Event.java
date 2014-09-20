@@ -30,8 +30,6 @@ public class Event implements Serializable {
 	private int maxHeartRate;
 	private double caloriesBurned;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
-
-	private boolean hasTachycardia = false;
 	private boolean hasBradycardia = false;
 
 	/**
@@ -89,15 +87,22 @@ public class Event implements Serializable {
 		}
 	}
 
+	/**
+	 * Calculate if the user has bradycardia. Bradycardia is if the users heartrate is < 60 bpm
+	 * If 5% of the points are less than 60bpm the user has bradycardia
+	 */
 	private void calculateWarnings() {
 		if (Persistent.getCurrentUser() != null) {
+			double warnings = 0;
+			double count = 0;
 			for (DataPoint p : points) {
-				if (p.getHeartRate() > 207 - (0.7 * Persistent.getCurrentUser()
-						.getAge())) {
-					hasTachycardia = true;
-				} else if (p.getHeartRate() < 60) {
-					hasBradycardia = true;
+				count++;
+				if (p.getHeartRate() < 60) {
+					warnings++;
 				}
+			}
+			if(((warnings / count) * 100) >= 5.0){
+				hasBradycardia = true;
 			}
 		}
 	}
@@ -340,10 +345,6 @@ public class Event implements Serializable {
 		pathBuilder.append(getPointString(dataPoints.get(dataSize - 1)));
 
 		return pathBuilder.toString();
-	}
-
-	public boolean hasTachycardia() {
-		return hasTachycardia;
 	}
 
 	public boolean hasBradycardia() {
