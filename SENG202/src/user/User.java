@@ -1,14 +1,12 @@
 package user;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import data.loader.FileLoader;
-import data.model.DataPoint;
-import data.model.Event;
-import data.model.EventContainer; 
+
+import data.model.EventContainer;
+import data.model.EventContainer;
 import data.persistant.Persistent;
 
 /**
@@ -235,9 +233,10 @@ public class User implements Serializable {
 		this.averageHeartRate = averageHeartRate;
 	}
 
-	public void setUserID(int id){
+	public void setUserID(int id) {
 		this.userID = id;
 	}
+
 	/**
 	 * TEMPORY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
 	 * code, please leave this here till end of project
@@ -248,24 +247,25 @@ public class User implements Serializable {
 		FileLoader fl = new FileLoader();
 		fl.load();
 		EventContainer ec = fl.getEventContainer();
-		//*/
+		// */
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
 				Gender.MALE, 85.3, 1.9, ec, 120);
-		//mock.setUserID(1);
+		// mock.setUserID(1);
 		return mock;
 	}
-	
+
 	@Override
 	public boolean equals(Object other) {
+
 		boolean same = false;
-		if(other != null){
+		if (other != null) {
 			User u = (User) other;
-			if(name.equals(u.getName())) {
+			if (name.equals(u.getName())) {
 				same = true;
 			}
 		}
-		
 		return same;
 	}
-	
+
 }
+
