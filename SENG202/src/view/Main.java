@@ -19,7 +19,7 @@ public class Main extends Application {
 
 	public static EventContainer eventContainer;
 
-	private Stage stage;
+	public static Stage stage;
 	private BorderPane rootLayout;
 
 	@Override

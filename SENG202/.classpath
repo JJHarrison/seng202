@@ -8,6 +8,8 @@
 	<classpathentry kind="lib" path="lib/jfxtras-controls-8.0-r2-20140908.080119-200.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.31-bin.jar"/>
+	<classpathentry kind="lib" path="lib/controlsfx-8.0.6.zip"/>
+	<classpathentry kind="lib" path="lib/controlsfx-8.0.6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
