@@ -21,18 +21,14 @@ public class Client {
      */
     public void setupConnection() {
 	try {
-	    System.out.println(startMessage()
-		    + " attempting to start a connection to [" + hostName
-		    + "] on port [" + portNumber + "]...");
+	    System.out.println(startMessage() + " attempting to start a connection to [" 
+	    		+ hostName + "] on port [" + portNumber + "]...");
 	    clientSocket = new Socket(hostName, portNumber);
 	    setupStreams();
-	    System.out.println(startMessage() + " connection accepted by ["
-		    + hostName + "]\n");
+	    System.out.println(startMessage() + " connection accepted by [" + hostName + "]\n");
 	} catch (IOException e) {
-	    System.out.println(startMessage()
-		    + " uh oh something wrong happened...");
-	    System.out.println(startMessage()
-			    + " maybe the server is taking a break");
+	    System.out.println(startMessage() + " uh oh something went wrong...");
+	    System.out.println(startMessage() + " maybe the server is taking a break");
 	}
     }
 
@@ -48,11 +44,6 @@ public class Client {
 	input = new ObjectInputStream(clientSocket.getInputStream());
     }
 
-    /*
-     * Will need to add most of the functionality for sending events to this
-     * function Probably will need a few more exceptions for wrong object or
-     * whatever
-     */
     /**
      * To transfer information to the server.
      * 
@@ -61,8 +52,7 @@ public class Client {
     public void transferToServer(User traffic) {
     	if(output != null){
     		try {
-    		    System.out.println(startMessage() + " attempting to send user ["
-    			    + traffic.getName() + "]...");
+    		    System.out.println(startMessage() + " attempting to send user [" + traffic.getName() + "]...");
     		    output.writeObject(traffic);
     		    readConfirmation();
     		    System.out.println(startMessage() + " Transfer was successful!\n");
@@ -85,8 +75,7 @@ public class Client {
 	    buf = (String) input.readObject();
 	    if (buf != null) {
 		System.out.println("[" + getCurrentTime()
-			+ "]<Server> Responded it receieved user [" + buf
-			+ "].");
+			+ "]<Server> Responded it receieved user [" + buf + "].");
 	    }
 	} catch (ClassNotFoundException e) {
 	    e.printStackTrace();
@@ -117,9 +106,9 @@ public class Client {
      * @return String of the current time of the client.
      */
     public String getCurrentTime() {
-	SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-	Calendar cal = Calendar.getInstance();
-	return df.format(cal.getTime());
+    	SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+    	Calendar cal = Calendar.getInstance();
+    	return df.format(cal.getTime());
     }
 
     /**
@@ -129,17 +118,6 @@ public class Client {
      * @return The opening string for client output messages.
      */
     public String startMessage() {
-	return "[" + getCurrentTime() + "]<Client>";
-    }
-
-    
-    
-    
-    public static void main(String[] args) {
-	Client c = new Client();
-	c.setupConnection();
-	User u = User.mockUser();
-	c.transferToServer(u);
-	c.closeStuff();
-    }
+    	return "[" + getCurrentTime() + "]<Client>";
+    }	
 }

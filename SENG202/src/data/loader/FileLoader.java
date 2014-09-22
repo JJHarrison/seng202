@@ -22,7 +22,7 @@ import data.model.EventContainer;
  * tracking device. The activity data needs to be in a CSV format consisting of
  * date, time, heart rate, latitude, longitude & altitude.
  * 
- * @author Fitr.Team
+ * @author Sam, James
  */
 public class FileLoader {
 	private InputStream inputStream;
@@ -32,8 +32,7 @@ public class FileLoader {
 	/**
 	 * Creates a FileLoader with a particular input file
 	 * 
-	 * @param file
-	 *            The input file
+	 * @param file The input file
 	 */
 	public FileLoader(File file) {
 		try {
@@ -254,18 +253,4 @@ public class FileLoader {
  		String[] values = lng.split("\\.");		
  		return (isInRange(lng, -180, 180) &&  values[1].length() >= 5);
  	}
-
-	public static void main(String[] args) {
-		FileLoader f = new FileLoader();
-		/*f.load();
-
-		EventContainer eC = f.getEventContainer();
-		Date week = new Calendar.Builder().setDate(2005, 6, 9).build()
-				.getTime();
-		for (Event e : eC.getWeekEvents(week)) {
-			
-		}
-		*/
-		
-	}
 }

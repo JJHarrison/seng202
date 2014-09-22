@@ -64,9 +64,8 @@ public class Server {
 				+ InetAddress.getLocalHost().getCanonicalHostName() + "]...");
 		// Once a client connects a socket is open for the server and client
 		connection = server.accept();
-		System.out.println(String.format(startMessage()
-				+ " Now connected to <client> at [%s]", connection
-				.getInetAddress().getHostName()));
+		System.out.println(String.format(startMessage()	+ " Now connected to <client> at [%s]", 
+				connection.getInetAddress().getHostName()));
 	}
 
 	/**
@@ -78,20 +77,23 @@ public class Server {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
-		System.out.println(startMessage()
-				+ " IO streams are now ready to be used");
+		System.out.println(startMessage() + " IO streams are now ready to be used");
 	}
 
 	public User getUserFromClient() throws IOException, ClassNotFoundException {
 		User uploadedUser;
 		uploadedUser = (User) input.readObject();
-		System.out.println(startMessage() + " <Client> sent the user: ["
-				+ uploadedUser.getName() + "]");
+		System.out.println(startMessage() + " <Client> sent the user: [" + uploadedUser.getName() + "]");
 		sendMessage(uploadedUser.getName());
 
 		return uploadedUser;
 	}
 
+	/**
+	 * This functions handles the transfer from the client and automatically writes the user to the datebase
+	 * if the user is valid
+	 * @throws IOException
+	 */
 	public void whileTransfering() throws IOException {
 		System.out.println(startMessage() + " Ready for transfer...\n");
 		String clientMessage = null;
@@ -102,8 +104,7 @@ public class Server {
 			try {
 				uploadedUser = getUserFromClient();
 				try {
-					System.out.println(startMessage() + " Adding user ["
-							+ uploadedUser.getName() + "] to the database...");
+					System.out.println(startMessage() + " Adding user [" + uploadedUser.getName() + "] to the database...");
 					dbw.writeUser(uploadedUser);
 					System.out.println(startMessage() + " Complete!\n");
 				} catch (Exception e) {
@@ -112,8 +113,7 @@ public class Server {
 				}
 				clientMessage = (String) input.readObject();
 			} catch (ClassNotFoundException e) {
-				System.out.println(startMessage()
-						+ " I don't know what to do with that type of object");
+				System.out.println(startMessage() + " I don't know what to do with that type of object");
 			}
 		} while (!clientMessage.equals("END"));
 	}
@@ -134,25 +134,20 @@ public class Server {
 	/**
 	 * Sends a confirmation message to the client that their message was
 	 * received.
-	 * 
-	 * @param message
-	 *            The message that was received from the client.
+	 * @param message The message that was received from the client.
 	 */
 	private void sendMessage(String message) {
 		try {
 			output.writeObject(message);
-			System.out.println(startMessage()
-					+ " Sent confirmation to the <Client>\n");
+			System.out.println(startMessage() + " Sent confirmation to the <Client>\n");
 		} catch (IOException e) {
-			System.out.println(startMessage()
-					+ " No confirmation was sent to the <Client>");
+			System.out.println(startMessage() + " No confirmation was sent to the <Client>");
 		}
 	}
 
 	/**
 	 * Gets the current time on the server.
-	 * 
-	 * @return
+	 * @return The current time of the server
 	 */
 	public String getCurrentTime() {
 		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
@@ -173,6 +168,5 @@ public class Server {
 	public static void main(String[] args) {
 		Server s = new Server();
 		s.startServer();
-
 	}
 }

@@ -22,13 +22,11 @@ public class DBWriter {
 	private String password = "password";
 
 	/**
-	 * Will check the database to see if the users profile has already been
-	 * added to the database. If the user is not a participant of the database
-	 * their user profile information will be added to the database. If the user
-	 * is already a participant of the database it will skip that step.
-	 * Following this ALL events of the users profile will be checked for
-	 * participation in the database and will be added if they are not inside
-	 * the database.
+	 * Will check the database to see if the users profile has already been added to the database. 
+	 * If the user is not a participant of the database their user profile information will be added to the database. 
+	 * If the user is already a participant of the database it will skip that step.
+	 * Following this ALL events of the users profile will be checked for participation in the database and
+	 * will be added if they are not inside the database.
 	 * 
 	 * @param user
 	 *            The users profile that will be uploaded
@@ -48,22 +46,16 @@ public class DBWriter {
 	}
 
 	/**
-	 * Checks the database to see if the user is already a participant of the
-	 * user table. The check is performed via an sql query to see if the unique
-	 * user_id of the user is found. This function will return true if the user
-	 * is a participant of the database.
-	 * 
-	 * @param user
-	 *            The user that will be searched for inside the mysql database
-	 * @return True if the user is a participant of the database, false
-	 *         otherwise.
+	 * Checks the database to see if the user is already a participant of the user table. 
+	 * The check is performed via an sql query to see if the unique user_id of the user is found. 
+	 * This function will return true if the user is a participant of the database.
+	 * @param user The user that will be searched for inside the mysql database
+	 * @return True if the user is a participant of the database, false otherwise.
 	 */
 	private boolean isUserStored(User user) {
 		boolean isThere = false;
 		// the query to be sent to the database to find the user_id
-		String query = String.format(
-				"SELECT * FROM FITR.USER where user_id = \"%s\"",
-				user.getUserId());
+		String query = String.format("SELECT * FROM FITR.USER where user_id = \"%s\"", user.getUserId());
 		try {
 			connect = DriverManager.getConnection(url, admin, password);
 			statement = connect.createStatement();
@@ -94,20 +86,17 @@ public class DBWriter {
 
 	/**
 	 * This will update the users weight, height and bmi inside the database.
-	 * 
-	 * @param user
-	 *            This profile will be updated in the datebase
+	 * @param user This profile will be updated in the datebase
 	 */
 	private void updateUserProfile(User user) {
 		String query = String.format("UPDATE FITR.USER SET " + "weight = ?,"
-				+ "height = ?," + "bmi = ?" + " where user_id = \"%s\"",
-				user.getUserId());
+				+ "height = ?," + "bmi = ?" + " where user_id = \"%s\"", user.getUserId());
 		try {
 			connect = DriverManager.getConnection(url, admin, password);
 			preparedStatement = connect.prepareStatement(query);
-			preparedStatement.setDouble(1, user.getWeight());
-			preparedStatement.setDouble(2, user.getHeight());
-			preparedStatement.setDouble(3, user.getBMI());
+			preparedStatement.setDouble(1, user.getWeight()); // update the users weight in the db
+			preparedStatement.setDouble(2, user.getHeight()); // update the users height in the db
+			preparedStatement.setDouble(3, user.getBMI()); // update the users bmi in the db
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -127,18 +116,14 @@ public class DBWriter {
 	}
 
 	/**
-	 * Checks the database to see if the event is already a participant of the
-	 * event table. The check is performed via a sql query to see if the
-	 * event_name, start_time and unique user_id are present in the table. This
-	 * function will return true if the event is inside the database
+	 * Checks the database to see if the event is already a participant of the event table. 
+	 * The check is performed via a sql query to see if the event_name,
+	 * start_time and unique user_id are present in the table. 
+	 * This function will return true if the event is inside the database
 	 * 
-	 * @param user
-	 *            The user for gathering the user_id
-	 * @param event
-	 *            The event that will be checks for participation in the
-	 *            database
-	 * @return True if the event is a participant of the database, false
-	 *         otherwise.
+	 * @param user The user for gathering the user_id
+	 * @param event The event that will be checks for participation in the database
+	 * @return True if the event is a participant of the database, false otherwise.
 	 */
 	private boolean isEventStored(User user, Event event) {
 		boolean isThere = false;
@@ -148,8 +133,7 @@ public class DBWriter {
 		String eventName;
 		int userID;
 		// timestamp on the event to compare with the one from the database
-		Timestamp checkTime = new Timestamp(event.getStartTime()
-				.getTimeInMillis());
+		Timestamp checkTime = new Timestamp(event.getStartTime().getTimeInMillis());
 		Timestamp eventStart;
 		try {
 			connect = DriverManager.getConnection(url, admin, password);
@@ -160,10 +144,8 @@ public class DBWriter {
 				eventStart = resultSet.getTimestamp("start_time");
 				userID = resultSet.getInt("user_user_id");
 				// check to see if the event is contained in the databae
-				if (eventStart.equals(checkTime)
-						&& (userID == user.getUserId())) {
-					// if the event is inside the database change isThere to
-					// true
+				if (eventStart.equals(checkTime) && (userID == user.getUserId())) {
+					// if the event is inside the database change isThere to true
 					isThere = true;
 				}
 			}
@@ -188,16 +170,12 @@ public class DBWriter {
 	}
 
 	/**
-	 * Writes a single event to the database. First a check is made to see if
-	 * the event is already stored using isEventStored() If the event a
-	 * participant of the database it will be added to the event table. All
-	 * datapoints associated with the event will be added to the datapoint
-	 * table.
-	 * 
-	 * @param user
-	 *            The user who the events belong to.
-	 * @param event
-	 *            The event that will be uploaded to the database.
+	 * Writes a single event to the database. 
+	 * First a check is made to see if the event is already stored using isEventStored() 
+	 * If the event is a participant of the database it will be added to the event table. 
+	 * All datapoints associated with the event will be added to the datapoint table. 
+	 * @param user The user who the events belong to.
+	 * @param event The event that will be uploaded to the database.
 	 */
 	private void writeEvent(User user, Event event) {
 		if (!isEventStored(user, event)) {
@@ -216,31 +194,21 @@ public class DBWriter {
 
 	/**
 	 * Writes the users profile to the database
-	 * 
-	 * @param user
-	 *            The user whose profile will be added to the database
-	 * @throws Exception
+	 * @param user The user whose profile will be added to the database
 	 */
 	private void writeUserProfile(User user) {
 		try {
 			connect = DriverManager.getConnection(url, admin, password);
 			preparedStatement = connect.prepareStatement(
-					"INSERT into fitr.user VALUES (?, ?, ?, ?, ?, ?, ?)",
-					Statement.RETURN_GENERATED_KEYS);
+					"INSERT into fitr.user VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, user.getUserId()); // add user_id
-			preparedStatement.setString(2, user.getName()); // add name to the
-															// db
-			preparedStatement.setTimestamp(3, new Timestamp(user
-					.getDateofBirth().getTimeInMillis())); // add DOB to the db
-			preparedStatement.setDouble(4, user.getWeight()); // add weight to
-																// the db
-			preparedStatement.setDouble(5, user.getHeight()); // add height to
-																// the db
-			preparedStatement.setString(6, user.genderForDB()); // add gender to
-																// the db
+			preparedStatement.setString(2, user.getName()); // add name to the db
+			preparedStatement.setTimestamp(3, new Timestamp(user.getDateofBirth().getTimeInMillis())); // add DOB to the db
+			preparedStatement.setDouble(4, user.getWeight()); // add weight to the db
+			preparedStatement.setDouble(5, user.getHeight()); // add height to the db
+			preparedStatement.setString(6, user.genderForDB()); // add gender to the db
 			preparedStatement.setDouble(7, user.getBMI()); // add bmi to the db
-			preparedStatement.executeUpdate(); // execute the query/upload the
-												// db
+			preparedStatement.executeUpdate(); // execute the query/upload the db
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -258,12 +226,9 @@ public class DBWriter {
 	}
 
 	/**
-	 * Writes the event information to the database.
-	 * 
-	 * @param user
-	 *            The user who the event belongs to
-	 * @param event
-	 *            The event thats information will be added to the database
+	 * Writes the event information to the database. 
+	 * @param user The user who the event belongs to
+	 * @param event The event thats information will be added to the database
 	 */
 	private void writeEventInfo(User user, Event event) {
 		try {
@@ -302,65 +267,29 @@ public class DBWriter {
 	}
 
 	/**
-	 * Writes a datapoint to the database.
-	 * 
-	 * @param event
-	 *            The event that the point belongs to.
-	 * @param point
-	 *            The point that will be added to the database.
+	 * Writes a datapoint to the database. 
+	 * @param event The event that the point belongs to.
+	 * @param point The point that will be added to the database.
 	 */
 	private void writeDataPoint(User user, Event event, DataPoint point) {
 		try {
 			connect = DriverManager.getConnection(url, admin, password);
-			preparedStatement = connect
-					.prepareStatement(
-							"INSERT into fitr.datapoint VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-							Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, user.getUserId()); // user_id to be
-															// added to the db
-			preparedStatement.setString(2, event.getEventName()); // event_name
-																	// to be
-																	// added to
-																	// the db
-			preparedStatement.setTimestamp(3, new Timestamp(event
-					.getStartTime().getTimeInMillis())); // event_startime to be
-															// added to the db
-			preparedStatement.setTimestamp(4, new Timestamp(point.getDate()
-					.getTimeInMillis())); // the timepoint that will be added to
-											// the db
-			preparedStatement.setInt(5, point.getHeartRate()); // the heartrate
-																// that will be
-																// added to the
-																// db
-			preparedStatement.setDouble(6, point.getLatitude()); // the latitude
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(7, point.getLongitude()); // the
-																	// longitude
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(8, point.getAltitude()); // the altitude
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(9, point.getSpeed()); // the speed that
-																// will be added
-																// to the db
-			preparedStatement.setDouble(10, point.getDistance()); // the
-																	// distance
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(11, point.getCalories()); // the
-																	// calories
-																	// burned
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.executeUpdate(); // execute the query/upload to
-												// the database
+			preparedStatement = connect.prepareStatement("INSERT into fitr.datapoint VALUES "
+							+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, user.getUserId()); // user_id to be added to the db
+			preparedStatement.setString(2, event.getEventName()); // event_name to be added to the db
+			preparedStatement.setTimestamp(3, new Timestamp(event.getStartTime().
+					getTimeInMillis())); // event_startime to be added to the db
+			preparedStatement.setTimestamp(4, new Timestamp(point.getDate().
+					getTimeInMillis())); // the timepoint that will be added to the db
+			preparedStatement.setInt(5, point.getHeartRate()); // the heartrate that will be added to the db
+			preparedStatement.setDouble(6, point.getLatitude()); // the latitude that will be added to the db
+			preparedStatement.setDouble(7, point.getLongitude()); // the longitude that will be added to the db
+			preparedStatement.setDouble(8, point.getAltitude()); // the altitude that will be added to the db
+			preparedStatement.setDouble(9, point.getSpeed()); // the speed that will be added to the db
+			preparedStatement.setDouble(10, point.getDistance()); // the distance that will be added to the db
+			preparedStatement.setDouble(11, point.getCalories()); // the calories burned that will be added to the db
+			preparedStatement.executeUpdate(); // execute the query/upload to the database
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
