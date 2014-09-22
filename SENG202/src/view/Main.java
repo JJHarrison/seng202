@@ -7,10 +7,12 @@ package view;
 
 import java.io.IOException;
 
+import resources.Reference;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import data.model.EventContainer;
@@ -32,6 +34,7 @@ public class Main extends Application {
 		stage.setMinHeight(700);
 		stage.setMinWidth(1366);
 		stage.setMaximized(true);
+		stage.getIcons().add(new Image(Reference.class.getResourceAsStream("heart_icon.png")));
 
 		initRootLayout();
 	}
