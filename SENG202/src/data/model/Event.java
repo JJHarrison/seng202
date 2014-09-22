@@ -81,7 +81,7 @@ public class Event implements Serializable {
 		for (DataPoint p : points) {
 			if (p.getSpeed() != 0) {
 				stress = sf * (p.getHeartRate() / p.getSpeed());
-				stress = (200 / Math.PI) * Math.atan(stress);
+				stress = 0.5 + (1 / Math.PI) * Math.atan((Math.PI/100)*(stress - 1));
 				p.setStressLevel(stress);
 			}
 		}
@@ -121,8 +121,10 @@ public class Event implements Serializable {
 		avgHeartRate = (float) totalHeartRate / points.size();
 
 		if (avgHeartRate == 0) {
-			return 1.0;
+			return 0.0; // You are DEAD and therefore are not physically stressed
 		}
+		
+		System.out.print(avgSpeed/avgHeartRate);
 		return avgSpeed / avgHeartRate;
 	}
 

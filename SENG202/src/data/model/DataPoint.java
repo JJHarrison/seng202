@@ -142,16 +142,14 @@ public class DataPoint implements Serializable {
 		} else {
 			this.distance = 0.0;
 			this.speed = 0.0;
-			double stress = 0.0;
-			stress = 50.0;
-			setStressLevel(stress);
+			this.stressLevel = 0.5;
 		}
 	}
 
 	/**
 	 * Calculates the change in time between two points.
 	 * 
-	 * @param previousPoint
+	 * @param previosPoint
 	 *            The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
