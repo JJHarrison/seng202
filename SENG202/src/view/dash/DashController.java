@@ -1,30 +1,36 @@
 package view.dash;
 
-import java.util.GregorianCalendar;
-
+import user.User.Gender;
 import data.persistant.Persistent;
-import view.warning.Warning;
-import view.warning.Warning.WARNING;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
 
 public class DashController {
 
-	/*@FXML
-	VBox warningPane;
-
 	@FXML
-	Label userName;
-
+	Image imageGender;
+	
+	@FXML
+	Label labelName;
+	@FXML
+	Label labelAge;
+	@FXML
+	Label labelHeight;
+	@FXML
+	Label labelWeight;
+	@FXML
+	Label labelHR;
+	@FXML
+	Label labelBMI;
+	
 	@FXML
 	void initialize() {
-		userName.setText(Persistent.getCurrentUser().getName());
-
-		warningPane.getChildren().add(
-				new Warning(WARNING.BRADYCARDIA, new GregorianCalendar()));
-		warningPane.getChildren().add(
-				new Warning(WARNING.TACHYCARDIA, new GregorianCalendar()));
-	}*/
+		if (Persistent.getCurrentUser().getGender().equals(Gender.MALE) {
+			
+		} else {
+			
+		}
+	}
 
 }

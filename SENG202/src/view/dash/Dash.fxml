@@ -26,12 +26,12 @@
          <children>
             <AnchorPane layoutX="8.0" layoutY="-10.0" prefWidth="300.0" style="-fx-background-color: derive(-fx-base, -20%);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label alignment="CENTER" layoutX="93.0" layoutY="84.0" text="Rachel van Wichen" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Label fx:id="labelName" alignment="CENTER" layoutX="93.0" layoutY="84.0" text="Rachel van Wichen" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="112.5" AnchorPane.topAnchor="10.0">
+                  <ImageView fx:id="imageGender" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="112.5" AnchorPane.topAnchor="10.0">
                      <image>
                         <Image url="@../../../../../../Downloads/woman105%20(1).png" />
                      </image>
