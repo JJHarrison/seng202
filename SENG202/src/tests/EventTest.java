@@ -70,15 +70,20 @@ public class EventTest extends TestCase {
 	 * Tests the getEventName function to make sure it returns the correct name
 	 * of the event
 	 */
-	public void testGetEventName() {
-		
+	public void testGetEventName() {	
 		assertEquals("My Event", e.getEventName());
 	}
 
+	/**
+	 * tests that the average heart rate is as expected
+	 */
 	public void testAverageHR() {
 		assertEquals((59 + 167) / 2, e.getAverageHeartRate());
 	}
 
+	/**
+	 * checks that the maximum heart rate is as expected
+	 */
 	public void testMaxHR() {
 		assertEquals(167, e.getMaxHeartRate());
 	}
@@ -106,6 +111,9 @@ public class EventTest extends TestCase {
 				"30.2553368,-97.83891084|30.25499189,-97.83913958");
 	}
 
+	/**
+	 * tests if we are correctly diagnosing Tachycardia 
+	 */
 	public void testTachycardia() {
 		EventContainer ec = new EventContainer();
 		ec.addEvent(e);
@@ -115,6 +123,9 @@ public class EventTest extends TestCase {
 		//assertTrue(e.hasTachycardia()); // 64 years old
 	}
 
+	/**
+	 * tests if we are correctly diagnosing Bradycardia 
+	 */
 	public void testBradycardia() {
 		assertTrue(e.hasBradycardia());
 	}
