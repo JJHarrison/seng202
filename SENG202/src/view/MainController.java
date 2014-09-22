@@ -19,13 +19,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-
-import server.Client;
-import server.DBWriter;
-import user.User;
-
 import jfx.messagebox.MessageBox;
-
+import server.Client;
 import view.analysis.AnalysisController;
 import data.loader.FileLoader;
 import data.model.Event;
@@ -90,7 +85,6 @@ public class MainController {
 				c.setTime(newValue);
 				c.set(Calendar.DAY_OF_WEEK, 0);
 				
-				if (oldValue.)
 				
 				viewAnalysisController.clearTiles();
 
