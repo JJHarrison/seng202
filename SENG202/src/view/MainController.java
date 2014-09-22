@@ -81,18 +81,27 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Date> observable,
 					Date oldValue, Date newValue) {
-				Calendar c = Calendar.getInstance();
-				c.setTime(newValue);
-				c.set(Calendar.DAY_OF_WEEK, 0);
-				
-				
-				viewAnalysisController.clearTiles();
+				if (oldValue != null) {
+					Calendar newCalendar = Calendar.getInstance();
+					newCalendar.setTime(newValue);
+					newCalendar.set(Calendar.DAY_OF_WEEK, 0);
+					Calendar oldCalendar = Calendar.getInstance();
+					oldCalendar.setTime(oldValue);
+					oldCalendar.set(Calendar.DAY_OF_WEEK, 0);
+					if (!oldCalendar.equals(newCalendar)) {
+						viewAnalysisController.clearTiles();
+						for (Event event : Persistent.getCurrentUser()
+								.getEvents().getWeekEvents(newValue)) {
+							viewAnalysisController.addTile(event);
+						}
+					}
 
-				System.out.println(Persistent.getCurrentUser());
-
-				for (Event event : Persistent.getCurrentUser().getEvents()
-						.getWeekEvents(newValue)) {
-					viewAnalysisController.addTile(event);
+				} else {
+					viewAnalysisController.clearTiles();
+					for (Event event : Persistent.getCurrentUser()
+							.getEvents().getWeekEvents(newValue)) {
+						viewAnalysisController.addTile(event);
+					}
 				}
 
 			}
@@ -107,12 +116,10 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				Saver.SaveUser(Persistent.getCurrentUser());
-				Platform.exit();
+				Platform.exit(); 
 
 			}
 		});
-
-		
 
 		menuExport.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -133,9 +140,11 @@ public class MainController {
 				if (file != null) {
 					FileLoader fl = new FileLoader(file);
 					fl.load();
-					
-					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
-					selectedDate.setValue(Persistent.getCurrentUser().getEvents().getLastDate());
+
+					Persistent.getCurrentUser().addEvents(
+							fl.getEventContainer());
+					selectedDate.setValue(Persistent.getCurrentUser()
+							.getEvents().getLastDate());
 				}
 			}
 		});

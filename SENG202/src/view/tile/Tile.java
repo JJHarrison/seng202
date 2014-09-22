@@ -11,6 +11,10 @@ public class Tile extends AnchorPane {
 	public Event event;
 	public static String TILE = "Tile.fxml";
 
+	/**
+	 * Create an event control (for the tiled interface)
+	 * @param event The event to display
+	 */
 	public Tile(Event event) {
 		super();
 		this.event = event;
