@@ -120,11 +120,9 @@ public class MainController {
 				if (file != null) {
 					FileLoader fl = new FileLoader(file);
 					fl.load();
-
-					Persistent.getCurrentUser().setEvents(
-							fl.getEventContainer());
-					selectedDate.setValue(Persistent.getCurrentUser()
-							.getEvents().getLastDate());
+					
+					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
+					selectedDate.setValue(Persistent.getCurrentUser().getEvents().getLastDate());
 				}
 			}
 		});
