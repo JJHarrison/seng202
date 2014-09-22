@@ -104,7 +104,7 @@ public class Client {
 		    input.close();
 		    output.close();
 		    clientSocket.close();
-		    System.out.println(startMessage() + " connection successfully closed!");
+		    System.out.println(startMessage() + " connection successfully closed!\n");
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}

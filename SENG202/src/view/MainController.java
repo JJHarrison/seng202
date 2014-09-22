@@ -15,6 +15,9 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import server.Client;
+import server.DBWriter;
+import user.User;
 import view.analysis.AnalysisController;
 import data.model.Event;
 import data.persistant.Persistent;
@@ -86,6 +89,18 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				Platform.exit();
+
+			}
+		});
+		
+		menuExport.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Client c = new Client();
+				c.setupConnection();
+				c.transferToServer(Persistent.getCurrentUser());
+				c.closeStuff();
 
 			}
 		});
