@@ -20,7 +20,7 @@ public class DashController {
 	@FXML
 	Label labelHeight;
 	@FXML
-	Label labelWeight;
+	Label labelWeight; 
 	@FXML
 	Label labelHR;
 	@FXML
