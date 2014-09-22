@@ -25,7 +25,9 @@ public class Saver {
 	public static void SaveUser(User user) {
 		String profileString = gson.toJson(user);
 		try {
-			FileWriter writer = new FileWriter(Persistent.getProfileFilePath(Integer.toString(user.getUserId())));
+			FileWriter writer = new FileWriter(
+					Persistent.getProfileFilePath(Integer.toString(user
+							.getUserId())));
 			writer.write(profileString);
 			writer.close();
 		} catch (IOException e) {

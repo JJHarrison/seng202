@@ -2,18 +2,14 @@ package view;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-
-import org.controlsfx.dialog.Dialog;
-import org.controlsfx.dialog.DialogStyle;
-import org.controlsfx.dialog.Dialogs;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -71,10 +67,12 @@ public class MainController {
 
 	@FXML
 	void initialize() {
-		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		fileChooser.setInitialDirectory(new File(System
+				.getProperty("user.home")));
 		ArrayList<String> filterCSV = new ArrayList<String>();
 		filterCSV.add("*.csv");
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", filterCSV));
+		fileChooser.getExtensionFilters().add(
+				new FileChooser.ExtensionFilter("CSV", filterCSV));
 		selectedDate = calendarView.selectedDateProperty();
 
 		MainController.selectedDate.addListener(new ChangeListener<Date>() {
@@ -82,6 +80,12 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Date> observable,
 					Date oldValue, Date newValue) {
+				Calendar c = Calendar.getInstance();
+				c.setTime(newValue);
+				c.set(Calendar.DAY_OF_WEEK, 0);
+				
+				if (oldValue.)
+				
 				viewAnalysisController.clearTiles();
 
 				System.out.println(Persistent.getCurrentUser());
@@ -107,22 +111,24 @@ public class MainController {
 
 			}
 		});
-		
+
 		menuImport.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				File file = fileChooser.showOpenDialog(Main.stage);				
+				File file = fileChooser.showOpenDialog(Main.stage);
 				if (file != null) {
 					FileLoader fl = new FileLoader(file);
 					fl.load();
-					
-					Persistent.getCurrentUser().setEvents(fl.getEventContainer());
-					selectedDate.setValue(Persistent.getCurrentUser().getEvents().getLastDate());
+
+					Persistent.getCurrentUser().setEvents(
+							fl.getEventContainer());
+					selectedDate.setValue(Persistent.getCurrentUser()
+							.getEvents().getLastDate());
 				}
 			}
 		});
-		
+
 		menuAbout.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

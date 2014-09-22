@@ -121,7 +121,6 @@ public class DataPoint implements Serializable {
 		}
 	}
 
-
 	/**
 	 * constructor for DataPoint Set data point values using builder
 	 * 
@@ -133,7 +132,7 @@ public class DataPoint implements Serializable {
 		this.latitude = builder.latitude;
 		this.longitude = builder.longitude;
 		this.altitude = builder.altitude;
-		
+
 		if (builder.previousPointPoint != null) {
 			this.distance = calculateDistance(builder.previousPointPoint);
 			this.speed = calculateSpeed(calculateDeltaTime(builder.previousPointPoint));
@@ -264,29 +263,30 @@ public class DataPoint implements Serializable {
 	public double getDistance() {
 		return distance;
 	}
-	
+
 	/**
-	 * calculates the calories burnt from the last point to the current point 
-	 * @return 
+	 * calculates the calories burnt from the last point to the current point
 	 * 
-	 * @return calories burnt 
+	 * @return
+	 * 
+	 * @return calories burnt
 	 */
 	public double calculateCalories() {
-		double weight = 75;//Persistent.getCurrentUser().getWeight();
+		double weight = 75;// Persistent.getCurrentUser().getWeight();
 		double runMET = 7.5;
 		double timeInHours = (double) duration / 3600;
 		double calories = weight * runMET * timeInHours;
 		return calories;
 	}
-	
+
 	public double getCalories() {
 		return caloriesBurned;
 	}
-	
+
 	public double getStressLevel() {
 		return stressLevel;
 	}
-	
+
 	public void setStressLevel(double stressLevel) {
 		this.stressLevel = stressLevel;
 	}
@@ -338,7 +338,7 @@ public class DataPoint implements Serializable {
 	public Property<String> getSpeedProperty() {
 		return new SimpleStringProperty(String.format("%.2f", getSpeed()));
 	}
-	
+
 	public SimpleDoubleProperty getAltitudeProperty() {
 		return new SimpleDoubleProperty(altitude);
 	}

@@ -45,7 +45,7 @@ public class Event implements Serializable {
 		this.points = points;
 		calculate();
 		calculateStress();
-		// calculateWarnings();
+		calculateWarnings();
 	}
 
 	/**
@@ -81,15 +81,17 @@ public class Event implements Serializable {
 		for (DataPoint p : points) {
 			if (p.getSpeed() != 0) {
 				stress = sf * (p.getHeartRate() / p.getSpeed());
-				stress = 0.5 + (1 / Math.PI) * Math.atan((Math.PI/100)*(stress - 1));
+				stress = 0.5 + (1 / Math.PI)
+						* Math.atan((Math.PI / 100) * (stress - 1));
 				p.setStressLevel(stress);
 			}
 		}
 	}
 
 	/**
-	 * Calculate if the user has bradycardia. Bradycardia is if the users heartrate is < 60 bpm
-	 * If 5% of the points are less than 60bpm the user has bradycardia
+	 * Calculate if the user has bradycardia. Bradycardia is if the users
+	 * heartrate is < 60 bpm If 5% of the points are less than 60bpm the user
+	 * has bradycardia
 	 */
 	private void calculateWarnings() {
 		if (Persistent.getCurrentUser() != null) {
@@ -101,7 +103,7 @@ public class Event implements Serializable {
 					warnings++;
 				}
 			}
-			if(((warnings / count) * 100) >= 5.0){
+			if (((warnings / count) * 100) >= 5.0) {
 				hasBradycardia = true;
 			}
 		}
@@ -121,10 +123,11 @@ public class Event implements Serializable {
 		avgHeartRate = (float) totalHeartRate / points.size();
 
 		if (avgHeartRate == 0) {
-			return 0.0; // You are DEAD and therefore are not physically stressed
+			return 0.0; // You are DEAD and therefore are not physically
+						// stressed
 		}
-		
-		System.out.print(avgSpeed/avgHeartRate);
+
+		System.out.print(avgSpeed / avgHeartRate);
 		return avgSpeed / avgHeartRate;
 	}
 
@@ -348,9 +351,9 @@ public class Event implements Serializable {
 
 		return pathBuilder.toString();
 	}
-	
+
 	public void getLastday() {
-		
+
 	}
 
 	public boolean hasBradycardia() {

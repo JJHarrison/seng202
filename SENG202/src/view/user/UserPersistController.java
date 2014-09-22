@@ -22,10 +22,10 @@ public class UserPersistController implements Switchable {
 	Label labelFilepath;
 	@FXML
 	Label labelNoFileSet;
-	
+
 	private DirectoryChooser chooser = new DirectoryChooser();
 	private File file;
-	
+
 	@FXML
 	void initalize() {
 	}
@@ -60,17 +60,16 @@ public class UserPersistController implements Switchable {
 				labelNoFileSet.setText("Your system is screwed");
 				e.printStackTrace();
 			}
-			
+
 		} else {
 			labelNoFileSet.setText("Please set a valid filepath");
 		}
-		
+
 	}
 
 	@FXML
 	void actionCancel(ActionEvent event) {
 		Platform.exit();
 	}
-
 
 }

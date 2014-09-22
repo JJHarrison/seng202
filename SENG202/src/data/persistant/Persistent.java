@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import user.User;
 
-
 /**
  * static class for keeping track of preferences, file paths etc
  * 
@@ -21,38 +20,44 @@ import user.User;
 public class Persistent {
 
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
-	private static ObservableList<User> users = FXCollections.observableList(new ArrayList<User>());
-	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
+	private static ObservableList<User> users = FXCollections
+			.observableList(new ArrayList<User>());
+	private static ObservableList<String> userNames = FXCollections
+			.observableList(new ArrayList<String>());
 	private static User currentUser = User.mockUser(); // TODO JUST FOR TESTING
+
+	// private static User currentUser;
 
 	/**
 	 * Sets the FilePath preference to a Fitr directory at location of filePath
-	 * Will only set a valid file path 
+	 * Will only set a valid file path
+	 * 
 	 * @param filePath
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException
 	 */
-	public static void setFilePath(String filePath) throws FileNotFoundException {
+	public static void setFilePath(String filePath)
+			throws FileNotFoundException {
 		// check that filePath is valid
-		if(new File(filePath).exists()) { 
+		if (new File(filePath).exists()) {
 			prefs.put("FilePath", filePath + "/Fitr/");
 			try {
 				prefs.flush();
 			} catch (BackingStoreException e) {
 				e.printStackTrace();
 			}
-			
-			// only creates new directory if the selected one doesn't already exist
+
+			// only creates new directory if the selected one doesn't already
+			// exist
 			if (!new File(getFilePath()).exists()) {
 				setupDirectory();
 			} else { // if the Fitr directory already exists then use it.
 				Persistent.initialize();
 			}
 		} else {
-			//System.out.println("FILEPATH DOESNT EXIST");
+			// System.out.println("FILEPATH DOESNT EXIST");
 			throw new FileNotFoundException();
 		}
 	}
-
 
 	/**
 	 * sets up a new Fitr directory with a users sub directory at the file path
@@ -71,7 +76,7 @@ public class Persistent {
 	public static String getFilePath() {
 		return prefs.get("FilePath", null);
 	}
-	
+
 	/**
 	 * returns the file path to the current users profile
 	 * 
@@ -92,7 +97,7 @@ public class Persistent {
 		File filePath;
 		if (getFilePath() == null) {
 			filePath = null;
-		} else { 
+		} else {
 			filePath = new File(getFilePath());
 		}
 
@@ -126,13 +131,14 @@ public class Persistent {
 
 			users.add(user);
 			userNames.add(user.getName());
-			
+
 			Saver.SaveUser(user);
 			prefs.putInt("UserID", prefs.getInt("UserID", 0) + 1);
 			userAdded = true;
 		} else {
 			userAdded = false;
-			System.out.println("User has already beeen created. try different username");
+			System.out
+					.println("User has already beeen created. try different username");
 			// throw new Exception("User already exists");
 		}
 		return userAdded;
@@ -148,16 +154,16 @@ public class Persistent {
 	 * @param user
 	 */
 	public static void setUser(User user) {
-		//System.out.println("_----_");
-		for(User u : users) {
+		// System.out.println("_----_");
+		for (User u : users) {
 			System.out.println(u);
 		}
-		//System.out.println("_----_");
-		if(users.contains(user)){
-		//	System.out.println("YAY");
+		// System.out.println("_----_");
+		if (users.contains(user)) {
+			// System.out.println("YAY");
 			currentUser = user;
 		} else {
-			//System.out.println("NAY");
+			// System.out.println("NAY");
 		}
 	}
 
@@ -202,16 +208,15 @@ public class Persistent {
 			// get files / directory in Fitr directory (gets users)
 			File[] files = filePath.listFiles();
 
-			
-			
 			for (File file : files) {
-				String userID = file.getName(); 
-				
-				if (new File(file + "/." + userID + ".fitr").exists()) { 
+				String userID = file.getName();
+
+				if (new File(file + "/." + userID + ".fitr").exists()) {
 					// check if the file is a user
-					User newUser = Loader.loadUserProfile(new File(file + "/."+ userID + ".fitr"));
-					
-					if(newUser != null && !users.contains(newUser)){						
+					User newUser = Loader.loadUserProfile(new File(file + "/."
+							+ userID + ".fitr"));
+
+					if (newUser != null && !users.contains(newUser)) {
 						users.add(newUser);
 						userNames.add(newUser.getName());
 					}
@@ -219,7 +224,7 @@ public class Persistent {
 			}
 		}
 	}
-	
+
 	public static void clear() {
 		try {
 			prefs.clear();
@@ -228,13 +233,11 @@ public class Persistent {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static void exit() throws BackingStoreException {
 		prefs.flush();
 	}
 
-	
 	public static void main(String args[]) throws Exception {
 		clear();
 		/*
@@ -251,18 +254,16 @@ public class Persistent {
 		 * a.size(); i++) { System.out.println(a.get(i)); }
 		 * 
 		 * prefs.clear();
-		 *
-		 System.out.println("data cleared");
-		
-		EventContainer e = new EventContainer();
-		User u = new User("Sam", null, null, 0, 0, e, 0);
-		//User v = new User("Dan", null, null, 0, 0, e, 0);
-		setUser(u);
-		System.out.println(getCurrentUser());
-		
-		
-
-	}
-*/
+		 * 
+		 * System.out.println("data cleared");
+		 * 
+		 * EventContainer e = new EventContainer(); User u = new User("Sam",
+		 * null, null, 0, 0, e, 0); //User v = new User("Dan", null, null, 0, 0,
+		 * e, 0); setUser(u); System.out.println(getCurrentUser());
+		 * 
+		 * 
+		 * 
+		 * }
+		 */
 	}
 }
