@@ -26,11 +26,6 @@
 								<MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close" />
 							</items>
 						</Menu>
-						<Menu mnemonicParsing="false" text="Edit">
-							<items>
-								<MenuItem mnemonicParsing="false" text="Profile" />
-							</items>
-						</Menu>
 						<Menu mnemonicParsing="false" text="Help">
 							<items>
 								<MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About" />

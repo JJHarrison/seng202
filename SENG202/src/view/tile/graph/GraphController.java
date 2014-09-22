@@ -54,7 +54,7 @@ public class GraphController {
 		lineChart.setStyle("chart-series-line series<0> default-color<2>");
 	}
 
-	public void fillHRGraph(Event event) {
+	private void fillHRGraph(Event event) {
 		Graph graph = GraphHelper.getHeartRateGraph(event);
 		lineChart.getXAxis().setLabel(graph.getXName());
 		lineChart.getYAxis().setLabel(graph.getYName());
@@ -62,7 +62,7 @@ public class GraphController {
 		lineChart.getData().add(graph.getPoints());
 	}
 
-	public void fillStressGraph(Event event) {
+	private void fillStressGraph(Event event) {
 		Graph graph = GraphHelper.getStressLevelGraph(event);
 		lineChart.getXAxis().setLabel(graph.getXName());
 		lineChart.getYAxis().setLabel(graph.getYName());
@@ -70,7 +70,7 @@ public class GraphController {
 		lineChart.getData().add(graph.getPoints());
 	}
 
-	public void fillCaloriesGraph(Event event) {
+	private void fillCaloriesGraph(Event event) {
 		Graph graph = GraphHelper.getCaloriesGraph(event, null);
 		lineChart.getXAxis().setLabel(graph.getXName());
 		lineChart.getYAxis().setLabel(graph.getYName());
@@ -78,7 +78,7 @@ public class GraphController {
 		lineChart.getData().add(graph.getPoints());
 	}
 
-	public void fillDistanceGraph(Event event) {
+	private void fillDistanceGraph(Event event) {
 		Graph graph = GraphHelper.getDistanceGraph(event);
 		lineChart.getXAxis().setLabel(graph.getXName());
 		lineChart.getYAxis().setLabel(graph.getYName());
@@ -86,7 +86,7 @@ public class GraphController {
 		lineChart.getData().add(graph.getPoints());
 	}
 
-	public void fillSpeedGraph(Event event) {
+	private void fillSpeedGraph(Event event) {
 		Graph graph = GraphHelper.getSpeedGraph(event);
 		lineChart.getXAxis().setLabel(graph.getXName());
 		lineChart.getYAxis().setLabel(graph.getYName());
@@ -94,7 +94,7 @@ public class GraphController {
 		lineChart.getData().add(graph.getPoints());
 	}
 
-	public void fillAltitudeGraph(Event event) {
+	private void fillAltitudeGraph(Event event) {
 		Graph graph = GraphHelper.getAltitudeGraph(event);
 		lineChart.getXAxis().setLabel(graph.getXName());
 		lineChart.getYAxis().setLabel(graph.getYName());
