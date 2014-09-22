@@ -126,8 +126,6 @@ public class Event implements Serializable {
 			return 0.0; // You are DEAD and therefore are not physically
 						// stressed
 		}
-
-		System.out.print(avgSpeed / avgHeartRate);
 		return avgSpeed / avgHeartRate;
 	}
 

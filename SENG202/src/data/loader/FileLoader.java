@@ -78,8 +78,7 @@ public class FileLoader {
 						if (!points.isEmpty()) { // checks that points have been
 													// read
 							
-							eventContainer
-									.addEvent(new Event(eventName, points));
+							eventContainer.addEvent(new Event(eventName, points));
 							points = new ArrayList<DataPoint>();
 							lastPoint = null;
 						}
