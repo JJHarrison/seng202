@@ -12,8 +12,10 @@ import data.persistant.Persistent;
 public class PersistentTest extends TestCase {
 	
 	/*
-	 * The personalFilePath needs to be changed for the computer it is beign run on
+	 * The personalFilePath needs to be changed for the computer it is being run on
 	 * Will work on trying to make this system independent 
+	 * NOTE: Tests are a bit temperamental, due to the persistent nature of the Persistent class
+	 * To fix delete the Fitr directory and run the persistent main which will clear the preferences 
 	 */
 	private String personalFilePath = "/Users/SamSchofield/Desktop";
 	private String fitrFilePath = personalFilePath + "/Fitr/";
