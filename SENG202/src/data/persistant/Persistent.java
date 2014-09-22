@@ -54,7 +54,7 @@ public class Persistent {
 				Persistent.initialize();
 			}
 		} else {
-			// System.out.println("FILEPATH DOESNT EXIST");
+			
 			throw new FileNotFoundException();
 		}
 	}
@@ -92,7 +92,7 @@ public class Persistent {
 	 * @return pathSet
 	 */
 	public static boolean filePathSet() {
-		System.out.println("Checking filepath");
+		
 		boolean pathSet = true;
 		File filePath;
 		if (getFilePath() == null) {
@@ -104,7 +104,6 @@ public class Persistent {
 		if (filePath == null || !filePath.exists()) {
 			pathSet = false;
 		}
-		System.out.println(pathSet);
 		return pathSet;
 	}
 
@@ -118,8 +117,6 @@ public class Persistent {
 	public static boolean newUser(User user) throws Exception {
 		boolean userAdded;
 		String userID = Integer.toString(user.getUserId());
-		System.out.println(users.contains(user));
-		System.out.println(userNames.contains(user.getName()));
 		if (!users.contains(user)) {
 			new File(getFilePath() + userID).mkdir();
 
@@ -154,16 +151,11 @@ public class Persistent {
 	 * @param user
 	 */
 	public static void setUser(User user) {
-		// System.out.println("_----_");
 		for (User u : users) {
-			System.out.println(u);
 		}
-		// System.out.println("_----_");
 		if (users.contains(user)) {
-			// System.out.println("YAY");
 			currentUser = user;
 		} else {
-			// System.out.println("NAY");
 		}
 	}
 
