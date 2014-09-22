@@ -82,7 +82,7 @@ public class Persistent {
 	 * 
 	 * @return profileFilePath
 	 */
-	public static String getProfileFilePath(String userID) {
+	public static String getProfileFilePath(int userID) {
 		return getFilePath() + userID + "/." + userID + ".fitr";
 	}
 
@@ -116,8 +116,9 @@ public class Persistent {
 	 */
 	public static boolean newUser(User user) throws Exception {
 		boolean userAdded;
-		String userID = Integer.toString(user.getUserId());
+		
 		if (!users.contains(user)) {
+			int userID = user.getUserId();
 			new File(getFilePath() + userID).mkdir();
 
 			try {
@@ -134,13 +135,16 @@ public class Persistent {
 			userAdded = true;
 		} else {
 			userAdded = false;
-			System.out
-					.println("User has already beeen created. try different username");
+			System.out.println("User has already beeen created. try different username");
 			// throw new Exception("User already exists");
 		}
 		return userAdded;
 	}
 
+	/**
+	 * returns the highest userID
+	 * @return userId
+	 */
 	public static int getUserID() {
 		return prefs.getInt("UserID", 0);
 	}

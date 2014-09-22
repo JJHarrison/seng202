@@ -12,8 +12,8 @@ import data.persistant.Persistent;
 public class PersistentTest extends TestCase {
 	private String personalFilePath = "/Users/SamSchofield/Desktop";
 	private String fitrFilePath = personalFilePath + "/Fitr/";
-	String username = "Stan";
-	User user = new User(username, null, Gender.MALE, 70, 170, null, 60);
+	String username = "Mocky";
+	User user = User.mockUser();
 
 	/**
 	 * tests that a valid file path can be set
@@ -40,8 +40,11 @@ public class PersistentTest extends TestCase {
 
 	/**
 	 * test that the filePath is returned correctly
+	 * @throws FileNotFoundException 
 	 */
-	public void testGetFilePath() {
+	public void testGetFilePath() throws FileNotFoundException {
+		Persistent.clear();
+		Persistent.setFilePath(personalFilePath);
 		assertEquals(fitrFilePath, Persistent.getFilePath());
 	}
 
@@ -52,8 +55,8 @@ public class PersistentTest extends TestCase {
 	 */
 	public void testGetProfileFilePath() throws FileNotFoundException {
 		Persistent.setFilePath(personalFilePath);
-		assertEquals(fitrFilePath + username + "/." + username + ".fitr",
-				Persistent.getProfileFilePath(user.getName()));
+		assertEquals(fitrFilePath + 0 + "/." + 0 + ".fitr",
+				Persistent.getProfileFilePath(user.getUserId()));
 
 	}
 
@@ -113,7 +116,7 @@ public class PersistentTest extends TestCase {
 	}
 
 	public void testGetUsers() throws Exception {
-		User u1 = new User("sam", null, Gender.FEMALE, 10, 10, null, 0);
+		User u1 = new User("sam", null, Gender.MALE, 10, 10, null, 0);
 		Persistent.clear();
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
@@ -121,9 +124,22 @@ public class PersistentTest extends TestCase {
 
 		assertEquals(2, Persistent.getUsers().size());
 	}
+	
+	public void testUserID() {
+		assertEquals(1, Persistent.getUserID());	
+	}
+	
+	/*
+	 * userID shouldn't be incremented if an already existing user is being added
+	 */
+	public void testExistingUserID() throws Exception {
+		Persistent.newUser(user);
+		assertEquals(1, Persistent.getUserID());
+		
+	}
 
 	public void testGetUserNames() throws Exception {
-		User u1 = new User("sam", null, Gender.FEMALE, 10, 10, null, 0);
+		User u1 = new User("sam", null, Gender.MALE, 10, 10, null, 0);
 		Persistent.clear();
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
