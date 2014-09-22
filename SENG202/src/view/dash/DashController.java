@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class DashController {
 
-	@FXML
+	/*@FXML
 	VBox warningPane;
 
 	@FXML
@@ -25,6 +25,6 @@ public class DashController {
 				new Warning(WARNING.BRADYCARDIA, new GregorianCalendar()));
 		warningPane.getChildren().add(
 				new Warning(WARNING.TACHYCARDIA, new GregorianCalendar()));
-	}
+	}*/
 
 }

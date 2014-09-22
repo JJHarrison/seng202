@@ -62,6 +62,7 @@ public class MainController {
 
 	public static ObjectProperty<Date> selectedDate;
 	private static FileChooser fileChooser = new FileChooser();
+	private static final int TRANSITION_TIME = 500;
 
 	@FXML
 	AnalysisController viewAnalysisController;
@@ -164,48 +165,48 @@ public class MainController {
 	}
 
 	@FXML
-	void loadDash(ActionEvent event) {
+	private void loadDash(ActionEvent event) {
 		toggleGroup.selectToggle(buttonDash);
 
 		viewMainContent.getChildren().clear();
 		viewMainContent.getChildren().add(viewDash);
-		ft = new FadeTransition(Duration.millis(250), viewDash);
+		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewDash);
 		ft.setFromValue(0);
 		ft.setToValue(1);
 		ft.play();
-		ft = new FadeTransition(Duration.millis(250), calendarView);
+		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
 		ft.setToValue(0);
 		ft.play();
 		calendarView.disableProperty().set(true);
 	}
 
 	@FXML
-	void loadAnalysis(ActionEvent event) {
+	private void loadAnalysis(ActionEvent event) {
 		toggleGroup.selectToggle(buttonAnalysis);
-
+		
 		viewMainContent.getChildren().clear();
 		viewMainContent.getChildren().add(viewAnalysis);
-		ft = new FadeTransition(Duration.millis(250), viewAnalysis);
+		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewAnalysis);
 		ft.setFromValue(0);
 		ft.setToValue(1);
 		ft.play();
-		ft = new FadeTransition(Duration.millis(250), calendarView);
+		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
 		ft.setToValue(1);
 		ft.play();
 		calendarView.disableProperty().set(false);
 	}
 
 	@FXML
-	void loadWeb() {
+	private void loadWeb() {
 		toggleGroup.selectToggle(buttonWeb);
-
+		
 		viewMainContent.getChildren().clear();
 		viewMainContent.getChildren().add(viewWeb);
-		ft = new FadeTransition(Duration.millis(250), viewWeb);
+		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewWeb);
 		ft.setFromValue(0);
 		ft.setToValue(1);
 		ft.play();
-		ft = new FadeTransition(Duration.millis(250), calendarView);
+		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
 		ft.setToValue(0);
 		ft.play();
 		calendarView.disableProperty().set(true);
