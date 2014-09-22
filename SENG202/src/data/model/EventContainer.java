@@ -127,7 +127,11 @@ public class EventContainer implements Serializable {
 	}
 
 	public Date getLastDate() {
-		Calendar lastDate = Calendar.getInstance();
+		Calendar lastDate = new Calendar.Builder().build();
+		if(getAllEvents().isEmpty()) {
+			lastDate = Calendar.getInstance();
+		}
+		
 		for (String dateLine : days.keySet()) {
 			String[] dL = dateLine.split("/");
 			Calendar date = new Calendar.Builder().setDate(
