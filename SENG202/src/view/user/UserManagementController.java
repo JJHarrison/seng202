@@ -32,15 +32,15 @@ public class UserManagementController {
 	void initialize() {
 		loadPersist();
 		loadLogin();
-		
+
 		viewMain.getChildren().clear();
-		
+
 		if (Persistent.filePathSet()) {
 			viewMain.getChildren().add(userLogin);
 		} else {
 			viewMain.getChildren().add(userPersist);
 		}
-		
+
 	}
 
 	public void setView(View view) {
@@ -75,29 +75,35 @@ public class UserManagementController {
 	}
 
 	private void loadCreate() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(UserLoginManager.userCreateFXML));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+				UserLoginManager.userCreateFXML));
 		try {
-			userCreate = fxmlLoader.load(getClass().getResourceAsStream(UserLoginManager.userCreateFXML));
+			userCreate = fxmlLoader.load(getClass().getResourceAsStream(
+					UserLoginManager.userCreateFXML));
 			userCreateController = fxmlLoader.getController();
 			userCreateController.setController(this);
 		} catch (IOException e) {
 		}
 	}
-	
+
 	private void loadLogin() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(UserLoginManager.userLoginFXML));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+				UserLoginManager.userLoginFXML));
 		try {
-			userLogin = fxmlLoader.load(getClass().getResourceAsStream(UserLoginManager.userLoginFXML));
+			userLogin = fxmlLoader.load(getClass().getResourceAsStream(
+					UserLoginManager.userLoginFXML));
 			userLoginController = fxmlLoader.getController();
 			userLoginController.setController(this);
 		} catch (IOException e) {
 		}
 	}
-	
+
 	private void loadPersist() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(UserLoginManager.userPersistFXML));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+				UserLoginManager.userPersistFXML));
 		try {
-			userPersist = fxmlLoader.load(getClass().getResourceAsStream(UserLoginManager.userPersistFXML));
+			userPersist = fxmlLoader.load(getClass().getResourceAsStream(
+					UserLoginManager.userPersistFXML));
 			userPersistController = fxmlLoader.getController();
 			userPersistController.setController(this);
 		} catch (IOException e) {

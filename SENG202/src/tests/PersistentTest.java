@@ -17,12 +17,13 @@ public class PersistentTest extends TestCase {
 
 	/**
 	 * tests that a valid file path can be set
-	 * @throws FileNotFoundException 
+	 * 
+	 * @throws FileNotFoundException
 	 */
 	public void testSetFilePath() throws FileNotFoundException {
 		Persistent.setFilePath(personalFilePath);
 	}
-	
+
 	/**
 	 * tests to see if an invalid file path can be set
 	 */
@@ -38,7 +39,7 @@ public class PersistentTest extends TestCase {
 	}
 
 	/**
-	 * test that the filePath is returned correctly 
+	 * test that the filePath is returned correctly
 	 */
 	public void testGetFilePath() {
 		assertEquals(fitrFilePath, Persistent.getFilePath());
@@ -46,16 +47,19 @@ public class PersistentTest extends TestCase {
 
 	/**
 	 * tests that the user profile file path is correct
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void testGetProfileFilePath() throws FileNotFoundException {
 		Persistent.setFilePath(personalFilePath);
-		assertEquals(fitrFilePath + username + "/." + username + ".fitr",Persistent.getProfileFilePath(user.getName()));
-		
+		assertEquals(fitrFilePath + username + "/." + username + ".fitr",
+				Persistent.getProfileFilePath(user.getName()));
+
 	}
-	
+
 	/**
 	 * tests when a valid filepath is set
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void testFilePathSet() throws FileNotFoundException {
@@ -63,7 +67,7 @@ public class PersistentTest extends TestCase {
 		Persistent.setFilePath(personalFilePath);
 		assertEquals(true, Persistent.filePathSet());
 	}
-	
+
 	/**
 	 * tests when no file path is set
 	 */
@@ -71,9 +75,10 @@ public class PersistentTest extends TestCase {
 		Persistent.clear();
 		assertEquals(false, Persistent.filePathSet());
 	}
-	
+
 	/**
-	 * tests that the Fitr directory is set up 
+	 * tests that the Fitr directory is set up
+	 * 
 	 * @throws FileNotFoundException
 	 */
 	public void testSetupDirectory() throws FileNotFoundException {
@@ -83,18 +88,17 @@ public class PersistentTest extends TestCase {
 		assertEquals(fitrFilePath, Persistent.getFilePath());
 	}
 
-	
-	public void testNewUser() throws Exception {	
+	public void testNewUser() throws Exception {
 		Persistent.newUser(user);
 		assertEquals(true, new File(fitrFilePath + "/" + username).exists());
 	}
-	
+
 	public void testSetUser() throws Exception {
 		Persistent.newUser(user);
 		Persistent.setUser(user);
 		assertEquals(user, Persistent.getCurrentUser());
 	}
-	
+
 	public void testSetNonExistingUser() throws Exception {
 		String username = "Fred";
 		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
@@ -114,9 +118,8 @@ public class PersistentTest extends TestCase {
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
 		Persistent.exit();
-		
-		
-		assertEquals(2,Persistent.getUsers().size());
+
+		assertEquals(2, Persistent.getUsers().size());
 	}
 
 	public void testGetUserNames() throws Exception {
@@ -125,7 +128,7 @@ public class PersistentTest extends TestCase {
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
 		Persistent.exit();
-		
+
 		assertEquals(true, Persistent.getUserNames().contains("sam"));
 		assertEquals(true, Persistent.getUserNames().contains(username));
 	}
@@ -133,11 +136,9 @@ public class PersistentTest extends TestCase {
 	public void testInit() {
 		Persistent.initialize();
 	}
-	
+
 	public void testExit() throws BackingStoreException {
 		Persistent.exit();
 	}
 
-	
 }
-

@@ -2,14 +2,19 @@ package view.warning;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Scanner;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import resources.Reference;
 
 public class Warning extends AnchorPane {
 	public static String TILE = "Warning.fxml";
+	
+	public enum WARNING {BRADYCARDIA, TACHYCARDIA};
+	private WarningController warningController;
 
-	public Warning(String risk, String riskDescription, Calendar eventStartTime) {
+	public Warning(WARNING riskType, Calendar eventStartTime) {
 		super();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(TILE));
@@ -20,8 +25,28 @@ public class Warning extends AnchorPane {
 			e.printStackTrace();
 		}
 
-		//WarningController warningController = loader.getController();
+		WarningController warningController = loader.getController();
+		this.warningController = warningController;
+		warningController.setDate(eventStartTime);
+		warningController.setDescription(getRiskDescription(riskType));
+		
+		
+	}
+	
+	public String getRiskDescription(WARNING warning) {
+		String text = "DESCRIPTION HAS FAILED";
+		switch (warning) {
+		case BRADYCARDIA:
+			text = new Scanner(Reference.class.getResourceAsStream("bradycardia.txt"), "UTF-8" ).useDelimiter("\\A").next();
+			warningController.setRisk("Bradycardia Risk");
+			break;
 
+		case TACHYCARDIA:
+			text = new Scanner(Reference.class.getResourceAsStream("tachycardia.txt"), "UTF-8" ).useDelimiter("\\A").next();
+			warningController.setRisk("Tachycardia Risk");
+			break;
+		}
+		return text;
 	}
 
 }

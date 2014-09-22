@@ -9,10 +9,10 @@ import data.model.DataPoint;
 import data.model.Event;
 
 public class TableController {
-	
+
 	@FXML
 	TableView<DataPoint> tableView;
-	
+
 	@FXML
 	TableColumn<DataPoint, String> tableTime;
 	@FXML
@@ -25,17 +25,21 @@ public class TableController {
 	TableColumn<DataPoint, String> tableLongitude;
 	@FXML
 	TableColumn<DataPoint, String> tableDistance;
-	
 
 	public void fill(Event event) {
-		tableView.setItems(FXCollections.observableArrayList(event.getDataPoints()));
+		tableView.setItems(FXCollections.observableArrayList(event
+				.getDataPoints()));
 		tableTime.setCellValueFactory(new PropertyValueFactory<>("getTime"));
-		tableDistance.setCellValueFactory(new PropertyValueFactory<>("getDistance"));
-		tableAltitude.setCellValueFactory(new PropertyValueFactory<>("getAltitude"));
-		tableLatitude.setCellValueFactory(new PropertyValueFactory<>("getLatitude"));
-		tableLongitude.setCellValueFactory(new PropertyValueFactory<>("getLongitude"));
+		tableDistance.setCellValueFactory(new PropertyValueFactory<>(
+				"getDistance"));
+		tableAltitude.setCellValueFactory(new PropertyValueFactory<>(
+				"getAltitude"));
+		tableLatitude.setCellValueFactory(new PropertyValueFactory<>(
+				"getLatitude"));
+		tableLongitude.setCellValueFactory(new PropertyValueFactory<>(
+				"getLongitude"));
 		tableHR.setCellValueFactory(new PropertyValueFactory<>("getHeartRate"));
-		
+
 	}
 
 }

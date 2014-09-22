@@ -23,18 +23,18 @@ public class EventTest extends TestCase {
 	private ArrayList<DataPoint> points;
 	private DataPoint p1;
 	private DataPoint p2;
-	
+
 	private User user;
-	
+
 	/**
 	 * Sets up the events to be tested
 	 */
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		
+
 		user = User.mockUser();
-		Calendar c = new GregorianCalendar(2000, 01,01);
+		Calendar c = new GregorianCalendar(2000, 01, 01);
 		user.setDateofBirth(c);
 		Persistent.setUser(user);
 
@@ -53,11 +53,13 @@ public class EventTest extends TestCase {
 				43, // Minute
 				5); // Second
 
-		p1 = new DataPoint.Builder().date(c3).heartRate(59) // don't change hr
+		p1 = new DataPoint.Builder().date(c3).heartRate(59)
+				// don't change hr
 				.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
 				.prevDataPoint(null).build();
 
-		p2 = new DataPoint.Builder().date(c4).heartRate(195) // don't change hr
+		p2 = new DataPoint.Builder().date(c4).heartRate(195)
+				// don't change hr
 				.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
 				.prevDataPoint(p1).build();
 
@@ -114,17 +116,17 @@ public class EventTest extends TestCase {
 		points.add(p1);
 		assertEquals(p1, points.get(points.size() - 1));
 	}
-	
+
 	public void testTachycardia() {
 		EventContainer ec = new EventContainer();
 		ec.addEvent(e);
-		//assertEquals(e.hasTachycardia(), false); // 14 years old
-		//c = new GregorianCalendar(1950, 01, 01);
-		//user.setDateofBirth(c);
-		//assertEquals(e.hasTachycardia(), true); // 64 years old
+		// assertEquals(e.hasTachycardia(), false); // 14 years old
+		// c = new GregorianCalendar(1950, 01, 01);
+		// user.setDateofBirth(c);
+		// assertEquals(e.hasTachycardia(), true); // 64 years old
 	}
 
 	public void testBradycardia() {
-		//assertEquals(e.hasBradycardia(), true);
+		// assertEquals(e.hasBradycardia(), true);
 	}
 }

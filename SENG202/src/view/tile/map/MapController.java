@@ -71,7 +71,7 @@ public class MapController {
 		stringMapRequest.append("&");
 		stringMapRequest.append(parameterPath);
 		stringMapRequest.append(event.getPathString());
-		
+
 		System.out.println(stringMapRequest.length());
 
 		image = new Image(stringMapRequest.toString());

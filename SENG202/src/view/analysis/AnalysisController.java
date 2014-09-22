@@ -9,7 +9,7 @@ public class AnalysisController {
 
 	@FXML
 	VBox tileBox;
-	
+
 	@FXML
 	void initialize() {
 
@@ -18,7 +18,7 @@ public class AnalysisController {
 	public void addTile(Event event) {
 		tileBox.getChildren().add(new Tile(event));
 	}
-	
+
 	public void clearTiles() {
 		tileBox.getChildren().clear();
 	}

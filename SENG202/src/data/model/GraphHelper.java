@@ -51,8 +51,9 @@ public class GraphHelper {
 	public static Graph getCaloriesGraph(Event e, User u) {
 		double c = 0;
 		Graph g = new Graph("Calories Burned", "Time (s)", "Calories");
-		for (DataPoint p : e.getPoints()) {	
-			double time = p.getDate().getTimeInMillis()- e.getStartTime().getTimeInMillis();
+		for (DataPoint p : e.getPoints()) {
+			double time = p.getDate().getTimeInMillis()
+					- e.getStartTime().getTimeInMillis();
 			c += p.getCalories();
 			g.addPoint(time / 1000, c);
 		}

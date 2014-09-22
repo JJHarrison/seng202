@@ -2,7 +2,6 @@ package data.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -40,13 +39,14 @@ public class EventContainer implements Serializable {
 		String dateString = dateString(e.getStartTime().getTime());
 		if (days.containsKey(dateString)) {
 			// find the correct position to add the event
-			LinkedList<Event> day = days.get(dateString); // gets events on that day
+			LinkedList<Event> day = days.get(dateString); // gets events on that
+															// day
 			int size = day.size();
 			for (int i = 0; i < size; i++) {
 				// reached the right index.
 				if (e.equals(day.get(i))) {
 					break;
-				}else if (e.getStartTime().before(day.get(i).getStartTime())) {
+				} else if (e.getStartTime().before(day.get(i).getStartTime())) {
 					// add e at i
 					day.add(i, e);
 					break;
@@ -106,31 +106,34 @@ public class EventContainer implements Serializable {
 
 		return events;
 	}
-	
+
 	public LinkedList<Event> getWeekEvents(Date week) {
 		LinkedList<Event> events = new LinkedList<Event>();
 		String weekString = dateString(week);
 		String[] dL = weekString.split("/");
-		Calendar date = new Calendar.Builder().setDate(Integer.parseInt(dL[2]), Integer.parseInt(dL[1]) - 1, Integer.parseInt(dL[0])).build();
+		Calendar date = new Calendar.Builder().setDate(Integer.parseInt(dL[2]),
+				Integer.parseInt(dL[1]) - 1, Integer.parseInt(dL[0])).build();
 		date.set(Calendar.DAY_OF_WEEK, 0);
-		
-		for(int i = 1; i < 7; i++) {
+
+		for (int i = 1; i < 7; i++) {
 			if (days.containsKey(dateString(date.getTime()))) {
-				System.out.println("--" + date.DAY_OF_WEEK);
+				System.out.println("--" + Calendar.DAY_OF_WEEK);
 				events.addAll(days.get(dateString(date.getTime())));
 			}
 			date.set(Calendar.DAY_OF_WEEK, i);
 		}
-		
+
 		return events;
 	}
-	
+
 	public Date getLastDate() {
 		Calendar lastDate = new Calendar.Builder().build();
-		for(String dateLine : days.keySet()){
+		for (String dateLine : days.keySet()) {
 			String[] dL = dateLine.split("/");
-			Calendar date = new Calendar.Builder().setDate(Integer.parseInt(dL[2]), Integer.parseInt(dL[1]) - 1, Integer.parseInt(dL[0])).build();
-			if(lastDate.before(date)) {
+			Calendar date = new Calendar.Builder().setDate(
+					Integer.parseInt(dL[2]), Integer.parseInt(dL[1]) - 1,
+					Integer.parseInt(dL[0])).build();
+			if (lastDate.before(date)) {
 				lastDate = date;
 			}
 		}
