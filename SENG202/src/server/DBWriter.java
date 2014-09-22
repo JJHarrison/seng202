@@ -12,6 +12,13 @@ import user.User;
 import data.model.DataPoint;
 import data.model.Event;
 
+/**
+ * This class provides functionality for writing objects to the mysql database using sql queries
+ * It is used for taking a serialized user profile and writing the information associated with the user,
+ * the information associated with the events and the datapoints each event contains.
+ * @author James
+ *
+ */
 public class DBWriter {
 	private Connection connect = null;
 	private Statement statement = null;

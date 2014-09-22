@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleStringProperty;
  * tracking device. Each dataPoint consists of attributes related to the actual
  * values in the real world at that time point.
  * 
- * @author Fitr.Team
+ * @author Sam
  */
 public class DataPoint implements Serializable {
 	/**
@@ -158,11 +158,8 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Calculates the distance from the current point to the previousPoint in
-	 * meters.
-	 * 
-	 * @param previousPoint
-	 *            The point from which to calculate the distance from
+	 * Calculates the distance from the current point to the previousPoint in meters. 
+	 * @param previousPoint The point from which to calculate the distance from
 	 * @return The distance in meters from the previous point
 	 */
 	private double calculateDistance(DataPoint previousPoint) {
@@ -187,8 +184,7 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * 
-	 * @param deltaTime
-	 *            The between two data points
+	 * @param deltaTime The between two data points
 	 * @return The average speed between two points
 	 */
 	private double calculateSpeed(long deltaTime) {
@@ -202,8 +198,7 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Gets the date at a particular point.
-	 * 
+	 * Gets the date at a particular point. 
 	 * @return the date
 	 */
 	public Calendar getDate() {
@@ -211,8 +206,7 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Gets the heart rate at a particular point.
-	 * 
+	 * Gets the heart rate at a particular point. 
 	 * @return the heartRate
 	 */
 	public int getHeartRate() {
@@ -220,8 +214,7 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Gets the latitude at a particular point.
-	 * 
+	 * Gets the latitude at a particular point. 
 	 * @return the latitude
 	 */
 	public double getLatitude() {
@@ -230,7 +223,6 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the longitude at a particular point.
-	 * 
 	 * @return the longitude
 	 */
 	public double getLongitude() {
@@ -239,7 +231,6 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the altitude at a particular point.
-	 * 
 	 * @return the altitude
 	 */
 	public double getAltitude() {
@@ -248,7 +239,6 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the average speed (m/s) from the previous point to this point.
-	 * 
 	 * @return the speed
 	 */
 	public double getSpeed() {
@@ -257,7 +247,6 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the distance (m) from the previous point to this point.
-	 * 
 	 * @return the distance
 	 */
 	public double getDistance() {
@@ -265,11 +254,8 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * calculates the calories burnt from the last point to the current point
-	 * 
-	 * @return
-	 * 
-	 * @return calories burnt
+	 * calculates the calories burnt from the last point to the current point.
+	 * @return calories burnt from last point to this point
 	 */
 	public double calculateCalories() {
 		double weight = 75;// Persistent.getCurrentUser().getWeight();
@@ -279,14 +265,27 @@ public class DataPoint implements Serializable {
 		return calories;
 	}
 
+	/**
+	 * Returns the calories burnt at this point
+	 * @return The calories burnt from last point to this point
+	 */
 	public double getCalories() {
 		return caloriesBurned;
 	}
 
+	/**
+	 * Returns the physical stress level from last point to this point
+	 * @return The physical stress level
+	 */
 	public double getStressLevel() {
 		return stressLevel;
 	}
 
+	/**
+	 * Sets the physical stress level at this point.
+	 * The stress level is calculated by
+	 * @param stressLevel
+	 */
 	public void setStressLevel(double stressLevel) {
 		this.stressLevel = stressLevel;
 	}
