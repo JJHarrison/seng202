@@ -151,7 +151,7 @@ public class User implements Serializable {
 	 * it to their user profile.
 	 */
 	private double calculateBMI() {
-		return weight / (Math.pow(height, 2));
+		return weight / (Math.pow(height / 100, 2));
 	}
 
 	/**
@@ -239,8 +239,8 @@ public class User implements Serializable {
 	    Calendar now = Calendar.getInstance();
 	    Calendar birth = Persistent.getCurrentUser().getDateofBirth();
 	    int diff = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
-	    if (now.get(Calendar.MONTH) > birth.get(Calendar.MONTH) || 
-	        (now.get(Calendar.MONTH) == birth.get(Calendar.MONTH) && now.get(Calendar.DATE) > birth.get(Calendar.DATE))) {
+	    if (birth.get(Calendar.MONTH) > now.get(Calendar.MONTH) || 
+	        (now.get(Calendar.MONTH) == birth.get(Calendar.MONTH) && birth.get(Calendar.DATE) > now.get(Calendar.DATE))) {
 	        diff--;
 	    }
 	    return diff;
