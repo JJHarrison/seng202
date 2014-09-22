@@ -45,9 +45,11 @@ public class FileLoader {
 		}
 	}
 
+	/**
+	 * creates a file loader with the default csv file, for testing purposes 
+	 */
 	public FileLoader() {
-		inputStream = this.getClass().getResourceAsStream(
-				"seng202_2014_example_data.csv");
+		inputStream = this.getClass().getResourceAsStream("seng202_2014_example_data.csv");
 	}
 
 	/**
@@ -64,8 +66,7 @@ public class FileLoader {
 	 * data points to the event
 	 */
 	public void load() {
-		BufferedReader br = new BufferedReader(new InputStreamReader(
-				inputStream));
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 		String line;
 		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 		String eventName = null;
@@ -76,11 +77,9 @@ public class FileLoader {
 
 				if (isValidLine(line) || line.startsWith("#start")) {
 					if (dataLine[0].contains("#start")) { // start of new event
-						if (!points.isEmpty()) { // checks that points have been
-													// read
-							
+						if (!points.isEmpty()) { //checks that points have been read to be added to event	
 							eventContainer.addEvent(new Event(eventName, points));
-							points = new ArrayList<DataPoint>();
+							points = new ArrayList<DataPoint>(); // reset the points for the next event
 							lastPoint = null;
 						}
 
@@ -92,9 +91,8 @@ public class FileLoader {
 					}
 				}
 			}
-			if (!points.isEmpty() && !points.isEmpty()) { // checks that points
-															// have been read
-				
+			// add the last event of the csv file to events
+			if (!points.isEmpty() && !points.isEmpty()) { 
 				eventContainer.addEvent(new Event(eventName, points));
 			}
 
@@ -108,25 +106,25 @@ public class FileLoader {
 	 * Takes a correctly formatted line and returns it as DataPoint
 	 * 
 	 * @param line
-	 * @return
+	 * @return DataPoint of line which was read
 	 */
 	private DataPoint parseLine(String[] line) {
 		String[] dateString = line[0].split("/");
 		String[] time = line[1].split(":");
 
+		//create a new calendar of the given date
 		Calendar date = new Calendar.Builder()
-				.setDate(Integer.parseInt(dateString[2]),
-						Integer.parseInt(dateString[1]) - 1,
-						Integer.parseInt(dateString[0]))
-				.setTimeOfDay(Integer.parseInt(time[0]),
-						Integer.parseInt(time[1]), Integer.parseInt(time[2]))
+				.setDate(Integer.parseInt(dateString[2]),Integer.parseInt(dateString[1]) - 1,Integer.parseInt(dateString[0]))
+				.setTimeOfDay(Integer.parseInt(time[0]),Integer.parseInt(time[1]), Integer.parseInt(time[2]))
 				.build();
 
+		//parse the other fields from string to appropriate type
 		int heartrate = Integer.parseInt(line[2]);
 		double latitude = Double.parseDouble(line[3]);
 		double longitude = Double.parseDouble(line[4]);
 		double altitude = Double.parseDouble(line[5]);
 
+		//create the dataPoint 
 		DataPoint point = new DataPoint.Builder().date(date)
 				.heartRate(heartrate).latitude(latitude).longitude(longitude)
 				.altitude(altitude).prevDataPoint(lastPoint).build();

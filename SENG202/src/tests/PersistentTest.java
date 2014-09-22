@@ -12,8 +12,10 @@ import data.persistant.Persistent;
 public class PersistentTest extends TestCase {
 	
 	/*
-	 * The personalFilePath needs to be changed for the computer it is beign run on
+	 * The personalFilePath needs to be changed for the computer it is being run on
 	 * Will work on trying to make this system independent 
+	 * NOTE: Tests are a bit temperamental, due to the persistent nature of the Persistent class
+	 * To fix delete the Fitr directory and run the persistent main which will clear the preferences 
 	 */
 	private String personalFilePath = "/Users/SamSchofield/Desktop";
 	private String fitrFilePath = personalFilePath + "/Fitr/";
@@ -96,17 +98,30 @@ public class PersistentTest extends TestCase {
 		assertEquals(fitrFilePath, Persistent.getFilePath());
 	}
 
+	/**
+	 * tests that the new users directory is being created
+	 * @throws Exception
+	 */
 	public void testNewUser() throws Exception {
+		Persistent.clear();
 		Persistent.newUser(user);
 		assertEquals(true, new File(fitrFilePath + "/" + user.getUserId()).exists());
 	}
 
+	/**
+	 * tests that an existing user can be set
+	 * @throws Exception
+	 */
 	public void testSetUser() throws Exception {
 		Persistent.newUser(user);
 		Persistent.setUser(user);
 		assertEquals(user, Persistent.getCurrentUser());
 	}
 
+	/**
+	 * tests that a non existing user can not be set
+	 * @throws Exception
+	 */
 	public void testSetNonExistingUser() throws Exception {
 		String username = "Fred";
 		User u = new User(username, null, Gender.MALE, 70, 170, null, 60);
@@ -114,12 +129,20 @@ public class PersistentTest extends TestCase {
 		assertNotSame(u, Persistent.getCurrentUser());
 	}
 
+	/**
+	 * tests that we are returning the correct current user
+	 * @throws Exception
+	 */
 	public void testGetCurrentUser() throws Exception {
 		Persistent.newUser(user);
 		Persistent.setUser(user);
 		assertEquals(user, Persistent.getCurrentUser());
 	}
 
+	/**
+	 * tests that get users is returning the right numbe of users
+	 * @throws Exception
+	 */
 	public void testGetUsers() throws Exception {
 		User u1 = new User("sam", null, Gender.MALE, 10, 10, null, 0);
 		Persistent.clear();
@@ -130,11 +153,14 @@ public class PersistentTest extends TestCase {
 		assertEquals(2, Persistent.getUsers().size());
 	}
 	
+	/**
+	 * testing that the UserID has been incremented appropriately for the number of users that have been added
+	 */
 	public void testUserID() {
 		assertEquals(1, Persistent.getUserID());	
 	}
 	
-	/*
+	/**
 	 * userID shouldn't be incremented if an already existing user is being added
 	 */
 	public void testExistingUserID() throws Exception {
@@ -143,6 +169,10 @@ public class PersistentTest extends TestCase {
 		
 	}
 
+	/** 
+	 * test that it is correctly returning the all the appropriate user names
+	 * @throws Exception
+	 */
 	public void testGetUserNames() throws Exception {
 		User u1 = new User("sam", null, Gender.MALE, 10, 10, null, 0);
 		Persistent.clear();
@@ -154,10 +184,17 @@ public class PersistentTest extends TestCase {
 		assertEquals(true, Persistent.getUserNames().contains(username));
 	}
 
+	/**
+	 * still need to work out an appropriate way to test this properly 
+	 */
 	public void testInit() {
 		Persistent.initialize();
 	}
 
+	/**
+	 * still need to work out an appropriate way to test this properly 
+	 * @throws BackingStoreException
+	 */
 	public void testExit() throws BackingStoreException {
 		Persistent.exit();
 	}

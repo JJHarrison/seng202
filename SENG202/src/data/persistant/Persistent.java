@@ -126,7 +126,7 @@ public class Persistent {
 		} else {
 			userAdded = false;
 			System.out.println("User has already beeen created. try different username");
-			throw new Exception("User already exists");
+			//throw new Exception("User already exists");
 		}
 		return userAdded;
 	}
