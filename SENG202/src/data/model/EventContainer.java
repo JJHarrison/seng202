@@ -30,10 +30,10 @@ public class EventContainer implements Serializable {
 	}
 
 	/**
-	 * Add a activity event to the event container.
-	 * 
-	 * @param e
-	 *            The activity event to be added to the container.
+	 * Add an activity event to the event container.
+	 * Will only add events which are not already in the event container.
+	 * The new events are put into order by date
+	 * @param e The activity event to be added to the container.
 	 */
 	public void addEvent(Event e) {
 		String dateString = dateString(e.getStartTime().getTime());
@@ -65,10 +65,9 @@ public class EventContainer implements Serializable {
 	}
 
 	/**
-	 * Returns the linked list that contains the activity events for the day.
+	 * Returns the linked list that contains the activity events for the given day.
 	 * 
-	 * @param date
-	 *            The day that the caller wants the activity events for.
+	 * @param date The day that the caller wants the activity events for.
 	 * @return The linked list containing activity events
 	 */
 	public LinkedList<Event> getEvents(Date date) {
@@ -93,7 +92,7 @@ public class EventContainer implements Serializable {
 	}
 
 	/**
-	 * Used in DB.
+	 * Used in DB. Gets all events in the event container
 	 * 
 	 * @return All of the events as a collection.
 	 */
@@ -107,17 +106,22 @@ public class EventContainer implements Serializable {
 		return events;
 	}
 
+	/**
+	 * Gets all the events on a given week 
+	 * @param week to get events on 
+	 * @return linked list of events on the given week
+	 */
 	public LinkedList<Event> getWeekEvents(Date week) {
 		LinkedList<Event> events = new LinkedList<Event>();
 		String weekString = dateString(week);
-		String[] dL = weekString.split("/");
+		String[] dL = weekString.split("/"); // split the string up into day month year
 		Calendar date = new Calendar.Builder().setDate(Integer.parseInt(dL[2]),
 				Integer.parseInt(dL[1]) - 1, Integer.parseInt(dL[0])).build();
 		date.set(Calendar.DAY_OF_WEEK, 0);
 
+		// iterate through all the days of the given week
 		for (int i = 1; i < 7; i++) {
 			if (days.containsKey(dateString(date.getTime()))) {
-
 				events.addAll(days.get(dateString(date.getTime())));
 			}
 			date.set(Calendar.DAY_OF_WEEK, i);
@@ -126,6 +130,11 @@ public class EventContainer implements Serializable {
 		return events;
 	}
 
+	/**
+	 * Gets the latest date in the event container.
+	 * If the event container has no events, then it returns the current date
+	 * @return last date in the event container 
+	 */
 	public Date getLastDate() {
 		Calendar lastDate = new Calendar.Builder().build();
 		if(getAllEvents().isEmpty()) {

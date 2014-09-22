@@ -236,30 +236,6 @@ public class Persistent {
 
 	public static void main(String args[]) throws Exception {
 		clear();
-		/*
-		 * setFilePath("/Users/SamSchofield/Desktop"); setupDirectory();
-		 * initialize(); System.out.println("______________________"); User u =
-		 * new User("a", null, null); User v = new User("b", null, null); //
-		 * setUser(u); newUser(u); newUser(v);
-		 * System.out.println(prefs.getInt("LastUserID", 0));
-		 * 
-		 * System.out.println(getFilePath()); System.out.println("Saved");
-		 * System.out.println("Users are: ");
-		 * 
-		 * ArrayList<User> a = new ArrayList<User>(users); for (int i = 0; i <
-		 * a.size(); i++) { System.out.println(a.get(i)); }
-		 * 
-		 * prefs.clear();
-		 * 
-		 * System.out.println("data cleared");
-		 * 
-		 * EventContainer e = new EventContainer(); User u = new User("Sam",
-		 * null, null, 0, 0, e, 0); //User v = new User("Dan", null, null, 0, 0,
-		 * e, 0); setUser(u); System.out.println(getCurrentUser());
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
+		
 	}
 }
