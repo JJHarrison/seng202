@@ -10,6 +10,11 @@ import user.User.Gender;
 import data.persistant.Persistent;
 
 public class PersistentTest extends TestCase {
+	
+	/*
+	 * The personalFilePath needs to be changed for the computer it is beign run on
+	 * Will work on trying to make this system independent 
+	 */
 	private String personalFilePath = "/Users/SamSchofield/Desktop";
 	private String fitrFilePath = personalFilePath + "/Fitr/";
 	String username = "Mocky";
@@ -31,7 +36,7 @@ public class PersistentTest extends TestCase {
 		Throwable e = null;
 		Persistent.clear();
 		try {
-			Persistent.setFilePath(personalFilePath + "/alduh");
+			Persistent.setFilePath(personalFilePath + "/NonExistantFilePath");
 		} catch (Throwable ex) {
 			e = ex;
 		}
@@ -55,13 +60,13 @@ public class PersistentTest extends TestCase {
 	 */
 	public void testGetProfileFilePath() throws FileNotFoundException {
 		Persistent.setFilePath(personalFilePath);
-		assertEquals(fitrFilePath + 0 + "/." + 0 + ".fitr",
+		assertEquals(fitrFilePath + user.getUserId() + "/." + user.getUserId() + ".fitr",
 				Persistent.getProfileFilePath(user.getUserId()));
 
 	}
 
 	/**
-	 * tests when a valid filepath is set
+	 * tests when a valid filePath is set
 	 * 
 	 * @throws FileNotFoundException
 	 */

@@ -20,25 +20,18 @@ import user.User;
 public class Persistent {
 
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
-	private static ObservableList<User> users = FXCollections
-			.observableList(new ArrayList<User>());
-	private static ObservableList<String> userNames = FXCollections
-			.observableList(new ArrayList<String>());
-	private static User currentUser = User.mockUser(); // TODO JUST FOR TESTING
-
-	// private static User currentUser;
+	private static ObservableList<User> users = FXCollections.observableList(new ArrayList<User>());
+	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
+	private static User currentUser = User.mockUser(); // JUST FOR TESTING
 
 	/**
 	 * Sets the FilePath preference to a Fitr directory at location of filePath
 	 * Will only set a valid file path
-	 * 
-	 * @param filePath
+	 * @param filePath location on users computer where they want Fitr to be saved
 	 * @throws FileNotFoundException
 	 */
-	public static void setFilePath(String filePath)
-			throws FileNotFoundException {
-		// check that filePath is valid
-		if (new File(filePath).exists()) {
+	public static void setFilePath(String filePath) throws FileNotFoundException {
+		if (new File(filePath).exists()) { // check that filePath is valid
 			prefs.put("FilePath", filePath + "/Fitr/");
 			try {
 				prefs.flush();
@@ -46,21 +39,19 @@ public class Persistent {
 				e.printStackTrace();
 			}
 
-			// only creates new directory if the selected one doesn't already
-			// exist
+			// only creates new Fitr directory if the selected one doesn't already exist
 			if (!new File(getFilePath()).exists()) {
 				setupDirectory();
 			} else { // if the Fitr directory already exists then use it.
 				Persistent.initialize();
 			}
 		} else {
-			
 			throw new FileNotFoundException();
 		}
 	}
 
 	/**
-	 * sets up a new Fitr directory with a users sub directory at the file path
+	 * sets up a new Fitr directory at the file path if filePath has been set
 	 */
 	public static void setupDirectory() {
 		if (getFilePath() != null) {
@@ -69,7 +60,7 @@ public class Persistent {
 	}
 
 	/**
-	 * gets the file path from preferences
+	 * gets the file path to the Fitr directory from preferences
 	 * 
 	 * @return FilePath
 	 */
@@ -78,8 +69,8 @@ public class Persistent {
 	}
 
 	/**
-	 * returns the file path to the current users profile
-	 * 
+	 * returns the file path to the current users profile within the Fitr directory.
+	 * user profile sub directories are named as the users ID number
 	 * @return profileFilePath
 	 */
 	public static String getProfileFilePath(int userID) {
@@ -87,12 +78,11 @@ public class Persistent {
 	}
 
 	/**
-	 * checks if a valid file path has been set
-	 * 
+	 * checks if a valid file path has been set.
+	 * Used to determine if we need to ask the user to set their file path when opening the program 
 	 * @return pathSet
 	 */
 	public static boolean filePathSet() {
-		
 		boolean pathSet = true;
 		File filePath;
 		if (getFilePath() == null) {
@@ -108,11 +98,12 @@ public class Persistent {
 	}
 
 	/**
-	 * creates a new directory in users with name user to store information in
-	 * also adds a user.json and activity.json file to save data to
-	 * 
-	 * @param userName
-	 * @return TODO
+	 * creates a new directory in users with name userID to store user information in.
+	 * also adds a userID.json
+	 * The usedID.json is hidden on OSX and Linux OS so that users can't corrupt their data
+	 * The user will only be added if that user doesn't already exist
+	 * @param User the user to be added
+	 * @return boolean if the user to be added or not
 	 */
 	public static boolean newUser(User user) throws Exception {
 		boolean userAdded;
@@ -129,20 +120,20 @@ public class Persistent {
 
 			users.add(user);
 			userNames.add(user.getName());
-
-			Saver.SaveUser(user);
+			Saver.SaveUser(user); // automatically save the user to json once they have been added 
 			prefs.putInt("UserID", prefs.getInt("UserID", 0) + 1);
 			userAdded = true;
 		} else {
 			userAdded = false;
 			System.out.println("User has already beeen created. try different username");
-			// throw new Exception("User already exists");
+			throw new Exception("User already exists");
 		}
 		return userAdded;
 	}
 
 	/**
-	 * returns the highest userID
+	 * returns the most recently used userID.
+	 * used in generating userID values 
 	 * @return userId
 	 */
 	public static int getUserID() {
@@ -150,16 +141,16 @@ public class Persistent {
 	}
 
 	/**
-	 * Sets the current user
+	 * Sets the current user.
+	 * Will only set the current user if the user is existing 
 	 * 
 	 * @param user
 	 */
 	public static void setUser(User user) {
-		for (User u : users) {
-		}
 		if (users.contains(user)) {
 			currentUser = user;
 		} else {
+			currentUser = null;
 		}
 	}
 
@@ -194,7 +185,7 @@ public class Persistent {
 	}
 
 	/**
-	 * loads all the profiles from the users directory into the
+	 * loads all the profiles from the user directorys into the
 	 * ObservableList<User> users
 	 */
 	public static void initialize() {
@@ -209,8 +200,7 @@ public class Persistent {
 
 				if (new File(file + "/." + userID + ".fitr").exists()) {
 					// check if the file is a user
-					User newUser = Loader.loadUserProfile(new File(file + "/."
-							+ userID + ".fitr"));
+					User newUser = Loader.loadUserProfile(new File(file + "/." + userID + ".fitr"));
 
 					if (newUser != null && !users.contains(newUser)) {
 						users.add(newUser);
@@ -221,6 +211,9 @@ public class Persistent {
 		}
 	}
 
+	/**
+	 * used to clear the user preferences when reseting the program 
+	 */
 	public static void clear() {
 		try {
 			prefs.clear();
@@ -230,36 +223,20 @@ public class Persistent {
 		}
 	}
 
+	/**
+	 * checks that preferences have been stored and that it is safe to close the program 
+	 * @throws BackingStoreException
+	 */
 	public static void exit() throws BackingStoreException {
 		prefs.flush();
 	}
 
+	/**
+	 * Main method used only for testing purposes 
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String args[]) throws Exception {
 		clear();
-		/*
-		 * setFilePath("/Users/SamSchofield/Desktop"); setupDirectory();
-		 * initialize(); System.out.println("______________________"); User u =
-		 * new User("a", null, null); User v = new User("b", null, null); //
-		 * setUser(u); newUser(u); newUser(v);
-		 * System.out.println(prefs.getInt("LastUserID", 0));
-		 * 
-		 * System.out.println(getFilePath()); System.out.println("Saved");
-		 * System.out.println("Users are: ");
-		 * 
-		 * ArrayList<User> a = new ArrayList<User>(users); for (int i = 0; i <
-		 * a.size(); i++) { System.out.println(a.get(i)); }
-		 * 
-		 * prefs.clear();
-		 * 
-		 * System.out.println("data cleared");
-		 * 
-		 * EventContainer e = new EventContainer(); User u = new User("Sam",
-		 * null, null, 0, 0, e, 0); //User v = new User("Dan", null, null, 0, 0,
-		 * e, 0); setUser(u); System.out.println(getCurrentUser());
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
 	}
 }
