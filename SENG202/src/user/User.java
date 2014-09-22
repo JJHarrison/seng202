@@ -70,11 +70,37 @@ public class User implements Serializable {
 		userID = Persistent.getUserID();
 	}
 	
+	/**
+	 * Returns if the use has Tachycardia.
+	 * @return True if the user has Tachycardia, false otherwise
+	 */
+	public boolean hasTachycardia(){
+		return this.hasTachycardia;
+	}
+	
+	/**
+	 * Returns if the user has Bradycardia
+	 * @return True if the user has Bradycardi, false otherwise
+	 */
+	public boolean hasBradycardia(){
+		return this.hasBradycardia;
+	}
+	
+	/**
+	 * Sets the resting heart rate of the user.
+	 * @param restingHeartRate The resting heart rate that will be associated with the user.
+	 */
 	public void setRestingHeartRate(int restingHeartRate) {
 		this.restingHeartRate = restingHeartRate;
 		calculateHealthWarnings();
 	}
 	
+	/**
+	 * Calculates to see if the user has any health warnings that need to be displayed.
+	 * Health warning consist of Bradycaria and Tachycardia.
+	 * Bradycardia is the resting heart rate of under 60 beats per minute (BPM).
+	 * Tachycardia is when the heart rate exceeds a given range when exercising.
+	 */
 	private void calculateHealthWarnings() {
 		hasBradycardia = restingHeartRate < 60 ? true : false;
 		hasTachycardia = restingHeartRate > 100 ? true : false;
@@ -217,12 +243,19 @@ public class User implements Serializable {
 				Calendar.YEAR));
 		return age;
 	}
-
+	
+	/**
+	 * The toString function is automatically used in the JavafX for the user management system.
+	 */
 	@Override
 	public String toString() {
 		return String.format("%s", getName());
 	}
 
+	/**
+	 * Returns the gender of the user as a string.
+	 * @return The string of the users gender.
+	 */
 	public String genderForDB() {
 		if (this.getGender() == Gender.MALE) {
 			return "M";
@@ -232,19 +265,11 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Returns the resting heart rate of the user.
+	 * @return The resting heart rate of the uesr.
 	 */
 	public int getRestingHeartRate() {
 		return restingHeartRate;
-	}
-
-	/**
-	 * 
-	 * @param averageHeartRate
-	 */
-	public void setAverageHeartRate(int averageHeartRate) {
-		this.restingHeartRate = averageHeartRate;
 	}
 
 	/**
@@ -269,25 +294,11 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * TEMPORY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
-	 * code, please leave this here till end of project
-	 * 
-	 * @return
+	 * The equals method was overridden for profile creation.
+	 * @param other The user profile to compare for equality
 	 */
-	public static User mockUser() {
-		FileLoader fl = new FileLoader();
-		fl.load();
-		EventContainer ec = fl.getEventContainer();
-		// */
-		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE, 85.3, 1.9, ec, 120);
-		// mock.setUserID(1);
-		return mock;
-	}
-
 	@Override
 	public boolean equals(Object other) {
-
 		boolean same = false;
 		if (other != null) {
 			User u = (User) other;
@@ -297,5 +308,20 @@ public class User implements Serializable {
 		}
 		return same;
 	}
-
+//-----------------------------Do not delete till end of project----------------------------	
+	/**
+	 * TEMPORY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
+	 * code, please leave this here till end of project
+	 * 
+	 * @return
+	 */
+	public static User mockUser() {
+		FileLoader fl = new FileLoader();
+		fl.load();
+		EventContainer ec = fl.getEventContainer();
+		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
+				Gender.MALE, 85.3, 1.9, ec, 120);
+		return mock;
+	}
+//-----------------------------------------------------------------------------------------
 }
