@@ -36,7 +36,7 @@ public class Main extends Application {
 		stage.setMaximized(true);
 		stage.getIcons().add(new Image(Reference.class.getResourceAsStream("heart_icon.png")));
 
-		initRootLayout();
+		initRootLayout(); 
 	}
 
 	/**
