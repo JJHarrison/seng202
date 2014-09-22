@@ -116,7 +116,7 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				Saver.SaveUser(Persistent.getCurrentUser());
-				Platform.exit();
+				Platform.exit(); 
 
 			}
 		});
