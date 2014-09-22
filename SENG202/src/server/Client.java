@@ -9,6 +9,12 @@ import java.util.Calendar;
 
 import user.User;
 
+/**
+ * This class provides a client to interact with the server.
+ * It is used for sending a serialized user profile to the server.
+ * @author James
+ *
+ */
 public class Client {
     private Socket clientSocket;
     private ObjectInputStream input;

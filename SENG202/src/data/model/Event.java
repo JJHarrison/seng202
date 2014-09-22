@@ -14,7 +14,7 @@ import data.persistant.Persistent;
  * fitness tracking device. Each event consists of a collection of dataPoints
  * and attributes that relate to the activity event.
  * 
- * @author Fitr.Team
+ * @author Fitr.Team??
  */
 public class Event implements Serializable {
 
@@ -107,6 +107,7 @@ public class Event implements Serializable {
 		}
 	}
 
+	
 	private double calculateStressFactor() {
 		double totalSpeed = 0.0;
 		int totalHeartRate = 0;
@@ -271,6 +272,10 @@ public class Event implements Serializable {
 		return distanceString;
 	}
 
+	/**
+	 * Returns the date formated for the gui event pane.
+	 * @return The date formated for the gui.
+	 */
 	public String getTimeString() {
 		SimpleDateFormat tf = new SimpleDateFormat("EEEE, MMMM d, h:mm a");
 
@@ -348,38 +353,65 @@ public class Event implements Serializable {
 		return pathBuilder.toString();
 	}
 
-	public void getLastday() {
-
-	}
-
+	/**
+	 * Returns if the user has Bradycardia
+	 * @return True if the user has Bradycardia, false otherwise
+	 */
 	public boolean hasBradycardia() {
 		return hasBradycardia;
 	}
 	
+	/**
+	 * Returns if the user has Tachycardia
+	 * @return True if th euesr has Tachycardia, false otherwise
+	 */
 	public boolean hasTachycardia() {
 		return hasTachycardia;
 	}
 
+	/**
+	 * Returns a string of the average heart rate for this event.
+	 * @return The string representation of average heart rate for this event
+	 */
 	public String avgHRString() {
 		return String.format("%d bpm", getAverageHeartRate());
 	}
 
+	/**
+	 * Returns a string of the maximum heart rate for this event.
+	 * @return The string representation of the maximum heart rate for this event
+	 */
 	public String maxHRString() {
 		return String.format("%d bpm", getMaxHeartRate());
 	}
 
+	/**
+	 * Returns the average speed of the event 
+	 * @return A string representation of the average speed for this event
+	 */
 	public String avgSpeedString() {
 		return String.format("%.2f km / h", getAverageSpeed() * 3.6);
 	}
 
+	/**
+	 * Returns the maximum speed for this event
+	 * @return The string representation of the maximum speed for this event
+	 */
 	public String maxSpeedString() {
 		return String.format("%.2f km / h", getMaxSpeed() * 3.6);
 	}
 
+	/**
+	 * Returns the calories burnt for this event
+	 * @return A string representation for the calories burned for this event
+	 */
 	public String getCaloriesString() {
 		return String.format("%.0f", getCaloriesBurned());
 	}
 
+	/**
+	 * The equals was overridden for event container functionality
+	 */
 	@Override
 	public boolean equals(Object other) {
 		boolean equal = false;

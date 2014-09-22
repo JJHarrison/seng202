@@ -12,6 +12,12 @@ import java.util.Calendar;
 
 import user.User;
 
+/**
+ * This class provides a server for interacting with the client.
+ * Is is used for taking a serialized user profile from the client and writing it to the database using DBWriter
+ * @author James
+ *
+ */
 public class Server {
 	private ServerSocket server;
 	private Socket connection;
