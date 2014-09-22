@@ -1,5 +1,8 @@
 package tests;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import junit.framework.TestCase;
 import user.User;
 import user.User.Gender;
@@ -19,8 +22,6 @@ public class UserProfileTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		u = User.mockUser();
-		
-
 	}
 
 	/**
@@ -29,7 +30,16 @@ public class UserProfileTest extends TestCase {
 	public void testGetName() {
 		assertEquals("Mocky", u.getName());
 	}
-
+	
+	/**
+	 * Tests setName function to make sure it sets the name correctly
+	 */
+	public void testSetName(){
+		String name = "TestName";
+		u.setName(name);
+		assertEquals(name, u.getName());
+	}
+		
 	/**
 	 * Tests getWeight function to make sure it returns the right weight
 	 */
@@ -50,6 +60,24 @@ public class UserProfileTest extends TestCase {
 	public void testGetAge() {
 		assertEquals(53, u.getAge());
 	}
+	
+	/**
+	 * Tests the getDateOfBIrth function to make sure it returns the right date
+	 */
+	public void testDateOfBirth(){
+		assertEquals(new GregorianCalendar(1961, 8, 9), u.getDateofBirth());
+	}
+	
+	/**
+	 * Tests the setDateOfBirth funtion to make sure it sets the correct date
+	 */
+	public void testSetDateOfBirth(){
+		Calendar c = new GregorianCalendar(1988, 13, 3);
+		u.setDateofBirth(c);
+		assertEquals(c, u.getDateofBirth());
+		
+	}
+	
 
 	/**
 	 * Tests that the Gender enum has a value

@@ -107,6 +107,7 @@ public class Server {
 					dbw.writeUser(uploadedUser);
 					System.out.println(startMessage() + " Complete!\n");
 				} catch (Exception e) {
+					System.out.println("An error occured");
 					e.printStackTrace();
 				}
 				clientMessage = (String) input.readObject();
