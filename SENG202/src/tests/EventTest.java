@@ -71,6 +71,7 @@ public class EventTest extends TestCase {
 	 * of the event
 	 */
 	public void testGetEventName() {
+		
 		assertEquals("My Event", e.getEventName());
 	}
 

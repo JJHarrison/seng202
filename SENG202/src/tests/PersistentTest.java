@@ -90,7 +90,7 @@ public class PersistentTest extends TestCase {
 
 	public void testNewUser() throws Exception {
 		Persistent.newUser(user);
-		assertEquals(true, new File(fitrFilePath + "/" + username).exists());
+		assertEquals(true, new File(fitrFilePath + "/" + user.getUserId()).exists());
 	}
 
 	public void testSetUser() throws Exception {

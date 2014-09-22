@@ -65,6 +65,7 @@ public class User implements Serializable {
 		this.height = height;
 		setRestingHeartRate(restingHeartRate);
 		this.BMI = calculateBMI();
+		System.out.println(name + " has a BMI of: " +  BMI);
 		this.events = (events == null) ? new EventContainer() : events;
 		userID = Persistent.getUserID();
 	}
