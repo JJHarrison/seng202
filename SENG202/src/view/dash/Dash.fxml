@@ -56,7 +56,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label text="23">
+                        <Label fx:id="labelAge" text="23">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -73,7 +73,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label text="166 cm">
+                        <Label fx:id="labelHeight" text="166 cm">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -90,7 +90,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label text="67">
+                        <Label fx:id="labelHR" text="67">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -107,7 +107,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label text="63 kg">
+                        <Label fx:id="labelWeight" text="63 kg">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -124,7 +124,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label text="23">
+                        <Label fx:id="labelBMI" text="23">
                            <font>
                               <Font size="24.0" />
                            </font>

@@ -1,7 +1,6 @@
 package tests;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import junit.framework.TestCase;
 import user.User;

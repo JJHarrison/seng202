@@ -234,9 +234,8 @@ public class Persistent {
 	/**
 	 * Main method used only for testing purposes 
 	 * @param args
-	 * @throws Exception
 	 */
-	public static void main(String args[]) throws Exception {
+	public static void main(String args[]) {
 		clear();
 	}
 }

@@ -236,12 +236,14 @@ public class User implements Serializable {
 	 * @return The age of the user in years.
 	 */
 	public int getAge() {
-		// Need to add some functionality to prevent negative or 0 ages being
-		// returned.
-		Calendar now = new GregorianCalendar();
-		int age = (now.get(Calendar.YEAR) - this.getDateofBirth().get(
-				Calendar.YEAR));
-		return age;
+	    Calendar now = Calendar.getInstance();
+	    Calendar birth = Persistent.getCurrentUser().getDateofBirth();
+	    int diff = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
+	    if (now.get(Calendar.MONTH) > birth.get(Calendar.MONTH) || 
+	        (now.get(Calendar.MONTH) == birth.get(Calendar.MONTH) && now.get(Calendar.DATE) > birth.get(Calendar.DATE))) {
+	        diff--;
+	    }
+	    return diff;
 	}
 	
 	/**
