@@ -34,8 +34,6 @@ public class EventTest extends TestCase {
 		super.setUp();
 
 		user = User.mockUser();
-		Calendar c = new GregorianCalendar(2000, 01, 01);
-		user.setDateofBirth(c);
 		Persistent.setUser(user);
 
 		// set up data points
@@ -58,7 +56,7 @@ public class EventTest extends TestCase {
 				.latitude(30.2553368).longitude(-97.83891084).altitude(50.0)
 				.prevDataPoint(null).build();
 
-		p2 = new DataPoint.Builder().date(c4).heartRate(195)
+		p2 = new DataPoint.Builder().date(c4).heartRate(167)
 				// don't change hr
 				.latitude(30.25499189).longitude(-97.83913958).altitude(51.0)
 				.prevDataPoint(p1).build();
@@ -77,11 +75,11 @@ public class EventTest extends TestCase {
 	}
 
 	public void testAverageHR() {
-		assertEquals((59 + 195) / 2, e.getAverageHeartRate());
+		assertEquals((59 + 167) / 2, e.getAverageHeartRate());
 	}
 
 	public void testMaxHR() {
-		assertEquals(195, e.getMaxHeartRate());
+		assertEquals(167, e.getMaxHeartRate());
 	}
 
 	/**
@@ -107,6 +105,19 @@ public class EventTest extends TestCase {
 				"30.2553368,-97.83891084|30.25499189,-97.83913958");
 	}
 
+	public void testTachycardia() {
+		EventContainer ec = new EventContainer();
+		ec.addEvent(e);
+		assertFalse(e.hasTachycardia()); // 53 years old
+		Calendar c = new GregorianCalendar(1950, 01, 01);
+		user.setDateofBirth(c);
+		//assertTrue(e.hasTachycardia()); // 64 years old
+	}
+
+	public void testBradycardia() {
+		assertTrue(e.hasBradycardia());
+	}
+
 	// run this last or you will cause the other test to fail
 	/**
 	 * Tests the addDataPoint function.
@@ -115,18 +126,5 @@ public class EventTest extends TestCase {
 		assertEquals(p2, points.get(points.size() - 1));
 		points.add(p1);
 		assertEquals(p1, points.get(points.size() - 1));
-	}
-
-	public void testTachycardia() {
-		EventContainer ec = new EventContainer();
-		ec.addEvent(e);
-		// assertEquals(e.hasTachycardia(), false); // 14 years old
-		// c = new GregorianCalendar(1950, 01, 01);
-		// user.setDateofBirth(c);
-		// assertEquals(e.hasTachycardia(), true); // 64 years old
-	}
-
-	public void testBradycardia() {
-		// assertEquals(e.hasBradycardia(), true);
 	}
 }

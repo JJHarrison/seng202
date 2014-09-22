@@ -79,10 +79,8 @@ public class FileLoader {
 					if (dataLine[0].contains("#start")) { // start of new event
 						if (!points.isEmpty()) { // checks that points have been
 													// read
-							// System.out.println("adding " + points.size() +
-							// " Points to event: " + eventName);
-							eventContainer
-									.addEvent(new Event(eventName, points));
+							
+							eventContainer.addEvent(new Event(eventName, points));
 							points = new ArrayList<DataPoint>();
 							lastPoint = null;
 						}
@@ -97,8 +95,7 @@ public class FileLoader {
 			}
 			if (!points.isEmpty() && !points.isEmpty()) { // checks that points
 															// have been read
-				// System.out.println("adding " + points.size() +
-				// " Points to event: " + eventName);
+				
 				eventContainer.addEvent(new Event(eventName, points));
 			}
 
@@ -263,13 +260,10 @@ public class FileLoader {
 		/*f.load();
 
 		EventContainer eC = f.getEventContainer();
-		System.out.println("----" + eC.getLastDate());
 		Date week = new Calendar.Builder().setDate(2005, 6, 9).build()
 				.getTime();
 		for (Event e : eC.getWeekEvents(week)) {
-			System.out.println(e.getStartTime().get(Calendar.DAY_OF_MONTH)
-					+ "/" + e.getStartTime().get(Calendar.MONTH) + "/"
-					+ e.getStartTime().get(Calendar.YEAR));
+			
 		}
 		*/
 		

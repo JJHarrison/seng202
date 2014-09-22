@@ -31,6 +31,7 @@ public class Event implements Serializable {
 	private double caloriesBurned;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	private boolean hasBradycardia = false;
+	private boolean hasTachycardia = false;
 
 	/**
 	 * Constructor
@@ -95,16 +96,13 @@ public class Event implements Serializable {
 	 */
 	private void calculateWarnings() {
 		if (Persistent.getCurrentUser() != null) {
-			double warnings = 0;
-			double count = 0;
 			for (DataPoint p : points) {
-				count++;
-				if (p.getHeartRate() < 60) {
-					warnings++;
+				if (p.getHeartRate() > 207 - (0.7 * Persistent.getCurrentUser()
+						.getAge())) {
+					hasTachycardia = true;
+				} else if (p.getHeartRate() < 60) {
+					hasBradycardia = true;
 				}
-			}
-			if (((warnings / count) * 100) >= 5.0) {
-				hasBradycardia = true;
 			}
 		}
 	}
@@ -126,8 +124,6 @@ public class Event implements Serializable {
 			return 0.0; // You are DEAD and therefore are not physically
 						// stressed
 		}
-
-		System.out.print(avgSpeed / avgHeartRate);
 		return avgSpeed / avgHeartRate;
 	}
 
@@ -358,6 +354,10 @@ public class Event implements Serializable {
 
 	public boolean hasBradycardia() {
 		return hasBradycardia;
+	}
+	
+	public boolean hasTachycardia() {
+		return hasTachycardia;
 	}
 
 	public String avgHRString() {
