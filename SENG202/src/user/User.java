@@ -33,6 +33,8 @@ public class User implements Serializable {
 	private int restingHeartRate;
 	private EventContainer events;
 	private int userID;
+	private boolean hasBradycardia = false;
+	private boolean hasTachycardia = false;
 
 	public enum Gender {
 		MALE, FEMALE
@@ -61,10 +63,20 @@ public class User implements Serializable {
 		this.gender = gender;
 		this.weight = weight;
 		this.height = height;
-		this.restingHeartRate = restingHeartRate;
+		setRestingHeartRate(restingHeartRate);
 		this.BMI = calculateBMI();
 		this.events = (events == null) ? new EventContainer() : events;
 		userID = Persistent.getUserID();
+	}
+	
+	public void setRestingHeartRate(int restingHeartRate) {
+		this.restingHeartRate = restingHeartRate;
+		calculateHealthWarnings();
+	}
+	
+	private void calculateHealthWarnings() {
+		hasBradycardia = restingHeartRate < 60 ? true : false;
+		hasTachycardia = restingHeartRate > 100 ? true : false;
 	}
 
 	/**
