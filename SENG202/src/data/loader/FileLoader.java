@@ -104,7 +104,7 @@ public class FileLoader {
 	/**
 	 * Takes a correctly formatted line and returns it as DataPoint
 	 * 
-	 * @param line
+	 * @param The line to convert to a dataPoint
 	 * @return DataPoint of line which was read
 	 */
 	private DataPoint parseLine(String[] line) {
@@ -135,7 +135,7 @@ public class FileLoader {
 	/**
 	 * returns the event container which holds all the dataPoints
 	 * 
-	 * @return
+	 * @return the event container which all the events were loaded to 
 	 */
 	public EventContainer getEventContainer() {
 		return eventContainer;
@@ -145,7 +145,7 @@ public class FileLoader {
 	 * checks that the data line from the csv file if valid i.e that it has all
 	 * the required fields and they are an appropriate value
 	 * 
-	 * @param line
+	 * @param The line to be checked
 	 * @return isValid
 	 */
  	public boolean isValidLine(String line) { 
