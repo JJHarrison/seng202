@@ -39,6 +39,11 @@ public class SummaryController {
 		paneWarning.setOpacity(0);
 	}
 
+	/**
+	 * fill the tile
+	 * 
+	 * @param event event to fill
+	 */
 	public void fill(Event event) {
 		labelDuration.setText(event.getDurationString());
 		labelDistance.setText(event.getDistanceString());

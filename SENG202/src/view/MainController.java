@@ -72,19 +72,16 @@ public class MainController {
 
 	@FXML
 	void initialize() {
-		fileChooser.setInitialDirectory(new File(System
-				.getProperty("user.home")));
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		ArrayList<String> filterCSV = new ArrayList<String>();
 		filterCSV.add("*.csv");
-		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("CSV", filterCSV));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", filterCSV));
 		selectedDate = calendarView.selectedDateProperty();
 
 		MainController.selectedDate.addListener(new ChangeListener<Date>() {
 
 			@Override
-			public void changed(ObservableValue<? extends Date> observable,
-					Date oldValue, Date newValue) {
+			public void changed(ObservableValue<? extends Date> observable, Date oldValue, Date newValue) {
 				if (oldValue != null) {
 					Calendar newCalendar = Calendar.getInstance();
 					newCalendar.setTime(newValue);
@@ -94,16 +91,14 @@ public class MainController {
 					oldCalendar.set(Calendar.DAY_OF_WEEK, 0);
 					if (!oldCalendar.equals(newCalendar)) {
 						viewAnalysisController.clearTiles();
-						for (Event event : Persistent.getCurrentUser()
-								.getEvents().getWeekEvents(newValue)) {
+						for (Event event : Persistent.getCurrentUser().getEvents().getWeekEvents(newValue)) {
 							viewAnalysisController.addTile(event);
 						}
 					}
 
 				} else {
 					viewAnalysisController.clearTiles();
-					for (Event event : Persistent.getCurrentUser()
-							.getEvents().getWeekEvents(newValue)) {
+					for (Event event : Persistent.getCurrentUser().getEvents().getWeekEvents(newValue)) {
 						viewAnalysisController.addTile(event);
 					}
 				}
@@ -120,7 +115,7 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				Saver.SaveUser(Persistent.getCurrentUser());
-				Platform.exit(); 
+				Platform.exit();
 
 			}
 		});
@@ -133,10 +128,9 @@ public class MainController {
 				c.setupConnection();
 				c.transferToServer(Persistent.getCurrentUser());
 				c.closeStuff();
-				if(c.isSuccessful()){
-					MessageBox.show(Main.stage, "User has ben uploaded to the server sucessfully", "", MessageBox.OK);					
-				}
-				else{
+				if (c.isSuccessful()) {
+					MessageBox.show(Main.stage, "User has ben uploaded to the server sucessfully", "", MessageBox.OK);
+				} else {
 					MessageBox.show(Main.stage, "Sorry, something went wrong.", "", MessageBox.OK);
 				}
 			}
@@ -151,13 +145,11 @@ public class MainController {
 					FileLoader fl = new FileLoader(file);
 					fl.load();
 
-					Persistent.getCurrentUser().addEvents(
-							fl.getEventContainer());
+					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
 					Calendar calendar = Calendar.getInstance();
 					calendar.add(Calendar.YEAR, 1);
 					selectedDate.setValue(calendar.getTime());
-					selectedDate.setValue(Persistent.getCurrentUser()
-							.getEvents().getLastDate());
+					selectedDate.setValue(Persistent.getCurrentUser().getEvents().getLastDate());
 					viewDashController.fillDash();
 				}
 			}
@@ -167,7 +159,9 @@ public class MainController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				MessageBox.show(Main.stage, "Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System", "About Fitr", MessageBox.OK);
+				MessageBox.show(Main.stage,
+						"Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System",
+						"About Fitr", MessageBox.OK);
 
 			}
 		});
@@ -196,7 +190,7 @@ public class MainController {
 	@FXML
 	private void loadAnalysis(ActionEvent event) {
 		toggleGroup.selectToggle(buttonAnalysis);
-		
+
 		viewMainContent.getChildren().clear();
 		viewMainContent.getChildren().add(viewAnalysis);
 		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewAnalysis);
@@ -212,7 +206,7 @@ public class MainController {
 	@FXML
 	private void loadWeb() {
 		toggleGroup.selectToggle(buttonWeb);
-		
+
 		viewMainContent.getChildren().clear();
 		viewMainContent.getChildren().add(viewWeb);
 		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewWeb);

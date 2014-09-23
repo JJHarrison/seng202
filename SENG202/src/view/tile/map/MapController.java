@@ -25,6 +25,11 @@ public class MapController {
 	private static String parameterSize = "size=640x480";
 	private static String parameterType = "maptype=roadmap";
 
+	/**
+	 * fill the tile
+	 * 
+	 * @param event event to fill
+	 */
 	public void fill(Event event) {
 		this.event = event;
 

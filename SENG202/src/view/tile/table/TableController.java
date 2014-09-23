@@ -26,6 +26,11 @@ public class TableController {
 	@FXML
 	TableColumn<DataPoint, String> tableDistance;
 
+	/**
+	 * fill the tile
+	 * 
+	 * @param event event to fill
+	 */
 	public void fill(Event event) {
 		tableView.setItems(FXCollections.observableArrayList(event
 				.getDataPoints()));

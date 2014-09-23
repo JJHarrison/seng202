@@ -13,7 +13,7 @@ import data.persistant.Persistent;
 
 public class UserLoginController implements Switchable {
 	private UserManagementController controller;
-
+	
 	@Override
 	public void setController(UserManagementController controller) {
 		this.controller = controller;
