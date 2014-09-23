@@ -153,4 +153,12 @@ public class EventContainer implements Serializable {
 
 		return lastDate.getTime();
 	}
+	
+	/**
+	 * gets the hashMap of all the events
+	 * @return days
+	 */
+	public HashMap<String, LinkedList<Event>> getDays() {
+		return days;
+	}
 }
