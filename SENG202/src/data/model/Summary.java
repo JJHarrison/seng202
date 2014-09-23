@@ -84,8 +84,9 @@ public class Summary {
 				maxDistance = event.getDistance();
 			}
 			
+			System.out.println("-->" + event.getMaxSpeed());
 			if(maxSpeed < event.getMaxSpeed()) {
-				maxDistance = event.getMaxSpeed();
+				maxSpeed = event.getMaxSpeed();
 			}
 			
 			if(maxHeartRate < event.getMaxHeartRate()) {
@@ -114,14 +115,14 @@ public class Summary {
 	 * gets the total duration of all the events over the time period
 	 */
 	public String getTotalDuration() {
-		return String.format("%d hours logged", totalHours);
+		return String.format("%d hours logged", totalHours / 3600);
 	}
 	
 	/**
 	 * gets the total distance traveled over the time period
 	 */
 	public String getTotalDistance() {
-		return String.format("%.1f km travelled", totalDistance);	
+		return String.format("%.1f km travelled", totalDistance / 1000);	
 	}
 	
 	/**
