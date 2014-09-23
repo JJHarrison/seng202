@@ -75,6 +75,12 @@ public class Event implements Serializable {
 		averageSpeed = distance / getDuration();
 	}
 
+	/**
+	 * Calculates stress level based on the user's heart rate compared to their
+	 * speed and normalises it to be between 0 and 100. The scale factor used
+	 * only uses data from one event, so stress levels for different events
+	 * should not be compared.
+	 */
 	private void calculateStress() {
 		double sf = calculateStressFactor();
 		double stress;
@@ -90,9 +96,9 @@ public class Event implements Serializable {
 	}
 
 	/**
-	 * Calculate if the user has bradycardia. Bradycardia is if the users
-	 * heartrate is < 60 bpm If 5% of the points are less than 60bpm the user
-	 * has bradycardia
+	 * Calculate if the user has bradycardia or tachycardia. Bradycardia is if
+	 * their heart rate goes below 60 at any point. Tachycardia is if their 
+	 * heart rate goes above 207 - 0.7*age at any point.
 	 */
 	private void calculateWarnings() {
 		if (Persistent.getCurrentUser() != null) {
@@ -107,7 +113,11 @@ public class Event implements Serializable {
 		}
 	}
 
-	
+	/**
+	 * Calculates a scale factor to be used to determine stress level so that
+	 * it will tend to be around 50.
+	 * @return average speed / average heart rate
+	 */
 	private double calculateStressFactor() {
 		double totalSpeed = 0.0;
 		int totalHeartRate = 0;
