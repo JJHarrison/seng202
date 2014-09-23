@@ -78,7 +78,7 @@ public class Client {
      * 
      * @throws IOException
      */
-    public void readConfirmation() throws IOException {
+    private void readConfirmation() throws IOException {
 	String buf;
 	try {
 	    buf = (String) input.readObject();
@@ -116,7 +116,7 @@ public class Client {
      * 
      * @return String of the current time of the client.
      */
-    public String getCurrentTime() {
+    private String getCurrentTime() {
     	SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
     	Calendar cal = Calendar.getInstance();
     	return df.format(cal.getTime());
@@ -128,7 +128,7 @@ public class Client {
      * 
      * @return The opening string for client output messages.
      */
-    public String startMessage() {
+    private String startMessage() {
     	return "[" + getCurrentTime() + "]<Client>";
     }	
 	
@@ -138,13 +138,5 @@ public class Client {
 	 */
 	public boolean isSuccessful(){
 		return hasConnected && hasTransfered;
-	}
-	
-	public static void main(String[] args){
-		Client c = new Client();
-		c.setupConnection();
-		User u = User.mockUser();
-		c.transferToServer(u);
-		c.closeStuff();
 	}
 }

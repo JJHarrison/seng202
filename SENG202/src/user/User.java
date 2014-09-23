@@ -223,7 +223,7 @@ public class User implements Serializable {
 	/**
 	 * returns the user id for a user so that it can be stored in the database
 	 * 
-	 * @return
+	 * @return the user id
 	 */
 	public int getUserId() {
 		return userID;

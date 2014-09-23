@@ -89,7 +89,10 @@ public class DashController {
 		labelBMI.setText(String.format("%.0f", Persistent.getCurrentUser()
 				.getBMI()));
 	}
-
+	/**
+	 * Calculates and displays the total distance, total calories and total duration for
+	 * the month to be displayed in the dashboard.
+	 */
 	private void fillMonth() {
 		Calendar to = Calendar.getInstance();
 		Calendar from = Calendar.getInstance();
@@ -102,6 +105,10 @@ public class DashController {
 		monthHoursLabel.setText(summaryMonth.getTotalDuration());
 	}
 
+	/**
+	 * Calculates and displays the total distance, total calories and total duration for
+	 * all time to be displayed in the dashboard. 
+	 */
 	private void fillTotal() {
 		summaryTotal = new Summary(Persistent.getCurrentUser().getEvents(),
 				null, null);
@@ -110,13 +117,20 @@ public class DashController {
 		totalHoursLabel.setText(summaryTotal.getTotalDuration());
 		fillAchievements();
 	}
-
+	
+	/**
+	 * Displays the achievements for that user consisting of max distance,
+	 * max duration and max speed over all events
+	 */
 	private void fillAchievements() {
 		achieveMaxDistance.setText(summaryTotal.getMaxDistance());
 		achieveMaxHours.setText(summaryTotal.getMaxDuration());
 		achieveMaxSpeed.setText(summaryTotal.maxSpeed());
 	}
 	
+	/**
+	 * Displays the warnings the user has generated
+	 */
 	private void fillWarnings() {
 		warningPane.getChildren().add(new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
 		warningPane.getChildren().add(new Warning(WARNING.TACHYCARDIA, Calendar.getInstance()));

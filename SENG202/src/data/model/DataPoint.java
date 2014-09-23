@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import data.persistant.Persistent;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -148,8 +149,7 @@ public class DataPoint implements Serializable {
 	/**
 	 * Calculates the change in time between two points.
 	 * 
-	 * @param previosPoint
-	 *            The point previous to this point in an event.
+	 * @param previosPoint The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
 	private long calculateDeltaTime(DataPoint previousPoint) {
@@ -172,9 +172,9 @@ public class DataPoint implements Serializable {
 		double deltaLon = lonPrev - longitude;
 
 		double a = Math.pow(Math.sin(Math.toRadians(deltaLat / 2)), 2)
-				+ (Math.cos(Math.toRadians(latitude))
-						* Math.cos(Math.toRadians(latPrev)) * Math.pow(
-						Math.sin(Math.toRadians(deltaLon / 2)), 2));
+						+ (Math.cos(Math.toRadians(latitude))
+						* Math.cos(Math.toRadians(latPrev)) 
+						* Math.pow(Math.sin(Math.toRadians(deltaLon / 2)), 2));
 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		distance = radius * c;
@@ -257,9 +257,9 @@ public class DataPoint implements Serializable {
 	 * calculates the calories burnt from the last point to the current point.
 	 * @return calories burnt from last point to this point
 	 */
-	public double calculateCalories() {
-		double weight = 75;// Persistent.getCurrentUser().getWeight();
-		double runMET = 7.5;
+	private double calculateCalories() {
+		double weight = 75;//Persistent.getCurrentUser().getWeight();
+		double runMET = 7.5; // assuming that all activity is running for now
 		double timeInHours = (double) duration / 3600;
 		double calories = weight * runMET * timeInHours;
 		return calories;
@@ -299,7 +299,6 @@ public class DataPoint implements Serializable {
 	public String getTimeString() {
 		SimpleDateFormat tf = new SimpleDateFormat("HH:mm:ss");
 		return (tf.format(date.getTime()));
-
 	}
 
 	/**
@@ -314,34 +313,66 @@ public class DataPoint implements Serializable {
 		return (df.format(date.getTime()));
 	}
 
+	/**
+	 * Gets the observable date property 
+	 * @return date property
+	 */
 	public Property<String> getDateProperty() {
 		return new SimpleStringProperty(getDateString());
 	}
 
+	/**
+	 * Gets the observable time property 
+	 * @return time property
+	 */
 	public Property<String> getTimeProperty() {
 		return new SimpleStringProperty(getTimeString());
 	}
 
+	/**
+	 * Gets the observable latitude property 
+	 * @return latitude property
+	 */
 	public SimpleDoubleProperty getLatitudeProperty() {
 		return new SimpleDoubleProperty(getLatitude());
 	}
 
+	/**
+	 * Gets the observable longitude property 
+	 * @return date property
+	 */
 	public SimpleDoubleProperty getLongitudeProperty() {
 		return new SimpleDoubleProperty(getLongitude());
 	}
 
+	/**
+	 * Gets the observable distance property 
+	 * @return distance property
+	 */
 	public Property<String> getDistanceProperty() {
 		return new SimpleStringProperty(String.format("%.2f", getDistance()));
 	}
 
+	/**
+	 * Gets the observable speed property 
+	 * @return speed property
+	 */
 	public Property<String> getSpeedProperty() {
 		return new SimpleStringProperty(String.format("%.2f", getSpeed()));
 	}
 
+	/**
+	 * Gets the observable altitude property 
+	 * @return altitude property
+	 */
 	public SimpleDoubleProperty getAltitudeProperty() {
 		return new SimpleDoubleProperty(altitude);
 	}
 
+	/**
+	 * Gets the observable heart rate property 
+	 * @return heart rate property
+	 */
 	public SimpleIntegerProperty getHeartRateProperty() {
 		return new SimpleIntegerProperty(getHeartRate());
 	}

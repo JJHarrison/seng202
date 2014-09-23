@@ -43,8 +43,6 @@ public class SummaryTest extends TestCase {
 	 * @throws ParseException
 	 */
 	public void testCalculate() throws ParseException {
-		Calendar startDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
-		Calendar endDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
 		Summary s = new Summary(eventContainer,null, null);
 		
 		System.out.println(s.getNumberOfEvents());

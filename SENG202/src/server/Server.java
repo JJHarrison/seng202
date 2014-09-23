@@ -35,7 +35,7 @@ public class Server {
 	/**
 	 * Starts a server that will endlessly wait for connections
 	 */
-	public void startServer() {
+	private void startServer() {
 		try {
 			server = new ServerSocket(portNumber, maxQueue);
 			while (true) {
@@ -64,7 +64,7 @@ public class Server {
 	 * 
 	 * @throws IOException
 	 */
-	public void waitForConnection() throws IOException {
+	private void waitForConnection() throws IOException {
 		System.out.println(startMessage()
 				+ " Waiting for a client to connect to ["
 				+ InetAddress.getLocalHost().getCanonicalHostName() + "]...");
@@ -79,14 +79,14 @@ public class Server {
 	 * 
 	 * @throws IOException
 	 */
-	public void setupStreams() throws IOException {
+	private void setupStreams() throws IOException {
 		output = new ObjectOutputStream(connection.getOutputStream());
 		output.flush();
 		input = new ObjectInputStream(connection.getInputStream());
 		System.out.println(startMessage() + " IO streams are now ready to be used");
 	}
 
-	public User getUserFromClient() throws IOException, ClassNotFoundException {
+	private User getUserFromClient() throws IOException, ClassNotFoundException {
 		User uploadedUser;
 		uploadedUser = (User) input.readObject();
 		System.out.println(startMessage() + " <Client> sent the user: [" + uploadedUser.getName() + "]");
@@ -100,7 +100,7 @@ public class Server {
 	 * if the user is valid
 	 * @throws IOException
 	 */
-	public void whileTransfering() throws IOException {
+	private void whileTransfering() throws IOException {
 		System.out.println(startMessage() + " Ready for transfer...\n");
 		String clientMessage = null;
 		User uploadedUser = null;
@@ -155,7 +155,7 @@ public class Server {
 	 * Gets the current time on the server.
 	 * @return The current time of the server
 	 */
-	public String getCurrentTime() {
+	private String getCurrentTime() {
 		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		return df.format(cal.getTime());
@@ -167,7 +167,7 @@ public class Server {
 	 * 
 	 * @return The opening string for server output messages.
 	 */
-	public String startMessage() {
+	private String startMessage() {
 		return "[" + getCurrentTime() + "]<Server>";
 	}
 
