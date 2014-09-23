@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.search.SearchController">
+   <children>
+      <VBox fx:id="warning" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefWidth="900.0" style="-fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.5), 10, 0, 4, 4);" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <AnchorPane maxHeight="70.0" minHeight="100.0" prefHeight="100.0" style="-fx-background-color: derive(-fx-base, -20%);">
+               <children>
+                  <Button layoutX="808.0" layoutY="13.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="Button" stylesheets="@gotobutton.css" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="25.0" />
+                  <Label fx:id="labelTitle" layoutX="43.0" layoutY="35.0" text="Site - Title" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelURL" layoutX="113.0" layoutY="79.0" text="URL: wwww...." AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</fx:root>

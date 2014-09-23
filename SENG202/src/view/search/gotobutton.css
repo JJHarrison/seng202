@@ -1,0 +1,15 @@
+.Button {
+    -fx-background-color:transparent;
+    -fx-content-display:graphic-only;
+    -fx-background-size: 60;
+    -fx-background-image: url("goto.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right;
+    
+}
+.Button:hover {
+    -fx-opacity:0.4;
+}
+.Button:armed {
+    -fx-opacity:1;
+}
