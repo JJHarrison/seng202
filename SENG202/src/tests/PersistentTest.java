@@ -103,7 +103,7 @@ public class PersistentTest extends TestCase {
 	 * @throws Exception
 	 */
 	public void testNewUser() throws Exception {
-		Persistent.clear();
+		//Persistent.clear();
 		Persistent.newUser(user);
 		assertEquals(true, new File(fitrFilePath + "/" + user.getUserId()).exists());
 	}
