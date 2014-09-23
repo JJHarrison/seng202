@@ -3,6 +3,7 @@ package view.search;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ public class SearchController {
 
 	@FXML
 	Label labelURL;
+	
+	String strURL;
 
 	/**
 	 * Fill the label and URL for the search tile
@@ -28,14 +31,15 @@ public class SearchController {
 	public void fill(Result result) {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());
+		strURL = result.getUrl();
 	}
 	
 	@FXML
-	void gotoButton(ActionEvent event) throws IOException {
+	void gotoButton(ActionEvent event) throws IOException, URISyntaxException {
 		//Creates Desktop object
 		Desktop d = Desktop.getDesktop();
 		//Browses the URL of the result
-		d.browse(new URI(result.getUrl));
+		d.browse(new URI(strURL));
 	}
 
 }
