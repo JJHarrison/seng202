@@ -18,8 +18,7 @@ public class AnalysisController {
 	/**
 	 * add an event tile
 	 * 
-	 * @param event
-	 *            the event to add
+	 * @param event the event to add
 	 */
 	public void addTile(Event event) {
 		tileBox.getChildren().add(new Tile(event));

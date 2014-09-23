@@ -318,69 +318,20 @@ public class DBWriter {
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, user.getUserId()); // user_id to be
 															// added to the db
-			preparedStatement.setString(2, event.getEventName()); // event_name
-																	// to be
-																	// added to
-																	// the db
-			preparedStatement.setTimestamp(3, new Timestamp(event.getStartTime().getTimeInMillis())); // event_startime
-																										// to
-																										// be
-																										// added
-																										// to
-																										// the
-																										// db
-			preparedStatement.setTimestamp(4, new Timestamp(point.getDate().getTimeInMillis())); // the
-																									// timepoint
-																									// that
-																									// will
-																									// be
-																									// added
-																									// to
-																									// the
-																									// db
-			preparedStatement.setInt(5, point.getHeartRate()); // the heartrate
-																// that will be
-																// added to the
-																// db
-			preparedStatement.setDouble(6, point.getLatitude()); // the latitude
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(7, point.getLongitude()); // the
-																	// longitude
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(8, point.getAltitude()); // the altitude
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(9, point.getSpeed()); // the speed that
-																// will be added
-																// to the db
-			preparedStatement.setDouble(10, point.getDistance()); // the
-																	// distance
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(11, point.getCalories()); // the
-																	// calories
-																	// burned
-																	// that will
-																	// be added
-																	// to the db
-			preparedStatement.setDouble(12, point.getStressLevel()); // the
-																		// stress
-																		// level
-																		// that
-																		// will
-																		// be
-																		// added
-																		// to
-																		// the
-																		// db
-			preparedStatement.executeUpdate(); // execute the query/upload to
-												// the database
+			preparedStatement.setString(2, event.getEventName()); // event_name to be added to the db
+			preparedStatement.setTimestamp(3, new Timestamp(event.getStartTime()
+										.getTimeInMillis())); // event_startime to be added to the db
+			preparedStatement.setTimestamp(4, new Timestamp(point.getDate()
+										.getTimeInMillis())); // the timepoint that will be added to the db
+			preparedStatement.setInt(5, point.getHeartRate()); // the heart rate that will be added to the db
+			preparedStatement.setDouble(6, point.getLatitude()); // the latitude that will be added to the db
+			preparedStatement.setDouble(7, point.getLongitude()); // the longitude that will be added to the db
+			preparedStatement.setDouble(8, point.getAltitude()); // the altitude that will be added to the db
+			preparedStatement.setDouble(9, point.getSpeed()); // the speed that will be added to the db
+			preparedStatement.setDouble(10, point.getDistance()); // the distance that will be added to the db
+			preparedStatement.setDouble(11, point.getCalories()); // the calories burned that will be added to the db
+			preparedStatement.setDouble(12, point.getStressLevel()); // the stress level that will be added to the db
+			preparedStatement.executeUpdate(); // execute the query/upload to the database
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
