@@ -22,6 +22,7 @@ import javafx.util.Duration;
 import jfx.messagebox.MessageBox;
 import server.Client;
 import view.analysis.AnalysisController;
+import view.dash.DashController;
 import data.loader.FileLoader;
 import data.model.Event;
 import data.persistant.Persistent;
@@ -66,6 +67,8 @@ public class MainController {
 
 	@FXML
 	AnalysisController viewAnalysisController;
+	@FXML
+	DashController viewDashController;
 
 	@FXML
 	void initialize() {
@@ -155,6 +158,7 @@ public class MainController {
 					selectedDate.setValue(calendar.getTime());
 					selectedDate.setValue(Persistent.getCurrentUser()
 							.getEvents().getLastDate());
+					viewDashController.fillDash();
 				}
 			}
 		});
