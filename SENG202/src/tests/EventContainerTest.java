@@ -1,10 +1,13 @@
 package tests;
 
+import java.beans.EventSetDescriptor;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import junit.framework.TestCase;
+import data.loader.FileLoader;
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
@@ -19,6 +22,7 @@ import data.model.EventContainer;
 public class EventContainerTest extends TestCase {
 
 	private EventContainer ec;
+	private EventContainer testEventContainer;
 
 	/**
 	 * Sets up the event container that will be tested.
@@ -26,8 +30,11 @@ public class EventContainerTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-
 		ec = new EventContainer();
+		FileLoader fl = new FileLoader();
+		fl.load();
+		testEventContainer = fl.getEventContainer();
+		
 	}
 
 	/**
@@ -65,6 +72,29 @@ public class EventContainerTest extends TestCase {
 
 		assertEquals(ec.getEvents(event.getStartTime().getTime()).get(0), event);
 		assertEquals(true, true);
+	}
+	
+	/**	
+	 *  tests that all the events are retrieved
+	 */
+	public void testGetAllEvents() {
+		assertEquals(12, testEventContainer.getAllEvents().size());
+	}
+	
+	/**
+	 * tests that we are getting all events in a week
+	 */
+	public void testGetWeekEvents() {
+		Calendar date = new Calendar.Builder().setDate(2005, 3, 11).build();
+		assertEquals(3, testEventContainer.getWeekEvents(date.getTime()).size());
+	}
+	
+	/**
+	 * test that the last date is correct
+	 */
+	public void testGetLastDate() {
+		Calendar date = new Calendar.Builder().setDate(2006, 0, 2).build();
+		assertEquals(date.getTime(), testEventContainer.getLastDate());
 	}
 
 }
