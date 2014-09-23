@@ -7,7 +7,6 @@ package view;
 
 import java.io.IOException;
 
-import resources.Reference;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +14,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import data.model.EventContainer;
+import resources.Reference;
 
 public class Main extends Application {
 
-	public static EventContainer eventContainer;
-
+	/**
+	 * The root stage of the Fitr application.
+	 */
 	public static Stage stage;
-	private BorderPane rootLayout;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -47,7 +46,7 @@ public class Main extends Application {
 			// Load root layout from FXML file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("Main.fxml"));
-			rootLayout = (BorderPane) loader.load();
+			BorderPane rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);

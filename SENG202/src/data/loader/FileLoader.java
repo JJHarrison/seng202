@@ -104,7 +104,7 @@ public class FileLoader {
 	/**
 	 * Takes a correctly formatted line and returns it as DataPoint
 	 * 
-	 * @param line
+	 * @param The line to convert to a dataPoint
 	 * @return DataPoint of line which was read
 	 */
 	private DataPoint parseLine(String[] line) {
@@ -135,7 +135,7 @@ public class FileLoader {
 	/**
 	 * returns the event container which holds all the dataPoints
 	 * 
-	 * @return
+	 * @return the event container which all the events were loaded to 
 	 */
 	public EventContainer getEventContainer() {
 		return eventContainer;
@@ -145,7 +145,7 @@ public class FileLoader {
 	 * checks that the data line from the csv file if valid i.e that it has all
 	 * the required fields and they are an appropriate value
 	 * 
-	 * @param line
+	 * @param The line to be checked
 	 * @return isValid
 	 */
  	public boolean isValidLine(String line) { 
@@ -169,8 +169,11 @@ public class FileLoader {
  			}
 		}
 		return isValid;
- 		}
+ 	}
 
+ 	/**
+ 	 * clears the input stream
+ 	 */
 	private void clearStream() {
 		inputStream = null;
 	}
@@ -184,7 +187,7 @@ public class FileLoader {
 	* @param high The higher bound of the range
 	* @return True if the value is in the range, false otherwise
 	*/
- 	public boolean isInRange(String value, double low, double high){
+	private boolean isInRange(String value, double low, double high){
  		double d = Double.parseDouble(value);
  		return (d >= low && d <= high);
  	}
@@ -196,7 +199,7 @@ public class FileLoader {
  	* @param date The date that will be checked
  	* @return True if the value is a valid date, false otherwise
  	*/
-	public boolean isDateValid(String date) {
+ 	private boolean isDateValid(String date) {
 		String[] values = date.split("/");
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		df.setLenient(false);
@@ -215,7 +218,7 @@ public class FileLoader {
 	* @param time The time that will be checked
 	* @return True if the value is a valid time, false otherwise
 	*/
- 	public boolean isTimeValid(String time){
+	private boolean isTimeValid(String time){
  		String[] values = time.split(":");
  		return (isInRange(values[0], 0, 23))
  				&& isInRange(values[1], 0, 59)
@@ -227,7 +230,7 @@ public class FileLoader {
 	* @param hr The heart rate that will be checked
 	* @return True if the heart rate is valid, false otherwise
 	*/
- 	public boolean isHeartrateValid(String hr){
+ 	private boolean isHeartrateValid(String hr){
  		return isInRange(hr, 20, 220);
  	}
 
@@ -236,7 +239,7 @@ public class FileLoader {
 	* @param lat The latitude that will be checked 
 	* @return True if the latitude is valid, false otherwise
 	*/
- 	public boolean isLatitudeValid(String lat){
+ 	private boolean isLatitudeValid(String lat){
  		String[] values = lat.split("\\.");		
  		return (isInRange(lat, -90, 90) &&  values[1].length() >= 5);
  	}
@@ -246,7 +249,7 @@ public class FileLoader {
 	* @param lng The longitude that will be checked 
 	* @return True if the longitude is valid, false otherwise
 	*/
- 	public boolean isLongitudeValid(String lng){
+ 	private boolean isLongitudeValid(String lng){
  		String[] values = lng.split("\\.");		
  		return (isInRange(lng, -180, 180) &&  values[1].length() >= 5);
  	}

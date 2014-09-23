@@ -1,12 +1,14 @@
 package view.web;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class SearchQuery {
-
-	public static final String url = "https://duckduckgo.com/?q=";
-
+	
+	private static int count = 0;
+	public static final String address = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&start="+count+"&q=";
+	
 	/**
 	 * A function that takes a plain text search query and returns a complete
 	 * search request URL
@@ -14,14 +16,31 @@ public class SearchQuery {
 	 * @param inputQuery
 	 *            The plain text search query
 	 * @return The search request URL
+	 * @throws IOException 
 	 */
-	public static String getQuery(String inputQuery) {
-		String query = url;
+	public static String getQuery(String inputQuery) throws IOException {
+		String query = address;
 		try {
 			query = query + (URLEncoder.encode(inputQuery, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		return query;
+	}
+	
+	/**
+	 * Increments the count by 4
+	 */
+	public void incrementCount() {
+		count = count + 4;
+	}
+	
+	 /**
+	  * Decrements the count by 4
+	  */
+	public void decrementCount() {
+		if (count != 0) {
+			count = count - 4;
+		}
 	}
 }

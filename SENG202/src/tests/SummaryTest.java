@@ -34,6 +34,7 @@ public class SummaryTest extends TestCase {
 		Calendar startDate = new Calendar.Builder().setInstant(sdf.parse("10/04/2005")).build();
 		Calendar endDate = new Calendar.Builder().setInstant(sdf.parse("12/04/2005")).build();
 		Summary s = new Summary(eventContainer,startDate, endDate);
+		// there are 3 events between the specified dates
 		assertEquals(3, s.getNumberOfEvents());
 	}
 	
@@ -42,14 +43,16 @@ public class SummaryTest extends TestCase {
 	 * @throws ParseException
 	 */
 	public void testCalculate() throws ParseException {
-		Calendar startDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
-		Calendar endDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
 		Summary s = new Summary(eventContainer,null, null);
 		
 		System.out.println(s.getNumberOfEvents());
 		for (Event e : s.getEvents()) {
 			System.out.println(e.getEventName());
 		}
+		
+		/*
+		 * this part is to test that there were no errors in the formatting 
+		 */
 		System.out.println("\n");
 		System.out.println("totals:");
 		System.out.println(s.getTotalDuration());
@@ -72,7 +75,7 @@ public class SummaryTest extends TestCase {
 	 * @throws ParseException
 	 */
 	public void testNullDates() throws ParseException {
-		
+		// there should be 12 events in total 
 		Summary s = new Summary(eventContainer,null, null);
 		assertEquals(12, s.getNumberOfEvents());
 	}

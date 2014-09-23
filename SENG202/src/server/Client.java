@@ -1,6 +1,5 @@
 package server;
 
-import java.awt.TextArea;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -8,7 +7,6 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javafx.application.Platform;
 import user.User;
 
 /**

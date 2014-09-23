@@ -1,65 +1,57 @@
 package view.web;
 
-import javafx.collections.ObservableList;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
+import java.util.Collection;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebHistory;
-import javafx.scene.web.WebView;
+import javafx.scene.layout.VBox;
+import view.search.GoogleSearchResults;
+import com.google.gson.Gson;
 
 public class WebController {
 
 	@FXML
-	WebView webView;
-
-	@FXML
 	TextField textFieldSearch;
-
-	WebEngine webEngine;
-
+	
+	@FXML
+	VBox resultPane;
+	
 	@FXML
 	void initialize() {
-		webEngine = webView.getEngine();
-		webEngine.load(SearchQuery.url);
 		textFieldSearch.setText("");
 	}
 
 	@FXML
-	void searchButton(ActionEvent event) {
+	void searchButton(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
-			webEngine.load(SearchQuery.getQuery(textFieldSearch.getText()));
+			findResults(textFieldSearch.getText());
 		}
 	}
 
 	@FXML
 	void searchField(ActionEvent event) {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
-			webEngine.load(SearchQuery.getQuery(textFieldSearch.getText()));
+			//webEngine.load(SearchQuery.getQuery(textFieldSearch.getText()));
 		}
 	}
-
-	@FXML
-	void backAction(ActionEvent event) {
-		WebHistory history = webEngine.getHistory();
-		int back = history.getCurrentIndex();
-		if (back <= 0) {
-		} else {
-			history.go(-1);
-		}
-
+	
+	void findResults(String searchText) throws IOException {
+		URL url = new URL(SearchQuery.getQuery(textFieldSearch.getText()));
+		Reader reader = new InputStreamReader(url.openStream(), "UTF-8");
+		GoogleSearchResults results = new Gson().fromJson(reader, GoogleSearchResults.class);
+		sendResults(results);
 	}
-
+	
 	@FXML
-	void forwardAction(ActionEvent event) {
-		WebHistory history = webEngine.getHistory();
-		int fwd = history.getCurrentIndex();
-		fwd++;
-		ObservableList<WebHistory.Entry> entryList = history.getEntries();
-		int stop = entryList.size();
-		if (fwd == stop) {
-		} else {
-			history.go(1);
+	void sendResults(GoogleSearchResults results) {
+		for(int i = 0; i <= 3; i++) {
+			resultPane.getChildren().addAll((Collection<? extends Node>) results.getResponseData().getResults().get(i));
 		}
 	}
 }

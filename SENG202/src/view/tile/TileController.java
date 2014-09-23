@@ -61,7 +61,7 @@ public class TileController {
 
 	public Event event;
 
-	public static VBox openTile;
+	private static VBox openTile;
 
 	ToggleGroup toggleGroup = new ToggleGroup();
 
