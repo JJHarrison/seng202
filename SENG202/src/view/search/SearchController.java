@@ -12,9 +12,12 @@ public class SearchController {
 	@FXML
 	Label labelURL;
 	
+	/**
+	 * Fill the label and URL for the search tile
+	 */
 	public void fill() {
-		labelTitle.setText("Test Title");
-		labelURL.setText("Test URL");
+		labelTitle.setText("Insert Useful Health Result");
+		labelURL.setText("www.heartdiseasefordummies.org");
 	}
 	
 

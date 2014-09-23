@@ -9,6 +9,9 @@ public class Search extends AnchorPane {
 
 	public static String TILE = "Search.fxml";
 
+	/**
+	 * Constructor.
+	 */
 	public Search() { 
 		try {
 			loadMainPane();
@@ -17,7 +20,9 @@ public class Search extends AnchorPane {
 		}
 	}
 
-
+	/*
+	 * load the main pane
+	 */
 	private void loadMainPane() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(TILE));

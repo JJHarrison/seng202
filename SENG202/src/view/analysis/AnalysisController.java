@@ -15,10 +15,19 @@ public class AnalysisController {
 
 	}
 
+	/**
+	 * add an event tile
+	 * 
+	 * @param event
+	 *            the event to add
+	 */
 	public void addTile(Event event) {
 		tileBox.getChildren().add(new Tile(event));
 	}
 
+	/**
+	 * clear all the tile from the view
+	 */
 	public void clearTiles() {
 		tileBox.getChildren().clear();
 	}

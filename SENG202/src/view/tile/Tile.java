@@ -8,12 +8,14 @@ import data.model.Event;
 
 public class Tile extends AnchorPane {
 
-	public Event event;
+	private Event event;
 	public static String TILE = "Tile.fxml";
 
 	/**
-	 * Create an event control (for the tiled interface)
-	 * @param event The event to display
+	 * Constructor. Create an event control (for the tiled interface).
+	 * 
+	 * @param event
+	 *            The event to display
 	 */
 	public Tile(Event event) {
 		super();
@@ -26,6 +28,7 @@ public class Tile extends AnchorPane {
 	}
 
 	/**
+	 * load up the tile pane (AnchorPane)
 	 * 
 	 * @throws IOException
 	 */
