@@ -29,7 +29,6 @@ public class Loader {
 		User user = null;
 
 		try {
-			System.out.println(filepath);
 			BufferedReader br = new BufferedReader(new FileReader(filepath));
 			user = gson.fromJson(br, User.class);
 
