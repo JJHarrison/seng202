@@ -108,15 +108,16 @@ public class FileLoader {
 	 * @return DataPoint of line which was read
 	 */
 	private DataPoint parseLine(String[] line) {
-		String[] dateString = line[0].split("/");
-		String[] time = line[1].split(":");
-
-		//create a new calendar of the given date
-		Calendar date = new Calendar.Builder()
-				.setDate(Integer.parseInt(dateString[2]),Integer.parseInt(dateString[1]) - 1,Integer.parseInt(dateString[0]))
-				.setTimeOfDay(Integer.parseInt(time[0]),Integer.parseInt(time[1]), Integer.parseInt(time[2]))
-				.build();
-
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy,hh:mm:ss");
+		
+		Calendar date = null;
+		try {
+			date = new Calendar.Builder().setInstant(sdf.parse(line[0] + "," + line[1])).build();
+		} catch (ParseException e) {
+			// line format has already been checked
+			e.printStackTrace();
+		}
+		
 		//parse the other fields from string to appropriate type
 		int heartrate = Integer.parseInt(line[2]);
 		double latitude = Double.parseDouble(line[3]);
