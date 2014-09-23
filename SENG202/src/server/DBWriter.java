@@ -313,17 +313,4 @@ public class DBWriter {
 			}
 		}
 	}
-
-	public static void main(String[] args) {
-		DBWriter dbw = new DBWriter();
-		User mocky = User.mockUser();
-
-		mocky.setUserID(2);
-		try {
-			dbw.writeUser(mocky);
-			// dbw.updateUserProfile(mocky);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
 }
