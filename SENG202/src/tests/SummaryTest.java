@@ -44,8 +44,14 @@ public class SummaryTest extends TestCase {
 		Calendar startDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
 		Calendar endDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
 		Summary s = new Summary(eventContainer,startDate, endDate);
+		
 		System.out.println(s.getDurationString());
 		System.out.println(s.maxCalories());
+		System.out.println(s.getTotalDuration());
+		System.out.println(s.getTotalDistance());
+		getTotalCalories()
+		
+		
 	}
 	
 	/**

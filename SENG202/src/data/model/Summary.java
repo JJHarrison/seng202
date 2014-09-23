@@ -128,7 +128,7 @@ public class Summary {
 	 * gets the total calories burned over the time period
 	 */
 	public String getTotalCalories() {
-		return String.format("%d calories burned", totalCalories);
+		return String.format("%.0f calories burned", totalCalories);
 	}
 	
 	/**
