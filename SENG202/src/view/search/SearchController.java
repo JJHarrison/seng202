@@ -18,7 +18,6 @@ public class SearchController {
 	public void fill() {
 		labelTitle.setText("Insert Useful Health Result");
 		labelURL.setText("www.heartdiseasefordummies.org");
-
 	}
 
 	public void fill(Result result) {
