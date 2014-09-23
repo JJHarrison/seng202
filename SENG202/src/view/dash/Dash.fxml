@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dash.DashController">
+<StackPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dash.DashController">
    <children>
       <GridPane>
         <columnConstraints>
@@ -26,15 +26,12 @@
          <children>
             <AnchorPane layoutX="8.0" layoutY="-10.0" prefWidth="300.0" style="-fx-background-color: derive(-fx-base, -20%);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="labelName" alignment="CENTER" layoutX="93.0" layoutY="84.0" text="Rachel van Wichen" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Label fx:id="labelName" alignment="CENTER" layoutX="93.0" layoutY="84.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="imageGender" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="112.5" AnchorPane.topAnchor="10.0">
-                     <image>
-                        <Image url="@../../../../../../Downloads/woman105%20(1).png" />
-                     </image>
                   </ImageView>
                </children>
             </AnchorPane>
@@ -56,7 +53,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelAge" text="23">
+                        <Label fx:id="labelAge">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -73,7 +70,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelHeight" text="166 cm">
+                        <Label fx:id="labelHeight">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -90,7 +87,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelHR" text="67">
+                        <Label fx:id="labelHR">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -107,7 +104,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelWeight" text="63 kg">
+                        <Label fx:id="labelWeight">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -124,7 +121,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelBMI" text="23">
+                        <Label fx:id="labelBMI">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -141,6 +138,11 @@
       </AnchorPane>
    </children>
 </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <AnchorPane layoutX="160.0" layoutY="105.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -10%); -fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.5), 10, 0, 4, 4);" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
          </children>
          <StackPane.margin>
             <Insets />

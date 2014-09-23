@@ -390,7 +390,7 @@ public class Event implements Serializable {
 	 * @return A string representation of the average speed for this event
 	 */
 	public String avgSpeedString() {
-		return String.format("%.2f km / h", getAverageSpeed() * 3.6);
+		return String.format("%.1f km / h", getAverageSpeed() * 3.6);
 	}
 
 	/**
@@ -398,7 +398,7 @@ public class Event implements Serializable {
 	 * @return The string representation of the maximum speed for this event
 	 */
 	public String maxSpeedString() {
-		return String.format("%.2f km / h", getMaxSpeed() * 3.6);
+		return String.format("%.1f km / h", getMaxSpeed() * 3.6);
 	}
 
 	/**

@@ -322,7 +322,7 @@ public class User implements Serializable {
 		fl.load();
 		EventContainer ec = fl.getEventContainer();
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE, 85.3, 1.9, ec, 120);
+				Gender.MALE, 85.3, 190, ec, 120);
 		return mock;
 	}
 //-----------------------------------------------------------------------------------------

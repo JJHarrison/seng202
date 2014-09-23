@@ -144,6 +144,7 @@ public class MainController {
 
 					Persistent.getCurrentUser().addEvents(
 							fl.getEventContainer());
+					selectedDate.set(null);
 					selectedDate.setValue(Persistent.getCurrentUser()
 							.getEvents().getLastDate());
 				}

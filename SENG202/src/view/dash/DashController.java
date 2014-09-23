@@ -36,7 +36,7 @@ public class DashController {
 		labelName.setText(Persistent.getCurrentUser().getName());
 		labelAge.setText(Integer.toString(Persistent.getCurrentUser().getAge()));
 		labelHeight.setText(String.format("%.0f", Persistent.getCurrentUser().getHeight()) + " cm");
-		labelWeight.setText(String.format("%.0f", Persistent.getCurrentUser().getWeight()) + " cm");
+		labelWeight.setText(String.format("%.0f", Persistent.getCurrentUser().getWeight()) + " kg");
 		labelHR.setText(String.format("%d", Persistent.getCurrentUser().getRestingHeartRate()));
 		labelBMI.setText(String.format("%.0f", Persistent.getCurrentUser().getBMI()));
 		
