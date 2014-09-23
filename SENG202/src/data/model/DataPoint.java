@@ -172,7 +172,7 @@ public class DataPoint implements Serializable {
 		double deltaLon = lonPrev - longitude;
 
 		double a = Math.pow(Math.sin(Math.toRadians(deltaLat / 2)), 2)
-				+ (Math.cos(Math.toRadians(latitude))
+						+ (Math.cos(Math.toRadians(latitude))
 						* Math.cos(Math.toRadians(latPrev)) 
 						* Math.pow(Math.sin(Math.toRadians(deltaLon / 2)), 2));
 
