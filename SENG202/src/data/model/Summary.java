@@ -96,7 +96,7 @@ public class Summary {
 	
 	/**
 	 * gets the events that are between the start and end dates
-	 * @return events 
+	 * @return arraylist of events 
 	 */
 	public ArrayList<Event> getEvents() {
 		return events;
@@ -112,13 +112,15 @@ public class Summary {
 	
 	/**
 	 * gets the total duration of all the events over the time period
+	 * @return string of total duration in hours
 	 */
 	public String getTotalDuration() {
 		return String.format("%d hours logged", totalHours / 3600);
 	}
 	
 	/**
-	 * gets the total distance traveled over the time period
+	 * gets the total distance travelled over the time period
+	 * @return string of total distance in km
 	 */
 	public String getTotalDistance() {
 		return String.format("%.1f km travelled", totalDistance / 1000);	
@@ -126,6 +128,7 @@ public class Summary {
 	
 	/**
 	 * gets the total calories burned over the time period
+	 * @return total calories burned 
 	 */
 	public String getTotalCalories() {
 		return String.format("%.0f calories burned", totalCalories);
@@ -167,6 +170,7 @@ public class Summary {
 	
 	/**
 	 * get the maximum distance traveled in the time period
+	 * @return a string of the maximum distance traveled in km
 	 */
 	public String getMaxDistance() {
 		return String.format("%.1f km", maxDistance / 1000);
@@ -174,6 +178,7 @@ public class Summary {
 	
 	/**
 	 * get the maximum number of calories burned in an event in the time period 
+	 * @return a string of the maximum calories burned
 	 */
 	public String maxCalories() {
 		return String.format("%.0f cal", maxCalories);
@@ -181,14 +186,15 @@ public class Summary {
 
 	/**
 	 * get the maximum speed in an event in the time period
+	 * @return a string of the maximum speed in km/h
 	 */
 	public String maxSpeed() {
 		return String.format("%.1f kph", (maxSpeed * 3600) / 1000);
 	}	
 	
 	/**
-	 * gets the maximum duration for an event in a tine period
-	 * @return
+	 * gets the maximum duration for an event in a time period
+	 * @return a string of the maximum duration in hours and minutes
 	 */
 	public String getMaxDuration() {
 		return getDurationString(maxDuration);
@@ -196,6 +202,7 @@ public class Summary {
 	
 	/**
 	 * gets the maximum heart rate in any event in the time period 
+	 * @return a string of the maximum heart rate
 	 */
 	public String maxHeartRate() {
 		return String.format("%d bpm", maxHeartRate);
