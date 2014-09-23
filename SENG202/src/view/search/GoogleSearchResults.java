@@ -27,7 +27,7 @@ public class GoogleSearchResults {
 	    }
 	}
 	
-	class Result {
+	public class Result {
 	    private String title;
 	    private String url;
 	    

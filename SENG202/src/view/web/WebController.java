@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
-import java.util.Collection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import view.search.GoogleSearchResults;
+import view.search.Search;
 
 import com.google.gson.Gson;
 
@@ -51,7 +50,7 @@ public class WebController {
 	@FXML
 	void sendResults(GoogleSearchResults results) {
 		for(int i = 0; i <= 3; i++) {
-			resultPane.getChildren().addAll((Collection<? extends Node>) results.getResponseData().getResults().get(i));
+			resultPane.getChildren().add(new Search(results.getResponseData().getResults().get(i)));
 		}
 	}
 }
