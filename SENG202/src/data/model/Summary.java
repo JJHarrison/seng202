@@ -25,7 +25,7 @@ public class Summary {
 	private double maxCalories;
 	private long maxDuration;
 	private double maxSpeed;
-	private double maxHeartRate;
+	private long maxHeartRate;
 	
 	/**
 	 * Sets up a summary for the events over the time period startTime - endTime
@@ -114,7 +114,7 @@ public class Summary {
 	 * gets the total duration of all the events over the time period
 	 */
 	public String getTotalDuration() {
-		return String.format("%.1f hours logged", totalHours);
+		return String.format("%d hours logged", totalHours);
 	}
 	
 	/**
@@ -137,9 +137,9 @@ public class Summary {
 	 * 
 	 * @return A string of the activity events duration.
 	 */
-	public String getDurationString() {
+	private String getDurationString(long time) {
 		StringBuilder durationString = new StringBuilder();
-		long duration = maxDuration;
+		long duration = time;
 		long days = duration / (3600 * 24);
 		duration -= days * 3600 * 24;
 		long hours = duration / 3600;
@@ -185,6 +185,14 @@ public class Summary {
 	public String maxSpeed() {
 		return String.format("%.1f kph", maxSpeed);
 	}	
+	
+	/**
+	 * gets the maximum duration for an event in a tine period
+	 * @return
+	 */
+	public String getMaxDuration() {
+		return getDurationString(maxDuration);
+	}
 	
 	/**
 	 * gets the maximum heart rate in any event in the time period 
