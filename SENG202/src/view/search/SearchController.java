@@ -1,6 +1,8 @@
 package view.search;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,8 +32,10 @@ public class SearchController {
 	
 	@FXML
 	void gotoButton(ActionEvent event) throws IOException {
-		//goes to the URL in an external browser
-		
+		//Creates Desktop object
+		Desktop d = Desktop.getDesktop();
+		//Browses the URL of the result
+		d.browse(new URI(result.getUrl));
 	}
 
 }
