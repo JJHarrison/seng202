@@ -32,6 +32,8 @@ public class GoogleSearchResults {
 	    private String url;
 	    
 	    public String getTitle() { 
+	    	title = title.replace("<b>", "");    //bad coding, will change in D4.
+	    	title = title.replace("</b>", "");
 	    	return title; 
 	    }
 	    
@@ -42,6 +44,7 @@ public class GoogleSearchResults {
 	    public void setTitle(String title) { 
 	    	this.title = title; 
 	    }
+	    
 	    public void setUrl(String url) { 
 	    	this.url = url; 
 	    }

@@ -1,5 +1,8 @@
 package view.search;
 
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import view.search.GoogleSearchResults.Result;
@@ -23,6 +26,12 @@ public class SearchController {
 	public void fill(Result result) {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());
+	}
+	
+	@FXML
+	void gotoButton(ActionEvent event) throws IOException {
+		//goes to the URL in an external browser
+		
 	}
 
 }
