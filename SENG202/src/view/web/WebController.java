@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import view.search.GoogleSearchResults;
+
 import com.google.gson.Gson;
 
 public class WebController {
@@ -37,7 +38,6 @@ public class WebController {
 	@FXML
 	void searchField(ActionEvent event) {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
-			//webEngine.load(SearchQuery.getQuery(textFieldSearch.getText()));
 		}
 	}
 	

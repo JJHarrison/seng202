@@ -57,16 +57,28 @@ public class WarningController {
 		}
 	}
 	
-	public void setDescription(String description) {
+	/**
+	 * Set the description for the warning pane
+	 * @param description The description to give the warning tile.
+	 */
+	protected void setDescription(String description) {
 		textDescription.setText(description);
 	}
 	
-	public void setDate(Calendar date) {
+	/**
+	 * Set the date recorded for the warning tile.
+	 * @param date The date the warning occurred on.
+	 */
+	protected void setDate(Calendar date) {
 		SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
 		labelTime.setText(tf.format(date.getTime()));
 	}
 	
-	public void setRisk(String risk) {
+	/**
+	 * Set the type of risk the warning tile is.
+	 * @param risk The type of risk (e.g. Bradycardia)
+	 */
+	protected void setRisk(String risk) {
 		labelRisk.setText(risk);
 	}
 }

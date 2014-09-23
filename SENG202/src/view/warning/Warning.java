@@ -14,6 +14,12 @@ public class Warning extends AnchorPane {
 	public enum WARNING {BRADYCARDIA, TACHYCARDIA};
 	private WarningController warningController;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param riskType The risk that has been identified.
+	 * @param eventStartTime The time that risk was identified.
+	 */
 	public Warning(WARNING riskType, Calendar eventStartTime) {
 		super();
 		FXMLLoader loader = new FXMLLoader();
@@ -28,7 +34,7 @@ public class Warning extends AnchorPane {
 		WarningController warningController = loader.getController();
 		this.warningController = warningController;
 		warningController.setDate(eventStartTime);
-		warningController.setDescription(getRiskDescription(riskType));
+		warningController.setDescription(setRiskDescription(riskType));
 		
 		
 	}
@@ -38,7 +44,7 @@ public class Warning extends AnchorPane {
 	 * @param warning The type of warning to get a message for.
 	 * @return The warning string full of information about that warning.
 	 */
-	public String getRiskDescription(WARNING warning) {
+	private String setRiskDescription(WARNING warning) {
 		String text = "DESCRIPTION HAS FAILED";
 		switch (warning) {
 		case BRADYCARDIA:

@@ -35,16 +35,17 @@ public class GraphController {
 	private ToggleGroup toggleGroup = new ToggleGroup();
 	private Event event;
 
-	@FXML
+	@FXML 
 	void initialize() {
-		toggleGroup.getToggles().addAll(buttonAltitude, buttonCalories,
-				buttonDistance, buttonHR, buttonSpeed, buttonStress);
+		toggleGroup.getToggles().addAll(buttonAltitude, buttonCalories, buttonDistance, buttonHR, buttonSpeed,
+				buttonStress);
 		buttonHR.fire();
 	}
 
 	/**
+	 * fill the tile
 	 * 
-	 * @param event
+	 * @param event Event to fill
 	 */
 	public void fill(Event event) {
 		this.event = event;

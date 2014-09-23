@@ -57,8 +57,7 @@ public class UserCreateController implements Switchable {
 
 	@FXML
 	void initialize() {
-		fieldGender
-				.setItems(FXCollections.observableArrayList(Gender.values()));
+		fieldGender.setItems(FXCollections.observableArrayList(Gender.values()));
 	}
 
 	@FXML
@@ -92,23 +91,18 @@ public class UserCreateController implements Switchable {
 		} else if (weight == null) {
 			labelCreateWarning.setText("Please provide your weight (kg)");
 		} else if (weight.doubleValue() > MAX_WEIGHT) {
-			labelCreateWarning
-					.setText("Enter your weight between 0 and 180 kg");
+			labelCreateWarning.setText("Enter your weight between 0 and 180 kg");
 		} else if (hr == null) {
-			labelCreateWarning
-					.setText("Please provide your average heart rate");
+			labelCreateWarning.setText("Please provide your average heart rate");
 		} else if (hr.intValue() > MAX_HR) {
-			labelCreateWarning
-					.setText("Enter a heart rate between 0 and 150 bpm");
+			labelCreateWarning.setText("Enter a heart rate between 0 and 150 bpm");
 		} else {
 			Calendar calendar = new GregorianCalendar();
-			Instant instant = date.atStartOfDay()
-					.atZone(ZoneId.systemDefault()).toInstant();
+			Instant instant = date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
 			Date res = Date.from(instant);
 			calendar.setTime(res);
 			try {
-				Persistent.newUser(new User(name, calendar, gender, weight
-						.doubleValue(), height.doubleValue(),
+				Persistent.newUser(new User(name, calendar, gender, weight.doubleValue(), height.doubleValue(),
 						(EventContainer) null, hr.intValue()));
 			} catch (Exception e) {
 				e.printStackTrace();
