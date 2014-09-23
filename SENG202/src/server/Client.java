@@ -133,17 +133,6 @@ public class Client {
     public String startMessage() {
     	return "[" + getCurrentTime() + "]<Client>";
     }	
-    
-    private static final TextArea textArea = new TextArea();
-  //add textArea to your scene somewhere in the start method
-	public static void printToWindow(String s){
-	    Platform.runLater(new Runnable() {//in case you call from other thread
-	        @Override
-	        public void run() {
-	            textArea.setText(textArea.getText()+s+"\n");
-	        }
-	    });
-	}
 	
 	/**
 	 * Check to see if the client connected to the server and that the server received the user correctly.
