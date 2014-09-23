@@ -102,8 +102,6 @@ public class DashController {
 	}
 	
 	private void fillAchievements() {
-		System.out.print(summaryTotal.getMaxDistance());
-		System.out.print(Persistent.getCurrentUser());
 		achieveMaxDistance.setText(summaryTotal.getMaxDistance());
 		achieveMaxHours.setText(summaryTotal.getMaxDuration());
 		achieveMaxSpeed.setText(summaryTotal.maxSpeed());
