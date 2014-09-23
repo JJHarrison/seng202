@@ -33,6 +33,11 @@ public class Warning extends AnchorPane {
 		
 	}
 	
+	/**
+	 * Returns the string of warning messages relating to Bradycardia and Tachycardia.
+	 * @param warning The type of warning to get a message for.
+	 * @return The warning string full of information about that warning.
+	 */
 	public String getRiskDescription(WARNING warning) {
 		String text = "DESCRIPTION HAS FAILED";
 		switch (warning) {
