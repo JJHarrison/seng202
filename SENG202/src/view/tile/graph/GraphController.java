@@ -35,7 +35,7 @@ public class GraphController {
 	private ToggleGroup toggleGroup = new ToggleGroup();
 	private Event event;
 
-	@FXML
+	@FXML 
 	void initialize() {
 		toggleGroup.getToggles().addAll(buttonAltitude, buttonCalories, buttonDistance, buttonHR, buttonSpeed,
 				buttonStress);
