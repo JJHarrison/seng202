@@ -167,7 +167,7 @@ public class MainController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				MessageBox.show(Main.stage, "message", "About", MessageBox.OK);
+				MessageBox.show(Main.stage, "Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System", "About Fitr", MessageBox.OK);
 
 			}
 		});

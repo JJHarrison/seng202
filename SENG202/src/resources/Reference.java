@@ -7,5 +7,7 @@ package resources;
  *
  */
 public class Reference {
-	
+	/*
+	 * NO CODE HERE :-)
+	 */
 }

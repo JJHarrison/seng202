@@ -4,6 +4,8 @@ import java.util.Calendar;
 
 import resources.Reference;
 import user.User.Gender;
+import view.warning.Warning;
+import view.warning.Warning.WARNING;
 import data.model.Summary;
 import data.persistant.Persistent;
 import javafx.fxml.FXML;
@@ -53,7 +55,7 @@ public class DashController {
 
 	@FXML
 	VBox warningPane;
-	
+
 	private Summary summaryTotal;
 	private Summary summaryMonth;
 
@@ -64,7 +66,7 @@ public class DashController {
 	}
 
 	/**
-	 * Fills the user information into the dashboard
+	 * fills the user information into the dash board
 	 */
 	private void fillUser() {
 		if (Persistent.getCurrentUser().getGender() == Gender.MALE) {
@@ -76,43 +78,58 @@ public class DashController {
 		}
 		labelName.setText(Persistent.getCurrentUser().getName());
 		labelAge.setText(Integer.toString(Persistent.getCurrentUser().getAge()));
-		labelHeight.setText(String.format("%.0f", Persistent.getCurrentUser().getHeight()) + " cm");
-		labelWeight.setText(String.format("%.0f", Persistent.getCurrentUser().getWeight()) + " kg");
-		labelHR.setText(String.format("%d", Persistent.getCurrentUser().getRestingHeartRate()));
-		labelBMI.setText(String.format("%.0f", Persistent.getCurrentUser().getBMI()));
+		labelHeight.setText(String.format("%.0f", Persistent.getCurrentUser()
+				.getHeight())
+				+ " cm");
+		labelWeight.setText(String.format("%.0f", Persistent.getCurrentUser()
+				.getWeight())
+				+ " kg");
+		labelHR.setText(String.format("%d", Persistent.getCurrentUser()
+				.getRestingHeartRate()));
+		labelBMI.setText(String.format("%.0f", Persistent.getCurrentUser()
+				.getBMI()));
 	}
-	
+
 	private void fillMonth() {
 		Calendar to = Calendar.getInstance();
 		Calendar from = Calendar.getInstance();
 		from.add(Calendar.MONTH, -1);
-		
-		summaryMonth = new Summary(Persistent.getCurrentUser().getEvents(), from, to);
+
+		summaryMonth = new Summary(Persistent.getCurrentUser().getEvents(),
+				from, to);
 		monthKmLabel.setText(summaryMonth.getTotalDistance());
 		monthCaloriesLabel.setText(summaryMonth.getTotalCalories());
 		monthHoursLabel.setText(summaryMonth.getTotalDuration());
 	}
-	
+
 	private void fillTotal() {
-		summaryTotal = new Summary(Persistent.getCurrentUser().getEvents(), null, null);
+		summaryTotal = new Summary(Persistent.getCurrentUser().getEvents(),
+				null, null);
 		totalKmLabel.setText(summaryTotal.getTotalDistance());
 		totalCaloriesLabel.setText(summaryTotal.getTotalCalories());
 		totalHoursLabel.setText(summaryTotal.getTotalDuration());
 		fillAchievements();
 	}
-	
+
 	private void fillAchievements() {
 		achieveMaxDistance.setText(summaryTotal.getMaxDistance());
 		achieveMaxHours.setText(summaryTotal.getMaxDuration());
 		achieveMaxSpeed.setText(summaryTotal.maxSpeed());
 	}
 	
+	private void fillWarnings() {
+		warningPane.getChildren().add(new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
+		warningPane.getChildren().add(new Warning(WARNING.TACHYCARDIA, Calendar.getInstance()));
+		warningPane.getChildren().add(new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
+	}
+
 	/**
 	 * Fill the dash board with all the totals and achievements.
 	 */
 	public void fillDash() {
 		fillMonth();
 		fillTotal();
+		fillWarnings();
 	}
 
 }
