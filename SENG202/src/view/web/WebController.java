@@ -30,13 +30,16 @@ public class WebController {
 	@FXML
 	void searchButton(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
+			resultPane.getChildren().clear();
 			findResults(textFieldSearch.getText());
 		}
 	}
 
 	@FXML
-	void searchField(ActionEvent event) {
+	void searchField(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
+			resultPane.getChildren().clear();
+			findResults(textFieldSearch.getText());
 		}
 	}
 	
