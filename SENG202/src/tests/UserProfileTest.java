@@ -51,7 +51,7 @@ public class UserProfileTest extends TestCase {
 	 * Tests getHeight function to make sure it returns the right height
 	 */
 	public void testGetHeight() {
-		assertEquals(1.9, u.getHeight());
+		assertEquals(190.0, u.getHeight());
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class UserProfileTest extends TestCase {
 	 * Tests if changing the height automatically updates the BMI of the user
 	 */
 	public void testChangeHeight() {
-		u.setHeight(2.0);
+		u.setHeight(200);
 		double bmi = u.getBMI();
 		assertTrue(bmi > 21);
 		assertTrue(bmi < 22);
