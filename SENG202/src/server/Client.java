@@ -1,5 +1,6 @@
 package server;
 
+import java.awt.TextArea;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -7,6 +8,7 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javafx.application.Platform;
 import user.User;
 
 /**
@@ -21,7 +23,8 @@ public class Client {
     private ObjectOutputStream output;
     private final int portNumber = 8888;
     private String hostName = "localhost";
-
+    private boolean hasTransfered;
+    private boolean hasConnected;
     /**
      * Sets up a connection with the server.
      */
@@ -32,9 +35,11 @@ public class Client {
 	    clientSocket = new Socket(hostName, portNumber);
 	    setupStreams();
 	    System.out.println(startMessage() + " connection accepted by [" + hostName + "]\n");
+	    hasConnected = true;
 	} catch (IOException e) {
 	    System.out.println(startMessage() + " uh oh something went wrong...");
 	    System.out.println(startMessage() + " maybe the server is taking a break");
+	    hasConnected = false;
 	}
     }
 
@@ -82,9 +87,11 @@ public class Client {
 	    if (buf != null) {
 		System.out.println("[" + getCurrentTime()
 			+ "]<Server> Responded it receieved user [" + buf + "].");
+		hasTransfered = true;
 	    }
 	} catch (ClassNotFoundException e) {
-	    e.printStackTrace();
+		hasTransfered = false;
+	    System.out.println("[" + getCurrentTime() + "]<Server> Did not receive the user correctly.");
 	}
     }
 
@@ -126,4 +133,31 @@ public class Client {
     public String startMessage() {
     	return "[" + getCurrentTime() + "]<Client>";
     }	
+    
+    private static final TextArea textArea = new TextArea();
+  //add textArea to your scene somewhere in the start method
+	public static void printToWindow(String s){
+	    Platform.runLater(new Runnable() {//in case you call from other thread
+	        @Override
+	        public void run() {
+	            textArea.setText(textArea.getText()+s+"\n");
+	        }
+	    });
+	}
+	
+	/**
+	 * Check to see if the client connected to the server and that the server received the user correctly.
+	 * @return True if both connection and transfer was successful, false otherwise
+	 */
+	public boolean isSuccessful(){
+		return hasConnected && hasTransfered;
+	}
+	
+	public static void main(String[] args){
+		Client c = new Client();
+		c.setupConnection();
+		User u = User.mockUser();
+		c.transferToServer(u);
+		c.closeStuff();
+	}
 }

@@ -282,7 +282,7 @@ public class DBWriter {
 		try {
 			connect = DriverManager.getConnection(url, admin, password);
 			preparedStatement = connect.prepareStatement("INSERT into fitr.datapoint VALUES "
-							+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+							+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, user.getUserId()); // user_id to be added to the db
 			preparedStatement.setString(2, event.getEventName()); // event_name to be added to the db
 			preparedStatement.setTimestamp(3, new Timestamp(event.getStartTime().
@@ -296,6 +296,7 @@ public class DBWriter {
 			preparedStatement.setDouble(9, point.getSpeed()); // the speed that will be added to the db
 			preparedStatement.setDouble(10, point.getDistance()); // the distance that will be added to the db
 			preparedStatement.setDouble(11, point.getCalories()); // the calories burned that will be added to the db
+			preparedStatement.setDouble(12, point.getStressLevel()); // the stress level that will be added to the db
 			preparedStatement.executeUpdate(); // execute the query/upload to the database
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -130,6 +130,12 @@ public class MainController {
 				c.setupConnection();
 				c.transferToServer(Persistent.getCurrentUser());
 				c.closeStuff();
+				if(c.isSuccessful()){
+					MessageBox.show(Main.stage, "User has ben uploaded to the server sucessfully", "", MessageBox.OK);					
+				}
+				else{
+					MessageBox.show(Main.stage, "Sorry, something went wrong.", "", MessageBox.OK);
+				}
 			}
 		});
 
