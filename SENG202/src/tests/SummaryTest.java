@@ -36,4 +36,26 @@ public class SummaryTest extends TestCase {
 		assertEquals(3, s.getNumberOfEvents());
 	}
 	
+	/**
+	 * checks that the constructor is correctly identifying the events between the start and end date
+	 * @throws ParseException
+	 */
+	public void testCalculate() throws ParseException {
+		Calendar startDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
+		Calendar endDate = new Calendar.Builder().setInstant(sdf.parse("11/04/2005")).build();
+		Summary s = new Summary(eventContainer,startDate, endDate);
+		System.out.println(s.getDurationString());
+		System.out.println(s.maxCalories());
+	}
+	
+	/**
+	 * checks that the constructor is correctly identifying the events between the start and end date
+	 * @throws ParseException
+	 */
+	public void testNullDates() throws ParseException {
+		
+		Summary s = new Summary(eventContainer,null, null);
+		assertEquals(12, s.getNumberOfEvents());
+	}
+	
 }

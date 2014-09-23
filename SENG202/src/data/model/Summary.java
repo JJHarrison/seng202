@@ -34,6 +34,14 @@ public class Summary {
 	 * @param endTime the end of the time period the summary is for
 	 */
 	public Summary(EventContainer events, Calendar startTime, Calendar endTime) {
+		if(endTime == null) {
+			endTime = Calendar.getInstance();
+		}
+		
+		if(startTime == null) {
+			startTime = new Calendar.Builder().build();
+		}
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		ArrayList<Event> eventsNeeded = new ArrayList<Event>();
 		HashMap<String, LinkedList<Event>> days = events.getDays();
@@ -168,7 +176,7 @@ public class Summary {
 	 * get the maximum number of calories burned in an event in the time period 
 	 */
 	public String maxCalories() {
-		return String.format("%d cal", maxCalories);
+		return String.format("%.0f cal", maxCalories);
 	}
 
 	/**
