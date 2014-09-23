@@ -84,7 +84,6 @@ public class Summary {
 				maxDistance = event.getDistance();
 			}
 			
-			System.out.println("max speed for event: " + event.getEventName() + " is: " + event.getMaxSpeed());
 			if(maxSpeed < event.getMaxSpeed()) {
 				maxSpeed = event.getMaxSpeed();
 			}
@@ -170,7 +169,7 @@ public class Summary {
 	 * get the maximum distance traveled in the time period
 	 */
 	public String getMaxDistance() {
-		return String.format("%.1f km", maxDistance);
+		return String.format("%.1f km", maxDistance / 1000);
 	}
 	
 	/**
