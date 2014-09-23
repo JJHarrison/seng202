@@ -31,6 +31,8 @@ public class SearchController {
 	public void fill(Result result) {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());
+		
+		//set the url to a string so the goto button can access it
 		strURL = result.getUrl();
 	}
 	
