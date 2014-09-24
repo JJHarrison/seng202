@@ -28,6 +28,9 @@ public class SearchController {
 		labelURL.setText("www.heartdiseasefordummies.org");
 	}
 
+	/**
+	 * Fills the Result's title and URL for the search tile
+	 */
 	public void fill(Result result) {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());

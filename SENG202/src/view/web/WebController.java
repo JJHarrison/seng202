@@ -43,7 +43,13 @@ public class WebController {
 			findResults(textFieldSearch.getText());
 		}
 	}
-	
+
+	/**
+	 * This method takes the search text and then requests the Gson file from the Google API
+	 * and then assigns each Result to a Result class.
+	 * @param searchText
+	 * @throws IOException
+	 */
 	void findResults(String searchText) throws IOException {
 		URL url = new URL(SearchQuery.getQuery(textFieldSearch.getText()));
 		Reader reader = new InputStreamReader(url.openStream(), "UTF-8");

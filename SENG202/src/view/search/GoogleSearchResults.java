@@ -60,7 +60,8 @@ public class GoogleSearchResults {
 	}
 	
 	/**
-	 * 
+	 * This class provides an abstraction for an individual Result with attributes of the Result
+	 * title, URL and content. 
 	 * 
 	 * @author Fitr Team
 	 *
@@ -70,26 +71,50 @@ public class GoogleSearchResults {
 	    private String url;
 	    private String content;
 	    
+	    /**
+	     * Gets the Title with no formatting
+	     * @return titleNoFormatting
+	     */
 	    public String getTitle() { 
 	    	return titleNoFormatting;
 	    }
 	    
+	    /**
+	     * Gets the content of the result
+	     * @return content
+	     */
 	    public String getContent() {
 	    	return content;
 	    }
 	    
+	    /**
+	     * Gets the URL of the result
+	     * @return url
+	     */
 	    public String getUrl() { 
 	    	return url;
 	    }
 	    
+	    /**
+	     * Sets the content of the result
+	     * @param content
+	     */
 	    public void setContent(String content) {
 	    	this.content = content;
 	    }
 	    
+	    /**
+	     * Sets the title of the result
+	     * @param title
+	     */
 	    public void setTitle(String title) { 
 	    	this.titleNoFormatting = title; 
 	    }
 	    
+	    /**
+	     * Sets the URL of the result
+	     * @param url
+	     */
 	    public void setUrl(String url) { 
 	    	this.url = url; 
 	    }
