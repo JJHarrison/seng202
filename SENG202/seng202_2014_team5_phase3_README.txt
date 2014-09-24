@@ -9,7 +9,7 @@ Description of Fitr
 	Fitr is a health tracking and analysis software, that allows a user to import a .csv file containing activity 	data about their physical activities. It provides useful feedback to the user in an array of formats such as 	graphs, maps and numerical figures.
 
 
-To start Fitr 
+To start Fitr (from .jar)
 
 	Java 8 must be installed and set to default 
 
@@ -23,6 +23,13 @@ To start Fitr
 
 	WINDOWS
 	- Click on seng202_2014_team5_fitr.jar
+	
+	
+To start Fitr (from eclipse project)
+    
+    - Import the project zip file into eclipse
+    - Use the package explorer to locate view/user/UserLoginManager.java
+    - Open this file and click run
 
 
 To use Fitr
@@ -43,5 +50,4 @@ To use Fitr
 
 	- To view activity events
 		- Go to analysis 
-		- Use the calendar to navigate to the event you want to view 
-
+		- Use the calendar to navigate to the event you want to view
