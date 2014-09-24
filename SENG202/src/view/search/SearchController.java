@@ -31,14 +31,12 @@ public class SearchController {
 	public void fill(Result result) {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());
-		
-		//set the url to a string so the goto button can access it
 		strURL = result.getUrl();
 	}
 	
 	@FXML
 	void gotoButton(ActionEvent event) throws IOException, URISyntaxException {
-		//Creates Desktop object
+		//Creates a Desktop object
 		Desktop d = Desktop.getDesktop();
 		//Browses the URL of the result
 		d.browse(new URI(strURL));

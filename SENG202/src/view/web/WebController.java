@@ -13,6 +13,7 @@ import view.search.GoogleSearchResults;
 import view.search.Search;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class WebController {
 
@@ -46,7 +47,12 @@ public class WebController {
 	void findResults(String searchText) throws IOException {
 		URL url = new URL(SearchQuery.getQuery(textFieldSearch.getText()));
 		Reader reader = new InputStreamReader(url.openStream(), "UTF-8");
-		GoogleSearchResults results = new Gson().fromJson(reader, GoogleSearchResults.class);
+		Gson gs = new GsonBuilder()
+					.setPrettyPrinting()
+					.disableHtmlEscaping()
+					.create();
+		
+		GoogleSearchResults results = gs.fromJson(reader, GoogleSearchResults.class);
 		sendResults(results);
 	}
 	
