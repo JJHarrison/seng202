@@ -23,9 +23,14 @@ public class WebController {
 	@FXML
 	VBox resultPane;
 	
+	private GoogleSearchResults results;
+	
 	@FXML
 	void initialize() {
 		textFieldSearch.setText("");
+	}
+	public WebController() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@FXML
@@ -59,11 +64,12 @@ public class WebController {
 					.create();
 		
 		GoogleSearchResults results = gs.fromJson(reader, GoogleSearchResults.class);
-		sendResults(results);
+		this.results = results;
+		sendResults();
 	}
 	
 	@FXML
-	void sendResults(GoogleSearchResults results) {
+	void sendResults() {
 		for(int i = 0; i <= 3; i++) {
 			resultPane.getChildren().add(new Search(results.getResponseData().getResults().get(i)));
 		}

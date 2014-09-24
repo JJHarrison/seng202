@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import view.search.GoogleSearchResults.Result;
 
@@ -16,17 +17,9 @@ public class SearchController {
 	Label labelTitle;
 
 	@FXML
-	Label labelURL;
-	
-	String strURL;
+	Hyperlink labelURL;
 
-	/**
-	 * Fill the label and URL for the search tile
-	 */
-	public void fill() {
-		labelTitle.setText("Insert Useful Health Result");
-		labelURL.setText("www.heartdiseasefordummies.org");
-	}
+	String strURL;
 
 	/**
 	 * Fills the Result's title and URL for the search tile
@@ -36,13 +29,19 @@ public class SearchController {
 		labelURL.setText(result.getUrl());
 		strURL = result.getUrl();
 	}
-	
+
 	@FXML
 	void gotoButton(ActionEvent event) throws IOException, URISyntaxException {
-		//Creates a Desktop object
+		// Creates a Desktop object
 		Desktop d = Desktop.getDesktop();
-		//Browses the URL of the result
-		d.browse(new URI(strURL));
+		// Browses the URL of the result
+		String s = System.getProperty("os.name").toLowerCase();
+		if (! s.contains("linux")) {
+			d.browse(new URI(strURL));
+		} else {
+			Runtime.getRuntime().exec(String.format("gnome-open %s", strURL));
+		}
+		
 	}
 
 }

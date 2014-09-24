@@ -29,4 +29,5 @@ public class Search extends AnchorPane {
 		searchController.fill(result);
 
 	}
+	
 }

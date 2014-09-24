@@ -65,6 +65,10 @@ public class UserCreateController implements Switchable {
 		controller.setView(View.LOGIN);
 	}
 
+	/**
+	 * Creates a user taking the parameter from the form filling
+	 * 
+	 */
 	@FXML
 	void actionCreate(ActionEvent event) {
 		String name = fieldName.getText();
