@@ -74,14 +74,13 @@ public class FileLoader {
 			while ((line = br.readLine()) != null) {
 				String[] dataLine = line.split(",");
 
-				if (isValidLine(line) || line.startsWith("#start")) {
+				if (isValidLine(line)) {
 					if (dataLine[0].contains("#start")) { // start of new event
 						if (!points.isEmpty()) { //checks that points have been read to be added to event	
 							eventContainer.addEvent(new Event(eventName, points));
 							points = new ArrayList<DataPoint>(); // reset the points for the next event
 							lastPoint = null;
 						}
-
 						eventName = dataLine[1];
 
 					} else { // line containing data
@@ -91,7 +90,7 @@ public class FileLoader {
 				}
 			}
 			// add the last event of the csv file to events
-			if (!points.isEmpty() && !points.isEmpty()) { 
+			if (!points.isEmpty() && eventName != null) { 
 				eventContainer.addEvent(new Event(eventName, points));
 			}
 
@@ -168,6 +167,11 @@ public class FileLoader {
 				&& (isLongitudeValid(values[4]))){
 				isValid = true;
  			}
+		} else if(line.startsWith("#start")) {
+			String[] values = line.split(",");
+			if (values.length == 2) {
+				isValid = true;
+			}
 		}
 		return isValid;
  	}
