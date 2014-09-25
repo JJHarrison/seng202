@@ -1,10 +1,16 @@
-.Button {
+.ToggleButton {
     -fx-background-color:transparent;
     -fx-content-display:graphic-only;
     -fx-background-size: 30;
-    -fx-background-image: url("plus.png");
+    -fx-background-image: url("plus32.png");
     -fx-background-repeat: no-repeat;
 }
-.Button:hover {
+.ToggleButton:hover {
     -fx-opacity:0.2;
+}
+.ToggleButton:selected {
+    -fx-content-display:graphic-only;
+    -fx-background-size: 30;
+    -fx-background-image: url("minus.png");
+    -fx-background-repeat: no-repeat;
 }

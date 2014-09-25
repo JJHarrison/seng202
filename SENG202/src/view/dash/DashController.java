@@ -69,13 +69,13 @@ public class DashController {
 	 * fills the user information into the dash board
 	 */
 	private void fillUser() {
-		if (Persistent.getCurrentUser().getGender() == Gender.MALE) {
+		/*if (Persistent.getCurrentUser().getGender() == Gender.MALE) {
 			imageGender.setImage(new Image(Reference.class
 					.getResourceAsStream("male.png")));
 		} else {
 			imageGender.setImage(new Image(Reference.class
 					.getResourceAsStream("female.png")));
-		}
+		}*/
 		labelName.setText(Persistent.getCurrentUser().getName());
 		labelAge.setText(Integer.toString(Persistent.getCurrentUser().getAge()));
 		labelHeight.setText(String.format("%.0f", Persistent.getCurrentUser()
