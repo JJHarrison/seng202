@@ -17,21 +17,19 @@
       <children>
       <AnchorPane style="-fx-background-color: derive(-fx-base, -10%);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
          <children>
-            <AnchorPane layoutX="8.0" layoutY="-10.0" prefWidth="300.0" style="-fx-background-color: derive(-fx-base, -20%);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label fx:id="labelName" alignment="CENTER" layoutX="93.0" layoutY="84.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="imageGender" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="112.5" AnchorPane.topAnchor="10.0">
-                  </ImageView>
-               </children>
+            <AnchorPane layoutX="8.0" layoutY="-10.0" prefHeight="180.0" prefWidth="180.0" style="-fx-background-color: derive(-fx-base, -20%);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="180.0" fitWidth="180.0" layoutY="-12.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../../../../../Dropbox/linux_setup/profile_picture.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
             </AnchorPane>
-            <GridPane hgap="10.0" layoutX="525.0" layoutY="30.0" vgap="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <GridPane hgap="10.0" layoutX="525.0" layoutY="30.0" vgap="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       
                                        <children>
-                  <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="200.0" prefWidth="200.0">
+                  <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <Label text="Age:">
                            <font>
@@ -116,7 +114,18 @@
                                     <Insets left="5.0" />
                                  </padding>
                   </FlowPane>
-                              <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                              <FlowPane alignment="CENTER_LEFT" hgap="5.0" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="labelName" text="Daniel van Wichen" textFill="GREEN">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </FlowPane>
                </children>
                            <columnConstraints>
                               <ColumnConstraints hgrow="ALWAYS" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
