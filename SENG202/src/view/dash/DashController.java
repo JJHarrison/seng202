@@ -2,17 +2,14 @@ package view.dash;
 
 import java.util.Calendar;
 
-import resources.Reference;
-import user.User.Gender;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import view.warning.Warning;
 import view.warning.Warning.WARNING;
 import data.model.Summary;
 import data.persistant.Persistent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
 public class DashController {
 
