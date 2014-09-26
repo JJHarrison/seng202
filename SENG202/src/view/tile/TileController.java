@@ -42,6 +42,8 @@ public class TileController {
 	ToggleButton buttonMap;
 	@FXML
 	ToggleButton buttonTable;
+	@FXML
+	ToggleButton buttonPlus;
 
 	@FXML
 	StackPane summary;
@@ -116,6 +118,7 @@ public class TileController {
 
 	@FXML
 	void hideContent(MouseEvent event) {
+		buttonPlus.selectedProperty().set(! buttonPlus.selectedProperty().get());
 		if (openTile == tile) {
 			tile.getChildren().remove(tileBottom);
 			openTile = null;

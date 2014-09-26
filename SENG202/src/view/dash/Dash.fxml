@@ -23,6 +23,9 @@
                                  <image>
                                     <Image url="@../../../../../../Dropbox/linux_setup/profile_picture.jpg" />
                                  </image>
+                                 <viewport>
+                                    <Rectangle2D height="500.0" minY="150.0" width="500.0" />
+                                 </viewport>
                               </ImageView>
                            </children>
             </AnchorPane>
