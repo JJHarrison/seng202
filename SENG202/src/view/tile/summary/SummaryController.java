@@ -5,6 +5,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import data.model.Event;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class SummaryController {
 
 	@FXML
@@ -40,9 +45,9 @@ public class SummaryController {
 	}
 
 	/**
-	 * fill the tile
+	 * Fill the summary view by setting the text of all labels.
 	 * 
-	 * @param event event to fill
+	 * @param event the event of this tile.
 	 */
 	public void fill(Event event) {
 		labelDuration.setText(event.getDurationString());

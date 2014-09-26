@@ -52,7 +52,9 @@ public class WebController {
 	/**
 	 * This method takes the search text and then requests the Gson file from the Google API
 	 * and then assigns each Result to a Result class.
-	 * @param searchText
+	 * 
+	 * @param searchText the search query input by user.
+	 * 
 	 * @throws IOException
 	 */
 	void findResults(String searchText) throws IOException {

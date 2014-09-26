@@ -6,10 +6,21 @@ import view.search.GoogleSearchResults.Result;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * A search tile to nicely display the title, content and URL of each web page.
+ * 
+ * @author Daniel van Wichen, Daniel Tapp
+ *
+ */
 public class Search extends AnchorPane {
 
 	public static String TILE = "Search.fxml";
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param result the result to display.
+	 */
 	public Search(Result result) { 
 		try {
 			loadMainPane(result);

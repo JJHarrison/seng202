@@ -66,8 +66,9 @@ public class UserCreateController implements Switchable {
 	}
 
 	/**
-	 * Creates a user taking the parameter from the form filling
+	 * Creates a user taking the parameter from the form filling.
 	 * 
+	 * @param event 
 	 */
 	@FXML
 	void actionCreate(ActionEvent event) {

@@ -1,11 +1,12 @@
 
 .ToggleButtonDash {
-    -fx-background-radius: 50;
+    -fx-background-radius: 0;
     -fx-background-color: derive(#87CEFA, -15%);   
     -fx-background-image: url("dash.png");
     -fx-background-size: 60;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
+    -fx-border-color: transparent transparent derive(#87CEFA, -25%) transparent
 }
 .ToggleButtonDash:hover {
     -fx-background-color: derive(#87CEFA, -5%);   
@@ -17,12 +18,13 @@
 }
 
 .ToggleButtonAnalysis {
-    -fx-background-radius: 50;
+    -fx-background-radius: 0;
     -fx-background-color: derive(#87CEFA, -15%);   
     -fx-background-image: url("analysis.png");
     -fx-background-size: 60;
     -fx-background-repeat: no-repeat;
     -fx-background-position: right;
+    -fx-border-color: transparent transparent derive(#87CEFA, -25%) transparent 
 }
 .ToggleButtonAnalysis:hover {
     -fx-background-color: derive(#87CEFA, -5%);   
@@ -34,7 +36,7 @@
 }
 
 .ToggleButtonWeb {
-    -fx-background-radius: 50;
+    -fx-background-radius: 0;
     -fx-background-color: derive(#87CEFA, -15%);   
     -fx-background-image: url("web.png");
     -fx-background-size: 60;

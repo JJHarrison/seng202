@@ -11,6 +11,11 @@ import view.warning.Warning.WARNING;
 import data.model.Summary;
 import data.persistant.Persistent;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class DashController {
 
 	@FXML
@@ -63,75 +68,61 @@ public class DashController {
 	}
 
 	/**
-	 * fills the user information into the dash board
+	 * Fills the dashboard view with the user information.
 	 */
 	private void fillUser() {
-		/*if (Persistent.getCurrentUser().getGender() == Gender.MALE) {
-			imageGender.setImage(new Image(Reference.class
-					.getResourceAsStream("male.png")));
-		} else {
-			imageGender.setImage(new Image(Reference.class
-					.getResourceAsStream("female.png")));
-		}*/
 		labelName.setText(Persistent.getCurrentUser().getName());
 		labelAge.setText(Integer.toString(Persistent.getCurrentUser().getAge()));
-		labelHeight.setText(String.format("%.0f", Persistent.getCurrentUser()
-				.getHeight())
-				+ " cm");
-		labelWeight.setText(String.format("%.0f", Persistent.getCurrentUser()
-				.getWeight())
-				+ " kg");
-		labelHR.setText(String.format("%d", Persistent.getCurrentUser()
-				.getRestingHeartRate()));
-		labelBMI.setText(String.format("%.0f", Persistent.getCurrentUser()
-				.getBMI()));
+		labelHeight.setText(String.format("%.0f", Persistent.getCurrentUser().getHeight()) + " cm");
+		labelWeight.setText(String.format("%.0f", Persistent.getCurrentUser().getWeight()) + " kg");
+		labelHR.setText(String.format("%d", Persistent.getCurrentUser().getRestingHeartRate()));
+		labelBMI.setText(String.format("%.0f", Persistent.getCurrentUser().getBMI()));
 	}
+
 	/**
-	 * Calculates and displays the total distance, total calories and total duration for
-	 * the month to be displayed in the dashboard.
+	 * Calculates and displays the total distance, total calories and total duration for the month to be displayed in the dashboard.
 	 */
 	private void fillMonth() {
 		Calendar to = Calendar.getInstance();
 		Calendar from = Calendar.getInstance();
 		from.add(Calendar.MONTH, -1);
 
-		summaryMonth = new Summary(Persistent.getCurrentUser().getEvents(),
-				from, to);
+		summaryMonth = new Summary(Persistent.getCurrentUser().getEvents(), from, to);
 		monthKmLabel.setText(summaryMonth.getTotalDistance());
 		monthCaloriesLabel.setText(summaryMonth.getTotalCalories());
 		monthHoursLabel.setText(summaryMonth.getTotalDuration());
 	}
 
 	/**
-	 * Calculates and displays the total distance, total calories and total duration for
-	 * all time to be displayed in the dashboard. 
+	 * Calculates and displays the total distance, total calories and total duration for all time to be displayed in the dashboard.
 	 */
 	private void fillTotal() {
-		summaryTotal = new Summary(Persistent.getCurrentUser().getEvents(),
-				null, null);
+		summaryTotal = new Summary(Persistent.getCurrentUser().getEvents(), null, null);
 		totalKmLabel.setText(summaryTotal.getTotalDistance());
 		totalCaloriesLabel.setText(summaryTotal.getTotalCalories());
 		totalHoursLabel.setText(summaryTotal.getTotalDuration());
 		fillAchievements();
 	}
-	
+
 	/**
-	 * Displays the achievements for that user consisting of max distance,
-	 * max duration and max speed over all events
+	 * Displays the achievements for that user consisting of max distance, max duration and max speed over all events.
 	 */
 	private void fillAchievements() {
 		achieveMaxDistance.setText(summaryTotal.getMaxDistance());
 		achieveMaxHours.setText(summaryTotal.getMaxDuration());
 		achieveMaxSpeed.setText(summaryTotal.maxSpeed());
 	}
-	
+
 	/**
-	 * Displays the warnings the user has generated
+	 * Displays the warnings the user has generated.
 	 */
 	private void fillWarnings() {
-		warningPane.getChildren().add(new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
-		warningPane.getChildren().add(new Warning(WARNING.TACHYCARDIA, Calendar.getInstance()));
-		warningPane.getChildren().add(new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
+		warningPane.getChildren().add(
+				new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
+		warningPane.getChildren().add(
+				new Warning(WARNING.TACHYCARDIA, Calendar.getInstance()));
+		warningPane.getChildren().add(
+				new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
 	}
 
 	/**
