@@ -11,6 +11,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class UserManagementController {
 
 	public static enum View {
@@ -107,6 +112,7 @@ public class UserManagementController {
 			userPersistController = fxmlLoader.getController();
 			userPersistController.setController(this);
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -2,16 +2,15 @@ package view.user;
 
 /**
  * 
- * @author daniel
+ * @author Daniel van Wichen
  *
  */
 public interface Switchable {
 
 	/**
-	 * A method which pass the main controller around the child controllers
+	 * A method which pass the main controller around the child controllers.
 	 * 
-	 * @param controller
-	 *            main controller to pass
+	 * @param controller main controller to pass
 	 */
 	public void setController(UserManagementController controller);
 

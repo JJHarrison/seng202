@@ -15,6 +15,11 @@ import view.search.Search;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * 
+ * @author Daniel Tapp, Daniel van Wichen
+ *
+ */
 public class WebController {
 
 	@FXML
@@ -28,9 +33,6 @@ public class WebController {
 	@FXML
 	void initialize() {
 		textFieldSearch.setText("");
-	}
-	public WebController() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@FXML
@@ -50,10 +52,9 @@ public class WebController {
 	}
 
 	/**
-	 * This method takes the search text and then requests the Gson file from the Google API
-	 * and then assigns each Result to a Result class.
+	 * This method takes the search text and then requests the Gson file from the Google API.
 	 * 
-	 * @param searchText the search query input by user.
+	 * @param searchText the search query inputted by user.
 	 * 
 	 * @throws IOException
 	 */

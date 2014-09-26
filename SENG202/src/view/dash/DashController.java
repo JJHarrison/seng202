@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import view.warning.Warning;
-import view.warning.Warning.WARNING;
+import view.warning.Warning.Risk;
 import data.model.Summary;
 import data.persistant.Persistent;
 
@@ -118,11 +118,11 @@ public class DashController {
 	 */
 	private void fillWarnings() {
 		warningPane.getChildren().add(
-				new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
+				new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
 		warningPane.getChildren().add(
-				new Warning(WARNING.TACHYCARDIA, Calendar.getInstance()));
+				new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
 		warningPane.getChildren().add(
-				new Warning(WARNING.BRADYCARDIA, Calendar.getInstance()));
+				new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
 	}
 
 	/**

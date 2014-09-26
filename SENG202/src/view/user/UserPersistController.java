@@ -13,6 +13,11 @@ import javafx.stage.DirectoryChooser;
 import view.user.UserManagementController.View;
 import data.persistant.Persistent;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class UserPersistController implements Switchable {
 
 	private UserManagementController controller;

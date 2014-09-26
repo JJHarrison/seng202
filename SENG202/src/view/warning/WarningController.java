@@ -11,6 +11,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class WarningController {
 
 	@FXML
@@ -59,7 +64,7 @@ public class WarningController {
 	
 	/**
 	 * Set the description for the warning pane
-	 * @param description The description to give the warning tile.
+	 * @param description the description to give the warning tile.
 	 */
 	protected void setDescription(String description) {
 		textDescription.setText(description);
@@ -67,7 +72,7 @@ public class WarningController {
 	
 	/**
 	 * Set the date recorded for the warning tile.
-	 * @param date The date the warning occurred on.
+	 * @param date the date the warning occurred on.
 	 */
 	protected void setDate(Calendar date) {
 		SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
@@ -76,7 +81,7 @@ public class WarningController {
 	
 	/**
 	 * Set the type of risk the warning tile is.
-	 * @param risk The type of risk (e.g. Bradycardia)
+	 * @param risk the type of risk (e.g. Bradycardia).
 	 */
 	protected void setRisk(String risk) {
 		labelRisk.setText(risk);

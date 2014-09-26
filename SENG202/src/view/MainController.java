@@ -29,6 +29,11 @@ import data.persistant.Persistent;
 import data.persistant.Saver;
 import extfx.scene.control.CalendarView;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class MainController {
 	@FXML
 	ToggleButton buttonDash;
