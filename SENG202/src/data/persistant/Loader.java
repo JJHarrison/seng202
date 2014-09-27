@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * A loader class used for loading an event container from a JSON file
+ * A loader class used for loading an event container from a JSON file.
  * 
  * @author SamSchofield
  */
