@@ -8,6 +8,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import data.model.DataPoint;
 import data.model.Event;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class TableController {
 
 	@FXML
@@ -27,22 +32,17 @@ public class TableController {
 	TableColumn<DataPoint, String> tableDistance;
 
 	/**
-	 * fill the tile
+	 * Fill the table view with all raw data-points.
 	 * 
-	 * @param event event to fill
+	 * @param event the event of this tile.
 	 */
 	public void fill(Event event) {
-		tableView.setItems(FXCollections.observableArrayList(event
-				.getDataPoints()));
+		tableView.setItems(FXCollections.observableArrayList(event.getDataPoints()));
 		tableTime.setCellValueFactory(new PropertyValueFactory<>("getTime"));
-		tableDistance.setCellValueFactory(new PropertyValueFactory<>(
-				"getDistance"));
-		tableAltitude.setCellValueFactory(new PropertyValueFactory<>(
-				"getAltitude"));
-		tableLatitude.setCellValueFactory(new PropertyValueFactory<>(
-				"getLatitude"));
-		tableLongitude.setCellValueFactory(new PropertyValueFactory<>(
-				"getLongitude"));
+		tableDistance.setCellValueFactory(new PropertyValueFactory<>("getDistance"));
+		tableAltitude.setCellValueFactory(new PropertyValueFactory<>("getAltitude"));
+		tableLatitude.setCellValueFactory(new PropertyValueFactory<>("getLatitude"));
+		tableLongitude.setCellValueFactory(new PropertyValueFactory<>("getLongitude"));
 		tableHR.setCellValueFactory(new PropertyValueFactory<>("getHeartRate"));
 
 	}

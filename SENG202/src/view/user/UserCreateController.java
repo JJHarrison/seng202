@@ -21,6 +21,11 @@ import data.model.EventContainer;
 import data.persistant.Persistent;
 import extfx.scene.control.NumberSpinner;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class UserCreateController implements Switchable {
 	private UserManagementController controller;
 	public static final Double MAX_WEIGHT = 180.0; // kg
@@ -66,8 +71,9 @@ public class UserCreateController implements Switchable {
 	}
 
 	/**
-	 * Creates a user taking the parameter from the form filling
+	 * Creates a user taking the parameter from the form filling.
 	 * 
+	 * @param event 
 	 */
 	@FXML
 	void actionCreate(ActionEvent event) {

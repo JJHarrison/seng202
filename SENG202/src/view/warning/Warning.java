@@ -8,10 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import resources.Reference;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class Warning extends AnchorPane {
 	public static String TILE = "Warning.fxml";
 	
-	public enum WARNING {BRADYCARDIA, TACHYCARDIA};
+	public enum Risk {BRADYCARDIA, TACHYCARDIA};
 	private WarningController warningController;
 
 	/**
@@ -20,7 +25,7 @@ public class Warning extends AnchorPane {
 	 * @param riskType The risk that has been identified.
 	 * @param eventStartTime The time that risk was identified.
 	 */
-	public Warning(WARNING riskType, Calendar eventStartTime) {
+	public Warning(Risk riskType, Calendar eventStartTime) {
 		super();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(TILE));
@@ -40,11 +45,11 @@ public class Warning extends AnchorPane {
 	}
 	
 	/**
-	 * Returns the string of warning messages relating to Bradycardia and Tachycardia.
-	 * @param warning The type of warning to get a message for.
-	 * @return The warning string full of information about that warning.
+	 * Sets the string of warning messages relating to Bradycardia and Tachycardia.
+	 * @param warning the type of warning to get a message for.
+	 * @return the warning string full of information about that warning.
 	 */
-	private String setRiskDescription(WARNING warning) {
+	private String setRiskDescription(Risk warning) {
 		String text = "DESCRIPTION HAS FAILED";
 		switch (warning) {
 		case BRADYCARDIA:

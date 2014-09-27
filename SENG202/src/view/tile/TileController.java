@@ -16,11 +16,18 @@ import view.tile.summary.SummaryController;
 import view.tile.table.TableController;
 import data.model.Event;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class TileController {
 
-	/** Holder of a switchable view. */
+	// Holder of a switchable view
 	@FXML
 	StackPane tileView;
+	
+	
 	@FXML
 	VBox tile;
 	@FXML
@@ -35,6 +42,8 @@ public class TileController {
 	ToggleButton buttonMap;
 	@FXML
 	ToggleButton buttonTable;
+	@FXML
+	ToggleButton buttonPlus;
 
 	@FXML
 	StackPane summary;
@@ -68,8 +77,7 @@ public class TileController {
 	/**
 	 * Replaces the view displayed in the view holder with a new view.
 	 *
-	 * @param node
-	 *            the view node to be swapped in.
+	 * @param node the view node to be swapped in.
 	 */
 	public void setView(Node node) {
 		tileView.getChildren().setAll(node);
@@ -80,8 +88,7 @@ public class TileController {
 		tileView.getChildren().clear();
 		tile.getChildren().remove(tileBottom); // So that the tiles are by
 		// default closed.
-		toggleGroup.getToggles().addAll(buttonGraph, buttonMap, buttonSummary,
-				buttonTable);
+		toggleGroup.getToggles().addAll(buttonGraph, buttonMap, buttonSummary, buttonTable);
 		buttonSummary.fire();
 	}
 
@@ -111,6 +118,7 @@ public class TileController {
 
 	@FXML
 	void hideContent(MouseEvent event) {
+		buttonPlus.selectedProperty().set(! buttonPlus.selectedProperty().get());
 		if (openTile == tile) {
 			tile.getChildren().remove(tileBottom);
 			openTile = null;
@@ -139,6 +147,11 @@ public class TileController {
 		}
 	}
 
+	/**
+	 * Fills the tile with a particular event.
+	 * 
+	 * @param event the event the tile will display.
+	 */
 	public void fill(Event event) {
 		this.event = event;
 		if (event != null) {

@@ -5,6 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import data.model.Event;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class AnalysisController {
 
 	@FXML
@@ -16,16 +21,16 @@ public class AnalysisController {
 	}
 
 	/**
-	 * add an event tile
+	 * Add an event tile to the analysis view.
 	 * 
-	 * @param event the event to add
+	 * @param event the event to add.
 	 */
 	public void addTile(Event event) {
 		tileBox.getChildren().add(new Tile(event));
 	}
 
 	/**
-	 * clear all the tile from the view
+	 * Clear all the tiles from the view.
 	 */
 	public void clearTiles() {
 		tileBox.getChildren().clear();

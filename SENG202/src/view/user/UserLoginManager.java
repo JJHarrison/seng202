@@ -41,7 +41,7 @@ public class UserLoginManager extends Application {
 				userManagementFXML));
 		stage.setScene(new Scene(root));
 		stage.setTitle("User Management");
-
+		
 		Platform.runLater(new Runnable() {
 
 			@Override

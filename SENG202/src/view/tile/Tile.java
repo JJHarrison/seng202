@@ -6,16 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import data.model.Event;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class Tile extends AnchorPane {
 
 	private Event event;
 	public static String TILE = "Tile.fxml";
 
 	/**
-	 * Constructor. Create an event control (for the tiled interface).
+	 * Constructor. Create a tile custom control that wrap the {@link data.model.Event} class.
 	 * 
-	 * @param event
-	 *            The event to display
+	 * @param event the event used to fill this tile.
 	 */
 	public Tile(Event event) {
 		super();
@@ -28,7 +32,7 @@ public class Tile extends AnchorPane {
 	}
 
 	/**
-	 * load up the tile pane (AnchorPane)
+	 * Load up the tile pane (AnchorPane).
 	 * 
 	 * @throws IOException
 	 */

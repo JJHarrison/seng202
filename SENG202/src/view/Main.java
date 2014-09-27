@@ -16,6 +16,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import resources.Reference;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class Main extends Application {
 
 	/**

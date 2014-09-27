@@ -164,9 +164,9 @@ public class Persistent {
 	}
 
 	/**
-	 * returns an ArrayList of all the users found in the user directories
+	 * Returns a list of all the users found in the user directories.
 	 * 
-	 * @return ArrayList<String>
+	 * @return
 	 */
 	public static ObservableList<User> getUsers() {
 		return users;

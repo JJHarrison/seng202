@@ -6,36 +6,37 @@ import java.util.List;
  * Each GoogleSearchResult consists of a ResponseData class which holds an array of Results, with 
  * each Result consisting of attributes of title, URL and content.
  * 
- * @author Fitr Team
+ * @author Daniel van Wichen, Daniel Tapp
  *
  */
 public class GoogleSearchResults {
 	
 	private ResponseData responseData;
 	
-	/*
-	 * Get responseData
-	 * @return responseData
+	/**
+	 * Get the response data received from google.
+	 * 
+	 * @return the response data.
 	 */
 	public ResponseData getResponseData() { 
 		return responseData; 
 	}
 	
 	/**
-	 * Sets responseData
-	 * @param responseData
+	 * Set the response data.
+	 * 
+	 * @param responseData the data received from google.
 	 */
 	public void setResponseData(ResponseData responseData){ 
 		this.responseData = responseData; 
 	}
 	 
 	/**
-	 * This class provides an abstraction for the responseData that the Google API returns.
+	 * This class provides an abstraction for the response data that the google API returns.
 	 * 
-	 * @author Fitr Team
-	 *
 	 */
 	public static class ResponseData {
+		
 		private List<Result> results;
 	   
 		/**
@@ -43,44 +44,42 @@ public class GoogleSearchResults {
 		 * 
 		 * @return results
 		 */
-		public List<Result> getResults() 
-	    { 
+		public List<Result> getResults() { 
 	    	return results; 
 	    }
 	    
 		/**
-		 * Sets results
+		 * Sets the returned results.
 		 * 
-		 * @param results
+		 * @param results list of the results returned by google.
 		 */
-	    public void setResults(List<Result> results) 
-	    { 
+	    public void setResults(List<Result> results) { 
 	    	this.results = results; 
 	    }
 	}
 	
 	/**
-	 * This class provides an abstraction for an individual Result with attributes of the Result
+	 * This class provides an abstraction for an individual result with attributes of the result
 	 * title, URL and content. 
 	 * 
-	 * @author Fitr Team
-	 *
 	 */
 	public class Result {
-	    private String titleNoFormatting;
+	    private String title; // needs to be formatted.
 	    private String url;
 	    private String content;
 	    
 	    /**
-	     * Gets the Title with no formatting
-	     * @return titleNoFormatting
+	     * Gets the title with no formatting.
+	     * 
+	     * @return title
 	     */
 	    public String getTitle() { 
-	    	return titleNoFormatting;
+	    	return title;
 	    }
 	    
 	    /**
-	     * Gets the content of the result
+	     * Gets the content of the result.
+	     * 
 	     * @return content
 	     */
 	    public String getContent() {
@@ -88,7 +87,8 @@ public class GoogleSearchResults {
 	    }
 	    
 	    /**
-	     * Gets the URL of the result
+	     * Gets the URL of the result.
+	     * 
 	     * @return url
 	     */
 	    public String getUrl() { 
@@ -96,24 +96,27 @@ public class GoogleSearchResults {
 	    }
 	    
 	    /**
-	     * Sets the content of the result
-	     * @param content
+	     * Sets the content of the result.
+	     * 
+	     * @param content the content text of a particular result.
 	     */
 	    public void setContent(String content) {
 	    	this.content = content;
 	    }
 	    
 	    /**
-	     * Sets the title of the result
-	     * @param title
+	     * Sets the title of the result.
+	     * 
+	     * @param title the title of a particular result.
 	     */
 	    public void setTitle(String title) { 
-	    	this.titleNoFormatting = title; 
+	    	this.title = title; 
 	    }
 	    
 	    /**
-	     * Sets the URL of the result
-	     * @param url
+	     * Sets the URL of the result.
+	     * 
+	     * @param url the URL of a particular result.
 	     */
 	    public void setUrl(String url) { 
 	    	this.url = url; 

@@ -9,6 +9,11 @@ import data.model.Event;
 import data.model.Graph;
 import data.model.GraphHelper;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class GraphController {
 
 	@FXML
@@ -43,9 +48,9 @@ public class GraphController {
 	}
 
 	/**
-	 * fill the tile
+	 * Fill the graph view and set to default graph (HR graph).
 	 * 
-	 * @param event Event to fill
+	 * @param event the event of this tile.
 	 */
 	public void fill(Event event) {
 		this.event = event;
