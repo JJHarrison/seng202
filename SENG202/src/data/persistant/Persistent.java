@@ -8,8 +8,6 @@ import java.util.UUID;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import user.User;

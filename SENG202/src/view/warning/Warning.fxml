@@ -13,7 +13,7 @@
          <children>
             <AnchorPane maxHeight="50.0" minHeight="50.0" onMouseClicked="#hideContent" prefHeight="50.0" style="-fx-background-color: #F98794;">
                <children>
-                  <Button layoutX="808.0" layoutY="13.0" mnemonicParsing="false" onAction="#hideContentButton" prefHeight="30.0" prefWidth="30.0" styleClass="Button" stylesheets="@plus.css" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
+                  <ToggleButton fx:id="buttonPlus" layoutX="808.0" layoutY="13.0" mnemonicParsing="false" onAction="#hideContentButton" prefHeight="30.0" prefWidth="30.0" styleClass="ToggleButton" stylesheets="@plus.css" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
                   <Label layoutX="62.0" layoutY="18.0" text="Health Alert:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font name="System Bold" size="16.0" />

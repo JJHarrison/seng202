@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -31,6 +32,9 @@ public class WarningController {
 	TextArea textDescription;
 	
 	@FXML
+	ToggleButton buttonPlus;
+	
+	@FXML
 	Label labelTime;
 
 	private boolean isOpen = false;
@@ -42,6 +46,7 @@ public class WarningController {
 
 	@FXML
 	void hideContent(MouseEvent event) {
+		buttonPlus.setSelected(! buttonPlus.selectedProperty().get());
 		if (isOpen) {
 			warning.getChildren().remove(textPane);
 			isOpen = !isOpen;
