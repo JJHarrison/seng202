@@ -20,7 +20,7 @@ import data.model.EventContainer;
  * This class provides a way of reading activity events provided by a fitness
  * tracking device.
  * The activity data needs to be in a CSV format consisting of
- * date, time, heart rate, latitude, longitude, and altitude.
+ * date, time, heart rate, latitude, longitude, and altitude..
  * 
  * @author Sam, James
  */
