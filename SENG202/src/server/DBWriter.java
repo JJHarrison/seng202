@@ -168,7 +168,7 @@ public class DBWriter {
 				eventStart = resultSet.getTimestamp("start_time");
 				userID = resultSet.getInt("user_user_id");
 				// check to see if the event is contained in the databae
-				if (eventStart.equals(checkTime) && (userID == user.getUserId())) {
+				if (eventStart.equals(checkTime) && (new Integer(userID).toString().equals(user.getUserId()))) {
 					// if the event is inside the database change isThere to true
 					isThere = true;
 				}
@@ -231,7 +231,7 @@ public class DBWriter {
 			connect = DriverManager.getConnection(url, admin, password);
 			preparedStatement = connect.prepareStatement("INSERT into fitr.user VALUES (?, ?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, user.getUserId()); // add user_id
+			preparedStatement.setString(1, user.getUserId()); // add user_id
 			preparedStatement.setString(2, user.getName()); // add name to the db
 			preparedStatement.setTimestamp(3, new Timestamp(user.getDateofBirth().getTimeInMillis())); // add
 																										// DOB
@@ -276,7 +276,7 @@ public class DBWriter {
 			connect = DriverManager.getConnection(url, admin, password);
 			preparedStatement = connect.prepareStatement(
 					"INSERT into fitr.event VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, user.getUserId()); // user_id
+			preparedStatement.setString(1, user.getUserId()); // user_id
 			preparedStatement.setString(2, event.getEventName()); // event_name
 			preparedStatement.setTimestamp(3, new Timestamp(event.getStartTime().getTimeInMillis())); // start_time
 			preparedStatement.setTimestamp(4, new Timestamp(event.getFinishTime().getTimeInMillis())); // end_time
@@ -316,7 +316,7 @@ public class DBWriter {
 			connect = DriverManager.getConnection(url, admin, password);
 			preparedStatement = connect.prepareStatement("INSERT into fitr.datapoint VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, user.getUserId()); // user_id to be
+			preparedStatement.setString(1, user.getUserId()); // user_id to be
 															// added to the db
 			preparedStatement.setString(2, event.getEventName()); // event_name to be added to the db
 			preparedStatement.setTimestamp(3, new Timestamp(event.getStartTime()

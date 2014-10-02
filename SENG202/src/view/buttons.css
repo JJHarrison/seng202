@@ -1,52 +1,57 @@
 
 .ToggleButtonDash {
-    -fx-background-radius: 50;
+    -fx-background-radius: 0;	
+    -fx-padding: 0 0 0 20;
     -fx-background-color: derive(#87CEFA, -15%);   
-    -fx-background-image: url("dash.png");
-    -fx-background-size: 60;
+    -fx-background-image: url("trophy69.png");
+    -fx-background-size: 55;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: right;
+    -fx-background-position: right 10 center;
+    -fx-border-color: transparent transparent derive(#87CEFA, -25%) transparent
 }
 .ToggleButtonDash:hover {
     -fx-background-color: derive(#87CEFA, -5%);   
-    -fx-background-size: 65;
+    -fx-background-size: 60;
 }
 .ToggleButtonDash:selected {
 	-fx-background-color: derive(#87CEFA, -25%);
-	-fx-background-size: 75;
+	-fx-background-size: 70;
 }
 
 .ToggleButtonAnalysis {
-    -fx-background-radius: 50;
+    -fx-background-radius: 0;	
+    -fx-padding: 0 0 0 20;
     -fx-background-color: derive(#87CEFA, -15%);   
-    -fx-background-image: url("analysis.png");
-    -fx-background-size: 60;
+    -fx-background-image: url("halloween92.png");
+    -fx-background-size: 55;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: right;
+    -fx-background-position: right 10 center;
+    -fx-border-color: transparent transparent derive(#87CEFA, -25%) transparent
 }
 .ToggleButtonAnalysis:hover {
     -fx-background-color: derive(#87CEFA, -5%);   
-    -fx-background-size: 65;
+    -fx-background-size: 60;
 }
 .ToggleButtonAnalysis:selected {
 	-fx-background-color: derive(#87CEFA, -25%);
-	-fx-background-size: 75;
+	-fx-background-size: 70;
 }
 
 .ToggleButtonWeb {
-    -fx-background-radius: 50;
+    -fx-background-radius: 0;	
+    -fx-padding: 0 0 0 20;
     -fx-background-color: derive(#87CEFA, -15%);   
     -fx-background-image: url("web.png");
-    -fx-background-size: 60;
+    -fx-background-size: 55;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: right;
+    -fx-background-position: right 10 center;
 }
 .ToggleButtonWeb:hover {
     -fx-background-color: derive(#87CEFA, -5%);   
-    -fx-background-size: 65;
+    -fx-background-size: 60;
 }
 .ToggleButtonWeb:selected {
 	-fx-background-color: derive(#87CEFA, -25%);
-	-fx-background-size: 75;
+	-fx-background-size: 70;
 }
 

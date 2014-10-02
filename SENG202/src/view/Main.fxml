@@ -65,7 +65,7 @@
             <CalendarView fx:id="calendarView" GridPane.rowIndex="1" />
             <VBox alignment="TOP_CENTER" stylesheets="@buttons.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
-                  <ToggleButton fx:id="buttonDash" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadDash" prefHeight="75.0" style="-fx-background-radius: 0;" styleClass="ToggleButtonDash" text="Dash">
+                  <ToggleButton fx:id="buttonDash" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadDash" prefHeight="75.0" selected="true" styleClass="ToggleButtonDash" text="Dash">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -73,7 +73,7 @@
                         <Insets />
                      </VBox.margin>
                   </ToggleButton>
-                  <ToggleButton fx:id="buttonAnalysis" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadAnalysis" prefHeight="75.0" style="-fx-background-radius: 0;" styleClass="ToggleButtonAnalysis" text="Analysis">
+                  <ToggleButton fx:id="buttonAnalysis" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadAnalysis" prefHeight="75.0" styleClass="ToggleButtonAnalysis" text="Analysis">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -81,7 +81,7 @@
                         <Insets />
                      </VBox.margin>
                   </ToggleButton>
-                  <ToggleButton fx:id="buttonWeb" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadWeb" prefHeight="75.0" style="-fx-background-radius: 0;" styleClass="ToggleButtonWeb" text="Web">
+                  <ToggleButton fx:id="buttonWeb" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadWeb" prefHeight="75.0" styleClass="ToggleButtonWeb" text="Web">
                      <font>
                         <Font size="36.0" />
                      </font>

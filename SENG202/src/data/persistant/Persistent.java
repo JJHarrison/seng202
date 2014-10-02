@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -73,7 +74,7 @@ public class Persistent {
 	 * user profile sub directories are named as the users ID number
 	 * @return profileFilePath
 	 */
-	public static String getProfileFilePath(int userID) {
+	public static String getProfileFilePath(String userID) {
 		return getFilePath() + userID + "/." + userID + ".fitr";
 	}
 
@@ -109,7 +110,7 @@ public class Persistent {
 		boolean userAdded;
 		
 		if (!users.contains(user)) {
-			int userID = user.getUserId();
+			String userID = user.getUserId();
 			new File(getFilePath() + userID).mkdir();
 
 			try {
@@ -121,7 +122,7 @@ public class Persistent {
 			users.add(user);
 			userNames.add(user.getName());
 			Saver.SaveUser(user); // automatically save the user to json once they have been added 
-			prefs.putInt("UserID", prefs.getInt("UserID", 0) + 1);
+			prefs.put("UserID", generateUserID());
 			userAdded = true;
 		} else {
 			userAdded = false;
@@ -130,14 +131,24 @@ public class Persistent {
 		}
 		return userAdded;
 	}
+	
+	/**
+	 * generates a unique UserID using UUID
+	 * @return unique userID
+	 */
+	private static String generateUserID() {
+		String userID = UUID.randomUUID().toString();
+		System.out.println(userID);
+		return userID;
+	}
 
 	/**
 	 * returns the most recently used userID.
 	 * used in generating userID values 
 	 * @return userId
 	 */
-	public static int getUserID() {
-		return prefs.getInt("UserID", 0);
+	public static String getUserID() {
+		return prefs.get("UserID", null);
 	}
 
 	/**
@@ -164,9 +175,9 @@ public class Persistent {
 	}
 
 	/**
-	 * returns an ArrayList of all the users found in the user directories
+	 * Returns a list of all the users found in the user directories.
 	 * 
-	 * @return ArrayList<String>
+	 * @return
 	 */
 	public static ObservableList<User> getUsers() {
 		return users;
@@ -218,7 +229,6 @@ public class Persistent {
 		try {
 			prefs.clear();
 		} catch (BackingStoreException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -8,7 +8,7 @@ import java.net.URLEncoder;
  * This class provides an abstraction of a SearchQuery, which has the attribute of an address
  * which is the address to request the Gson file from the Google API, including a "count" which
  * is for what set of results the user wants to show.
- * @author Fitr Team
+ * @author Jaln, Daniel van Wichen
  *
  */
 public class SearchQuery {

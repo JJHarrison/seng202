@@ -32,7 +32,7 @@ public class User implements Serializable {
 	private double BMI;
 	private int restingHeartRate;
 	private EventContainer events;
-	private int userID;
+	private String userID;
 	private boolean hasBradycardia = false;
 	private boolean hasTachycardia = false;
 
@@ -223,9 +223,8 @@ public class User implements Serializable {
 	/**
 	 * returns the user id for a user so that it can be stored in the database
 	 * 
-	 * @return the user id
 	 */
-	public int getUserId() {
+	public String getUserId() {
 		return userID;
 	}
 
@@ -277,7 +276,7 @@ public class User implements Serializable {
 	 * im not sure if we need this method?? dont we automatically set the userID each time a new user is made???
 	 * @param id
 	 */
-	public void setUserID(int id) {
+	public void setUserID(String id) {
 		this.userID = id;
 	}
 	

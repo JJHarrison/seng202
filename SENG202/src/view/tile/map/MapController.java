@@ -9,6 +9,11 @@ import javafx.scene.image.ImageView;
 import data.model.DataPoint;
 import data.model.Event;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class MapController {
 
 	@FXML
@@ -26,9 +31,9 @@ public class MapController {
 	private static String parameterType = "maptype=roadmap";
 
 	/**
-	 * fill the tile
+	 * Fill the map view by loading the static map.
 	 * 
-	 * @param event event to fill
+	 * @param event the event of this tile.
 	 */
 	public void fill(Event event) {
 		this.event = event;

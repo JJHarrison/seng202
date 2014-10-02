@@ -11,6 +11,11 @@ import view.Main;
 import view.user.UserManagementController.View;
 import data.persistant.Persistent;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class UserLoginController implements Switchable {
 	private UserManagementController controller;
 	
