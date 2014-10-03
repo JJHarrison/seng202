@@ -41,15 +41,15 @@ public class LoadSummary {
 	/**
 	 * increments the number of events added
 	 */
-	public static void addEventAdded() {
-		eventsAdded++;
+	public static void setEventsAdded(int numberOfEvents) {
+		eventsAdded += numberOfEvents;
 	}
 	
 	/**
 	 * increments the number of events not added
 	 */
-	public static void addEventNotAdded() {
-		eventsNotAdded++;
+	public static void setEventsNotAdded(int numberOfEvents) {
+		eventsNotAdded += numberOfEvents;
 	}
 	
 	/**
@@ -57,7 +57,11 @@ public class LoadSummary {
 	 * @return summary of the load 
 	 */
 	public static String getSumamry() {
-		return String.format("%d new events added", 6);
+		return String.format("%d new events added\n"
+				+ "%d events not added\n"
+				+ "%d line errors occured\n"
+				+ "%d bad points were found",
+				eventsAdded, eventsNotAdded, lineErrors, badPoints);
 	}
 
 }
