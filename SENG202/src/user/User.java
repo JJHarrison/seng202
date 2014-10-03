@@ -319,11 +319,14 @@ public class User implements Serializable {
 	 * @return
 	 */
 	public static User mockUser() {
+		
+		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
+				Gender.MALE, 85.3, 190, null, 120);
+		
 		FileLoader fl = new FileLoader();
 		fl.load();
 		EventContainer ec = fl.getEventContainer();
-		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE, 85.3, 190, ec, 120);
+		mock.addEvents(ec);
 		return mock;
 	}
 //-----------------------------------------------------------------------------------------

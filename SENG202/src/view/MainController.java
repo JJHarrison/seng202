@@ -153,6 +153,7 @@ public class MainController {
 					fl.load();
 					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
 					System.out.println(LoadSummary.getSumamry());
+					MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
 					LoadSummary.clear();
 					
 					Calendar calendar = Calendar.getInstance();

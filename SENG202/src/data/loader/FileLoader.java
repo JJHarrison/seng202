@@ -51,6 +51,7 @@ public class FileLoader {
 	 * creates a file loader with the default csv file, for testing purposes 
 	 */
 	public FileLoader() {
+		System.out.println("loading up the default file");
 		inputStream = this.getClass().getResourceAsStream("seng202_2014_example_data.csv");
 	}
 

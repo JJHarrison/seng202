@@ -57,7 +57,8 @@ public class LoadSummary {
 	 * @return summary of the load 
 	 */
 	public static String getSumamry() {
-		return String.format("%d new events added\n"
+		return String.format("Import Summary:\n"
+				+ "%d new events added\n"
 				+ "%d events not added\n"
 				+ "%d line errors occured\n"
 				+ "%d bad points were found",
