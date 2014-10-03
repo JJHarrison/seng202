@@ -117,12 +117,14 @@ public class DashController {
 	 * Displays the warnings the user has generated.
 	 */
 	private void fillWarnings() {
-		warningPane.getChildren().add(
-				new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
-		warningPane.getChildren().add(
-				new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
-		warningPane.getChildren().add(
-				new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+		if (Persistent.getCurrentUser().hasBradycardia()) {
+			warningPane.getChildren().add(
+					new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+		}
+		if (Persistent.getCurrentUser().hasTachycardia()) {
+			warningPane.getChildren().add(
+					new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
+		}
 	}
 
 	/**
