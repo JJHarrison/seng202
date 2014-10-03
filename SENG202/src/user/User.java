@@ -101,8 +101,14 @@ public class User implements Serializable {
 	 * Tachycardia is when the heart rate exceeds a given range when exercising.
 	 */
 	private void calculateHealthWarnings() {
+		if (getAge() < 12) {
+			hasTachycardia = restingHeartRate > 130 ? true : false;
+		} else if (getAge() < 16) {
+			hasTachycardia = restingHeartRate > 119 ? true : false;
+		} else {
+			hasTachycardia = restingHeartRate > 100 ? true : false;
+		}
 		hasBradycardia = restingHeartRate < 60 ? true : false;
-		hasTachycardia = restingHeartRate > 100 ? true : false;
 	}
 
 	/**
@@ -235,7 +241,7 @@ public class User implements Serializable {
 	 */
 	public int getAge() {
 	    Calendar now = Calendar.getInstance();
-	    Calendar birth = Persistent.getCurrentUser().getDateofBirth();
+	    Calendar birth = getDateofBirth();
 	    int diff = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
 	    if (birth.get(Calendar.MONTH) > now.get(Calendar.MONTH) || 
 	        (now.get(Calendar.MONTH) == birth.get(Calendar.MONTH) && birth.get(Calendar.DATE) > now.get(Calendar.DATE))) {
