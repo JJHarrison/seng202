@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import data.loader.FileLoader;
+import data.loader.LoadSummary;
 import data.model.Event;
 import data.model.EventContainer;
 import data.persistant.Persistent;
@@ -101,8 +102,14 @@ public class User implements Serializable {
 	 * Tachycardia is when the heart rate exceeds a given range when exercising.
 	 */
 	private void calculateHealthWarnings() {
+		if (getAge() < 12) {
+			hasTachycardia = restingHeartRate > 130 ? true : false;
+		} else if (getAge() < 16) {
+			hasTachycardia = restingHeartRate > 119 ? true : false;
+		} else {
+			hasTachycardia = restingHeartRate > 100 ? true : false;
+		}
 		hasBradycardia = restingHeartRate < 60 ? true : false;
-		hasTachycardia = restingHeartRate > 100 ? true : false;
 	}
 
 	/**
@@ -235,7 +242,7 @@ public class User implements Serializable {
 	 */
 	public int getAge() {
 	    Calendar now = Calendar.getInstance();
-	    Calendar birth = Persistent.getCurrentUser().getDateofBirth();
+	    Calendar birth = getDateofBirth();
 	    int diff = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
 	    if (birth.get(Calendar.MONTH) > now.get(Calendar.MONTH) || 
 	        (now.get(Calendar.MONTH) == birth.get(Calendar.MONTH) && birth.get(Calendar.DATE) > now.get(Calendar.DATE))) {
@@ -271,14 +278,6 @@ public class User implements Serializable {
 	public int getRestingHeartRate() {
 		return restingHeartRate;
 	}
-
-	/**
-	 * im not sure if we need this method?? dont we automatically set the userID each time a new user is made???
-	 * @param id
-	 */
-	public void setUserID(String id) {
-		this.userID = id;
-	}
 	
 	/**
 	 * adds events from the new event container to the users event container
@@ -286,10 +285,14 @@ public class User implements Serializable {
 	 * @param events
 	 */
 	public void addEvents(EventContainer events) {
+		int sizeBefore = this.events.getAllEvents().size();
 		for(Event event : events.getAllEvents()) {
 			this.events.addEvent(event);
 		}
-		
+		//change in the number of events 
+		LoadSummary.setEventsAdded(this.events.getAllEvents().size() - sizeBefore);
+		//total events in event container to be added - new events added 
+		LoadSummary.setEventsNotAdded(events.getAllEvents().size() - (this.events.getAllEvents().size() - sizeBefore));
 		Saver.SaveUser(this);
 	}
 
@@ -310,17 +313,20 @@ public class User implements Serializable {
 	}
 //-----------------------------Do not delete till end of project----------------------------	
 	/**
-	 * TEMPORY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
+	 * TEMPORARY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
 	 * code, please leave this here till end of project
 	 * 
 	 * @return
 	 */
 	public static User mockUser() {
+		
+		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
+				Gender.MALE, 85.3, 190, null, 120);
+		
 		FileLoader fl = new FileLoader();
 		fl.load();
 		EventContainer ec = fl.getEventContainer();
-		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE, 85.3, 190, ec, 120);
+		mock.addEvents(ec);
 		return mock;
 	}
 //-----------------------------------------------------------------------------------------
