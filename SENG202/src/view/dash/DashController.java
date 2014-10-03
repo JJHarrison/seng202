@@ -133,11 +133,11 @@ public class DashController {
 		for (Event e: Persistent.getCurrentUser().getEvents().getAllEvents()) {
 			if (e.hasBradycardia()) {
 				warningPane.getChildren().add(
-						new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+						new Warning(Risk.BRADYCARDIA, e.getStartTime()));
 			}
 			if (e.hasTachycardia()) {
 				warningPane.getChildren().add(
-						new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
+						new Warning(Risk.TACHYCARDIA, e.getStartTime()));
 			}
 		}
 	}
