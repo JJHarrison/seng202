@@ -102,8 +102,14 @@ public class User implements Serializable {
 	 * Tachycardia is when the heart rate exceeds a given range when exercising.
 	 */
 	private void calculateHealthWarnings() {
+		if (getAge() < 12) {
+			hasTachycardia = restingHeartRate > 130 ? true : false;
+		} else if (getAge() < 16) {
+			hasTachycardia = restingHeartRate > 119 ? true : false;
+		} else {
+			hasTachycardia = restingHeartRate > 100 ? true : false;
+		}
 		hasBradycardia = restingHeartRate < 60 ? true : false;
-		hasTachycardia = restingHeartRate > 100 ? true : false;
 	}
 
 	/**
@@ -236,7 +242,7 @@ public class User implements Serializable {
 	 */
 	public int getAge() {
 	    Calendar now = Calendar.getInstance();
-	    Calendar birth = Persistent.getCurrentUser().getDateofBirth();
+	    Calendar birth = getDateofBirth();
 	    int diff = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
 	    if (birth.get(Calendar.MONTH) > now.get(Calendar.MONTH) || 
 	        (now.get(Calendar.MONTH) == birth.get(Calendar.MONTH) && birth.get(Calendar.DATE) > now.get(Calendar.DATE))) {
@@ -271,14 +277,6 @@ public class User implements Serializable {
 	 */
 	public int getRestingHeartRate() {
 		return restingHeartRate;
-	}
-
-	/**
-	 * im not sure if we need this method?? dont we automatically set the userID each time a new user is made???
-	 * @param id
-	 */
-	public void setUserID(String id) {
-		this.userID = id;
 	}
 	
 	/**
@@ -315,7 +313,7 @@ public class User implements Serializable {
 	}
 //-----------------------------Do not delete till end of project----------------------------	
 	/**
-	 * TEMPORY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
+	 * TEMPORARY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
 	 * code, please leave this here till end of project
 	 * 
 	 * @return
