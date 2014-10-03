@@ -177,56 +177,71 @@ public class MainController {
 		});
 
 		toggleGroup.getToggles().addAll(buttonAnalysis, buttonDash, buttonWeb);
+		
+		// need this so the dash loads first... i don't know why either...
+		toggleGroup.selectToggle(buttonWeb);
 		buttonDash.fire();
 
 	}
 
 	@FXML
 	private void loadDash(ActionEvent event) {
-		toggleGroup.selectToggle(buttonDash);
-
-		viewMainContent.getChildren().clear();
-		viewMainContent.getChildren().add(viewDash);
-		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewDash);
-		ft.setFromValue(0);
-		ft.setToValue(1);
-		ft.play();
-		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
-		ft.setToValue(0);
-		ft.play();
-		calendarView.disableProperty().set(true);
+		if (toggleGroup.getSelectedToggle() == buttonDash) {
+			toggleGroup.selectToggle(buttonDash);
+	
+			viewMainContent.getChildren().clear();
+			viewMainContent.getChildren().add(viewDash);
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewDash);
+			ft.setFromValue(0);
+			ft.setToValue(1);
+			ft.play();
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
+			ft.setToValue(0);
+			ft.play();
+			calendarView.disableProperty().set(true);
+		} else {
+			toggleGroup.selectToggle(buttonDash);
+		}
 	}
 
 	@FXML
 	private void loadAnalysis(ActionEvent event) {
-		toggleGroup.selectToggle(buttonAnalysis);
-
-		viewMainContent.getChildren().clear();
-		viewMainContent.getChildren().add(viewAnalysis);
-		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewAnalysis);
-		ft.setFromValue(0);
-		ft.setToValue(1);
-		ft.play();
-		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
-		ft.setToValue(1);
-		ft.play();
-		calendarView.disableProperty().set(false);
+		if (toggleGroup.getSelectedToggle() == buttonAnalysis) {
+			toggleGroup.selectToggle(buttonAnalysis);
+	
+			viewMainContent.getChildren().clear();
+			viewMainContent.getChildren().add(viewAnalysis);
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewAnalysis);
+			ft.setFromValue(0);
+			ft.setToValue(1);
+			ft.play();
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
+			ft.setToValue(1);
+			ft.play();
+			calendarView.disableProperty().set(false);
+		} else {
+			toggleGroup.selectToggle(buttonAnalysis);
+		}
 	}
 
 	@FXML
 	private void loadWeb() {
-		toggleGroup.selectToggle(buttonWeb);
-
-		viewMainContent.getChildren().clear();
-		viewMainContent.getChildren().add(viewWeb);
-		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewWeb);
-		ft.setFromValue(0);
-		ft.setToValue(1);
-		ft.play();
-		ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
-		ft.setToValue(0);
-		ft.play();
-		calendarView.disableProperty().set(true);
+		if (toggleGroup.getSelectedToggle() == buttonWeb) {
+			toggleGroup.selectToggle(buttonWeb);
+	
+			viewMainContent.getChildren().clear();
+			viewMainContent.getChildren().add(viewWeb);
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewWeb);
+			ft.setFromValue(0);
+			ft.setToValue(1);
+			ft.play();
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
+			ft.setToValue(0);
+			ft.play();
+			calendarView.disableProperty().set(true);
+		} else {
+			toggleGroup.selectToggle(buttonWeb);
+		}
 	}
 
 }
