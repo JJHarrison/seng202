@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import data.loader.FileLoader;
+import data.loader.LoadSummary;
 import data.model.Event;
 import data.model.EventContainer;
 import data.persistant.Persistent;
@@ -286,10 +287,14 @@ public class User implements Serializable {
 	 * @param events
 	 */
 	public void addEvents(EventContainer events) {
+		int sizeBefore = this.events.getAllEvents().size();
 		for(Event event : events.getAllEvents()) {
 			this.events.addEvent(event);
 		}
-		
+		//change in the number of events 
+		LoadSummary.setEventsAdded(this.events.getAllEvents().size() - sizeBefore);
+		//total events in event container to be added - new events added 
+		LoadSummary.setEventsNotAdded(events.getAllEvents().size() - (this.events.getAllEvents().size() - sizeBefore));
 		Saver.SaveUser(this);
 	}
 
