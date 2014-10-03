@@ -88,9 +88,14 @@ public class Event implements Serializable {
 		for (DataPoint p : points) {
 			if (p.getSpeed() != 0) {
 				stress = sf * (p.getHeartRate() / p.getSpeed());
-				stress = 0.5 + (1 / Math.PI)
-						* Math.atan((Math.PI / 100) * (stress - 1));
-				p.setStressLevel(stress);
+				if (stress < 0.5) {
+					stress = 0.25 * stress + 0.25;
+					p.setStressLevel(stress);
+				} else {
+					stress = 0.5 + (1 / (2* Math.PI))
+							* Math.atan(stress - 1);
+					p.setStressLevel(stress);
+				}
 			} else {
 				p.setStressLevel(0.5);
 			}
