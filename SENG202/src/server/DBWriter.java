@@ -336,16 +336,4 @@ public class DBWriter {
 			}
 		}
 	}
-	
-	
-	public static void main(String[] args) {
-		User mocky = User.mockUser();
-		mocky.setUserID("12345");
-		DBWriter dbw = new DBWriter();
-		dbw.writeUser(mocky);
-//		for (Event event : mocky.getEvents().getAllEvents()) {
-//			System.out.println(event.getFinishTime().getTimeInMillis());
-//			dbw.writeEventInfo(mocky, event);
-//		}
-	}
 }
