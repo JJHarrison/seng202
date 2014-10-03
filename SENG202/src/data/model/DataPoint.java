@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import user.User.Gender;
+import data.persistant.Persistent;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -257,10 +259,18 @@ public class DataPoint implements Serializable {
 	 * @return calories burnt from last point to this point
 	 */
 	private double calculateCalories() {
-		double weight = 75;//Persistent.getCurrentUser().getWeight();
-		double runMET = 7.5; // assuming that all activity is running for now
+		double calories;
+		double weight = Persistent.getCurrentUser().getWeight();
+		int age = Persistent.getCurrentUser().getAge();
 		double timeInHours = (double) duration / 3600;
-		double calories = weight * runMET * timeInHours;
+		
+		if(Persistent.getCurrentUser().getGender() == Gender.MALE) {
+			calories = ((-55.0969 + (0.6309 * heartRate) + (0.1988 * weight)
+					+ (0.2017 * age)) / 4.184) * 60 * timeInHours;
+		} else {
+			calories = ((-20.4022 + (0.4472 * heartRate) - (0.1263 * weight)
+					+ (0.074 * age)) / 4.184) * 60 * timeInHours;
+		}
 		return calories;
 	}
 
