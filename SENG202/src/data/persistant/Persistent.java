@@ -221,6 +221,33 @@ public class Persistent {
 			}
 		}
 	}
+	
+	/**
+	 * deletes the given user and removes its directory and json files
+	 * @param user the user to be deleted
+	 */
+	public static void deleteUser(User user) {
+		File path = new File(getFilePath() + "/" + user.getUserId());
+		deleteDirectory(path);
+	}
+	
+	/**
+	 * deletes the files at filePath 
+	 * @param path path to delete files from 
+	 */
+	static public void deleteDirectory(File path) {
+		if(path.exists()) {
+			File[] files = path.listFiles();
+			for(int i=0; i<files.length; i++) {
+				if(files[i].isDirectory()) {
+					deleteDirectory(files[i]);
+					} else {
+						files[i].delete();
+					}
+				}
+			}
+		path.delete();
+	}
 
 	/**
 	 * used to clear the user preferences when reseting the program 
@@ -244,8 +271,14 @@ public class Persistent {
 	/**
 	 * Main method used only for testing purposes 
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String args[]) {
-		clear();
+	public static void main(String args[]) throws Exception {
+		//clear();
+		Persistent.setFilePath("/Users/SamSchofield/Desktop");
+		User u = User.mockUser();
+		Persistent.newUser(u);
+		deleteUser(u);
+		
 	}
 }
