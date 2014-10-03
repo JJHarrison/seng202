@@ -14,10 +14,9 @@ import data.model.DataPoint;
 import data.model.Event;
 
 /**
- * This class provides functionality for writing objects to the mysql database
- * using sql queries It is used for taking a serialized user profile and writing
- * the information associated with the user, the information associated with the
- * events and the datapoints each event contains.
+ * This class provides functionality for writing objects to the mysql database uing sql queries.
+ * It is used for taking a serialized user profile and writing the information associated with the user,
+ * the information associated with the events and the datapoints each event contains.
  * 
  * @author James
  *
@@ -27,7 +26,7 @@ public class DBWriter {
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
-	private String url = "jdbc:sqlite:E:/fitr_database/fitr.db";			//"jdbc:mysql://localhost:3306/fitr";
+	private String url = "jdbc:sqlite:E:/fitr_database/fitr.db";
 	private String admin = "fitr.admin";
 	private String password = "password";
 
@@ -55,6 +54,8 @@ public class DBWriter {
 		for (Event event : user.getEvents().getAllEvents()) {
 			writeEvent(user, event);
 		}
+		
+		
 	}
 
 	/**
@@ -335,5 +336,11 @@ public class DBWriter {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static void main(String[] args) { 
+		DBWriter dbw = new DBWriter();
+		User mocky = User.mockUser();
+		dbw.writeUser(mocky);
 	}
 }
