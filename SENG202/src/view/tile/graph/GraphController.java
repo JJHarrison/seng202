@@ -39,6 +39,12 @@ public class GraphController {
 
 	private ToggleGroup toggleGroup = new ToggleGroup();
 	private Event event;
+	
+	private enum GraphType {
+		HEARTRATE, STRESS, CALORIES,
+		DISTANCE, SPEED, ALTITUDE
+	}
+	private GraphType selected;
 
 	@FXML 
 	void initialize() {
@@ -61,51 +67,69 @@ public class GraphController {
 	}
 
 	private void fillHRGraph(Event event) {
-		Graph graph = GraphHelper.getHeartRateGraph(event);
-		lineChart.getXAxis().setLabel(graph.getXName());
-		lineChart.getYAxis().setLabel(graph.getYName());
-		lineChart.getData().clear();
-		lineChart.getData().add(graph.getPoints());
+		if (selected != GraphType.HEARTRATE) {
+			Graph graph = GraphHelper.getHeartRateGraph(event);
+			lineChart.getXAxis().setLabel(graph.getXName());
+			lineChart.getYAxis().setLabel(graph.getYName());
+			lineChart.getData().clear();
+			lineChart.getData().add(graph.getPoints());
+			selected = GraphType.HEARTRATE;
+		}
 	}
 
 	private void fillStressGraph(Event event) {
-		Graph graph = GraphHelper.getStressLevelGraph(event);
-		lineChart.getXAxis().setLabel(graph.getXName());
-		lineChart.getYAxis().setLabel(graph.getYName());
-		lineChart.getData().clear();
-		lineChart.getData().add(graph.getPoints());
+		if (selected != GraphType.STRESS) {
+			Graph graph = GraphHelper.getStressLevelGraph(event);
+			lineChart.getXAxis().setLabel(graph.getXName());
+			lineChart.getYAxis().setLabel(graph.getYName());
+			lineChart.getData().clear();
+			lineChart.getData().add(graph.getPoints());
+			selected = GraphType.STRESS;
+		}
 	}
 
 	private void fillCaloriesGraph(Event event) {
-		Graph graph = GraphHelper.getCaloriesGraph(event, null);
-		lineChart.getXAxis().setLabel(graph.getXName());
-		lineChart.getYAxis().setLabel(graph.getYName());
-		lineChart.getData().clear();
-		lineChart.getData().add(graph.getPoints());
+		if (selected != GraphType.CALORIES) {
+			Graph graph = GraphHelper.getCaloriesGraph(event, null);
+			lineChart.getXAxis().setLabel(graph.getXName());
+			lineChart.getYAxis().setLabel(graph.getYName());
+			lineChart.getData().clear();
+			lineChart.getData().add(graph.getPoints());
+			selected = GraphType.CALORIES;
+		}
 	}
 
 	private void fillDistanceGraph(Event event) {
-		Graph graph = GraphHelper.getDistanceGraph(event);
-		lineChart.getXAxis().setLabel(graph.getXName());
-		lineChart.getYAxis().setLabel(graph.getYName());
-		lineChart.getData().clear();
-		lineChart.getData().add(graph.getPoints());
+		if (selected != GraphType.DISTANCE) {
+			Graph graph = GraphHelper.getDistanceGraph(event);
+			lineChart.getXAxis().setLabel(graph.getXName());
+			lineChart.getYAxis().setLabel(graph.getYName());
+			lineChart.getData().clear();
+			lineChart.getData().add(graph.getPoints());
+			selected = GraphType.DISTANCE;
+		}
 	}
 
 	private void fillSpeedGraph(Event event) {
-		Graph graph = GraphHelper.getSpeedGraph(event);
-		lineChart.getXAxis().setLabel(graph.getXName());
-		lineChart.getYAxis().setLabel(graph.getYName());
-		lineChart.getData().clear();
-		lineChart.getData().add(graph.getPoints());
+		if (selected != GraphType.SPEED) {
+			Graph graph = GraphHelper.getSpeedGraph(event);
+			lineChart.getXAxis().setLabel(graph.getXName());
+			lineChart.getYAxis().setLabel(graph.getYName());
+			lineChart.getData().clear();
+			lineChart.getData().add(graph.getPoints());
+			selected = GraphType.SPEED;
+		}
 	}
 
 	private void fillAltitudeGraph(Event event) {
-		Graph graph = GraphHelper.getAltitudeGraph(event);
-		lineChart.getXAxis().setLabel(graph.getXName());
-		lineChart.getYAxis().setLabel(graph.getYName());
-		lineChart.getData().clear();
-		lineChart.getData().add(graph.getPoints());
+		if (selected != GraphType.ALTITUDE) {
+			Graph graph = GraphHelper.getAltitudeGraph(event);
+			lineChart.getXAxis().setLabel(graph.getXName());
+			lineChart.getYAxis().setLabel(graph.getYName());
+			lineChart.getData().clear();
+			lineChart.getData().add(graph.getPoints());
+			selected = GraphType.ALTITUDE;
+		}
 	}
 
 	@FXML
