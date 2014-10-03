@@ -119,7 +119,7 @@ public class FileLoader {
 	 * @return DataPoint of line which was read
 	 */
 	private DataPoint parseLine(String[] line) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy,hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy,kk:mm:ss");
 		
 		Calendar date = null;
 		try {
