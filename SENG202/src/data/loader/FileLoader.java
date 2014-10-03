@@ -12,8 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.sun.org.apache.xml.internal.serializer.ElemDesc;
-
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
