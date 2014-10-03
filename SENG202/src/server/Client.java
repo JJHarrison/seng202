@@ -139,4 +139,12 @@ public class Client {
 	public boolean isSuccessful(){
 		return hasConnected && hasTransfered;
 	}
+	
+	public static void main(String[] args) {
+		User mocky = User.mockUser();
+		Client c = new Client();
+		c.setupConnection();
+		c.transferToServer(mocky);
+		c.closeStuff();
+	}
 }

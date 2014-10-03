@@ -42,6 +42,7 @@ public class UserLoginManager extends Application {
 		stage.setScene(new Scene(root));
 		stage.setTitle("User Management");
 		
+		//UserLoginManager.stage.show();
 		Platform.runLater(new Runnable() {
 
 			@Override
