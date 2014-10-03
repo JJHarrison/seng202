@@ -271,14 +271,6 @@ public class User implements Serializable {
 	public int getRestingHeartRate() {
 		return restingHeartRate;
 	}
-
-	/**
-	 * im not sure if we need this method?? dont we automatically set the userID each time a new user is made???
-	 * @param id
-	 */
-	public void setUserID(String id) {
-		this.userID = id;
-	}
 	
 	/**
 	 * adds events from the new event container to the users event container
@@ -310,7 +302,7 @@ public class User implements Serializable {
 	}
 //-----------------------------Do not delete till end of project----------------------------	
 	/**
-	 * TEMPORY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
+	 * TEMPORARY PLEASE DONT DELETE!!!!!! Tired of making new users to test my
 	 * code, please leave this here till end of project
 	 * 
 	 * @return

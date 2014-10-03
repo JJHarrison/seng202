@@ -233,20 +233,12 @@ public class DBWriter {
 					Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, user.getUserId()); // add user_id
 			preparedStatement.setString(2, user.getName()); // add name to the db
-			preparedStatement.setTimestamp(3, new Timestamp(user.getDateofBirth().getTimeInMillis())); // add
-																										// DOB
-																										// to
-																										// the
-																										// db
-			preparedStatement.setDouble(4, user.getWeight()); // add weight to
-																// the db
-			preparedStatement.setDouble(5, user.getHeight()); // add height to
-																// the db
-			preparedStatement.setString(6, user.genderForDB()); // add gender to
-																// the db
+			preparedStatement.setTimestamp(3, new Timestamp(user.getDateofBirth().getTimeInMillis())); // add DOB to the db
+			preparedStatement.setDouble(4, user.getWeight()); // add weight to the db
+			preparedStatement.setDouble(5, user.getHeight()); // add height to the db
+			preparedStatement.setString(6, user.genderForDB()); // add gender to the db
 			preparedStatement.setDouble(7, user.getBMI()); // add bmi to the db
-			preparedStatement.executeUpdate(); // execute the query/upload the
-												// db
+			preparedStatement.executeUpdate(); // execute the query/upload the db
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -316,8 +308,7 @@ public class DBWriter {
 			connect = DriverManager.getConnection(url, admin, password);
 			preparedStatement = connect.prepareStatement("INSERT into fitr.datapoint VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setString(1, user.getUserId()); // user_id to be
-															// added to the db
+			preparedStatement.setString(1, user.getUserId()); // user_id to be added to the db
 			preparedStatement.setString(2, event.getEventName()); // event_name to be added to the db
 			preparedStatement.setTimestamp(3, new Timestamp(event.getStartTime()
 										.getTimeInMillis())); // event_startime to be added to the db
