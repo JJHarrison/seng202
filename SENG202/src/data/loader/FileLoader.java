@@ -28,7 +28,7 @@ public class FileLoader {
 	private InputStream inputStream;
 	private EventContainer eventContainer = new EventContainer();
 	private DataPoint lastPoint;
-
+	
 	/**
 	 * Creates a FileLoader with a particular input file
 	 * 
@@ -86,10 +86,15 @@ public class FileLoader {
 
 					} else { // line containing data
 						DataPoint point = parseLine(dataLine);
-						points.add(point);
+						
+						//dont add null points
+						if(point != null) {
+							points.add(point);
+						}
 					}
-				}
+				} 
 			}
+			
 			// add the last event of the csv file to events
 			if (!points.isEmpty() && eventName != null) { 
 				eventContainer.addEvent(new Event(eventName, points));
@@ -128,8 +133,15 @@ public class FileLoader {
 		DataPoint point = new DataPoint.Builder().date(date)
 				.heartRate(heartrate).latitude(latitude).longitude(longitude)
 				.altitude(altitude).prevDataPoint(lastPoint).build();
+		
+		//checks if the point has reasonable values 
+		if(isValidPoint(point)) {
+			lastPoint = point;
+		} else {
+			//point is invalid so dont add it  
+			point = null;
+		}
 
-		lastPoint = point;
 		return point;
 	}
 
@@ -170,8 +182,10 @@ public class FileLoader {
  			}
 		} else if(line.startsWith("#start")) {
 			String[] values = line.split(",");
-			if (values.length == 2) {
+			if (values.length >= 2) {
 				isValid = true;
+				//making sure the line doesn't include any un-needed extra's 
+				line = values[0] + "," + values[1] + ",,,,";
 			}
 		}
 		return isValid;
@@ -258,5 +272,36 @@ public class FileLoader {
  	private boolean isLongitudeValid(String lng){
  		String[] values = lng.split("\\.");		
  		return (isInRange(lng, -180, 180) &&  values[1].length() >= 5);
+ 	}
+ 	
+ 	/**
+ 	 * Checks to see if the given point is valid e.g
+ 	 * The time is after the previous point, the lat and lon are reasonable etc
+ 	 * @param point the point to check 
+ 	 * @return if the point is valid or not 
+ 	 */
+ 	private boolean isValidPoint(DataPoint point) {
+ 		boolean isValid = false;
+ 		if(pointDateValid(point)) {
+ 			isValid = true;
+ 		}
+ 		return isValid;
+ 	}
+ 	
+ 	/**
+ 	 * Checks to see if the current data point comes after the previous data point in time 
+ 	 * @param point the point to check 
+ 	 * @return if the date of the point is correct
+ 	 */
+ 	private boolean pointDateValid(DataPoint point) {
+ 		boolean isValid = false;
+ 		if (lastPoint == null) {
+ 			//No last point, so the date has to be correct 
+ 			isValid = true;
+ 		} else {
+ 			//check if the current point comes after the last point (in time)
+ 			isValid = point.getDate().after(lastPoint.getDate());
+ 		}
+ 		return isValid;
  	}
 }

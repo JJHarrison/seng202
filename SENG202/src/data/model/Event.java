@@ -91,6 +91,8 @@ public class Event implements Serializable {
 				stress = 0.5 + (1 / Math.PI)
 						* Math.atan((Math.PI / 100) * (stress - 1));
 				p.setStressLevel(stress);
+			} else {
+				p.setStressLevel(0.5);
 			}
 		}
 	}
