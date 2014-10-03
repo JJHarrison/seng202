@@ -131,14 +131,16 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				Client c = new Client();
-				c.setupConnection();
-				c.transferToServer(Persistent.getCurrentUser());
-				c.closeStuff();
-				if (c.isSuccessful()) {
-					MessageBox.show(Main.stage, "User has ben uploaded to the server sucessfully", "", MessageBox.OK);
-				} else {
-					MessageBox.show(Main.stage, "Sorry, something went wrong.", "", MessageBox.OK);
-				}
+				Thread t = new Thread(c);
+				t.start();
+//				c.setupConnection();
+//				c.transferToServer(Persistent.getCurrentUser());
+//				c.closeStuff();
+//				if (c.isSuccessful()) {
+//					MessageBox.show(Main.stage, "User has ben uploaded to the server sucessfully", "", MessageBox.OK);
+//				} else {
+//					MessageBox.show(Main.stage, "Sorry, something went wrong.", "", MessageBox.OK);
+//				}
 			}
 		});
 

@@ -7,7 +7,10 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import jfx.messagebox.MessageBox;
+import data.persistant.Persistent;
 import user.User;
+import view.Main;
 
 /**
  * This class provides a client to interact with the server.
@@ -15,7 +18,7 @@ import user.User;
  * @author James
  *
  */
-public class Client {
+public class Client implements Runnable{
     private Socket clientSocket;
     private ObjectInputStream input;
     private ObjectOutputStream output;
@@ -23,6 +26,20 @@ public class Client {
     private String hostName = "localhost";
     private boolean hasTransfered;
     private boolean hasConnected;
+    
+    public void run() {
+    	setupConnection();
+    	transferToServer(Persistent.getCurrentUser());
+    	closeStuff();
+//    	if (isSuccessful()) {
+//			MessageBox.show(Main.stage, "User has been uploaded to the server successfully", "", MessageBox.OK);
+//		} else {
+//			MessageBox.show(Main.stage, "Sorry, something went wrong.", "", MessageBox.OK);
+//		}
+    }
+    
+    
+    
     /**
      * Sets up a connection with the server.
      */
