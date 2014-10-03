@@ -24,6 +24,7 @@ import server.Client;
 import view.analysis.AnalysisController;
 import view.dash.DashController;
 import data.loader.FileLoader;
+import data.loader.LoadSummary;
 import data.model.Event;
 import data.persistant.Persistent;
 import data.persistant.Saver;
@@ -149,10 +150,14 @@ public class MainController {
 			public void handle(ActionEvent event) {
 				File file = fileChooser.showOpenDialog(Main.stage);
 				if (file != null) {
+					LoadSummary.clear();
 					FileLoader fl = new FileLoader(file);
 					fl.load();
-
 					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
+					System.out.println(LoadSummary.getSumamry());
+					MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+					LoadSummary.clear();
+					
 					Calendar calendar = Calendar.getInstance();
 					calendar.add(Calendar.YEAR, 1);
 					selectedDate.setValue(calendar.getTime());

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 <?import java.net.*?>
@@ -23,6 +24,15 @@
                         <Font size="20.0" />
                      </font>
                   </Hyperlink>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="120.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -20%);">
+               <children>
+                  <TextField fx:id="textContent" alignment="TOP_LEFT" text="Hello" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </padding>
+                  </TextField>
                </children>
             </AnchorPane>
          </children>

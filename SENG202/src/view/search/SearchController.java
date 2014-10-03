@@ -1,5 +1,6 @@
 package view.search;
 
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -9,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import view.search.GoogleSearchResults.Result;
 
 /**
@@ -23,6 +25,9 @@ public class SearchController {
 
 	@FXML
 	Hyperlink labelURL;
+	
+	@FXML
+	TextField textContent;
 
 	String strURL;
 
@@ -35,6 +40,7 @@ public class SearchController {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());
 		strURL = result.getUrl();
+		textContent.setText(result.getContent());
 	}
 
 	@FXML

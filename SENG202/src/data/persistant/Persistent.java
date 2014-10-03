@@ -23,7 +23,7 @@ public class Persistent {
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
 	private static ObservableList<User> users = FXCollections.observableList(new ArrayList<User>());
 	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
-	private static User currentUser = User.mockUser(); // JUST FOR TESTING
+	private static User currentUser; //= User.mockUser(); // JUST FOR TESTING
 
 	/**
 	 * Sets the FilePath preference to a Fitr directory at location of filePath

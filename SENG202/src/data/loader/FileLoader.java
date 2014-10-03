@@ -49,6 +49,7 @@ public class FileLoader {
 	 * creates a file loader with the default csv file, for testing purposes 
 	 */
 	public FileLoader() {
+		System.out.println("loading up the default file");
 		inputStream = this.getClass().getResourceAsStream("seng202_2014_example_data.csv");
 	}
 
@@ -90,9 +91,14 @@ public class FileLoader {
 						//dont add null points
 						if(point != null) {
 							points.add(point);
+						} else {
+							LoadSummary.addBadPoint();
 						}
 					}
-				} 
+				} else {
+					//line was not valid 
+					LoadSummary.addLineError();
+				}
 			}
 			
 			// add the last event of the csv file to events
