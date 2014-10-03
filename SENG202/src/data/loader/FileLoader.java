@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.sun.org.apache.xml.internal.serializer.ElemDesc;
+
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
@@ -90,9 +92,14 @@ public class FileLoader {
 						//dont add null points
 						if(point != null) {
 							points.add(point);
+						} else {
+							LoadSummary.addBadPoint();
 						}
 					}
-				} 
+				} else {
+					//line was not valid 
+					LoadSummary.addLineError();
+				}
 			}
 			
 			// add the last event of the csv file to events
