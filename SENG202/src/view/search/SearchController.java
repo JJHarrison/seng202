@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import view.search.GoogleSearchResults.Result;
 
@@ -42,9 +41,6 @@ public class SearchController {
 		labelURL.setText(result.getUrl());
 		strURL = result.getUrl();
 		textContent.setText(result.getContent());
-		//if (textContent == null) {
-			//System.out.print("Done");
-		//}
 	}
 
 	@FXML

@@ -21,12 +21,13 @@ public class Search extends AnchorPane {
 	 * 
 	 * @param result the result to display.
 	 */
-	public Search(Result result) { 
+	public Search(Result result) {
+		if (result != null) {
 		try {
 			loadMainPane(result);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}}
 	}
 
 

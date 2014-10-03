@@ -38,7 +38,7 @@ public class WebController {
 	@FXML
 	void searchButton(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
-			resultPane.getChildren().clear();
+			//resultPane.getChildren().clear();
 			findResults(textFieldSearch.getText());
 		}
 	}
@@ -46,7 +46,7 @@ public class WebController {
 	@FXML
 	void searchField(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
-			resultPane.getChildren().clear();
+			//resultPane.getChildren().clear();
 			findResults(textFieldSearch.getText());
 		}
 	}
