@@ -57,12 +57,31 @@ public class LoadSummary {
 	 * @return summary of the load 
 	 */
 	public static String getSumamry() {
-		return String.format("Import Summary:\n"
-				+ "Events added: %d\n"
-				+ "Events ignored: %d\n"
-				+ "Line errors: %d\n"
-				+ "Bad points: %d",
-				eventsAdded, eventsNotAdded, lineErrors, badPoints);
+		return String.format("Import Summary:\t\t\t\n\n"
+				+ "%s\t\t\t%d\n"
+				+ "%s\t\t\t%d\n"
+				+ "%s\t\t\t%d\n"
+				+ "%s\t\t\t%d\n\n"
+				+ "*Go to [About->Importing] to learn about file checking",
+				"Events added:", eventsAdded, "Events ignored:", eventsNotAdded,
+				"Line errors:", lineErrors, "Bad points:", badPoints);
+	}
+	
+	
+	public static void main(String[] args) {
+		String s = String.format("Import Summary:\t\t\t\n\n"
+				+ "%s\t\t\t%d\n"
+				+ "%s\t\t\t%d\n"
+				+ "%s\t\t\t%d\n"
+				+ "%s\t\t\t%d\n\n"
+				+ "*See About->Importing learn about file checking",			
+//				+ "Events are ignored if they: \n-Contain less than 2 points\n-Have already been added to the user\n\n"
+//				+ "A line has errors if it is not in the required format\n\n"
+//				+ "A point is ignored if it is deemed to be unreasonable",
+				"Events added:", eventsAdded, "Events ignored:", eventsNotAdded,
+				"Line errors:", lineErrors, "Bad points:", badPoints);
+		
+		System.out.println(s);
 	}
 
 }
