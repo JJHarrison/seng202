@@ -58,10 +58,10 @@ public class LoadSummary {
 	 */
 	public static String getSumamry() {
 		return String.format("Import Summary:\n"
-				+ "%d new events added\n"
-				+ "%d events not added\n"
-				+ "%d line errors occured\n"
-				+ "%d bad points were found",
+				+ "Events added: %d\n"
+				+ "Events ignored: %d\n"
+				+ "Line errors: %d\n"
+				+ "Bad points: %d",
 				eventsAdded, eventsNotAdded, lineErrors, badPoints);
 	}
 
