@@ -25,7 +25,7 @@ public class UserLoginManager extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		stage = new Stage(StageStyle.UTILITY);
+		stage = new Stage();
 		UserLoginManager.stage = stage;
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setResizable(false);
@@ -41,15 +41,14 @@ public class UserLoginManager extends Application {
 				userManagementFXML));
 		stage.setScene(new Scene(root));
 		stage.setTitle("User Management");
-		stage.show();
 		
-		/*Platform.runLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				
+				UserLoginManager.stage.show();
 			}
-		});*/
+		});
 	}
 
 	/**
