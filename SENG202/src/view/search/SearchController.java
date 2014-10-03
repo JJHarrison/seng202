@@ -1,6 +1,7 @@
 package view.search;
 
 import java.awt.Desktop;
+import java.awt.TextArea;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -23,6 +24,9 @@ public class SearchController {
 
 	@FXML
 	Hyperlink labelURL;
+	
+	@FXML
+	TextArea textWebContent;
 
 	String strURL;
 
@@ -35,6 +39,8 @@ public class SearchController {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());
 		strURL = result.getUrl();
+		textWebContent.setText(result.getContent());
+		
 	}
 
 	@FXML
