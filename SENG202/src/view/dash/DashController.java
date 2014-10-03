@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import view.warning.Warning;
 import view.warning.Warning.Risk;
+import data.model.Event;
 import data.model.Summary;
 import data.persistant.Persistent;
 
@@ -117,12 +118,28 @@ public class DashController {
 	 * Displays the warnings the user has generated.
 	 */
 	private void fillWarnings() {
-		warningPane.getChildren().add(
-				new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
-		warningPane.getChildren().add(
-				new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
-		warningPane.getChildren().add(
-				new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+		// show warnings for resting heart rate
+		if (Persistent.getCurrentUser().hasBradycardia()) {
+			warningPane.getChildren().add(
+					new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+		}
+		if (Persistent.getCurrentUser().hasTachycardia()) {
+			warningPane.getChildren().add(
+					new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
+		}
+		
+		// show any warnings for each event
+		// might want this to only show recent events...
+		for (Event e: Persistent.getCurrentUser().getEvents().getAllEvents()) {
+			if (e.hasBradycardia()) {
+				warningPane.getChildren().add(
+						new Warning(Risk.BRADYCARDIA, e.getStartTime()));
+			}
+			if (e.hasTachycardia()) {
+				warningPane.getChildren().add(
+						new Warning(Risk.TACHYCARDIA, e.getStartTime()));
+			}
+		}
 	}
 
 	/**

@@ -64,7 +64,7 @@ public class GoogleSearchResults {
 	 * 
 	 */
 	public class Result {
-	    private String title; // needs to be formatted.
+	    private String titleNoFormatting; // needs to be formatted.
 	    private String url;
 	    private String content;
 	    
@@ -74,7 +74,7 @@ public class GoogleSearchResults {
 	     * @return title
 	     */
 	    public String getTitle() { 
-	    	return title;
+	    	return titleNoFormatting;
 	    }
 	    
 	    /**
@@ -110,7 +110,7 @@ public class GoogleSearchResults {
 	     * @param title the title of a particular result.
 	     */
 	    public void setTitle(String title) { 
-	    	this.title = title; 
+	    	this.titleNoFormatting = title; 
 	    }
 	    
 	    /**
