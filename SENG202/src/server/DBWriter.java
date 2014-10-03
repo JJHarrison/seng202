@@ -235,13 +235,9 @@ public class DBWriter {
 					Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, user.getUserId()); // add user_id
 			preparedStatement.setString(2, user.getName()); // add name to the db
-<<<<<<< HEAD
 			
 			preparedStatement.setLong(3, user.getDateofBirth().getTimeInMillis()); // 
 			
-=======
-			preparedStatement.setTimestamp(3, new Timestamp(user.getDateofBirth().getTimeInMillis())); // add DOB to the db
->>>>>>> branch 'master' of https://bitbucket.org/djt104/seng202_2014_team5_phase3.git
 			preparedStatement.setDouble(4, user.getWeight()); // add weight to the db
 			preparedStatement.setDouble(5, user.getHeight()); // add height to the db
 			preparedStatement.setString(6, user.genderForDB()); // add gender to the db
