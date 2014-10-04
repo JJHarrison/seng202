@@ -1,23 +1,18 @@
 package tests;
 
-import static org.junit.Assert.*;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 
-import junit.framework.TestCase;
-
 import org.junit.Test;
 
+import junit.framework.TestCase;
 import user.User;
 import data.loader.FileLoader;
 import data.model.Event;
 import data.model.EventContainer;
-import data.model.GraphHelper;
 import data.model.Graph;
+import data.model.GraphHelper;
 import data.persistant.Persistent;
 
 /**
