@@ -16,6 +16,7 @@ import data.model.GraphHelper;
 import data.persistant.Persistent;
 
 /**
+ * Tests the functionality of the GraphHelper class.
  * 
  * @author simon
  *
@@ -28,6 +29,9 @@ public class GraphHelperTest extends TestCase {
 	private User u = User.mockUser();
 	private Graph g;
 	
+	/**
+	 * Sets the user and gets two events from the default CSV file.
+	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 		
@@ -46,7 +50,10 @@ public class GraphHelperTest extends TestCase {
 		runAroundBlock = day2.get(0);	// has 7 data points
 	}
 	
-	@Test
+	/**
+	 * Tests the getStressLevelGraph function to make sure the resulting graphs
+	 * have the right number of points.
+	 */
 	public void testGetStressLevelGraph() {
 		g = GraphHelper.getStressLevelGraph(walkInWoods);
 		/* there should be 31 points as a 3-point average graph will have
