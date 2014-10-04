@@ -62,6 +62,8 @@ public class MainController {
 	MenuItem menuClose;
 	@FXML
 	MenuItem menuAbout;
+	@FXML
+	MenuItem menuClearEvents;
 
 	FadeTransition ft;
 
@@ -175,6 +177,17 @@ public class MainController {
 						"Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System",
 						"About Fitr", MessageBox.OK);
 
+			}
+		});
+		
+		menuClearEvents.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				Persistent.clearUserActivityData();
+				viewDashController.fillDash();
+				viewAnalysisController.clearTiles();
+				
 			}
 		});
 

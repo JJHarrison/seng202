@@ -1,0 +1,23 @@
+.PlusButton {
+    -fx-background-color:derive(#87CEFA, -5%);
+    -fx-content-display:graphic-only;
+    -fx-background-size: 25;
+    -fx-background-image: url("plus.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+}
+.PlusButton:hover {
+    -fx-opacity:0.2;
+}
+
+.MinusButton {
+    -fx-background-color:derive(#87CEFA, -5%);
+    -fx-content-display:graphic-only;
+    -fx-background-size: 25;
+    -fx-background-image: url("minus.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+}
+.	MinusButton:hover {
+    -fx-opacity:0.2;
+}
