@@ -10,7 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import view.search.GoogleSearchResults.Result;
 
 /**
@@ -27,9 +27,10 @@ public class SearchController {
 	Hyperlink labelURL;
 	
 	@FXML
-	TextField textContent;
+	TextArea textContent;
 
 	String strURL;
+	
 
 	/**
 	 * Fills the result's title and URL for the search tile.

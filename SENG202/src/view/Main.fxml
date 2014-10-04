@@ -59,12 +59,11 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints fillHeight="true" maxHeight="300.0" minHeight="300.0" prefHeight="300.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <CalendarView fx:id="calendarView" GridPane.rowIndex="2" />
+             <CalendarView fx:id="calendarView" GridPane.rowIndex="1" />
             <VBox alignment="TOP_CENTER" stylesheets="@buttons.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
                   <ToggleButton fx:id="buttonDash" alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loadDash" prefHeight="75.0" selected="true" styleClass="ToggleButtonDash" text="Dash">
@@ -96,11 +95,6 @@
                   <Insets />
                </GridPane.margin>
             </VBox>
-            <AnchorPane style="-fx-background-color: derive(-fx-base, -30%);" GridPane.rowIndex="1">
-               <children>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 4;" text="Show All Events" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="5.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
-               </children>
-            </AnchorPane>
          </children>
       </GridPane>
    </left>
