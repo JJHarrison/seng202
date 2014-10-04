@@ -29,8 +29,11 @@ import extfx.scene.control.NumberSpinner;
 public class UserCreateController implements Switchable {
 	private UserManagementController controller;
 	public static final Double MAX_WEIGHT = 180.0; // kg
+	public static final Double MIN_WEIGHT = 0.0; // kg
 	public static final Double MAX_HEIGHT = 250.0; // cm
-	public static final Integer MAX_HR = 150; // resting hr
+	public static final Double MIN_HEIGHT = 0.0; // cm
+	public static final Integer MAX_HR = 200; // resting hr
+	public static final Integer MIN_HR = 20; // resting hr
 
 	@FXML
 	Label labelCreateWarning;
@@ -92,20 +95,22 @@ public class UserCreateController implements Switchable {
 			labelCreateWarning.setText("User already exists");
 		} else if (date == null) {
 			labelCreateWarning.setText("Birthdate not set");
+		} else if (date.isAfter(Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+			labelCreateWarning.setText("Cant select birthdate in the future");
 		} else if (gender == null) {
 			labelCreateWarning.setText("Gender not set");
 		} else if (height == null) {
 			labelCreateWarning.setText("Please provide your height (cm)");
-		} else if (height.doubleValue() > MAX_HEIGHT) {
+		} else if (height.doubleValue() > MAX_HEIGHT || height.doubleValue() < MIN_HEIGHT) {
 			labelCreateWarning.setText("Enter your height between 0 - 250 cm");
 		} else if (weight == null) {
 			labelCreateWarning.setText("Please provide your weight (kg)");
-		} else if (weight.doubleValue() > MAX_WEIGHT) {
+		} else if (weight.doubleValue() > MAX_WEIGHT || weight.doubleValue() < MIN_WEIGHT) {
 			labelCreateWarning.setText("Enter your weight between 0 and 180 kg");
 		} else if (hr == null) {
 			labelCreateWarning.setText("Please provide your average heart rate");
-		} else if (hr.intValue() > MAX_HR) {
-			labelCreateWarning.setText("Enter a heart rate between 0 and 150 bpm");
+		} else if (hr.intValue() > MAX_HR || hr.intValue() < MIN_HR) {
+			labelCreateWarning.setText("Enter a heart rate between 20 and 200 bpm");
 		} else {
 			Calendar calendar = new GregorianCalendar();
 			Instant instant = date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
