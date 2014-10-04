@@ -85,6 +85,7 @@ public class Event implements Serializable {
 		double sf = calculateStressFactor();
 		double stress;
 
+		// calculate stress
 		for (DataPoint p : points) {
 			if (p.getSpeed() != 0) {
 				stress = sf * (p.getHeartRate() / p.getSpeed());
@@ -100,6 +101,34 @@ public class Event implements Serializable {
 				p.setStressLevel(0.5);
 			}
 		}
+		// calculate average stress
+		/*if (points.size() < 3) {
+			for (DataPoint p: points) {
+				p.setAverageStress(p.getStressLevel());
+			}
+		} else {
+			DataPoint first = points.get(0);
+			DataPoint last = points.get(points.size()-2);
+			first.setAverageStress(first.getStressLevel());
+			last.setAverageStress(last.getStressLevel());
+			DataPoint prev = first;
+			DataPoint next = points.get(2);
+			int i = 1;
+			int j = 3;
+			ArrayList<DataPoint> averagablePoints = (ArrayList<DataPoint>)
+					points.subList(1, points.size()-2);
+			for (DataPoint p: averagablePoints) {
+				double s = (prev.getStressLevel() + p.getStressLevel()
+						+ next.getStressLevel()) / 3;
+				p.setAverageStress(0.5);
+				prev = points.get(i);
+				if (p != points.get(points.size()-2)) {
+					next = points.get(j);
+				}
+				i++;
+				j++;
+			}
+		}*/
 	}
 
 	/**
