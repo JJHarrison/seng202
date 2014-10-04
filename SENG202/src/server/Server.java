@@ -33,7 +33,7 @@ public class Server {
 	/**
 	 * Starts a server that will endlessly wait for connections
 	 */
-	private void startServer() {
+	public void startServer() {
 		this.running = true;
 		try {
 			server = new ServerSocket(portNumber, maxQueue);

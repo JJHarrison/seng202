@@ -8,14 +8,18 @@ package view.server;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import server.Server;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 
 
 public class ServerController implements Initializable {
+
 	String consoleText = "";
-	
+	private Server s = new Server();
+
 	@FXML
 	TextArea textConsole;
 	
@@ -24,13 +28,20 @@ public class ServerController implements Initializable {
 	@FXML
 	void actionStart() {
 		if (serverRunning) {
-			consoleText = consoleText + "Server is already on" + '\n';
-			setConsoleText();
-			scrolldown();
-		} else {
-			consoleText = consoleText + "Server Started" + '\n';
-			setConsoleText();
-			scrolldown();
+			setConsoleText("The server is already running.");
+		} else {			
+			setConsoleText("Server Started!");
+			Task<Void> t = new Task<Void>() {
+
+				@Override
+				protected Void call() throws Exception {
+					// TODO Auto-generated method stub
+					s.startServer();
+					return null;
+				}
+			};
+			Thread thread = new Thread(t);
+			thread.start();
 			serverRunning = true;
 		}
 	}
@@ -38,19 +49,18 @@ public class ServerController implements Initializable {
 	@FXML
 	void actionStop() {
 		if (serverRunning) {
-			consoleText = consoleText + "Server Stopped" + '\n';
-			setConsoleText();
-			scrolldown();
+			s.shutDownServer();
+			setConsoleText("Server Stopped.");
 			serverRunning = false;
 		} else {
-			consoleText = consoleText + "Server isn't running" + '\n';
-			setConsoleText();
-			scrolldown();
+			setConsoleText("The server is currently not running.");
 		}
 	}
 
-	private void setConsoleText() {
+	public void setConsoleText(String newLine) {
+		consoleText = consoleText + newLine + '\n';
 		textConsole.setText(consoleText);
+		scrolldown();
 	}
 	
 	private void scrolldown() {
