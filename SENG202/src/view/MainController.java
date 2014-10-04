@@ -159,14 +159,16 @@ public class MainController {
 					
 					// run the load summary pop up in its own thread to stop it
 					// from stopping the flow of the import
+					//MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
 							MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+							LoadSummary.clear();
 						}
 					});
 
-					LoadSummary.clear();
+					
 					
 					Calendar calendar = Calendar.getInstance();
 					calendar.add(Calendar.YEAR, 1);
