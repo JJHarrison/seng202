@@ -59,6 +59,7 @@ public class WebController {
 	 * @throws IOException
 	 */
 	void findResults(String searchText) throws IOException {
+		SearchQuery.clearCount();
 		URL url = new URL(SearchQuery.getQuery(textFieldSearch.getText()));
 		Reader reader = new InputStreamReader(url.openStream(), "UTF-8");
 		Gson gs = new GsonBuilder()

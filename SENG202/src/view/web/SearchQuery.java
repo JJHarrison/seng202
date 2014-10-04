@@ -37,9 +37,16 @@ public class SearchQuery {
 	}
 	
 	/**
-	 * Increments the count by 4 so that the next 4 reults can be retrieved.
+	 * Increments the count by 4 so that the next 4 results can be retrieved.
 	 */
 	public static void incrementCount() {
 		count = count + 4;
+	}
+	
+	/** 
+	 * Resets the count to 0
+	 */
+	public static void clearCount() {
+		count = 0;
 	}
 }
