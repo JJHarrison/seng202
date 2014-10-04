@@ -6,7 +6,7 @@ import java.util.List;
  * Each GoogleSearchResult consists of a ResponseData class which holds an array of Results, with 
  * each Result consisting of attributes of title, URL and content.
  * 
- * @author Daniel van Wichen, Daniel Tapp
+ * @author Daniel van Wichen, Daniel Tapp, Jaln Rodger
  *
  */
 public class GoogleSearchResults {
