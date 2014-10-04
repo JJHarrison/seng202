@@ -11,7 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
@@ -74,11 +73,10 @@ public class FileLoader {
 
 		try {
 			while ((line = br.readLine()) != null) {
-				line = isValidLine(line);
-				if (line != null) {
+				if (isValidLine(line)) {
 					String[] dataLine = line.split(",");
-					
 					if (dataLine[0].contains("#start")) { // start of new event
+						dataLine = fixTitle(dataLine);
 						if (!points.isEmpty()) { //checks that points have been read to be added to event	
 							eventContainer.addEvent(new Event(eventName, points));
 							points = new ArrayList<DataPoint>(); // reset the points for the next event
@@ -152,6 +150,23 @@ public class FileLoader {
 
 		return point;
 	}
+	
+	/**
+	 * Normalizes the start line so it always has a title 
+	 * @param string
+	 * @return String #start,EventTitle,,,
+	 */
+	private String[] fixTitle(String[] string) {
+		String title;
+		if(string.length < 2) {
+			// event has no title
+			title = string[0] + ",Event(default),,,,";
+		} else {
+			// only need the first two sections
+			title = string[0] + "," + string[1] + ",,,,";
+		}
+		return title.split(",");
+	}
 
 	/**
 	 * returns the event container which holds all the dataPoints
@@ -169,8 +184,7 @@ public class FileLoader {
 	 * @param The line to be checked
 	 * @return isValid
 	 */
- 	public String isValidLine(String line) { 
- 		String fixedLine = null;
+ 	public boolean isValidLine(String line) { 
 		boolean isValid = false;
  		String z = "(\\d){2}/(\\d){2}/(\\d){4},";
  		String y = "(\\d){2}:(\\d){2}:(\\d){2},";
@@ -187,22 +201,12 @@ public class FileLoader {
  				&& (isHeartrateValid(values[2]))
 				&& (isLatitudeValid(values[3]))
 				&& (isLongitudeValid(values[4]))){
- 				fixedLine = line;
 				isValid = true;
  			}
 		} else if(line.startsWith("#start")) {
-			String[] values = line.split(",");
-			if (values.length >= 2) {
-				isValid = true;
-				//making sure the line doesn't include any un-needed extra's 
-				fixedLine = values[0] + "," + values[1] + ",,,,";
-			} else {
-				//line only has start..
-				fixedLine = values[0] + ",Event(default),,,,";
-			}
+			isValid = true;
 		}
-		//return isValid;
-		return fixedLine;
+		return isValid;
  	}
 
  	/**
