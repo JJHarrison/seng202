@@ -7,10 +7,8 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import jfx.messagebox.MessageBox;
-import data.persistant.Persistent;
 import user.User;
-import view.Main;
+import data.persistant.Persistent;
 
 /**
  * This class provides a client to interact with the server.
