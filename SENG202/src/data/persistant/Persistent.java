@@ -238,6 +238,8 @@ public class Persistent {
 	public static void deleteUser(User user) {
 		File path = new File(getFilePath() + "/" + user.getUserId());
 		deleteDirectory(path);
+		users.remove(user);
+		userNames.remove(user.getName());
 	}
 	
 	/**
