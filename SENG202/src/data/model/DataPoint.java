@@ -33,7 +33,6 @@ public class DataPoint implements Serializable {
 	private double duration;
 	private double caloriesBurned;
 	private double stressLevel;
-	private double averageStress = 0.5; // 3 point average
 
 	/**
 	 * Builder for DataPoint class
@@ -145,7 +144,6 @@ public class DataPoint implements Serializable {
 			this.distance = 0.0;
 			this.speed = 0.0;
 			this.stressLevel = 0.5;
-			this.averageStress = 0.5;
 		}
 	}
 
@@ -291,14 +289,6 @@ public class DataPoint implements Serializable {
 	public double getStressLevel() {
 		return stressLevel;
 	}
-	
-	/**
-	 * Returns the 3 point average of the stress level.
-	 * @return The average stress level
-	 */
-	public double getAverageStress() {
-		return averageStress;
-	}
 
 	/**
 	 * Sets the physical stress level at this point.
@@ -307,10 +297,6 @@ public class DataPoint implements Serializable {
 	 */
 	public void setStressLevel(double stressLevel) {
 		this.stressLevel = stressLevel;
-	}
-	
-	public void setAverageStress(double averageStress) {
-		this.averageStress = averageStress;
 	}
 
 	/**

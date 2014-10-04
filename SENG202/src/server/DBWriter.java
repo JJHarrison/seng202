@@ -53,8 +53,6 @@ public class DBWriter {
 		for (Event event : user.getEvents().getAllEvents()) {
 			writeEvent(user, event);
 		}
-		
-		
 	}
 
 	/**
@@ -73,7 +71,7 @@ public class DBWriter {
 		// the query to be sent to the database to find the user_id
 		String query = String.format("SELECT * FROM USER where user_id = \"%s\"", user.getUserId());
 		try {
-			connect = DriverManager.getConnection(url, admin, password);
+			connect = DriverManager.getConnection(url);
 			statement = connect.createStatement();
 			resultSet = statement.executeQuery(query);
 			if (resultSet.next()) {
@@ -110,7 +108,7 @@ public class DBWriter {
 		String query = String.format("UPDATE USER SET " + "weight = ?," + "height = ?," + "bmi = ?"
 				+ " where user_id = \"%s\"", user.getUserId());
 		try {
-			connect = DriverManager.getConnection(url, admin, password);
+			connect = DriverManager.getConnection(url);
 			preparedStatement = connect.prepareStatement(query);
 			/* update the users weight in the db */
 			preparedStatement.setDouble(1, user.getWeight());
@@ -142,38 +140,27 @@ public class DBWriter {
 	 * event_name, start_time and unique user_id are present in the table. This
 	 * function will return true if the event is inside the database
 	 * 
-	 * @param user
-	 *            The user for gathering the user_id
-	 * @param event
-	 *            The event that will be checks for participation in the
-	 *            database
-	 * @return True if the event is a participant of the database, false
-	 *         otherwise.
+	 * @param user The user for gathering the user_id
+	 * @param event The event that will be checks for participation in the database
+	 * @return True if the event is a participant of the database, false otherwise.
 	 */
 	private boolean isEventStored(User user, Event event) {
 		boolean isThere = false;
 		// query to see if the event is stored in the database
-		String query = "select userID, event_name, start_time from event";
-		@SuppressWarnings("unused")
-		String eventName;
-		int userID;
-		// timestamp on the event to compare with the one from the database
-		Timestamp checkTime = new Timestamp(event.getStartTime().getTimeInMillis());
-		Timestamp eventStart;
+		String query = String.format("select * from event where userID = \"%s\""
+				+ " and event_name = \"%s\""
+				+ " and start_time = %s", 
+				user.getUserId(),
+				event.getEventName(),
+				event.getStartTime().getTimeInMillis());
 		try {
-			connect = DriverManager.getConnection(url, admin, password);
+			connect = DriverManager.getConnection(url);
 			statement = connect.createStatement();
 			resultSet = statement.executeQuery(query);
-			while (resultSet.next()) {
-				eventName = resultSet.getString("event_name");
-				eventStart = resultSet.getTimestamp("start_time");
-				userID = resultSet.getInt("userID");
-				// check to see if the event is contained in the databae
-				if (eventStart.equals(checkTime) && (new Integer(userID).toString().equals(user.getUserId()))) {
-					// if the event is inside the database change isThere to true
-					isThere = true;
-				}
+			if(resultSet.next()) {
+				isThere = true;
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -340,6 +327,7 @@ public class DBWriter {
 	public static void main(String[] args) { 
 		DBWriter dbw = new DBWriter();
 		User mocky = User.mockUser();
+		mocky.setUserId("1");
 		dbw.writeUser(mocky);
 	}
 }
