@@ -28,7 +28,18 @@
             </AnchorPane>
             <ScrollPane fitToWidth="true" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefViewportHeight="460.0" prefViewportWidth="900.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                <content>
-                  <VBox fx:id="resultPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                  <VBox fx:id="resultPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="100.0">
+                           <children>
+                              <Button layoutX="393.0" layoutY="38.0" maxHeight="100.0" maxWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: derive(#87cefa, -10%);" text="Load more" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children></VBox>
                </content>
             </ScrollPane>
          </children>
