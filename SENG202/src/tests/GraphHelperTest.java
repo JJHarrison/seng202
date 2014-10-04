@@ -21,12 +21,12 @@ import data.persistant.Persistent;
  *
  */
 public class GraphHelperTest extends TestCase {
-	FileLoader fl = new FileLoader();
-	EventContainer ec;
-	Event walkInWoods;
-	Event runAroundBlock;
-	User u = User.mockUser();
-	Graph g;
+	private FileLoader fl = new FileLoader();
+	private EventContainer ec;
+	private Event walkInWoods;
+	private Event runAroundBlock;
+	private User u = User.mockUser();
+	private Graph g;
 	
 	protected void setUp() throws Exception {
 		super.setUp();

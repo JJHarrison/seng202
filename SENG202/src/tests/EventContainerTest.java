@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import user.User;
 import junit.framework.TestCase;
 import data.loader.FileLoader;
 import data.model.DataPoint;
 import data.model.Event;
 import data.model.EventContainer;
+import data.persistant.Persistent;
 
 ;
 
@@ -21,6 +23,7 @@ public class EventContainerTest extends TestCase {
 
 	private EventContainer ec;
 	private EventContainer testEventContainer;
+	private User u = User.mockUser();
 
 	/**
 	 * Sets up the event container that will be tested.
@@ -39,6 +42,7 @@ public class EventContainerTest extends TestCase {
 	 * Tests adding an event to the event container.
 	 */
 	public void testAddEvent1() {
+		Persistent.setUser(u);
 		ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 		points = new ArrayList<DataPoint>();
 		Calendar c3 = new GregorianCalendar(2005, // Year
