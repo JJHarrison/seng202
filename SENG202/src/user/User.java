@@ -334,5 +334,9 @@ public class User implements Serializable {
 		
 		return mock;
 	}
+	
+	public void setUserId(String s) {
+		userID = s;
+	}
 //-----------------------------------------------------------------------------------------
 }

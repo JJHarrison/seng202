@@ -133,6 +133,7 @@ public class MainController {
 				Client c = new Client();
 				Thread t = new Thread(c);
 				t.start();
+				
 //				c.setupConnection();
 //				c.transferToServer(Persistent.getCurrentUser());
 //				c.closeStuff();
