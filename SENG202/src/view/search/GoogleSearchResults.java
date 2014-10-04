@@ -6,7 +6,7 @@ import java.util.List;
  * Each GoogleSearchResult consists of a ResponseData class which holds an array of Results, with 
  * each Result consisting of attributes of title, URL and content.
  * 
- * @author Daniel van Wichen, Daniel Tapp
+ * @author Daniel van Wichen, Daniel Tapp, Jaln Rodger
  *
  */
 public class GoogleSearchResults {
@@ -69,11 +69,26 @@ public class GoogleSearchResults {
 	    private String content;
 	    
 	    /**
+	     * This method formats the content and title
+	     * @param format
+	     */
+	    private void replace(String format) {
+	    	format.replace("&amp", "&");
+			format.replace("&lt", "<");
+			format.replace("&gt", ">");
+			format.replace("&quot", "\"");
+			format.replace("<b>", "AAA");
+			format.replace("</b>", "");
+		}
+
+
+	    /**
 	     * Gets the title with no formatting.
 	     * 
 	     * @return title
 	     */
 	    public String getTitle() { 
+	    	replace(titleNoFormatting);
 	    	return titleNoFormatting;
 	    }
 	    
@@ -83,10 +98,13 @@ public class GoogleSearchResults {
 	     * @return content
 	     */
 	    public String getContent() {
+	    	System.out.println(content);
+	    	replace(content);
+	    	System.out.println(content);
 	    	return content;
 	    }
 	    
-	    /**
+		/**
 	     * Gets the URL of the result.
 	     * 
 	     * @return url

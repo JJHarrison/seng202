@@ -17,7 +17,7 @@ import com.google.gson.GsonBuilder;
 
 /**
  * 
- * @author Daniel Tapp, Daniel van Wichen
+ * @author Daniel Tapp, Daniel van Wichen, Jaln Rodger
  *
  */
 public class WebController {

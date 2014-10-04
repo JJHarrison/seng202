@@ -14,7 +14,7 @@ import view.search.GoogleSearchResults.Result;
 
 /**
  * 
- * @author Daniel van Wichen, Daniel Tapp
+ * @author Daniel van Wichen, Daniel Tapp, Jaln Rodger
  *
  */
 public class SearchController {
