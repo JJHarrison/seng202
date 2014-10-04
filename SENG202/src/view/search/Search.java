@@ -28,6 +28,7 @@ public class Search extends AnchorPane {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}}
+	
 	}
 
 

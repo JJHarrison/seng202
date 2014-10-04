@@ -8,9 +8,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root prefWidth="900.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.search.SearchController">
+<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.search.SearchController">
    <children>
-      <VBox fx:id="warning" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" style="-fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.5), 10, 0, 4, 4);" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="20.0">
+      <VBox fx:id="warning" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" style="-fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.5), 10, 0, 4, 4);" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
          <children>
             <AnchorPane maxHeight="70.0" minHeight="100.0" prefHeight="100.0" style="-fx-background-color: derive(-fx-base, -20%);">
                <children>
@@ -26,13 +26,13 @@
                   </Hyperlink>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="120.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -20%);">
+            <AnchorPane prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -20%);">
                <children>
-                  <TextField fx:id="textContent" alignment="TOP_LEFT" text="Hello" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <padding>
-                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-                     </padding>
-                  </TextField>
+                  <TextArea fx:id="textContent" editable="false" text="yo" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextArea>
                </children>
             </AnchorPane>
          </children>

@@ -7,6 +7,7 @@ import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import view.search.GoogleSearchResults;
@@ -50,6 +51,13 @@ public class WebController {
 			findResults(textFieldSearch.getText());
 		}
 	}
+	
+	@FXML
+	void moreResults(ActionEvent event) throws IOException {
+		if (!textFieldSearch.getText().trim().isEmpty()) {
+			findResults(textFieldSearch.getText());
+		}
+	}
 
 	/**
 	 * This method takes the search text and then requests the Gson file from the Google API.
@@ -83,4 +91,5 @@ public class WebController {
 			//resultPane.getChildren().add(new Search(results.new Result()));
 		}
 	}
+
 }
