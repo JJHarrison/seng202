@@ -35,6 +35,7 @@ public class ServerController implements Initializable {
 			s.startServer();	
 			if (isCancelled()) {
 				System.out.println("cancelled");
+				
 				s.shutDownServer();
 			}
 			return null;
