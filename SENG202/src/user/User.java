@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.swing.SortingFocusTraversalPolicy;
+
 import data.loader.FileLoader;
 import data.loader.LoadSummary;
 import data.model.Event;
@@ -332,7 +334,7 @@ public class User implements Serializable {
 				Gender.MALE, 85.3, 190, null, 120);
 		
 		try {
-			Persistent.setFilePath("FilePath");
+			Persistent.setFilePath("/Users/SamSchofield/Desktop/SENG202");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -345,15 +347,17 @@ public class User implements Serializable {
 		}
 		
 		Persistent.setUser(mock);
-		
 		FileLoader fl = new FileLoader();
 		fl.load();
 		EventContainer ec = fl.getEventContainer();
-		
 		mock.setEvents(ec);
 		
 		
 		return mock;
 	}
 //-----------------------------------------------------------------------------------------
+	
+	public static void main(String[] args) {
+		mockUser();
+	}
 }
