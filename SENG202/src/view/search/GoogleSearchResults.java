@@ -1,12 +1,16 @@
 package view.search;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
+
+import javax.swing.text.html.HTML;
 
 /**
  * This class provides an abstract version of results provided by the Google Search API.
  * Each GoogleSearchResult consists of a ResponseData class which holds an array of Results, with 
  * each Result consisting of attributes of title, URL and content.
  * 
- * @author Daniel van Wichen, Daniel Tapp
+ * @author Daniel van Wichen, Daniel Tapp, Jaln Rodger
  *
  */
 public class GoogleSearchResults {
@@ -67,7 +71,7 @@ public class GoogleSearchResults {
 	    private String titleNoFormatting; // needs to be formatted.
 	    private String url;
 	    private String content;
-	    
+
 	    /**
 	     * Gets the title with no formatting.
 	     * 
@@ -81,12 +85,15 @@ public class GoogleSearchResults {
 	     * Gets the content of the result.
 	     * 
 	     * @return content
+	     * @throws UnsupportedEncodingException 
 	     */
-	    public String getContent() {
-	    	return content;
+	    public String getContent() throws UnsupportedEncodingException {
+	    	System.out.println(content);
+	    	System.out.println(URLDecoder.decode(content, "UTF-8"));
+	    	return URLDecoder.decode(content, "UTF-8");
 	    }
 	    
-	    /**
+		/**
 	     * Gets the URL of the result.
 	     * 
 	     * @return url

@@ -2,6 +2,7 @@ package view.search;
 
 import java.awt.Desktop;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -14,7 +15,7 @@ import view.search.GoogleSearchResults.Result;
 
 /**
  * 
- * @author Daniel van Wichen, Daniel Tapp
+ * @author Daniel van Wichen, Daniel Tapp, Jaln Rodger
  *
  */
 public class SearchController {
@@ -34,8 +35,9 @@ public class SearchController {
 	 * Fills the result's title and URL for the search tile.
 	 * 
 	 * @param result the result to fill tile with.
+	 * @throws UnsupportedEncodingException 
 	 */
-	public void fill(Result result) {
+	public void fill(Result result) throws UnsupportedEncodingException {
 		labelTitle.setText(result.getTitle());
 		labelURL.setText(result.getUrl());
 		strURL = result.getUrl();

@@ -64,8 +64,9 @@ public class ServerController implements Initializable {
 	@FXML
 	void actionStop() {
 		if (serverRunning) {
-			t.cancel();
-			setConsoleText("Server Stopped.");
+			if (t.cancel()) {
+				setConsoleText("Server Stopped.");
+			}
 			serverRunning = false;
 		} else {
 			setConsoleText("The server is currently not running.");

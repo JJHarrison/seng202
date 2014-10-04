@@ -85,6 +85,7 @@ public class Event implements Serializable {
 		double sf = calculateStressFactor();
 		double stress;
 
+		// calculate stress
 		for (DataPoint p : points) {
 			if (p.getSpeed() != 0) {
 				stress = sf * (p.getHeartRate() / p.getSpeed());

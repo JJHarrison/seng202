@@ -60,6 +60,16 @@ public class UserLoginController implements Switchable {
 		}
 
 	}
+	
+	@FXML
+	void actionDeleteProfile(ActionEvent event) {
+		User user = userList.getSelectionModel().getSelectedItem();
+		if (user != null) {
+			Persistent.deleteUser(user);
+		} else {
+			loginWarning.setText("User must be selected");
+		}
+	}
 
 	@FXML
 	void actionCancel(ActionEvent event) {
