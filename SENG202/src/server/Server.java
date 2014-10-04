@@ -27,18 +27,17 @@ public class Server {
 	final private int portNumber = 8888;
 	final private int maxQueue = 10;
 	private DBWriter dbw;
+	private boolean running;
 
-	/*
-	 * Still need to look into threading for the client sockets
-	 */
 
 	/**
 	 * Starts a server that will endlessly wait for connections
 	 */
 	private void startServer() {
+		this.running = true;
 		try {
 			server = new ServerSocket(portNumber, maxQueue);
-			while (true) {
+			while (running) {
 				try {
 					waitForConnection();
 					setupStreams();
@@ -59,6 +58,10 @@ public class Server {
 		}
 	}
 
+	public void shutDownServer() {
+		closeStuff();
+		this.running = false;
+	}
 	/**
 	 * Waits for a connection to be formed with the client.
 	 * 
