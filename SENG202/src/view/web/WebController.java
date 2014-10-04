@@ -59,6 +59,12 @@ public class WebController {
 			findResults(textFieldSearch.getText());
 		}
 	}
+	
+	@FXML
+	void clearResults(ActionEvent event) throws IOException {
+		SearchQuery.clearCount();
+		resultPane.getChildren().clear();
+	}
 
 	/**
 	 * This method takes the search text and then requests the Gson file from the Google API.

@@ -28,7 +28,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -20%);">
                <children>
-                  <TextArea fx:id="textContent" editable="false" text="yo" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TextArea fx:id="textContent" editable="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

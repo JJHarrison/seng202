@@ -31,7 +31,12 @@
                   <VBox fx:id="resultPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                </content>
             </ScrollPane>
-            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#moreResults" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Show More Results" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="30.0">
+            <Button maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onAction="#moreResults" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Show More Results" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="30.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onAction="#clearResults" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Clear" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="200.0">
                <font>
                   <Font size="16.0" />
                </font>
