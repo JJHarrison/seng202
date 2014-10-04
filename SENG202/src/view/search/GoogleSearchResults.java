@@ -1,6 +1,5 @@
 package view.search;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.List;
 
 import org.jsoup.Jsoup;
