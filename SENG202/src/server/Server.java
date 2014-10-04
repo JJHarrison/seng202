@@ -10,6 +10,9 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import user.User;
 
 /**
@@ -29,15 +32,14 @@ public class Server {
 	private DBWriter dbw;
 	private boolean running;
 
-
 	/**
 	 * Starts a server that will endlessly wait for connections
 	 */
 	public void startServer() {
-		this.running = true;
+		
 		try {
 			server = new ServerSocket(portNumber, maxQueue);
-			while (running) {
+			while (true) {
 				try {
 					waitForConnection();
 					setupStreams();
@@ -59,8 +61,8 @@ public class Server {
 	}
 
 	public void shutDownServer() {
-		closeStuff();
-		this.running = false;
+		//closeStuff();
+		running = false;
 	}
 	/**
 	 * Waits for a connection to be formed with the client.
@@ -175,7 +177,20 @@ public class Server {
 	}
 
 	public static void main(String[] args) {
+		
 		Server s = new Server();
+//		
+//		Task<Void> t = new Task<Void>() {
+//			@Override
+//			protected Void call() throws Exception {
+//				s.startServer();
+//				return null;
+//			}
+//		};
+//		
+//		Thread thread = new Thread(t);
+//		thread.start();
 		s.startServer();
+		s.shutDownServer();
 	}
 }
