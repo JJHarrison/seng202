@@ -295,6 +295,13 @@ public class User implements Serializable {
 		LoadSummary.setEventsNotAdded(events.getAllEvents().size() - (this.events.getAllEvents().size() - sizeBefore));
 		Saver.SaveUser(this);
 	}
+	
+	/**
+	 * clears the users event container 
+	 */
+	public void clearEvents() {
+		events = new EventContainer();
+	}
 
 	/**
 	 * The equals method was overridden for profile creation.

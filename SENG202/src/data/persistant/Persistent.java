@@ -223,6 +223,15 @@ public class Persistent {
 	}
 	
 	/**
+	 * clears a given users activity data and saves the changes 
+	 * @param user to clear activity data from 
+	 */
+	public static void clearUserActivityData(User user) {
+		user.clearEvents();
+		Saver.SaveUser(user);
+	}
+	
+	/**
 	 * deletes the given user and removes its directory and json files
 	 * @param user the user to be deleted
 	 */
@@ -235,7 +244,7 @@ public class Persistent {
 	 * deletes the files at filePath 
 	 * @param path path to delete files from 
 	 */
-	static public void deleteDirectory(File path) {
+	private static void deleteDirectory(File path) {
 		if(path.exists()) {
 			File[] files = path.listFiles();
 			for(int i=0; i<files.length; i++) {
