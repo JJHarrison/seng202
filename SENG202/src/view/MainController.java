@@ -156,8 +156,16 @@ public class MainController {
 					FileLoader fl = new FileLoader(file);
 					fl.load();
 					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
-					System.out.println(LoadSummary.getSumamry());
-					MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+					
+					// run the load summary pop up in its own thread to stop it
+					// from stopping the flow of the import
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+						}
+					});
+
 					LoadSummary.clear();
 					
 					Calendar calendar = Calendar.getInstance();
