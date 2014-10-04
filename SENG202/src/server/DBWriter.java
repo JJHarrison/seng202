@@ -53,8 +53,6 @@ public class DBWriter {
 		for (Event event : user.getEvents().getAllEvents()) {
 			writeEvent(user, event);
 		}
-		
-		
 	}
 
 	/**

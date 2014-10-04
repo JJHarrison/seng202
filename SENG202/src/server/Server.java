@@ -36,7 +36,6 @@ public class Server {
 	 * Starts a server that will endlessly wait for connections
 	 */
 	public void startServer() {
-		
 		try {
 			server = new ServerSocket(portNumber, maxQueue);
 			while (true) {
