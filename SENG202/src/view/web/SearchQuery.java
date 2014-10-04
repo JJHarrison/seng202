@@ -32,22 +32,14 @@ public class SearchQuery {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		incrementCount();
 		return query;
 	}
 	
 	/**
-	 * Increments the count by 4
+	 * Increments the count by 4 so that the next 4 reults can be retrieved.
 	 */
-	public void incrementCount() {
+	public static void incrementCount() {
 		count = count + 4;
-	}
-	
-	 /**
-	  * Decrements the count by 4
-	  */
-	public void decrementCount() {
-		if (count != 0) {
-			count = count - 4;
-		}
 	}
 }
