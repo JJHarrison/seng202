@@ -14,7 +14,7 @@ import java.net.URLEncoder;
 public class SearchQuery {
 	
 	private static int count = 0;
-	public static final String address = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks&start="+count+"&q=";
+	public static final String address = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks&start=";
 	
 	/**
 	 * A function that takes a plain text search query and returns a complete
@@ -28,7 +28,7 @@ public class SearchQuery {
 	public static String getQuery(String inputQuery) throws IOException {
 		String query = address;
 		try {
-			query = query + (URLEncoder.encode(inputQuery, "UTF-8"));
+			query = query + count + "&q=" + (URLEncoder.encode(inputQuery, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

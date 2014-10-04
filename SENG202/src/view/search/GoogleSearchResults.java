@@ -1,8 +1,6 @@
 package view.search;
 import java.util.List;
 
-import javax.swing.text.html.HTML;
-
 /**
  * This class provides an abstract version of results provided by the Google Search API.
  * Each GoogleSearchResult consists of a ResponseData class which holds an array of Results, with 
@@ -80,7 +78,7 @@ public class GoogleSearchResults {
 			format.replace("&gt", ">");
 			format.replace("&quot", "\"");
 			format.replace("<b>", "AAA");
-			format.replace("</b>", "BBB");
+			format.replace("</b>", "");
 		}
 
 
@@ -91,7 +89,7 @@ public class GoogleSearchResults {
 	     */
 	    public String getTitle() { 
 	    	replace(titleNoFormatting);
-	    	return HTML.decode(titleNoFormatting);
+	    	return titleNoFormatting;
 	    }
 	    
 	    /**
