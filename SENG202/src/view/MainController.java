@@ -62,6 +62,8 @@ public class MainController {
 	MenuItem menuClose;
 	@FXML
 	MenuItem menuAbout;
+	@FXML
+	MenuItem menuClearEvents;
 
 	FadeTransition ft;
 
@@ -154,8 +156,16 @@ public class MainController {
 					FileLoader fl = new FileLoader(file);
 					fl.load();
 					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
-					System.out.println(LoadSummary.getSumamry());
-					MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+					
+					// run the load summary pop up in its own thread to stop it
+					// from stopping the flow of the import
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+						}
+					});
+
 					LoadSummary.clear();
 					
 					Calendar calendar = Calendar.getInstance();
@@ -175,6 +185,17 @@ public class MainController {
 						"Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System",
 						"About Fitr", MessageBox.OK);
 
+			}
+		});
+		
+		menuClearEvents.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				Persistent.clearUserActivityData();
+				viewDashController.fillDash();
+				viewAnalysisController.clearTiles();
+				
 			}
 		});
 

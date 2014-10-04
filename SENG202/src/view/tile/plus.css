@@ -2,7 +2,7 @@
     -fx-background-color:transparent;
     -fx-content-display:graphic-only;
     -fx-background-size: 30;
-    -fx-background-image: url("plus32.png");
+    -fx-background-image: url("plus.png");
     -fx-background-repeat: no-repeat;
 }
 .ToggleButton:hover {

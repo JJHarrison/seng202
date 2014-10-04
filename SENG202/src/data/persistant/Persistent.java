@@ -223,12 +223,11 @@ public class Persistent {
 	}
 	
 	/**
-	 * clears a given users activity data and saves the changes 
-	 * @param user to clear activity data from 
+	 * clears the current users activity data and saves the changes 
 	 */
-	public static void clearUserActivityData(User user) {
-		user.clearEvents();
-		Saver.SaveUser(user);
+	public static void clearUserActivityData() {
+		Persistent.currentUser.clearEvents();
+		Saver.SaveUser(Persistent.currentUser);
 	}
 	
 	/**
@@ -238,6 +237,8 @@ public class Persistent {
 	public static void deleteUser(User user) {
 		File path = new File(getFilePath() + "/" + user.getUserId());
 		deleteDirectory(path);
+		users.remove(user);
+		userNames.remove(user.getName());
 	}
 	
 	/**

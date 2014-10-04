@@ -32,7 +32,8 @@ public class GraphHelper {
 	public static Graph getStressLevelGraph(Event e) {
 		Graph g = new Graph("Stress Level", "Time (s)", "Stress");
 		for (DataPoint p : e.getPoints()) {
-			double stress = p.getStressLevel();
+			double stress = p.getAverageStress();
+			System.out.println(p.getAverageStress());
 			double time = p.getDate().getTimeInMillis()
 					- e.getStartTime().getTimeInMillis();
 			g.addPoint(time / 1000, stress);
