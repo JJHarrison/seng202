@@ -3,8 +3,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 
-import javax.swing.text.html.HTML;
-
 /**
  * This class provides an abstract version of results provided by the Google Search API.
  * Each GoogleSearchResult consists of a ResponseData class which holds an array of Results, with 
