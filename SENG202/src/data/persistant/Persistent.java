@@ -284,11 +284,11 @@ public class Persistent {
 	 * @throws Exception 
 	 */
 	public static void main(String args[]) throws Exception {
-		//clear();
-		Persistent.setFilePath("/Users/SamSchofield/Desktop");
-		User u = User.mockUser();
-		Persistent.newUser(u);
-		deleteUser(u);
+		clear();
+//		Persistent.setFilePath("/Users/SamSchofield/Desktop");
+//		User u = User.mockUser();
+//		Persistent.newUser(u);
+//		deleteUser(u);
 		
 	}
 }

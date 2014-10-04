@@ -1,11 +1,10 @@
 package user;
 
+
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import javax.swing.SortingFocusTraversalPolicy;
 
 import data.loader.FileLoader;
 import data.loader.LoadSummary;

@@ -74,9 +74,10 @@ public class FileLoader {
 
 		try {
 			while ((line = br.readLine()) != null) {
-				String[] dataLine = line.split(",");
-
-				if (isValidLine(line)) {
+				line = isValidLine(line);
+				if (line != null) {
+					String[] dataLine = line.split(",");
+					
 					if (dataLine[0].contains("#start")) { // start of new event
 						if (!points.isEmpty()) { //checks that points have been read to be added to event	
 							eventContainer.addEvent(new Event(eventName, points));
@@ -84,6 +85,7 @@ public class FileLoader {
 							lastPoint = null;
 						}
 						eventName = dataLine[1];
+						System.out.println(eventName);
 
 					} else { // line containing data
 						DataPoint point = parseLine(dataLine);
@@ -167,7 +169,8 @@ public class FileLoader {
 	 * @param The line to be checked
 	 * @return isValid
 	 */
- 	public boolean isValidLine(String line) { 
+ 	public String isValidLine(String line) { 
+ 		String fixedLine = null;
 		boolean isValid = false;
  		String z = "(\\d){2}/(\\d){2}/(\\d){4},";
  		String y = "(\\d){2}:(\\d){2}:(\\d){2},";
@@ -184,6 +187,7 @@ public class FileLoader {
  				&& (isHeartrateValid(values[2]))
 				&& (isLatitudeValid(values[3]))
 				&& (isLongitudeValid(values[4]))){
+ 				fixedLine = line;
 				isValid = true;
  			}
 		} else if(line.startsWith("#start")) {
@@ -191,10 +195,14 @@ public class FileLoader {
 			if (values.length >= 2) {
 				isValid = true;
 				//making sure the line doesn't include any un-needed extra's 
-				line = values[0] + "," + values[1] + ",,,,";
+				fixedLine = values[0] + "," + values[1] + ",,,,";
+			} else {
+				//line only has start..
+				fixedLine = values[0] + ",Event(default),,,,";
 			}
 		}
-		return isValid;
+		//return isValid;
+		return fixedLine;
  	}
 
  	/**
