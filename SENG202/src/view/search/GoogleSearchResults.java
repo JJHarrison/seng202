@@ -3,6 +3,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+
 /**
  * This class provides an abstract version of results provided by the Google Search API.
  * Each GoogleSearchResult consists of a ResponseData class which holds an array of Results, with 
@@ -76,7 +78,8 @@ public class GoogleSearchResults {
 	     * @return title
 	     */
 	    public String getTitle() { 
-	    	return titleNoFormatting;
+	    	
+	    	return Jsoup.parse(titleNoFormatting).text();
 	    }
 	    
 	    /**
@@ -85,10 +88,8 @@ public class GoogleSearchResults {
 	     * @return content
 	     * @throws UnsupportedEncodingException 
 	     */
-	    public String getContent() throws UnsupportedEncodingException {
-	    	System.out.println(content);
-	    	System.out.println(URLDecoder.decode(content, "UTF-8"));
-	    	return URLDecoder.decode(content, "UTF-8");
+	    public String getContent() {
+	    	return Jsoup.parse(content).text();
 	    }
 	    
 		/**

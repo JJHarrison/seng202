@@ -39,6 +39,7 @@ public class WebController {
 	@FXML
 	void searchButton(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
+			SearchQuery.clearCount();
 			resultPane.getChildren().clear();
 			findResults(textFieldSearch.getText());
 		}
@@ -47,6 +48,7 @@ public class WebController {
 	@FXML
 	void searchField(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
+			SearchQuery.clearCount();
 			resultPane.getChildren().clear();
 			findResults(textFieldSearch.getText());
 		}
@@ -67,7 +69,6 @@ public class WebController {
 	 * @throws IOException
 	 */
 	void findResults(String searchText) throws IOException {
-		SearchQuery.clearCount();
 		URL url = new URL(SearchQuery.getQuery(textFieldSearch.getText()));
 		Reader reader = new InputStreamReader(url.openStream(), "UTF-8");
 		Gson gs = new GsonBuilder()
