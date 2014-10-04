@@ -1,5 +1,7 @@
 package data.model;
 
+import java.util.ArrayList;
+
 import user.User;
 
 /**
@@ -26,18 +28,53 @@ public class GraphHelper {
 
 	/**
 	 * Builds a graph with stress level on the y-axis and time on the x-axis.
+	 * Uses the average of the stress level over 3 points for events with
+	 * at least 10 points.
 	 * @param e the event the points are to be taken from
 	 * @return The stress level graph
 	 */
 	public static Graph getStressLevelGraph(Event e) {
 		Graph g = new Graph("Stress Level", "Time (s)", "Stress");
-		for (DataPoint p : e.getPoints()) {
-			double stress = p.getAverageStress();
-			System.out.println(p.getAverageStress());
-			double time = p.getDate().getTimeInMillis()
+		ArrayList<DataPoint> points = e.getPoints();
+		
+		// only take the average if there are 10 or more points
+		if (points.size() >= 10) {
+			double time = points.get(0).getDate().getTimeInMillis()
 					- e.getStartTime().getTimeInMillis();
+			double stress = points.get(0).getStressLevel();
+			
 			g.addPoint(time / 1000, stress);
+			
+			for (int i = 1; i < points.size() - 3; i++) {
+				double stress1 = points.get(i).getStressLevel();
+				double stress2 = points.get(i+1).getStressLevel();
+				double stress3 = points.get(i+2).getStressLevel();
+				double startTime = points.get(i).getDate().getTimeInMillis()
+						- e.getStartTime().getTimeInMillis();
+				double endTime = points.get(i+2).getDate().getTimeInMillis()
+						- e.getStartTime().getTimeInMillis();
+				
+				stress = (stress1 + stress2 + stress3) / 3; // average stress
+				time = (startTime + endTime) / 2; // average/midpoint time
+				
+				g.addPoint(time / 1000, stress);
+			}
+			
+			time = points.get(points.size() - 1).getDate().getTimeInMillis()
+					- e.getStartTime().getTimeInMillis();
+			stress = points.get(points.size() - 1).getStressLevel();
+			
+			g.addPoint(time / 1000, stress);
+		} else {
+			// just use the normal stress level for less than 10 points
+			for (DataPoint p : points) {
+				double stress = p.getStressLevel();
+				double time = p.getDate().getTimeInMillis()
+						- e.getStartTime().getTimeInMillis();
+				g.addPoint(time / 1000, stress);
+			}
 		}
+		
 		return g;
 	}
 
