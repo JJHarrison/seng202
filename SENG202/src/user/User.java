@@ -1,5 +1,6 @@
 package user;
 
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -326,11 +327,31 @@ public class User implements Serializable {
 	 * @return
 	 */
 	public static User mockUser() {
+		Persistent.clear();
+		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
+				Gender.MALE, 85.3, 190, null, 120);
+		
+		try {
+			Persistent.setFilePath("FilePath");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			Persistent.newUser(mock);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Persistent.setUser(mock);
+		
 		FileLoader fl = new FileLoader();
 		fl.load();
 		EventContainer ec = fl.getEventContainer();
-		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
-				Gender.MALE, 85.3, 190, ec, 120);
+		
+		mock.setEvents(ec);
+		
 		
 		return mock;
 	}
