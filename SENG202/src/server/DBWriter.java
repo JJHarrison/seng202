@@ -206,7 +206,7 @@ public class DBWriter {
 				e.printStackTrace();
 			}
 		}
-	}
+	} 
 
 	/**
 	 * Writes the users profile to the database
@@ -227,8 +227,8 @@ public class DBWriter {
 			
 			preparedStatement.setDouble(4, user.getWeight()); // add weight to the db
 			preparedStatement.setDouble(5, user.getHeight()); // add height to the db
-			preparedStatement.setString(6, user.genderForDB()); // add gender to the db
-			preparedStatement.setDouble(7, user.getBMI()); // add bmi to the db
+			preparedStatement.setDouble(6, user.getBMI()); // add gender to the db
+			preparedStatement.setString(7, user.genderForDB()); // add bmi to the db
 			preparedStatement.executeUpdate(); // execute the query/upload the db
 		} catch (SQLException e) {
 			e.printStackTrace();

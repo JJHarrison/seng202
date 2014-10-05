@@ -7,6 +7,7 @@ package view.server;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import server.Server;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -18,29 +19,14 @@ public class ServerController implements Initializable {
 
 	String consoleText = "";
 	
-	private Server s = new Server();
+	private Server s;
+	private Thread serverThread;
 
 	@FXML
 	TextArea textConsole;
 	
 	Boolean serverRunning = false;
 
-	/**
-	 * Creates a new task that contains the server.
-	 * This way the interface wont lag when the server is operating.
-	 */
-	Task<Void> t = new Task<Void>() {
-		@Override
-		protected Void call() throws Exception {
-			s.startServer();	
-			if (isCancelled()) {
-				System.out.println("cancelled");
-				
-				s.shutDownServer();
-			}
-			return null;
-		}
-	};
 	
 	/**
 	 * Actions taken when the 'START' button is used.
@@ -51,9 +37,10 @@ public class ServerController implements Initializable {
 			setConsoleText("The server is already running.");
 		} else {			
 			setConsoleText("Server Started!");
-
-			Thread thread = new Thread(t);
-			thread.start();
+			s = new Server(textConsole);
+			serverThread = new Thread(s);
+			serverThread.start();
+			
 			serverRunning = true;
 		}
 	}
@@ -64,9 +51,17 @@ public class ServerController implements Initializable {
 	@FXML
 	void actionStop() {
 		if (serverRunning) {
-			if (t.cancel()) {
-				setConsoleText("Server Stopped.");
-			}
+			setConsoleText("Server ending");
+			serverThread.interrupt();
+			
+			try {
+				s.stopServer();
+                serverThread.join();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+			s = null;
+			serverThread = null;
 			serverRunning = false;
 		} else {
 			setConsoleText("The server is currently not running.");
