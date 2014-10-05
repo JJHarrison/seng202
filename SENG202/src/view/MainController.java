@@ -99,7 +99,7 @@ public class MainController {
                         //setStyle("-fx-text-fill: #ff0000;");
                         if (Persistent.getCurrentUser().getEvents()
                         		.getEvents(date).size() > 0) {
-                            setStyle("-fx-background-color: #dfeaef;");
+                            setStyle("-fx-background-color: #a6d7f5;");
                             //this.getChildren().get(0).setStyle("-fx-text-fill: #ff0000;");
                         }
                     }

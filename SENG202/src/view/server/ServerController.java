@@ -23,6 +23,7 @@ public class ServerController implements Initializable {
 	private Thread serverThread;
 
 	@FXML
+	static
 	TextArea textConsole;
 	
 	Boolean serverRunning = false;
@@ -73,15 +74,20 @@ public class ServerController implements Initializable {
 	 */
 	public void setConsoleText(String newLine) {
 		consoleText = consoleText + newLine + '\n';
-		textConsole.setText(consoleText);
-		scrolldown();
+		//textConsole.setText(consoleText);
+		//scrolldown();
 	}
 	
 	/**
 	 * Scrolls the console window to the bottom to keep the latest line in focus
 	 */
-	private void scrolldown() {
+	private static void scrolldown() {
 		textConsole.setScrollTop(Double.MAX_VALUE);
+	}
+	
+	public static void updateConsole(TextArea console) {
+		textConsole = console;
+		scrolldown();
 	}
 	
 	@Override

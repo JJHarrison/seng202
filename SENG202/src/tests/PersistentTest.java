@@ -15,9 +15,9 @@ public class PersistentTest extends TestCase {
 	// Set up some of the basics
 	private String tempFilePath = System.getProperty("user.home");
 	private String fitrFilePath = tempFilePath + "/Fitr/";
-	String username = "Mocky";
+	String username = "Mocky"; 
 	User user = User.mockUser();
-
+	String userId =user.getUserId();
 	/**
 	 * tests that a valid file path can be set
 	 */
@@ -30,7 +30,7 @@ public class PersistentTest extends TestCase {
 	}
 
 	/**
-	 * Checks that an invalid filepath cant be set
+	 * Checks that an invalid filePath can't be set
 	 */
 	public void testSetInvalidFilePath() {
 		Persistent.clear();
@@ -100,14 +100,9 @@ public class PersistentTest extends TestCase {
 	 */
 	public void testNewUser() throws FileNotFoundException {
 		System.out.println("new user");
-		Persistent.deleteDirectory(new File(fitrFilePath));
-		Persistent.clear();
-		Persistent.setFilePath(tempFilePath);
+		System.out.println(userId);
+		Persistent.deleteUser(Persistent.getCurrentUser());
 		Persistent.newUser(user);
-		Persistent.setUser(user);
-		System.out.println("->" + user.getUserId());
-		System.out.println(fitrFilePath + user.getUserId());
-		
 		System.out.println("end new user");
 		assertTrue(new File(fitrFilePath + user.getUserId()).exists());
 	}
@@ -155,27 +150,9 @@ public class PersistentTest extends TestCase {
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
 		Persistent.exit();
-		for (User u : Persistent.getUsers()) {
-			System.out.println(u.getName());
-		}
 		assertEquals(2, Persistent.getUsers().size());
 	}
 	
-	/**
-	 * testing that the UserID has been incremented appropriately for the number of users that have been added
-	 */
-	public void testUserID() {
-		//assertEquals(1, Persistent.getUserID());	
-	}
-	
-	/**
-	 * userID shouldn't be incremented if an already existing user is being added
-	 */
-	public void testExistingUserID() {
-		Persistent.newUser(user);
-		//assertEquals(1, Persistent.getUserID());
-		
-	}
 
 	/** 
 	 * test that it is correctly returning the all the appropriate user names
