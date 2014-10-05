@@ -243,20 +243,24 @@ public class Persistent {
 	
 	/**
 	 * deletes the files at filePath 
+	 * only public for use in testing 
 	 * @param path path to delete files from 
 	 */
-	private static void deleteDirectory(File path) {
-		if(path.exists()) {
+	public static void deleteDirectory(File path) {
+
+		if(path.exists() && (path.getParentFile().getName().equals("Fitr") || path.getName().equals("Fitr"))) {
 			File[] files = path.listFiles();
 			for(int i=0; i<files.length; i++) {
 				if(files[i].isDirectory()) {
 					deleteDirectory(files[i]);
-					} else {
-						files[i].delete();
-					}
+				} else {
+					files[i].delete();
 				}
 			}
-		path.delete();
+			path.delete();
+		} else {
+			System.out.println("Not deleting that");
+		}
 	}
 
 	/**
@@ -289,6 +293,7 @@ public class Persistent {
 //		User u = User.mockUser();
 //		Persistent.newUser(u);
 //		deleteUser(u);
+		//deleteDirectory(new File("/Users/SamSchofield/Desktop/Fitr"));
 		
 	}
 }
