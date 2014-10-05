@@ -106,7 +106,7 @@ public class Persistent {
 	 * @param User the user to be added
 	 * @return boolean if the user to be added or not
 	 */
-	public static boolean newUser(User user) throws Exception {
+	public static boolean newUser(User user) {
 		boolean userAdded;
 		
 		if (!users.contains(user)) {
@@ -122,7 +122,6 @@ public class Persistent {
 			users.add(user);
 			userNames.add(user.getName());
 			Saver.SaveUser(user); // automatically save the user to json once they have been added 
-			prefs.put("UserID", generateUserID());
 			userAdded = true;
 		} else {
 			//user has already been added
@@ -136,20 +135,20 @@ public class Persistent {
 	 * generates a unique UserID using UUID
 	 * @return unique userID
 	 */
-	private static String generateUserID() {
+	public static String generateUserID() {
 		String userID = UUID.randomUUID().toString();
-		System.out.println(userID);
+		System.out.println("generateed user id is: " + userID);
 		return userID;
 	}
 
-	/**
-	 * returns the most recently used userID.
-	 * used in generating userID values 
-	 * @return userId
-	 */
-	public static String getUserID() {
-		return prefs.get("UserID", null);
-	}
+//	/**
+//	 * returns the most recently used userID.
+//	 * used in generating userID values 
+//	 * @return userId
+//	 */
+//	public static String getUserID() {
+//		return prefs.get("UserID", null);
+//	}
 
 	/**
 	 * Sets the current user.
@@ -235,10 +234,10 @@ public class Persistent {
 	 * @param user the user to be deleted
 	 */
 	public static void deleteUser(User user) {
-		File path = new File(getFilePath() + "/" + user.getUserId());
-		deleteDirectory(path);
 		users.remove(user);
 		userNames.remove(user.getName());
+		File path = new File(getFilePath() + "/" + user.getUserId());
+		deleteDirectory(path);
 	}
 	
 	/**
@@ -259,6 +258,8 @@ public class Persistent {
 			}
 			path.delete();
 		} else {
+			System.out.println("File Path exists = " + (path).exists());;
+			System.out.println("not deleting: " + path);
 			System.out.println("Not deleting that");
 		}
 	}

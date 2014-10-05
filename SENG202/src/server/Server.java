@@ -45,7 +45,8 @@ public class Server extends Thread{
 	 * Used by the caller to start the server to allow connections
 	 */
 	public void run() {
-		//log.appendText(startMessage() + " Server has been started\n");
+		log.appendText(startMessage() + " Server has been started\n");
+		//sendLog();
 		while(true) {
 			try {
 				waitForConnection();
@@ -215,6 +216,10 @@ public class Server extends Thread{
 	 */
 	private String startMessage() {
 		return "[" + getCurrentTime() + "]<Server>";
+	}
+	
+	private void sendLog(){
+		view.server.ServerController.updateConsole(log);
 	}
 }
 	
