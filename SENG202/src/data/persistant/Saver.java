@@ -1,13 +1,16 @@
 package data.persistant;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 import user.User;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -38,28 +41,20 @@ public class Saver {
 		}
 	}
 	
-	/**
-	 * saves a profile picture (file) that the user has imported to the users directory
-	 * @param picture the picture to be saved
-	 * @param user the user who the profile picture is for
-	 * @throws IOException
-	 */
-	public static void SaveProfilePicture(File picture, User user) throws IOException {
-		InputStream input = null;
-		OutputStream output = new FileOutputStream(Persistent.getProfileFilePath(user.getUserId()));
-		try {
-	    	  input = new FileInputStream(picture);
-	    	  byte[] buf = new byte[1024];
-	    	  int bytesRead;
-	    	  while ((bytesRead = input.read(buf)) > 0) {
-	    		  output.write(buf, 0, bytesRead);
-	    	  }
-	    	  
-		} finally {
-			input.close();
-			output.close();
-		}
 
+	/**
+	 * Saves a snapshot of an image to the users directory 
+	 * @param image the image to be saved
+	 * @param user the user to save the image to 
+	 */
+	public static void SaveProfilePicture(Image image, User user) {
+		String userDir = new File(Persistent.getProfileFilePath(user.getUserId())).getParent();
+	    File file = new File(userDir + "profile.png");
+	    try {
+	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+	    } catch (IOException e) {
+	        // TODO: handle exception here
+	    }
 	}
 
 }
