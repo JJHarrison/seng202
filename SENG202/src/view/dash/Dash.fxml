@@ -128,7 +128,8 @@
                               <RowConstraints />
                            </rowConstraints>
             </GridPane>
-                        <Button layoutX="42.0" layoutY="65.0" mnemonicParsing="false" onAction="#actionSetImage" prefWidth="160.0" styleClass="Profile" stylesheets="@profile.css" text="Select Picture" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <ImageView fx:id="imageProfile" fitHeight="160.0" fitWidth="160.0" layoutX="10.0" layoutY="20.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <Button fx:id="buttonImage" layoutX="42.0" layoutY="65.0" mnemonicParsing="false" onAction="#actionSetImage" prefWidth="160.0" styleClass="Profile" stylesheets="@profile.css" text="Select Picture" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                            <font>
                               <Font size="16.0" />
                            </font>

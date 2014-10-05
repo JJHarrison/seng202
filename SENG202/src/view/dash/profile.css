@@ -1,10 +1,9 @@
 .Profile {
     -fx-background-radius: 80;	
     -fx-content-display:graphic-only;  
-    -fx-background-color:derive(#87CEFA, -5%);
-    -fx-background-size: 55;
+    -fx-background-color:transparent;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: right 10 center;
+    -fx-background-position: center;
 }
 .Profile:hover {
     -fx-content-display:center; 

@@ -2,11 +2,15 @@ package view.dash;
 
 import java.util.Calendar;
 
+import resources.Reference;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import view.warning.Warning;
 import view.warning.Warning.Risk;
 import data.model.Event;
@@ -21,7 +25,10 @@ import data.persistant.Persistent;
 public class DashController {
 
 	@FXML
-	ImageView imageGender;
+	Button buttonImage;
+	
+	@FXML
+	ImageView imageProfile;
 
 	@FXML
 	Label labelName;
@@ -154,7 +161,12 @@ public class DashController {
 	
 	@FXML
 	void actionSetImage(ActionEvent event) {
-		System.out.println("Hi");
+		Image image = new Image(Reference.class.getResourceAsStream("p.jpg"));
+		imageProfile.setFitHeight(160);
+		imageProfile.setFitWidth(160);
+		imageProfile.preserveRatioProperty().set(false);
+		imageProfile.setClip(new Circle(80.0, 80.0, 80.0));
+		imageProfile.setImage(image);
 	}
 
 }
