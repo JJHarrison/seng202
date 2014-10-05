@@ -30,7 +30,7 @@ public class PersistentTest extends TestCase {
 	}
 
 	/**
-	 * Checks that an invalid filepath cant be set
+	 * Checks that an invalid filePath can't be set
 	 */
 	public void testSetInvalidFilePath() {
 		Persistent.clear();
