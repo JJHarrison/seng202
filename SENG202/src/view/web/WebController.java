@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import view.search.GoogleSearchResults;
 import view.search.Search;
+import view.web.SearchQuery;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
