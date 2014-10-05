@@ -138,6 +138,7 @@ public class Persistent {
 	 */
 	private static String generateUserID() {
 		String userID = UUID.randomUUID().toString();
+		System.out.println(userID);
 		return userID;
 	}
 

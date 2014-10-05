@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.Callable;
 
 import user.User;
 import data.persistant.Persistent;
@@ -16,7 +17,7 @@ import data.persistant.Persistent;
  * @author James
  *
  */
-public class Client implements Runnable{
+public class Client implements Callable<Boolean>{
     private Socket clientSocket;
     private ObjectInputStream input;
     private ObjectOutputStream output;
@@ -25,18 +26,13 @@ public class Client implements Runnable{
     private boolean hasTransfered;
     private boolean hasConnected;
     
-    public void run() {
-    	setupConnection();
+	@Override
+	public Boolean call() throws Exception {
+		setupConnection();
     	transferToServer(Persistent.getCurrentUser());
     	closeStuff();
-//    	if (isSuccessful()) {
-//			MessageBox.show(Main.stage, "User has been uploaded to the server successfully", "", MessageBox.OK);
-//		} else {
-//			MessageBox.show(Main.stage, "Sorry, something went wrong.", "", MessageBox.OK);
-//		}
-    }
-    
-    
+		return isSuccessful();
+	}
     
     /**
      * Sets up a connection with the server.
@@ -162,4 +158,6 @@ public class Client implements Runnable{
 		c.transferToServer(mocky);
 		c.closeStuff();
 	}
+
+
 }

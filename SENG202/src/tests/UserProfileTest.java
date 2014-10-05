@@ -121,5 +121,25 @@ public class UserProfileTest extends TestCase {
 	public void testToString() {
 		assertEquals("Mocky", u.toString());
 	}
+	
+	/**
+	 * Tests that tachycardia warnings are being generated properly.
+	 */
+	public void testHasTachycardia() {
+		u.setRestingHeartRate(150);
+		assertTrue(u.hasTachycardia());
+		u.setRestingHeartRate(80);
+		assertFalse(u.hasTachycardia());
+	}
+	
+	/**
+	 * Tests that bradycardia warnings are being generated properly.
+	 */
+	public void testHasBradycardia() {
+		u.setRestingHeartRate(50);
+		assertTrue(u.hasBradycardia());
+		u.setRestingHeartRate(80);
+		assertFalse(u.hasTachycardia());
+	}
 
 }
