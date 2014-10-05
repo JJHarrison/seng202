@@ -45,7 +45,7 @@ public class Server extends Thread{
 	 * Used by the caller to start the server to allow connections
 	 */
 	public void run() {
-		//log.appendText("Server has been started\n");
+		//log.appendText(startMessage() + " Server has been started\n");
 		while(true) {
 			try {
 				waitForConnection();
