@@ -95,10 +95,12 @@ public class MainController {
                     protected void updateItem(Date date, boolean empty) {
                         super.updateItem(date, empty);
                         calendar.setTime(date);
-                        setStyle("-fx-background-color: #ffffff");
+                        setStyle("-fx-background-color: #ffffff;");
+                        //setStyle("-fx-text-fill: #ff0000;");
                         if (Persistent.getCurrentUser().getEvents()
                         		.getEvents(date).size() > 0) {
-                            setStyle("-fx-background-color: #dfefff;");
+                            setStyle("-fx-background-color: #dfeaef;");
+                            //this.getChildren().get(0).setStyle("-fx-text-fill: #ff0000;");
                         }
                     }
                 };
@@ -106,6 +108,7 @@ public class MainController {
                 return dateCell;
             }
         });
+		
 		
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		ArrayList<String> filterCSV = new ArrayList<String>();
