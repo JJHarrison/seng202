@@ -23,12 +23,13 @@ public class MapController {
 
 	private Image image;
 
-	private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks&";
+	private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?";
 	private static String parameterPath = "path=color:blue|";
 	private static String parameterStart = "markers=label:S|";
 	private static String parameterFinish = "markers=label:F|";
 	private static String parameterSize = "size=640x480";
 	private static String parameterType = "maptype=roadmap";
+	private static String parameterKey = "&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks";
 
 	/**
 	 * Fill the map view by loading the static map.
@@ -63,6 +64,7 @@ public class MapController {
 	private void getImage() {
 		StringBuilder stringMapRequest = new StringBuilder();
 		stringMapRequest.append(urlStaticMap);
+		stringMapRequest.append(parameterKey);
 		stringMapRequest.append(parameterSize);
 
 		stringMapRequest.append("&");
