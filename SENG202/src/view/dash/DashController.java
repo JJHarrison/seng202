@@ -168,12 +168,7 @@ public class DashController {
 	@FXML
 	void actionSetImage(ActionEvent event) {
 		Image image = new Image(Reference.class.getResourceAsStream("p.jpg"));
-		try {
-			Saver.SaveProfilePicture(new File("/Users/SamSchofield/Desktop/1583934.jpg"), Persistent.getCurrentUser());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Saver.SaveProfilePicture(image, Persistent.getCurrentUser());
 		imageProfile.setFitHeight(160);
 		imageProfile.setFitWidth(160);
 		imageProfile.preserveRatioProperty().set(false);
