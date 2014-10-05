@@ -40,6 +40,8 @@ public class Server extends Application {
 		}
 		
 		primaryStage.setTitle("Fitr Server Console");
+		primaryStage.setMinWidth(600);
+		primaryStage.setMinHeight(400);
 	}
 	
 	

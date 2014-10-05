@@ -76,6 +76,7 @@ public class Server extends Thread{
 	 */
 	public void stopServer() throws IOException { 
 		//log.appendText(startMessage() + " Shuting down server.\n");
+		//view.server.ServerController.setConsoleText(" Shutting down server.");
 		System.out.println(startMessage() + " Shuting down server.");
 		// Close the server socket.
 		serverSocket.close();
@@ -95,6 +96,7 @@ public class Server extends Thread{
 //				+ " Waiting for a client to connect to ["
 //				+ InetAddress.getLocalHost().getCanonicalHostName() + "]...\n");
 		// Once a client connects a socket is open for the server and client
+		//view.server.ServerController.setConsoleText("Waiting for stuff");
 		connection = serverSocket.accept();
 	}
 
