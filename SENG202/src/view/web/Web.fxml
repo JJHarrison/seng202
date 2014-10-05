@@ -14,12 +14,12 @@
          <children>
             <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -10%); -fx-border-color: derive(-fx-base, -10%);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchButton" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Search" AnchorPane.rightAnchor="300.0">
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchButton" prefHeight="40.0" prefWidth="80.0" styleClass="Button" stylesheets="@search.css" text="Search" AnchorPane.leftAnchor="300.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="textFieldSearch" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" onAction="#searchField" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 0;" AnchorPane.rightAnchor="0.0">
+                  <TextField fx:id="textFieldSearch" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" onAction="#searchField" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 0;" AnchorPane.leftAnchor="0.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -31,12 +31,12 @@
                   <VBox fx:id="resultPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                </content>
             </ScrollPane>
-            <Button maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onAction="#moreResults" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Show More Results" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="30.0">
+            <Button maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onAction="#moreResults" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Show More Results" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onAction="#clearResults" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Clear" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="200.0">
+            <Button maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onAction="#clearResults" prefHeight="40.0" styleClass="Button" stylesheets="@search.css" text="Clear" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="16.0" />
                </font>
