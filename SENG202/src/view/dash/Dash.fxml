@@ -344,7 +344,7 @@
                                     </Label>
                                     <AnchorPane layoutX="40.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
                                        <children>
-                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="107.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: derive(-fx-base, -5%);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="107.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-padding: 0;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <content>
                                                 <VBox fx:id="warningPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
                                              </content>
