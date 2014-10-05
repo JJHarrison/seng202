@@ -155,7 +155,7 @@ public class Server extends Thread{
 							+ "] to the database...");
 //					log.appendText(startMessage() + " Adding user [" + uploadedUser.getName() 
 //							+ "] to the database...\n");
-					//dbw.writeUser(uploadedUser);
+					dbw.writeUser(uploadedUser);
 					System.out.println(startMessage() + " Complete!\n");
 //					log.appendText(startMessage() + " Complete!\n\n");
 				} catch (Exception e) {
