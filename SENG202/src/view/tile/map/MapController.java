@@ -23,7 +23,7 @@ public class MapController {
 
 	private Image image;
 
-	private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks";
+	private static String urlStaticMap = "https://maps.googleapis.com/maps/api/staticmap?&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks&";
 	private static String parameterPath = "path=color:blue|";
 	private static String parameterStart = "markers=label:S|";
 	private static String parameterFinish = "markers=label:F|";
