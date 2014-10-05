@@ -1,9 +1,11 @@
 package view.user;
 
+import resources.Reference;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,6 +30,7 @@ public class UserLoginManager extends Application {
 		UserLoginManager.stage = stage;
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setResizable(false);
+		stage.getIcons().add(new Image(Reference.class.getResourceAsStream("heart_icon.png")));
 		/*
 		 * initialize the persistent class.
 		 */

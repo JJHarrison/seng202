@@ -2,6 +2,7 @@ package view.dash;
 
 import java.util.Calendar;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -149,6 +150,11 @@ public class DashController {
 		fillMonth();
 		fillTotal();
 		fillWarnings();
+	}
+	
+	@FXML
+	void actionSetImage(ActionEvent event) {
+		System.out.println("Hi");
 	}
 
 }
