@@ -83,7 +83,6 @@ public class Server extends Thread{
 	}
 	
 
-	
 	/**
 	 * Waits for a connection to be formed with the client.
 	 * @throws IOException

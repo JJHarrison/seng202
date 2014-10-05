@@ -37,7 +37,6 @@ public class ServerController implements Initializable {
 			setConsoleText("The server is already running.");
 		} else {			
 			setConsoleText("Server Started!");
-
 			s = new Server(textConsole);
 			serverThread = new Thread(s);
 			serverThread.start();

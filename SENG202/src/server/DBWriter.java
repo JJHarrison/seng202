@@ -206,7 +206,7 @@ public class DBWriter {
 				e.printStackTrace();
 			}
 		}
-	}
+	} 
 
 	/**
 	 * Writes the users profile to the database

@@ -22,8 +22,7 @@ public class Server extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/server/Server.fxml"));
 			Scene scene = new Scene(root);
-			
-			
+						
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
