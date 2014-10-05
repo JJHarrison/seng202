@@ -16,7 +16,7 @@ public class SearchQuery {
 	private static int count = 0;
 	private static final String address = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks&start=";
 	private static boolean searched = false; //True when the query has been searched
-	private static String currentSearchQuery;
+	private static String currentSearchQuery; // Keeps track of what the query was and so knows if it has changed
 	
 	/**
 	 * A function that takes a plain text search query and returns a complete
