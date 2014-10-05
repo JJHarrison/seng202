@@ -1,6 +1,7 @@
 package user;
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -331,19 +332,15 @@ public class User implements Serializable {
 		Persistent.clear();
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
 				Gender.MALE, 85.3, 190, null, 120);
-		
+		//System.out.println("Mockys userId is: " + Persistent.getUserID());
 		try {
-			Persistent.setFilePath("/Users/SamSchofield/Desktop/SENG202");
+			//Persistent.setFilePath(System.getProperty("user.home"));
+			Persistent.setFilePath("Users/SamSchofield/Desktop");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
-		try {
-			Persistent.newUser(mock);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		Persistent.newUser(mock);
 		
 		Persistent.setUser(mock);
 		FileLoader fl = new FileLoader();
@@ -351,7 +348,9 @@ public class User implements Serializable {
 		EventContainer ec = fl.getEventContainer();
 		mock.setEvents(ec);
 		
-		
+		// We now 
+		//Persistent.deleteDirectory(new File(System.getProperty("user.home") + "Fitr"));
+		//Persistent.deleteUser(mock);
 		return mock;
 	}
 	
