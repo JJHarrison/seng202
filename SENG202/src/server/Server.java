@@ -45,7 +45,7 @@ public class Server extends Thread{
 	 * Used by the caller to start the server to allow connections
 	 */
 	public void run() {
-		//log.appendText("Server has been started\n");
+		//log.appendText(startMessage() + " Server has been started\n");
 		while(true) {
 			try {
 				waitForConnection();
@@ -75,7 +75,7 @@ public class Server extends Thread{
 	 * @throws IOException 
 	 */
 	public void stopServer() throws IOException { 
-		//log.appendText(startMessage() + " Shuting down server.\n");
+		//log.appendText(startMessage() + " Shutting down server.\n");
 		//view.server.ServerController.setConsoleText(" Shutting down server.");
 		System.out.println(startMessage() + " Shuting down server.");
 		// Close the server socket.
@@ -155,7 +155,7 @@ public class Server extends Thread{
 							+ "] to the database...");
 //					log.appendText(startMessage() + " Adding user [" + uploadedUser.getName() 
 //							+ "] to the database...\n");
-					dbw.writeUser(uploadedUser);
+					//dbw.writeUser(uploadedUser);
 					System.out.println(startMessage() + " Complete!\n");
 //					log.appendText(startMessage() + " Complete!\n\n");
 				} catch (Exception e) {

@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -161,17 +163,19 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				Client c = new Client();
-				Thread t = new Thread(c);
-				t.start();
-				
-//				c.setupConnection();
-//				c.transferToServer(Persistent.getCurrentUser());
-//				c.closeStuff();
-//				if (c.isSuccessful()) {
-//					MessageBox.show(Main.stage, "User has ben uploaded to the server sucessfully", "", MessageBox.OK);
-//				} else {
-//					MessageBox.show(Main.stage, "Sorry, something went wrong.", "", MessageBox.OK);
-//				}
+				FutureTask<Boolean> task = new FutureTask<Boolean>(c);
+				task.run();
+				try {
+					if (task.get()) {
+						MessageBox.show(Main.stage, 
+								"User has been uploaded to the server sucessfully", "", MessageBox.OK);
+					} else {
+						MessageBox.show(Main.stage, 
+								"Sorry, the server appears to be afk =(", "", MessageBox.OK);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
