@@ -3,6 +3,7 @@ package tests;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.prefs.BackingStoreException;
+import org.junit.Test;
 
 import junit.framework.TestCase;
 import user.User;
@@ -17,8 +18,8 @@ public class PersistentTest extends TestCase {
 	 * NOTE: Tests are a bit temperamental, due to the persistent nature of the Persistent class
 	 * To fix delete the Fitr directory and run the persistent main which will clear the preferences 
 	 */
-	private String personalFilePath = "/Users/SamSchofield/Desktop";
-	private String fitrFilePath = personalFilePath + "/Fitr/";
+	private String tempFilePath = System.getProperty("user.home");
+	private String fitrFilePath = tempFilePath + "/Fitr/";
 	String username = "Mocky";
 	User user = User.mockUser();
 
@@ -27,22 +28,19 @@ public class PersistentTest extends TestCase {
 	 * 
 	 * @throws FileNotFoundException
 	 */
+	@Test
 	public void testSetFilePath() throws FileNotFoundException {
-		Persistent.setFilePath(personalFilePath);
+		Persistent.setFilePath(tempFilePath);
 	}
 
 	/**
 	 * tests to see if an invalid file path can be set
+	 * @throws FileNotFoundException 
 	 */
-	public void testSetInvalidFilePath() {
-		Throwable e = null;
+	@Test(expected = FileNotFoundException.class)
+	public void testSetInvalidFilePath() throws FileNotFoundException {
 		Persistent.clear();
-		try {
-			Persistent.setFilePath(personalFilePath + "/NonExistantFilePath");
-		} catch (Throwable ex) {
-			e = ex;
-		}
-		assertTrue(e instanceof FileNotFoundException);
+		Persistent.setFilePath("/NonExistantFilePath");
 	}
 
 	/**
@@ -51,7 +49,7 @@ public class PersistentTest extends TestCase {
 	 */
 	public void testGetFilePath() throws FileNotFoundException {
 		Persistent.clear();
-		Persistent.setFilePath(personalFilePath);
+		Persistent.setFilePath(tempFilePath);
 		assertEquals(fitrFilePath, Persistent.getFilePath());
 	}
 
@@ -61,7 +59,7 @@ public class PersistentTest extends TestCase {
 	 * @throws FileNotFoundException
 	 */
 	public void testGetProfileFilePath() throws FileNotFoundException {
-		Persistent.setFilePath(personalFilePath);
+		Persistent.setFilePath(tempFilePath);
 		assertEquals(fitrFilePath + user.getUserId() + "/." + user.getUserId() + ".fitr",
 				Persistent.getProfileFilePath(user.getUserId()));
 
@@ -74,7 +72,7 @@ public class PersistentTest extends TestCase {
 	 */
 	public void testFilePathSet() throws FileNotFoundException {
 		Persistent.clear();
-		Persistent.setFilePath(personalFilePath);
+		Persistent.setFilePath(tempFilePath);
 		assertEquals(true, Persistent.filePathSet());
 	}
 
@@ -92,7 +90,7 @@ public class PersistentTest extends TestCase {
 	 * @throws FileNotFoundException
 	 */
 	public void testSetupDirectory() throws FileNotFoundException {
-		Persistent.setFilePath(personalFilePath);
+		Persistent.setFilePath(tempFilePath);
 		Persistent.setupDirectory();
 		assertEquals(true, new File(Persistent.getFilePath()).exists());
 		assertEquals(fitrFilePath, Persistent.getFilePath());
@@ -197,6 +195,15 @@ public class PersistentTest extends TestCase {
 	 */
 	public void testExit() throws BackingStoreException {
 		Persistent.exit();
+	}
+	
+	/**
+	 * removes any files added by the testing
+	 * Dont worry it checks that it is only deleting a Fitr folder now!
+	 */
+	public void testTearDown() {
+		System.out.println("Removing temporary files");
+		Persistent.deleteDirectory(new File(fitrFilePath));
 	}
 
 }
