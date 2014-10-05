@@ -40,8 +40,11 @@ public class WebController {
 	void searchButton(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
 			SearchQuery.clearCount();
+			SearchQuery.setSearched(true);
 			resultPane.getChildren().clear();
 			findResults(textFieldSearch.getText());
+		} else {
+			clearResults(event);
 		}
 	}
 
@@ -49,15 +52,18 @@ public class WebController {
 	void searchField(ActionEvent event) throws IOException {
 		if (!textFieldSearch.getText().trim().isEmpty()) {
 			SearchQuery.clearCount();
+			SearchQuery.setSearched(true);
 			resultPane.getChildren().clear();
 			findResults(textFieldSearch.getText());
+		} else {
+			clearResults(event);
 		}
 	}
 	
 	@FXML
 	void moreResults(ActionEvent event) throws IOException {
-		if (!textFieldSearch.getText().trim().isEmpty()) {
-			findResults(textFieldSearch.getText());
+		if (!textFieldSearch.getText().trim().isEmpty() && SearchQuery.isSearched()) {
+			findResults(SearchQuery.getCurrentSearchQuery());
 		}
 	}
 	
@@ -75,13 +81,12 @@ public class WebController {
 	 * @throws IOException
 	 */
 	void findResults(String searchText) throws IOException {
-		URL url = new URL(SearchQuery.getQuery(textFieldSearch.getText()));
+		URL url = new URL(SearchQuery.getQuery(searchText));
 		Reader reader = new InputStreamReader(url.openStream(), "UTF-8");
 		Gson gs = new GsonBuilder()
 					.setPrettyPrinting()
 					.disableHtmlEscaping()
 					.create();
-		
 		GoogleSearchResults results = gs.fromJson(reader, GoogleSearchResults.class);
 		this.results = results;
 		sendResults();
@@ -95,7 +100,6 @@ public class WebController {
 			} else {
 				resultPane.getChildren().add(new Search(results.getResponseData().getResults().get(i)));
 			}
-			//resultPane.getChildren().add(new Search(results.new Result()));
 		}
 	}
 

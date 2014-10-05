@@ -14,7 +14,9 @@ import java.net.URLEncoder;
 public class SearchQuery {
 	
 	private static int count = 0;
-	public static final String address = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks&start=";
+	private static final String address = "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&key=AIzaSyBeMipx63vMq-R8_jkj5QffJQ5RTRu_kks&start=";
+	private static boolean searched = false; //True when the query has been searched
+	private static String currentSearchQuery;
 	
 	/**
 	 * A function that takes a plain text search query and returns a complete
@@ -27,6 +29,7 @@ public class SearchQuery {
 	 */
 	public static String getQuery(String inputQuery) throws IOException {
 		String query = address;
+		setCurrentSearchQuery(inputQuery);
 		try {
 			query = query + count + "&q=" + (URLEncoder.encode(inputQuery, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
@@ -47,6 +50,35 @@ public class SearchQuery {
 	 * Resets the count to 0
 	 */
 	public static void clearCount() {
+		setSearched(false);
 		count = 0;
+	}
+
+	/**Checks to see if the Query has been searched for or not.
+	 * @return the searched
+	 */
+	public static boolean isSearched() {
+		return searched;
+	}
+
+	/**
+	 * @param searched The state of the web search
+	 */
+	public static void setSearched(boolean searched) {
+		SearchQuery.searched = searched;
+	}
+
+	/**
+	 * @return the inputQuery
+	 */
+	public static String getCurrentSearchQuery() {
+		return currentSearchQuery;
+	}
+
+	/**
+	 * @param inputQuery the inputQuery to set
+	 */
+	public static void setCurrentSearchQuery(String currentSearchQuery) {
+		SearchQuery.currentSearchQuery = currentSearchQuery;
 	}
 }
