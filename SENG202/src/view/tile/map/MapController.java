@@ -64,8 +64,8 @@ public class MapController {
 	private void getImage() {
 		StringBuilder stringMapRequest = new StringBuilder();
 		stringMapRequest.append(urlStaticMap);
-		stringMapRequest.append(parameterKey);
 		stringMapRequest.append(parameterSize);
+		stringMapRequest.append(parameterKey);
 
 		stringMapRequest.append("&");
 		stringMapRequest.append(parameterStart);
