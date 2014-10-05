@@ -270,6 +270,8 @@ public class Persistent {
 	public static void clear() {
 		try {
 			prefs.clear();
+			//users.clear();
+			//userNames.clear();
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}

@@ -49,7 +49,7 @@ public class Saver {
 	 */
 	public static void SaveProfilePicture(Image image, User user) {
 		String userDir = new File(Persistent.getProfileFilePath(user.getUserId())).getParent();
-	    File file = new File(userDir + "profile.png");
+	    File file = new File(userDir + "/profile.png");
 	    try {
 	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
 	    } catch (IOException e) {
