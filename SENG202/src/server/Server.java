@@ -8,6 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import user.User;
 
@@ -26,7 +28,9 @@ public class Server extends Thread{
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private DBWriter dbw;
-	private TextArea log;
+	
+	@FXML
+	TextArea log;
 	
 	/**
 	 * Constructor for the server, takes a TextArea to be used as a console.
@@ -35,7 +39,7 @@ public class Server extends Thread{
 	public Server(TextArea console) {
 		this.log = console;
 		try {
-			serverSocket = new ServerSocket(port);			
+			serverSocket = new ServerSocket(port);	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
