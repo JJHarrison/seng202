@@ -8,12 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: derive(-fx-base, -20%);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.server.ServerController">
    <children>
-      <Button layoutX="357.0" layoutY="346.0" mnemonicParsing="false" onAction="#actionStart" text="Start" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="120.0">
+      <Button layoutX="357.0" layoutY="346.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionStart" prefWidth="80.0" text="Start" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="477.0" layoutY="346.0" mnemonicParsing="false" onAction="#actionStop" text="Stop" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="20.0">
+      <Button layoutX="477.0" layoutY="346.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionStop" prefWidth="80.0" text="Stop" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="18.0" />
          </font>

@@ -125,8 +125,8 @@ public class Persistent {
 			prefs.put("UserID", generateUserID());
 			userAdded = true;
 		} else {
+			//user has already been added
 			userAdded = false;
-			System.out.println("User has already beeen created. try different username");
 			//throw new Exception("User already exists");
 		}
 		return userAdded;
@@ -138,7 +138,6 @@ public class Persistent {
 	 */
 	private static String generateUserID() {
 		String userID = UUID.randomUUID().toString();
-		System.out.println(userID);
 		return userID;
 	}
 
