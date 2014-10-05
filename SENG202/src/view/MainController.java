@@ -16,8 +16,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import jfx.messagebox.MessageBox;
 import server.Client;
@@ -29,6 +31,7 @@ import data.model.Event;
 import data.persistant.Persistent;
 import data.persistant.Saver;
 import extfx.scene.control.CalendarView;
+import extfx.scene.control.DateCell;
 
 /**
  * 
@@ -80,6 +83,28 @@ public class MainController {
 
 	@FXML
 	void initialize() {
+		
+		// highlight the days which have events on them
+		calendarView.setDayCellFactory(new Callback<CalendarView, DateCell>() {
+            @Override
+            public DateCell call(CalendarView calendarView) {
+                DateCell dateCell = new DateCell() {
+                    @Override
+                    protected void updateItem(Date date, boolean empty) {
+                        super.updateItem(date, empty);
+                        calendar.setTime(date);
+                        setStyle("-fx-background-color: #ffffff");
+                        if (Persistent.getCurrentUser().getEvents()
+                        		.getEvents(date).size() > 0) {
+                            setStyle("-fx-background-color: #dfefff;");
+                        }
+                    }
+                };
+
+                return dateCell;
+            }
+        });
+		
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		ArrayList<String> filterCSV = new ArrayList<String>();
 		filterCSV.add("*.csv");
