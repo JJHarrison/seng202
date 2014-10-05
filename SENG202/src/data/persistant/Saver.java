@@ -46,7 +46,9 @@ public class Saver {
 	 */
 	public static void SaveProfilePicture(File picture, User user) throws IOException {
 		InputStream input = null;
-		OutputStream output = new FileOutputStream(Persistent.getProfileFilePath(user.getUserId()));
+		//works even if user directory has been re named 
+		String userDir = new File(Persistent.getProfileFilePath(user.getUserId())).getParent();
+		OutputStream output = new FileOutputStream(userDir + "/profile.jpg");
 		try {
 	    	  input = new FileInputStream(picture);
 	    	  byte[] buf = new byte[1024];
@@ -59,7 +61,6 @@ public class Saver {
 			input.close();
 			output.close();
 		}
-
 	}
 
 }

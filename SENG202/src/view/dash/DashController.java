@@ -1,6 +1,11 @@
 package view.dash;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.prefs.PreferenceChangeEvent;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import resources.Reference;
 import javafx.event.ActionEvent;
@@ -16,6 +21,7 @@ import view.warning.Warning.Risk;
 import data.model.Event;
 import data.model.Summary;
 import data.persistant.Persistent;
+import data.persistant.Saver;
 
 /**
  * 
@@ -162,6 +168,12 @@ public class DashController {
 	@FXML
 	void actionSetImage(ActionEvent event) {
 		Image image = new Image(Reference.class.getResourceAsStream("p.jpg"));
+		try {
+			Saver.SaveProfilePicture(new File("/Users/SamSchofield/Desktop/1583934.jpg"), Persistent.getCurrentUser());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		imageProfile.setFitHeight(160);
 		imageProfile.setFitWidth(160);
 		imageProfile.preserveRatioProperty().set(false);
