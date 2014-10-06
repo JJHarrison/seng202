@@ -18,7 +18,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextArea fx:id="textConsole" editable="false" text="Press &lt;Start&gt; to turn on the Fitr Server. &#10;" wrapText="true" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <TextArea fx:id="textConsole" editable="false" wrapText="true" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="14.0" />
          </font>

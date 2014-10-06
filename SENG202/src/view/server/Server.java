@@ -7,11 +7,13 @@ package view.server;
 
 import java.io.IOException;
 
+import resources.Reference;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -23,14 +25,17 @@ public class Server extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/server/Server.fxml"));
 			Scene scene = new Scene(root);
-						
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Fitr Server");
+			primaryStage.getIcons().add(new Image(Reference.class.getResourceAsStream("heart_icon.png")));
+			primaryStage.setMinWidth(600);
+			primaryStage.setMinHeight(400);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 			
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				@Override
 				public void handle(WindowEvent arg0) {
-					//need to somehow call the server.stopServer() but idk how this sees controller
 					try {
 						ServerController.server.stopServer();
 					} catch (IOException e) {
@@ -41,16 +46,9 @@ public class Server extends Application {
 					
 				}
 			});
-			
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		primaryStage.setTitle("Fitr Server Console");
-		primaryStage.setMinWidth(600);
-		primaryStage.setMinHeight(400);
-		primaryStage.setResizable(false);
 	}
 	
 	

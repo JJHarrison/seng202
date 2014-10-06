@@ -38,6 +38,8 @@ public class PersistentTest extends TestCase {
 	 * tests that a valid file path can be set
 	 */
 	public void testSetFilePath() {
+		System.out.println("a");
+		System.out.println(System.getProperty("user.home"));
 		try {
 			Persistent.setFilePath(tempFilePath);
 		} catch (FileNotFoundException e) {
