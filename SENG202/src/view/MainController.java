@@ -31,6 +31,7 @@ import jfx.messagebox.MessageBox;
 import server.Client;
 import view.analysis.AnalysisController;
 import view.dash.DashController;
+import view.notification.Notification;
 import view.user.UserLoginManager;
 import data.loader.FileLoader;
 import data.loader.LoadSummary;
@@ -209,9 +210,15 @@ public class MainController {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							MessageBox.show(Main.stage,
-									LoadSummary.getSumamry(), "", MessageBox.OK);
-							LoadSummary.clear();
+//							MessageBox.show(Main.stage,
+//									LoadSummary.getSumamry(), "", MessageBox.OK);
+//							LoadSummary.clear();
+							try {
+								new Notification().start(null);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					});
 
