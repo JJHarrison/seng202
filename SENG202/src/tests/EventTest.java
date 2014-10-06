@@ -9,7 +9,6 @@ import user.User;
 import junit.framework.TestCase;
 import data.model.DataPoint;
 import data.model.Event;
-import data.model.EventContainer;
 import data.persistant.Persistent;
 
 /**
@@ -35,6 +34,7 @@ public class EventTest extends TestCase {
 		super.setUp();
 		Persistent.setFilePath(System.getProperty("user.home"));
 		user = User.mockUser();
+		Persistent.setUser(user);
 
 		// set up data points
 		points = new ArrayList<DataPoint>();
@@ -115,12 +115,14 @@ public class EventTest extends TestCase {
 	 * tests if we are correctly diagnosing Tachycardia 
 	 */
 	public void testTachycardia() {
-		EventContainer ec = new EventContainer();
-		ec.addEvent(e);
+		Calendar c = new GregorianCalendar(61, 01, 01);
+		Persistent.getCurrentUser().setDateofBirth(c);
 		assertFalse(e.hasTachycardia()); // 53 years old
-		Calendar c = new GregorianCalendar(1950, 01, 01);
-		user.setDateofBirth(c);
-		//assertTrue(e.hasTachycardia()); // 64 years old
+		
+		c = new GregorianCalendar(1950, 01, 01);
+		Persistent.getCurrentUser().setDateofBirth(c);
+		e = new Event("My Event", points);
+		assertTrue(e.hasTachycardia()); // 64 years old
 	}
 
 	/**
@@ -138,6 +140,7 @@ public class EventTest extends TestCase {
 		assertEquals(p2, points.get(points.size() - 1));
 		points.add(p1);
 		assertEquals(p1, points.get(points.size() - 1));
+		points.remove(points.get(points.size() - 1));
 	}
 	
 	/**

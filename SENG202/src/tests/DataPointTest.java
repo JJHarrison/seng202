@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import user.User;
 import junit.framework.TestCase;
 import data.model.DataPoint;
 import data.persistant.Persistent;
@@ -17,7 +16,6 @@ import data.persistant.Persistent;
 public class DataPointTest extends TestCase {
 	private static DataPoint p1;
 	private static DataPoint p2;
-	private static User u;
 
 	/**
 	 * Sets up the test dataPoints to be tested
@@ -26,7 +24,6 @@ public class DataPointTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		Persistent.setFilePath(System.getProperty("user.home"));
-		u = User.mockUser();
 		
 		Calendar c1 = new GregorianCalendar(2005, // Year
 				5, // Month

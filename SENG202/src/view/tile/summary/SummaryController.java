@@ -3,7 +3,6 @@ package view.tile.summary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import data.model.DataPoint;
 import data.model.Event;
 
 /**

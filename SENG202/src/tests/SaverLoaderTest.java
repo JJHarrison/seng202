@@ -46,6 +46,7 @@ public class SaverLoaderTest extends TestCase {
 	 */
 	protected void tearDown() {
 		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
+		Persistent.clear();
 	}
 	
 

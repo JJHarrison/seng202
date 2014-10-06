@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.LinkedList;
 
 import junit.framework.TestCase;
-import user.User;
 import data.loader.FileLoader;
 import data.model.Event;
 import data.model.EventContainer;
@@ -25,7 +24,6 @@ public class GraphHelperTest extends TestCase {
 	private EventContainer ec;
 	private Event walkInWoods;
 	private Event runAroundBlock;
-	private User u;
 	private Graph g;
 	
 	/**
@@ -34,7 +32,6 @@ public class GraphHelperTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		Persistent.setFilePath(System.getProperty("user.home"));
-		u = User.mockUser();
 		
 		Calendar c1 = new Calendar.Builder().setDate(2005, 03, 10).build();
 		Calendar c2 = new Calendar.Builder().setDate(2005, 03, 12).build();
