@@ -15,8 +15,8 @@ import data.persistant.Persistent;
  * @author Fitr.Team
  */
 public class DataPointTest extends TestCase {
-	private DataPoint p1;
-	private DataPoint p2;
+	private static DataPoint p1;
+	private static DataPoint p2;
 	private static User u;
 
 	/**
@@ -27,6 +27,7 @@ public class DataPointTest extends TestCase {
 		super.setUp();
 		Persistent.setFilePath(System.getProperty("user.home"));
 		u = User.mockUser();
+		
 		Calendar c1 = new GregorianCalendar(2005, // Year
 				5, // Month
 				10, // Day
