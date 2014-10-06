@@ -93,10 +93,15 @@ public class Client implements Callable<Boolean>{
 	String buf;
 	try {
 	    buf = (String) input.readObject();
-	    if (buf != null) {
-		System.out.println("[" + getCurrentTime()
-			+ "]<Server> Responded it receieved user [" + buf + "].");
-		hasTransfered = true;
+	    if(buf.equals("NACK")) {
+	    	System.out.println("[" + getCurrentTime()
+			+ "]<Server> Responded it user did not write to the database.");
+	    	hasTransfered = false;
+	    }
+	    else if (buf != null) {
+			System.out.println("[" + getCurrentTime()
+					+ "]<Server> Responded it receieved user [" + buf + "].");
+			hasTransfered = true;
 	    }
 	} catch (ClassNotFoundException e) {
 		hasTransfered = false;

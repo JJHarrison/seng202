@@ -96,11 +96,10 @@ public class MainController {
                         super.updateItem(date, empty);
                         calendar.setTime(date);
                         setStyle("-fx-background-color: #ffffff;");
-                        //setStyle("-fx-text-fill: #ff0000;");
                         if (Persistent.getCurrentUser().getEvents()
                         		.getEvents(date).size() > 0) {
-                            setStyle("-fx-background-color: #dfeaef;");
-                            //this.getChildren().get(0).setStyle("-fx-text-fill: #ff0000;");
+                            setStyle("-fx-background-radius: 8; " + 
+                            		 "-fx-background-color: derive(-fx-accent, 80%);");
                         }
                     }
                 };
@@ -168,10 +167,10 @@ public class MainController {
 				try {
 					if (task.get()) {
 						MessageBox.show(Main.stage, 
-								"User has been uploaded to the server sucessfully", "", MessageBox.OK);
+								"User has been uploaded to the database sucessfully =)", "", MessageBox.OK);
 					} else {
 						MessageBox.show(Main.stage, 
-								"Sorry, the server appears to be afk =(", "", MessageBox.OK);
+								"Sorry, the user did not upload successfully =(", "", MessageBox.OK);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

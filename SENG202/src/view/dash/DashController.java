@@ -1,13 +1,9 @@
 package view.dash;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.prefs.PreferenceChangeEvent;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
-
-import resources.Reference;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +12,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import resources.Reference;
+import view.Main;
 import view.warning.Warning;
 import view.warning.Warning.Risk;
 import data.model.Event;
@@ -168,6 +167,21 @@ public class DashController {
 	@FXML
 	void actionSetImage(ActionEvent event) {
 		Image image = new Image(Reference.class.getResourceAsStream("p.jpg"));
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		
+		// Set filters
+		ArrayList<String> filterPNG = new ArrayList<String>();
+		filterPNG.add("*.png");
+		ArrayList<String> filterJPG = new ArrayList<String>();
+		filterJPG.add("*.jpg");
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", filterJPG));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", filterPNG));
+		
+		fileChooser.showOpenDialog(Main.stage);
+		//File file = f
+		
+		
 		Saver.SaveProfilePicture(image, Persistent.getCurrentUser());
 		imageProfile.setFitHeight(160);
 		imageProfile.setFitWidth(160);

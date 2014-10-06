@@ -5,6 +5,8 @@
 
 package view.server;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -28,8 +30,15 @@ public class Server extends Application {
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				@Override
 				public void handle(WindowEvent arg0) {
-					System.out.println("stage is closing....");
 					//need to somehow call the server.stopServer() but idk how this sees controller
+					try {
+						ServerController.server.stopServer();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch(NullPointerException np) {
+						System.exit(0);
+					}
+					
 				}
 			});
 			
@@ -41,6 +50,7 @@ public class Server extends Application {
 		primaryStage.setTitle("Fitr Server Console");
 		primaryStage.setMinWidth(600);
 		primaryStage.setMinHeight(400);
+		primaryStage.setResizable(false);
 	}
 	
 	

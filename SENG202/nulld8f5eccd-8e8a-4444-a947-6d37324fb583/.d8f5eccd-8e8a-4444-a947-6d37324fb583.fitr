@@ -1,0 +1,22 @@
+{
+  "dateofBirth": {
+    "year": 1961,
+    "month": 8,
+    "dayOfMonth": 9,
+    "hourOfDay": 0,
+    "minute": 0,
+    "second": 0
+  },
+  "name": "Mocky",
+  "weight": 85.3,
+  "height": 190.0,
+  "gender": "MALE",
+  "BMI": 23.628808864265928,
+  "restingHeartRate": 120,
+  "events": {
+    "days": {}
+  },
+  "userID": "d8f5eccd-8e8a-4444-a947-6d37324fb583",
+  "hasBradycardia": false,
+  "hasTachycardia": true
+}

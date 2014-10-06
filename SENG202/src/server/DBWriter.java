@@ -38,23 +38,21 @@ public class DBWriter {
 	 * 
 	 * @param user The users profile that will be uploaded
 	 */
-	public void writeUser(User user) {
-		try {
-			if (!isUserStored(user)) {
-				// if the user is not in the database it will add it
-				writeUserProfile(user);
-			} else {
-				// if the user is in the database it will update it
-				updateUserProfile(user);
-			}
-			// write all events associated with that user to the db
-			for (Event event : user.getEvents().getAllEvents()) {
-			writeEvent(user, event);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
+	public void writeUser(User user) throws SQLException{
+	
+		if (!isUserStored(user)) {
+			// if the user is not in the database it will add it
+			writeUserProfile(user);
+		} else {
+			// if the user is in the database it will update it
+			updateUserProfile(user);
 		}
+		// write all events associated with that user to the db
+		for (Event event : user.getEvents().getAllEvents()) {
+		writeEvent(user, event);
+		}
+			
+			
 		// add all events associated with the users profile to the database
 		
 	}
@@ -282,7 +280,11 @@ public class DBWriter {
 		mocky.setUserId("9");
 		long startTime = System.currentTimeMillis();
 
-		dbw.writeUser(mocky);
+		try {
+			dbw.writeUser(mocky);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		long endTime = System.currentTimeMillis();
 

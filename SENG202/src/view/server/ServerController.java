@@ -1,33 +1,21 @@
 /**
  * Controller for the Server console interface
- * @author Daniel Tapp
+ * @author Daniel Tapp, James Harrison
  */
 
 package view.server;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import server.Server;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import server.Server;
 
-
-public class ServerController implements Initializable {
-
-	String consoleText = "";
-	
-	private Server server;
+public class ServerController {
+	public static Server server;
 	private Thread serverThread;
-
 	@FXML
-	static
 	TextArea textConsole;
-	
-	Boolean serverRunning = false;
-
+	static TextArea staticTextArea;
+	private Boolean serverRunning = false;
 	
 	/**
 	 * Actions taken when the 'START' button is used.
@@ -35,13 +23,11 @@ public class ServerController implements Initializable {
 	@FXML
 	void actionStart() {
 		if (serverRunning) {
-			setConsoleText("The server is already running.");
+			setConsoleText("The server is already running.\n");
 		} else {			
-			setConsoleText("Server Started!");
-			server = new Server(textConsole);
+			server = new Server();
 			serverThread = new Thread(server);
 			serverThread.start();
-			
 			serverRunning = true;
 		}
 	}
@@ -52,48 +38,28 @@ public class ServerController implements Initializable {
 	@FXML
 	void actionStop() {
 		if (serverRunning) {
-			setConsoleText("Server ending");
-			serverThread.interrupt();
-			
+			server.interrupt();
 			try {
 				server.stopServer();
-				
-                serverThread.join();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-			server = null;
-			serverThread = null;
 			serverRunning = false;
 		} else {
-			setConsoleText("The server is currently not running.");
+			setConsoleText("The server is currently not running.\n");
 		}
 	}
 
 	/**
-	 * Adds a new line to the console output on the interface with the passed String
+	 * Adds a new line to the console text area
 	 */
-	public void setConsoleText(String newLine) {
-		consoleText = consoleText + newLine + '\n';
-		//textConsole.setText(consoleText);
-		//scrolldown();
+	public static void setConsoleText(String newLine) {
+		staticTextArea.appendText(newLine);
 	}
 	
-	/**
-	 * Scrolls the console window to the bottom to keep the latest line in focus
-	 */
-	private static void scrolldown() {
-		textConsole.setScrollTop(Double.MAX_VALUE);
-	}
-	
-	public static void updateConsole(TextArea console) {
-		textConsole = console;
-		scrolldown();
-	}
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
+	@FXML
+	void initialize() {
+		staticTextArea = this.textConsole;
 	}
 	
 }
