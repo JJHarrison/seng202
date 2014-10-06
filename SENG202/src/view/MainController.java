@@ -213,6 +213,7 @@ public class MainController {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
+							
 //							MessageBox.show(Main.stage,
 //									LoadSummary.getSumamry(), "", MessageBox.OK);
 //							LoadSummary.clear();

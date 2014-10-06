@@ -23,7 +23,7 @@ public class Notification {
 			Parent root = loader.load(getClass().getResourceAsStream("Notification.fxml"));
 			NotificationController controller = loader.getController();
 			
-			controller.fill();
+			//controller.fill();
 			
 			Scene scene = new Scene(root);
 			
