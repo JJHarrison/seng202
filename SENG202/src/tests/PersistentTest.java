@@ -13,11 +13,27 @@ import data.persistant.Persistent;
 public class PersistentTest extends TestCase {
 	
 	// Set up some of the basics
-	private String tempFilePath = System.getProperty("user.home");
-	private String fitrFilePath = tempFilePath + "/Fitr/";
+	private String tempFilePath;
+	private String fitrFilePath;
 	String username = "Mocky"; 
-	User user = User.mockUser();
-	String userId =user.getUserId();
+	User user;
+	String userId;
+	
+	/**
+	 * Sets up the test dataPoints to be tested
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		tempFilePath = System.getProperty("user.home");
+		fitrFilePath = tempFilePath + "/Fitr/";
+		Persistent.setFilePath(tempFilePath);
+		user = User.mockUser();
+		userId = user.getUserId();
+		
+	}
+	
+	
 	/**
 	 * tests that a valid file path can be set
 	 */
@@ -183,11 +199,9 @@ public class PersistentTest extends TestCase {
 	}
 	
 	/**
-	 * removes any files added by the testing
-	 * Dont worry it checks that it is only deleting a Fitr folder now!
+	 * removes any files which were created
 	 */
-	public void testTearDown() {
-		System.out.println("Removing temporary files");
+	protected void tearDown() {
 		Persistent.deleteDirectory(new File(fitrFilePath));
 	}
 

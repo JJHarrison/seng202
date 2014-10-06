@@ -35,7 +35,6 @@ public class EventTest extends TestCase {
 		super.setUp();
 		Persistent.setFilePath(System.getProperty("user.home"));
 		user = User.mockUser();
-		Persistent.setUser(user);
 
 		// set up data points
 		points = new ArrayList<DataPoint>();
@@ -141,10 +140,10 @@ public class EventTest extends TestCase {
 		assertEquals(p1, points.get(points.size() - 1));
 	}
 	
-	/** 
-	 * removes temp files that were created
+	/**
+	 * removes any files which were created
 	 */
-	public void testRemoveTemp() {
+	protected void tearDown() {
 		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 }

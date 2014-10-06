@@ -35,8 +35,6 @@ public class GraphHelperTest extends TestCase {
 		super.setUp();
 		Persistent.setFilePath(System.getProperty("user.home"));
 		u = User.mockUser();
-		Persistent.newUser(u);
-		Persistent.setUser(u);
 		
 		Calendar c1 = new Calendar.Builder().setDate(2005, 03, 10).build();
 		Calendar c2 = new Calendar.Builder().setDate(2005, 03, 12).build();
@@ -65,10 +63,10 @@ public class GraphHelperTest extends TestCase {
 		assertEquals(7, g.getPoints().getData().size());
 	}
 	
-	/** 
-	 * removes temp files that were created
+	/**
+	 * removes any files which were created
 	 */
-	public void testRemoveTemp() {
+	protected void tearDown() {
 		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 

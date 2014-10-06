@@ -249,7 +249,8 @@ public class Persistent {
 	 * @param path path to delete files from 
 	 */
 	public static void deleteDirectory(File path) {
-
+		userNames.clear();
+		users.clear();
 		if(path.exists() && (path.getParentFile().getName().equals("Fitr") || path.getName().equals("Fitr"))) {
 			File[] files = path.listFiles();
 			for(int i=0; i<files.length; i++) {

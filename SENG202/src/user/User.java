@@ -1,7 +1,5 @@
 package user;
 
-
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -339,9 +337,8 @@ public class User implements Serializable {
 			EventContainer ec = fl.getEventContainer();
 			mock.setEvents(ec);
 		} else {
-			System.out.println("You need to set the filePath");
+			System.out.println("Mocky's FilePath has not been set");
 		}
-
 		return mock;
 	}
 	

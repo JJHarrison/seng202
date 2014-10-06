@@ -36,7 +36,7 @@ public class Saver {
 			writer.write(profileString);
 			writer.close();
 		} catch (IOException e) {
-			System.out.println("FilePath does not exist");
+			System.out.println("No Existing filepath to save to");
 			//e.printStackTrace();
 		}
 	}

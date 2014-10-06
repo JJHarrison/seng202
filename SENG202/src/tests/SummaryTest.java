@@ -89,10 +89,10 @@ public class SummaryTest extends TestCase {
 	}
 	
 	
-	/** 
-	 * removes temp files that were created
+	/**
+	 * removes any files which were created
 	 */
-	public void testRemoveTemp() {
+	protected void tearDown() {
 		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 	

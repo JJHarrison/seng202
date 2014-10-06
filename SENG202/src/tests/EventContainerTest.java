@@ -34,9 +34,8 @@ public class EventContainerTest extends TestCase {
 		super.setUp();
 		Persistent.setFilePath(System.getProperty("user.home"));
 		u = User.mockUser();
-		Persistent.newUser(u);
-		Persistent.setUser(u);
 		ec = new EventContainer();
+		
 		FileLoader fl = new FileLoader();
 		fl.load();
 		testEventContainer = fl.getEventContainer();
@@ -104,10 +103,10 @@ public class EventContainerTest extends TestCase {
 		assertEquals(date.getTime(), testEventContainer.getLastDate());
 	}
 	
-	/** 
-	 * removes temp files that were created
+	/**
+	 * removes any files which were created
 	 */
-	public void testRemoveTemp() {
+	protected void tearDown() {
 		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 

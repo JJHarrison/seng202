@@ -91,10 +91,10 @@ public class DataPointTest extends TestCase {
 		assertEquals("23:42:28", p1.getTimeString());
 	}
 	
-	/** 
-	 * removes temp files that were created
+	/**
+	 * removes any files which were created
 	 */
-	public void testRemoveTemp() {
+	protected void tearDown() {
 		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 }

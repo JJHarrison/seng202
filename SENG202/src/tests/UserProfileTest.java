@@ -1,8 +1,10 @@
 package tests;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import data.persistant.Persistent;
 import junit.framework.TestCase;
 import user.User;
 import user.User.Gender;
@@ -145,6 +147,13 @@ public class UserProfileTest extends TestCase {
 		assertTrue(u.hasBradycardia());
 		u.setRestingHeartRate(80);
 		assertFalse(u.hasTachycardia());
+	}
+	
+	/**
+	 * removes any files which were created
+	 */
+	protected void tearDown() {
+		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 
 }

@@ -13,36 +13,40 @@ public class SaverLoaderTest extends TestCase {
 	static User u;
 	
 	/**
+	 * Sets up the test dataPoints to be tested
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		Persistent.setFilePath(System.getProperty("user.home"));
+		u = User.mockUser();
+	}
+	
+	/**
 	 * Tests saving a user to json 
 	 * @throws FileNotFoundException 
 	 * @throws Exception
 	 */
 	public void testSaveUser() throws FileNotFoundException {
-		System.out.println("===================================");
-		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
-		Persistent.setFilePath(System.getProperty("user.home"));
-		System.out.println("Fitr directory exosts = " + (new File(System.getProperty("user.home") + "/Fitr").exists()));
-		u = User.mockUser();
-		Persistent.newUser(u);
-		Persistent.setUser(u);
-		System.out.println(Persistent.getCurrentUser().getUserId());
-		System.out.println(u.getUserId());
-		System.out.println(Persistent.getFilePath());
-		System.out.println(Persistent.getProfileFilePath(u.getUserId()));
 		Saver.SaveUser(u);
-		System.out.println((new File(Persistent.getProfileFilePath(Persistent.getCurrentUser().getUserId())).getParentFile().exists()));
+		assertTrue(new File(Persistent.getProfileFilePath(u.getUserId())).exists());
 	}
 
 	/**
 	 * checks that the user that was loaded is the same as the one which was saved
 	 */
 	public void testLoader() {
-		System.out.println((new File(Persistent.getProfileFilePath(Persistent.getCurrentUser().getUserId())).exists()));
-		System.out.println("===================================");
+		Saver.SaveUser(u);
+		User loadedUser = Loader.loadUserProfile(new File(Persistent.getProfileFilePath(u.getUserId())));
+		assertEquals(u, loadedUser);
 	}
 	
-	
-
+	/**
+	 * removes any files which were created
+	 */
+	protected void tearDown() {
+		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
+	}
 	
 
 }
