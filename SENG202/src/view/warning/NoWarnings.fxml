@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.warning.NoWarningsController">
+   <children>
+      <VBox fx:id="warning" maxHeight="1.7976931348623157E308" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <AnchorPane maxHeight="50.0" minHeight="32.0" prefHeight="32.0" prefWidth="465.0" style="-fx-background-color: #35cc6f;">
+               <children>
+                  <Label layoutX="62.0" layoutY="18.0" text="No Health Warnings" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="textPane" style="-fx-background-color: white;" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
