@@ -159,7 +159,6 @@ public class PersistentTest extends TestCase {
 	public void testGetUsers() throws Exception {
 		Calendar c = new Calendar.Builder().setDate(1994, 0, 3).build();
 		User u1 = new User("Sam", c, Gender.MALE, 10, 10, null, 0);
-		Persistent.clear();
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
 		Persistent.exit();
@@ -174,7 +173,6 @@ public class PersistentTest extends TestCase {
 	public void testGetUserNames() throws Exception {
 		Calendar c = new Calendar.Builder().setDate(1994, 0, 3).build();
 		User u1 = new User("sam", c, Gender.MALE, 10, 10, null, 0);
-		Persistent.clear();
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
 		Persistent.exit();
