@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 import javafx.animation.FadeTransition;
@@ -18,18 +17,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import jfx.messagebox.MessageBox;
 import server.Client;
 import view.analysis.AnalysisController;
 import view.dash.DashController;
+import view.user.UserLoginManager;
 import data.loader.FileLoader;
 import data.loader.LoadSummary;
 import data.model.Event;
@@ -74,7 +74,7 @@ public class MainController {
 	MenuItem menuClearEvents;
 	@FXML
 	MenuItem menuLogout;
-	
+
 	FadeTransition ft;
 
 	ToggleGroup toggleGroup = new ToggleGroup();
@@ -90,40 +90,42 @@ public class MainController {
 
 	@FXML
 	void initialize() {
-		
+
 		// highlight the days which have events on them
 		calendarView.setDayCellFactory(new Callback<CalendarView, DateCell>() {
-            @Override
-            public DateCell call(CalendarView calendarView) {
-                DateCell dateCell = new DateCell() {
-                    @Override
-                    protected void updateItem(Date date, boolean empty) {
-                        super.updateItem(date, empty);
-                        calendar.setTime(date);
-                        setStyle("-fx-background-color: #ffffff;");
-                        if (Persistent.getCurrentUser().getEvents()
-                        		.getEvents(date).size() > 0) {
-                            setStyle("-fx-background-radius: 8; " + 
-                            		 "-fx-background-color: derive(-fx-accent, 80%);");
-                        }
-                    }
-                };
+			@Override
+			public DateCell call(CalendarView calendarView) {
+				DateCell dateCell = new DateCell() {
+					@Override
+					protected void updateItem(Date date, boolean empty) {
+						super.updateItem(date, empty);
+						calendar.setTime(date);
+						setStyle("-fx-background-color: #ffffff;");
+						if (Persistent.getCurrentUser().getEvents()
+								.getEvents(date).size() > 0) {
+							setStyle("-fx-background-radius: 8; "
+									+ "-fx-background-color: derive(-fx-accent, 80%);");
+						}
+					}
+				};
 
-                return dateCell;
-            }
-        });
-		
-		
-		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+				return dateCell;
+			}
+		});
+
+		fileChooser.setInitialDirectory(new File(System
+				.getProperty("user.home")));
 		ArrayList<String> filterCSV = new ArrayList<String>();
 		filterCSV.add("*.csv");
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", filterCSV));
+		fileChooser.getExtensionFilters().add(
+				new FileChooser.ExtensionFilter("CSV", filterCSV));
 		selectedDate = calendarView.selectedDateProperty();
 
 		MainController.selectedDate.addListener(new ChangeListener<Date>() {
 
 			@Override
-			public void changed(ObservableValue<? extends Date> observable, Date oldValue, Date newValue) {
+			public void changed(ObservableValue<? extends Date> observable,
+					Date oldValue, Date newValue) {
 				if (oldValue != null) {
 					Calendar newCalendar = Calendar.getInstance();
 					newCalendar.setTime(newValue);
@@ -133,14 +135,16 @@ public class MainController {
 					oldCalendar.set(Calendar.DAY_OF_WEEK, 0);
 					if (!oldCalendar.equals(newCalendar)) {
 						viewAnalysisController.clearTiles();
-						for (Event event : Persistent.getCurrentUser().getEvents().getWeekEvents(newValue)) {
+						for (Event event : Persistent.getCurrentUser()
+								.getEvents().getWeekEvents(newValue)) {
 							viewAnalysisController.addTile(event);
 						}
 					}
 
 				} else {
 					viewAnalysisController.clearTiles();
-					for (Event event : Persistent.getCurrentUser().getEvents().getWeekEvents(newValue)) {
+					for (Event event : Persistent.getCurrentUser().getEvents()
+							.getWeekEvents(newValue)) {
 						viewAnalysisController.addTile(event);
 					}
 				}
@@ -171,11 +175,14 @@ public class MainController {
 				task.run();
 				try {
 					if (task.get()) {
-						MessageBox.show(Main.stage, 
-								"User has been uploaded to the server sucessfully", "", MessageBox.OK);
+						MessageBox
+								.show(Main.stage,
+										"User has been uploaded to the server sucessfully",
+										"", MessageBox.OK);
 					} else {
-						MessageBox.show(Main.stage, 
-								"Sorry, the server appears to be afk =(", "", MessageBox.OK);
+						MessageBox.show(Main.stage,
+								"Sorry, the server appears to be afk =(", "",
+								MessageBox.OK);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -192,25 +199,26 @@ public class MainController {
 					LoadSummary.clear();
 					FileLoader fl = new FileLoader(file);
 					fl.load();
-					Persistent.getCurrentUser().addEvents(fl.getEventContainer());
-					
+					Persistent.getCurrentUser().addEvents(
+							fl.getEventContainer());
+
 					// run the load summary pop up in its own thread to stop it
 					// from stopping the flow of the import
-					//MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+					// MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
+							MessageBox.show(Main.stage,
+									LoadSummary.getSumamry(), "", MessageBox.OK);
 							LoadSummary.clear();
 						}
 					});
 
-					
-					
 					Calendar calendar = Calendar.getInstance();
 					calendar.add(Calendar.YEAR, 1);
 					selectedDate.setValue(calendar.getTime());
-					selectedDate.setValue(Persistent.getCurrentUser().getEvents().getLastDate());
+					selectedDate.setValue(Persistent.getCurrentUser()
+							.getEvents().getLastDate());
 					viewDashController.fillDash();
 				}
 			}
@@ -220,13 +228,14 @@ public class MainController {
 
 			@Override
 			public void handle(ActionEvent event) {
-				MessageBox.show(Main.stage,
-						"Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System",
-						"About Fitr", MessageBox.OK);
+				MessageBox
+						.show(Main.stage,
+								"Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System",
+								"About Fitr", MessageBox.OK);
 
 			}
 		});
-		
+
 		menuClearEvents.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -234,14 +243,32 @@ public class MainController {
 				Persistent.clearUserActivityData();
 				viewDashController.fillDash();
 				viewAnalysisController.clearTiles();
-				
+
 			}
 		});
-		
+
 		menuClose.setAccelerator(new KeyCodeCombination(KeyCode.F4, KeyCombination.ALT_DOWN));
 
+		menuLogout.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				Saver.SaveUser(Persistent.getCurrentUser());
+				Main.stage.close();
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+						UserLoginManager loginManager = new UserLoginManager();
+						loginManager.start(new Stage());
+
+					}
+				});
+
+			}
+		});
+
 		toggleGroup.getToggles().addAll(buttonAnalysis, buttonDash, buttonWeb);
-		
+
 		// need this so the dash loads first... i don't know why either...
 		toggleGroup.selectToggle(buttonWeb);
 		buttonDash.fire();
@@ -252,14 +279,15 @@ public class MainController {
 	private void loadDash(ActionEvent event) {
 		if (toggleGroup.getSelectedToggle() == buttonDash) {
 			toggleGroup.selectToggle(buttonDash);
-	
+
 			viewMainContent.getChildren().clear();
 			viewMainContent.getChildren().add(viewDash);
 			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewDash);
 			ft.setFromValue(0);
 			ft.setToValue(1);
 			ft.play();
-			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME),
+					calendarView);
 			ft.setToValue(0);
 			ft.play();
 			calendarView.disableProperty().set(true);
@@ -272,14 +300,16 @@ public class MainController {
 	private void loadAnalysis(ActionEvent event) {
 		if (toggleGroup.getSelectedToggle() == buttonAnalysis) {
 			toggleGroup.selectToggle(buttonAnalysis);
-	
+
 			viewMainContent.getChildren().clear();
 			viewMainContent.getChildren().add(viewAnalysis);
-			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewAnalysis);
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME),
+					viewAnalysis);
 			ft.setFromValue(0);
 			ft.setToValue(1);
 			ft.play();
-			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME),
+					calendarView);
 			ft.setToValue(1);
 			ft.play();
 			calendarView.disableProperty().set(false);
@@ -292,14 +322,15 @@ public class MainController {
 	private void loadWeb() {
 		if (toggleGroup.getSelectedToggle() == buttonWeb) {
 			toggleGroup.selectToggle(buttonWeb);
-	
+
 			viewMainContent.getChildren().clear();
 			viewMainContent.getChildren().add(viewWeb);
 			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), viewWeb);
 			ft.setFromValue(0);
 			ft.setToValue(1);
 			ft.play();
-			ft = new FadeTransition(Duration.millis(TRANSITION_TIME), calendarView);
+			ft = new FadeTransition(Duration.millis(TRANSITION_TIME),
+					calendarView);
 			ft.setToValue(0);
 			ft.play();
 			calendarView.disableProperty().set(true);
