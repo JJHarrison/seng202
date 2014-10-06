@@ -7,14 +7,11 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import user.User;
 import view.server.ServerController;
 
@@ -29,7 +26,6 @@ public class Server extends Thread{
 	private final int port = 8888;
 	private ServerSocket serverSocket;
 	private Socket connection;
-	private String host = "localhost";
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private DBWriter dbw;
