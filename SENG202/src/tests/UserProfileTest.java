@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import data.loader.FileLoader;
 import data.persistant.Persistent;
 import junit.framework.TestCase;
 import user.User;
@@ -23,6 +24,7 @@ public class UserProfileTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		Persistent.setFilePath(System.getProperty("user.home"));
 		u = User.mockUser();
 	}
 	
@@ -138,6 +140,7 @@ public class UserProfileTest extends TestCase {
 		u.setRestingHeartRate(80);
 		assertFalse(u.hasTachycardia());
 	}
+
 	
 	/**
 	 * Tests that bradycardia warnings are being generated properly.
@@ -147,6 +150,20 @@ public class UserProfileTest extends TestCase {
 		assertTrue(u.hasBradycardia());
 		u.setRestingHeartRate(80);
 		assertFalse(u.hasTachycardia());
+	}
+	
+	/**
+	 * Checks that events arent duplicated when adding the same events to a user 
+	 * twice 
+	 */
+	public void testAddSameEvents() {
+		int numEvent = u.getEvents().getAllEvents().size();
+		FileLoader fl = new FileLoader();
+		fl.load();
+		// add an event container which contains evens that have already been added
+		u.addEvents(fl.getEventContainer());
+		// no new events were added by the event container so the size should be the same
+		assertEquals(numEvent, u.getEvents().getAllEvents().size());
 	}
 	
 	/**

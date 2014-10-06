@@ -53,7 +53,7 @@ public class Saver {
 	    try {
 	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
 	    } catch (IOException e) {
-	        // TODO: handle exception here
+	        System.out.println("Couldnt save picture. filepath not found");
 	    }
 	}
 
