@@ -16,8 +16,8 @@ public class UserUpdate {
 
 	public static Stage stage;
 
-	public void start(Stage primaryStage) throws Exception {
-		stage = primaryStage;
+	public void start(Stage primaryStage) {
+		primaryStage = new Stage();
 
 		try {
 			

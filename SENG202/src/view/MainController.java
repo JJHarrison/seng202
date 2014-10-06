@@ -222,7 +222,7 @@ public class MainController {
 						public void run() {
 							System.out.println(LoadSummary.getSumamry());
 							try {
-								new Notification().start(null);
+								new Notification().start(new Stage());
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -324,7 +324,6 @@ public class MainController {
 						UserUpdate userUpdate = new UserUpdate();
 						try {
 							userUpdate.start(new Stage());
-							viewDashController.fillUser();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

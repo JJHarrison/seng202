@@ -15,11 +15,11 @@ import view.Main;
 
 public class Notification {
 
-	public static Stage stage = new Stage();
+	public static Stage stage;
 	
 	public void start(Stage primaryStage) throws Exception {
 		
-		primaryStage = stage;
+		stage = primaryStage;
 		
 		// Create the Window
 		try {
