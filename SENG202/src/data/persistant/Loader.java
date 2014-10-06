@@ -11,7 +11,6 @@ import user.User;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * A loader class used for loading an event container from a JSON file.
