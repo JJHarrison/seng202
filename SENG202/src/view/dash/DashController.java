@@ -225,14 +225,11 @@ public class DashController {
 				.getProperty("user.home")));
 
 		// Set filters
-		ArrayList<String> filterPNG = new ArrayList<String>();
-		filterPNG.add("*.png");
-		ArrayList<String> filterJPG = new ArrayList<String>();
-		filterJPG.add("*.jpg");
+		ArrayList<String> filterIMG = new ArrayList<String>();
+		filterIMG.add("*.png");
+		filterIMG.add("*.jpg");
 		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("JPG", filterJPG));
-		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("PNG", filterPNG));
+				new FileChooser.ExtensionFilter("Image File", filterIMG));
 
 		Image image;
 		File file = fileChooser.showOpenDialog(Main.stage);
