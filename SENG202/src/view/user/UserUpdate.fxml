@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import extfx.scene.control.*?>
+
+<AnchorPane fx:id="paneUserCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.user.UserUpdateController">
+   <children>
+      <Button layoutX="300.0" layoutY="261.0" mnemonicParsing="false" onAction="#actionCancelUpdate" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button layoutX="155.0" layoutY="261.0" mnemonicParsing="false" onAction="#actionUpdate" prefWidth="100.0" text="Update" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="110.0" />
+      <Label layoutX="54.0" layoutY="14.0" text="Update Profile" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="144.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
+         <children>
+            <DatePicker fx:id="fieldDate" layoutX="271.0" layoutY="68.0" prefWidth="200.0" promptText="dd/mm/yyyy" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="75.0" />
+            <Label layoutX="42.0" layoutY="23.0" text="Name:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="42.0" layoutY="53.0" text="Date of Birth:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="75.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="42.0" layoutY="86.0" text="Height (cm):" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="165.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="45.0" layoutY="122.0" text="Gender:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="120.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="11.0" layoutY="198.0" text="Weight (kg):" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="210.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <TextField fx:id="fieldName" layoutX="205.0" layoutY="25.0" prefWidth="300.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="30.0" />
+            <ComboBox fx:id="fieldGender" layoutX="200.0" layoutY="120.0" prefWidth="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="120.0" />
+            <NumberSpinner fx:id="fieldHeight" layoutX="200.0" layoutY="168.0" prefWidth="250.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="165.0" />
+            <NumberSpinner fx:id="fieldWeight" layoutX="392.0" layoutY="162.0" prefWidth="250.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="210.0" />
+            <Label layoutX="21.0" layoutY="261.0" text="Resting Heart Rate:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="255.0">
+               <font>
+                  <Font size="16.0" /> 
+               </font>
+            </Label>
+            <NumberSpinner fx:id="fieldHR" layoutX="160.0" layoutY="250.0" prefWidth="250.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="255.0" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="labelCreateWarning" layoutX="14.0" layoutY="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

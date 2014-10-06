@@ -101,7 +101,7 @@ public class DashController {
 	/**
 	 * Fills the dashboard view with the user information.
 	 */
-	private void fillUser() {
+	public void fillUser() {
 		labelName.setText(Persistent.getCurrentUser().getName());
 		labelAge.setText(Integer.toString(Persistent.getCurrentUser().getAge()));
 		labelHeight.setText(String.format("%.0f", Persistent.getCurrentUser()

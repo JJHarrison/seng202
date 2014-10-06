@@ -24,10 +24,15 @@
 								<MenuItem fx:id="menuImport" mnemonicParsing="false" text="Import" />
 								<MenuItem fx:id="menuExport" mnemonicParsing="false" text="Export" />
                         		<MenuItem fx:id="menuClearEvents" mnemonicParsing="false" text="Clear Events" />
-                        <MenuItem fx:id="menuLogout" mnemonicParsing="false" text="Logout" />
 								<MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close" />
 							</items>
 						</Menu>
+                  <Menu mnemonicParsing="false" text="User">
+                     <items>
+                        <MenuItem fx:id="menuUpdate" mnemonicParsing="false" text="Update" />
+                        <MenuItem fx:id="menuLogout" mnemonicParsing="false" text="Logout" />
+                     </items>
+                  </Menu>
 						<Menu mnemonicParsing="false" text="Help">
 							<items>
 								<MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About" />

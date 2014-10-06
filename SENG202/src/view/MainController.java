@@ -33,6 +33,7 @@ import view.analysis.AnalysisController;
 import view.dash.DashController;
 import view.notification.Notification;
 import view.user.UserLoginManager;
+import view.user.UserUpdate;
 import data.loader.FileLoader;
 import data.loader.LoadSummary;
 import data.model.Event;
@@ -79,6 +80,8 @@ public class MainController {
 	MenuItem menuClearEvents;
 	@FXML
 	MenuItem menuLogout;
+	@FXML
+	MenuItem menuUpdate;
 
 	FadeTransition ft;
 
@@ -307,6 +310,27 @@ public class MainController {
 					}
 				});
 
+			}
+		});
+		
+		menuUpdate.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				Platform.runLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						UserUpdate userUpdate = new UserUpdate(viewDashController);
+						try {
+							userUpdate.start(null);
+							viewDashController.fillUser();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
 			}
 		});
 
