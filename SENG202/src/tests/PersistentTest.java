@@ -13,11 +13,27 @@ import data.persistant.Persistent;
 public class PersistentTest extends TestCase {
 	
 	// Set up some of the basics
-	private String tempFilePath = System.getProperty("user.home");
-	private String fitrFilePath = tempFilePath + "/Fitr/";
+	private String tempFilePath;
+	private String fitrFilePath;
 	String username = "Mocky"; 
-	User user = User.mockUser();
-	String userId =user.getUserId();
+	User user;
+	String userId;
+	
+	/**
+	 * Sets up the test dataPoints to be tested
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		tempFilePath = System.getProperty("user.home");
+		fitrFilePath = tempFilePath + "/Fitr/";
+		Persistent.setFilePath(tempFilePath);
+		user = User.mockUser();
+		userId = user.getUserId();
+		
+	}
+	
+	
 	/**
 	 * tests that a valid file path can be set
 	 */
@@ -99,11 +115,8 @@ public class PersistentTest extends TestCase {
 	 * @throws Exception
 	 */
 	public void testNewUser() throws FileNotFoundException {
-		System.out.println("new user");
-		System.out.println(userId);
 		Persistent.deleteUser(Persistent.getCurrentUser());
 		Persistent.newUser(user);
-		System.out.println("end new user");
 		assertTrue(new File(fitrFilePath + user.getUserId()).exists());
 	}
 
@@ -146,7 +159,6 @@ public class PersistentTest extends TestCase {
 	public void testGetUsers() throws Exception {
 		Calendar c = new Calendar.Builder().setDate(1994, 0, 3).build();
 		User u1 = new User("Sam", c, Gender.MALE, 10, 10, null, 0);
-		Persistent.clear();
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
 		Persistent.exit();
@@ -161,7 +173,6 @@ public class PersistentTest extends TestCase {
 	public void testGetUserNames() throws Exception {
 		Calendar c = new Calendar.Builder().setDate(1994, 0, 3).build();
 		User u1 = new User("sam", c, Gender.MALE, 10, 10, null, 0);
-		Persistent.clear();
 		Persistent.newUser(user);
 		Persistent.newUser(u1);
 		Persistent.exit();
@@ -186,11 +197,9 @@ public class PersistentTest extends TestCase {
 	}
 	
 	/**
-	 * removes any files added by the testing
-	 * Dont worry it checks that it is only deleting a Fitr folder now!
+	 * removes any files which were created
 	 */
-	public void testTearDown() {
-		System.out.println("Removing temporary files");
+	protected void tearDown() {
 		Persistent.deleteDirectory(new File(fitrFilePath));
 	}
 

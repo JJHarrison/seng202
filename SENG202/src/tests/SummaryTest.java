@@ -1,19 +1,23 @@
 package tests;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import user.User;
 import data.loader.FileLoader;
 import data.model.Event;
 import data.model.EventContainer;
 import data.model.Summary;
+import data.persistant.Persistent;
 import junit.framework.TestCase;
 
 public class SummaryTest extends TestCase {
 	
 	private EventContainer eventContainer;
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	private static User u;
 	
 	/**
 	 * sets up the event container loaded from the default csv file
@@ -21,6 +25,10 @@ public class SummaryTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		Persistent.setFilePath(System.getProperty("user.home"));
+		u = User.mockUser();
+		Persistent.newUser(u);
+		Persistent.setUser(u);
 		FileLoader fl = new FileLoader();
 		fl.load();
 		eventContainer = fl.getEventContainer();
@@ -78,6 +86,14 @@ public class SummaryTest extends TestCase {
 		// there should be 12 events in total 
 		Summary s = new Summary(eventContainer,null, null);
 		assertEquals(12, s.getNumberOfEvents());
+	}
+	
+	
+	/**
+	 * removes any files which were created
+	 */
+	protected void tearDown() {
+		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 	
 }

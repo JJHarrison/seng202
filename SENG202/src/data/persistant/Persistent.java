@@ -234,10 +234,13 @@ public class Persistent {
 	 * @param user the user to be deleted
 	 */
 	public static void deleteUser(User user) {
-		users.remove(user);
-		userNames.remove(user.getName());
-		File path = new File(getFilePath() + "/" + user.getUserId());
-		deleteDirectory(path);
+		if(user != null) {
+			users.remove(user);
+			System.out.println(user.getName());
+			userNames.remove(user.getName());
+			File path = new File(getFilePath() + "/" + user.getUserId());
+			deleteDirectory(path);
+		}
 	}
 	
 	/**
@@ -246,7 +249,8 @@ public class Persistent {
 	 * @param path path to delete files from 
 	 */
 	public static void deleteDirectory(File path) {
-
+		userNames.clear();
+		users.clear();
 		if(path.exists() && (path.getParentFile().getName().equals("Fitr") || path.getName().equals("Fitr"))) {
 			File[] files = path.listFiles();
 			for(int i=0; i<files.length; i++) {

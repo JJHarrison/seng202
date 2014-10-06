@@ -1,5 +1,6 @@
 package tests;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -24,7 +25,7 @@ public class GraphHelperTest extends TestCase {
 	private EventContainer ec;
 	private Event walkInWoods;
 	private Event runAroundBlock;
-	private User u = User.mockUser();
+	private User u;
 	private Graph g;
 	
 	/**
@@ -32,8 +33,8 @@ public class GraphHelperTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		
-		Persistent.setUser(u);
+		Persistent.setFilePath(System.getProperty("user.home"));
+		u = User.mockUser();
 		
 		Calendar c1 = new Calendar.Builder().setDate(2005, 03, 10).build();
 		Calendar c2 = new Calendar.Builder().setDate(2005, 03, 12).build();
@@ -60,6 +61,13 @@ public class GraphHelperTest extends TestCase {
 		
 		g = GraphHelper.getStressLevelGraph(runAroundBlock);
 		assertEquals(7, g.getPoints().getData().size());
+	}
+	
+	/**
+	 * removes any files which were created
+	 */
+	protected void tearDown() {
+		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 
 }
