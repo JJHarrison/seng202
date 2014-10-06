@@ -9,7 +9,6 @@ import user.User;
 import junit.framework.TestCase;
 import data.model.DataPoint;
 import data.model.Event;
-import data.model.EventContainer;
 import data.persistant.Persistent;
 
 /**
