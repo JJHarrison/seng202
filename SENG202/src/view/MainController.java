@@ -207,6 +207,7 @@ public class MainController {
 					LoadSummary.clear();
 					FileLoader fl = new FileLoader(file);
 					fl.load();
+					
 					Persistent.getCurrentUser().addEvents(
 							fl.getEventContainer());
 
@@ -215,6 +216,7 @@ public class MainController {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
+							System.out.println(LoadSummary.getSumamry());
 							try {
 								new Notification().start(null);
 							} catch (Exception e) {
@@ -222,7 +224,7 @@ public class MainController {
 							}
 						}
 					});
-
+					
 					Calendar calendar = Calendar.getInstance();
 					calendar.add(Calendar.YEAR, 1);
 					selectedDate.setValue(calendar.getTime());

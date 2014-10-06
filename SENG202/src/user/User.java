@@ -288,11 +288,13 @@ public class User implements Serializable {
 	 * @param events
 	 */
 	public void addEvents(EventContainer events) {
+		System.out.println("Adding events");
 		int sizeBefore = this.events.getAllEvents().size();
 		for(Event event : events.getAllEvents()) {
 			this.events.addEvent(event);
 		}
 		//change in the number of events 
+		System.out.println(this.events.getAllEvents().size() + ", " + sizeBefore);
 		LoadSummary.setEventsAdded(this.events.getAllEvents().size() - sizeBefore);
 		//total events in event container to be added - new events added 
 		LoadSummary.setEventsNotAdded(events.getAllEvents().size() - (this.events.getAllEvents().size() - sizeBefore));
