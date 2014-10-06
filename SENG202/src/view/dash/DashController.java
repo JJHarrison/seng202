@@ -1,8 +1,13 @@
 package view.dash;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -166,7 +171,6 @@ public class DashController {
 	
 	@FXML
 	void actionSetImage(ActionEvent event) {
-		Image image = new Image(Reference.class.getResourceAsStream("p.jpg"));
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		
@@ -178,16 +182,20 @@ public class DashController {
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", filterJPG));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", filterPNG));
 		
-		fileChooser.showOpenDialog(Main.stage);
-		//File file = f
+		Image image;
+		File file = fileChooser.showOpenDialog(Main.stage);
+		if (file != null) {
+			URL url;
+			image = new Image(file.toURI().toString(), 160, 160, false, true);
+			Saver.SaveProfilePicture(image, Persistent.getCurrentUser());
+			imageProfile.setFitHeight(160);
+			imageProfile.setFitWidth(160);
+			imageProfile.setClip(new Circle(80.0, 80.0, 80.0));
+			imageProfile.setImage(image);
+			
+		}
 		
 		
-		Saver.SaveProfilePicture(image, Persistent.getCurrentUser());
-		imageProfile.setFitHeight(160);
-		imageProfile.setFitWidth(160);
-		imageProfile.preserveRatioProperty().set(false);
-		imageProfile.setClip(new Circle(80.0, 80.0, 80.0));
-		imageProfile.setImage(image);
 	}
 
 }
