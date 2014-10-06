@@ -1,10 +1,13 @@
 package tests;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import user.User;
 import junit.framework.TestCase;
 import data.model.DataPoint;
+import data.persistant.Persistent;
 
 /**
  * Tests the functionality of the DataPoint class
@@ -14,6 +17,7 @@ import data.model.DataPoint;
 public class DataPointTest extends TestCase {
 	private DataPoint p1;
 	private DataPoint p2;
+	private static User u;
 
 	/**
 	 * Sets up the test dataPoints to be tested
@@ -21,7 +25,8 @@ public class DataPointTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-
+		Persistent.setFilePath(System.getProperty("user.home"));
+		u = User.mockUser();
 		Calendar c1 = new GregorianCalendar(2005, // Year
 				5, // Month
 				10, // Day
@@ -83,5 +88,12 @@ public class DataPointTest extends TestCase {
 	 */
 	public void testTimeString() {
 		assertEquals("23:42:28", p1.getTimeString());
+	}
+	
+	/** 
+	 * removes temp files that were created
+	 */
+	public void testRemoveTemp() {
+		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 }

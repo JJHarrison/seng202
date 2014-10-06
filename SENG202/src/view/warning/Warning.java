@@ -25,7 +25,7 @@ public class Warning extends AnchorPane {
 	 * @param riskType The risk that has been identified.
 	 * @param eventStartTime The time that risk was identified.
 	 */
-	public Warning(Risk riskType, Calendar eventStartTime) {
+	public Warning(Risk riskType, String cause) {
 		super();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(TILE));
@@ -38,7 +38,7 @@ public class Warning extends AnchorPane {
 
 		WarningController warningController = loader.getController();
 		this.warningController = warningController;
-		warningController.setDate(eventStartTime);
+		warningController.setCause(cause);
 		warningController.setDescription(setRiskDescription(riskType));
 		
 		
