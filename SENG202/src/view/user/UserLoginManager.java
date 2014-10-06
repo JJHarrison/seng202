@@ -1,5 +1,7 @@
 package view.user;
 
+import java.io.IOException;
+
 import resources.Reference;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -25,7 +27,7 @@ public class UserLoginManager extends Application {
 	StackPane userManagementView = new StackPane();
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) {
 		stage = new Stage();
 		UserLoginManager.stage = stage;
 		stage.initModality(Modality.APPLICATION_MODAL);
@@ -39,9 +41,14 @@ public class UserLoginManager extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource(userManagementFXML));
 		loader.setRoot(userManagementView);
-		StackPane root = loader.load(getClass().getResourceAsStream(
-				userManagementFXML));
-		stage.setScene(new Scene(root));
+		StackPane root;
+		try {
+			root = loader.load(getClass().getResourceAsStream(
+					userManagementFXML));
+			stage.setScene(new Scene(root));
+		} catch (IOException e) {
+		}
+		
 		stage.setTitle("User Management");
 		
 		Platform.runLater(new Runnable() {
