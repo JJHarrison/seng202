@@ -53,6 +53,38 @@ public class LoadSummary {
 	}
 	
 	/**
+	 * gets the formatted string of the number of events added
+	 * @return String of events added
+	 */
+	public static String getAddedEvents() {
+		return String.format("%-25s %d", "Events added: ", eventsAdded);
+	}
+	
+	/**
+	 * gets the formatted string of the number of events not added
+	 * @return String of events not added
+	 */
+	public static String getIgnoredEvents() {
+		return String.format("%-25s %d", "Events ignored: ", eventsNotAdded);
+	}
+	
+	/**
+	 * gets the formatted string of the number lines with errors
+	 * @return String of number of lines with errors
+	 */
+	public static String getLineErrors() {
+		return String.format("%-25s %d", "Line errors: ", lineErrors);
+	}
+	
+	/**
+	 * gets the formatted string of the number lines with errors
+	 * @return String of number of lines with errors
+	 */
+	public static String getIgnoredPoints() {
+		return String.format("%-25s %d", "Points ignored: ", badPoints);
+	}
+	
+	/**
 	 * gets the summary string for the loading of the csv file
 	 * @return summary of the load 
 	 */
