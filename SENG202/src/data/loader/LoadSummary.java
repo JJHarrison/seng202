@@ -57,7 +57,7 @@ public class LoadSummary {
 	 * @return String of events added
 	 */
 	public static String getAddedEvents() {
-		return String.format("%-25s %d", "Events added: ", eventsAdded);
+		return String.format("%d", eventsAdded);
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class LoadSummary {
 	 * @return String of events not added
 	 */
 	public static String getIgnoredEvents() {
-		return String.format("%-25s %d", "Events ignored: ", eventsNotAdded);
+		return String.format("%d", eventsNotAdded);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class LoadSummary {
 	 * @return String of number of lines with errors
 	 */
 	public static String getLineErrors() {
-		return String.format("%-25s %d", "Line errors: ", lineErrors);
+		return String.format("%d", lineErrors);
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class LoadSummary {
 	 * @return String of number of lines with errors
 	 */
 	public static String getIgnoredPoints() {
-		return String.format("%-25s %d", "Points ignored: ", badPoints);
+		return String.format("%d", badPoints);
 	}
 	
 	/**
