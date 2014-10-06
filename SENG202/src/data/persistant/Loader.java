@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+
 import javafx.scene.image.Image;
 import user.User;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * A loader class used for loading an event container from a JSON file.
@@ -48,7 +50,7 @@ public class Loader {
 	 */
 	public static Image loadProfileImage(User user) throws FileNotFoundException {
 		String userDir = new File(Persistent.getProfileFilePath(user.getUserId())).getParent();
-		FileInputStream imagePath = new FileInputStream(new File(userDir + "/profile.jpg"));
+		FileInputStream imagePath = new FileInputStream(new File(userDir + "/profile.png"));	
 		Image image = new Image(imagePath);
 		return image;
 	}
