@@ -47,6 +47,7 @@ public class UserLoginManager extends Application {
 					userManagementFXML));
 			stage.setScene(new Scene(root));
 		} catch (IOException e) {
+			
 		}
 		
 		stage.setTitle("User Management");

@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view.Main;
-import view.dash.DashController;
 
 /**
  * 
@@ -15,29 +14,16 @@ import view.dash.DashController;
  */
 public class UserUpdate {
 
-	public static Stage stage = new Stage();
-	private DashController dashController ;
-	
-	/**
-	 * Constructor.
-	 * 
-	 * @param dashController
-	 */
-	public UserUpdate(DashController dashController) {
-		this.dashController = dashController;
-	}
+	public static Stage stage;
 
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage = stage;
+		stage = primaryStage;
 
 		try {
 			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("UserUpdate.fxml"));
 			Parent root = loader.load(getClass().getResourceAsStream("UserUpdate.fxml"));
-			
-			UserUpdateController uController = loader.getController();
-			uController.setDashController(dashController);
 			
 			Scene scene = new Scene(root);
 
@@ -47,12 +33,13 @@ public class UserUpdate {
 
 		} catch (Exception e) {
 		}
-
-		//primaryStage.setMinWidth(300);
-		//primaryStage.setMinHeight(260);
 		primaryStage.setResizable(false);
 
 		primaryStage.show();
 
+	}
+	
+	public static void close() {
+		stage.close();
 	}
 }

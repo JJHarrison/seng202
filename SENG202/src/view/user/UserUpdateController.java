@@ -16,9 +16,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import user.User;
 import user.User.Gender;
+import view.MainController;
 import data.persistant.Persistent;
 import extfx.scene.control.NumberSpinner;
-import view.dash.DashController;
 
 /**
  * 
@@ -32,10 +32,6 @@ public class UserUpdateController {
 	public static final Double MIN_HEIGHT = 0.0; // cm
 	public static final Integer MAX_HR = 200; // resting hr
 	public static final Integer MIN_HR = 20; // resting hr
-	
-	private DashController dashController;
-	
-	
 
 	@FXML
 	Label labelCreateWarning;
@@ -131,23 +127,8 @@ public class UserUpdateController {
 			Persistent.getCurrentUser().setWeight(weight.doubleValue());
 			Persistent.getCurrentUser().setHeight(height.doubleValue());
 			Persistent.getCurrentUser().setRestingHeartRate(hr.intValue());
-			dashController.fillUser();
+			MainController.dashController.fillUser();
 			UserUpdate.stage.close();
 		}
-	}
-		
-	/**
-	 * 
-	 * @param dashController
-	 */
-	public void setDashController(DashController dashController) {
-		this.dashController = dashController;
-	}
-	
-	/**
-	 * Fill out the user in the dashboard.
-	 */
-	public void fillUser() {
-		this.dashController.fillUser();
 	}
 }

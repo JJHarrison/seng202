@@ -24,6 +24,7 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import jfx.messagebox.MessageBox;
@@ -95,10 +96,13 @@ public class MainController {
 	AnalysisController viewAnalysisController;
 	@FXML
 	DashController viewDashController;
+	
+	public static DashController dashController;
 
 	@FXML
 	void initialize() {
-
+		dashController = viewDashController;
+		
 		// highlight the days which have events on them
 		calendarView.setDayCellFactory(new Callback<CalendarView, DateCell>() {
 			@Override
@@ -194,7 +198,7 @@ public class MainController {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}UserUpdate.stage.close();
 			}
 		});
 
@@ -317,9 +321,9 @@ public class MainController {
 					
 					@Override
 					public void run() {
-						UserUpdate userUpdate = new UserUpdate(viewDashController);
+						UserUpdate userUpdate = new UserUpdate();
 						try {
-							userUpdate.start(null);
+							userUpdate.start(new Stage());
 							viewDashController.fillUser();
 						} catch (Exception e) {
 							e.printStackTrace();

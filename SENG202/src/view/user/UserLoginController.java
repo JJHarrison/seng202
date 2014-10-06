@@ -32,7 +32,7 @@ public class UserLoginController implements Switchable {
 
 	@FXML
 	void initialize() {
-		userList.setItems(Persistent.getUsers());
+		userList.itemsProperty().set(Persistent.getUsers());
 	}
 
 	@FXML
