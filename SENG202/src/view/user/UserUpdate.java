@@ -6,18 +6,28 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view.Main;
+import view.dash.DashController;
 
+/**
+ * 
+ * @author Daniel van Wichen
+ *
+ */
 public class UserUpdate {
 
 	public static Stage stage = new Stage();
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param dashController
+	 */
+	public UserUpdate(DashController dashController) {
+		dashController.fillDash();
+	}
 
 	public void start(Stage primaryStage) throws Exception {
-
 		primaryStage = stage;
-		
-		public UserUpdate(DashController dashController) {
-			
-		}
 
 		try {
 			
