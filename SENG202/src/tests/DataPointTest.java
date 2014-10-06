@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import user.User;
 import junit.framework.TestCase;
 import data.model.DataPoint;
 import data.persistant.Persistent;

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.LinkedList;
 
 import junit.framework.TestCase;
-import user.User;
 import data.loader.FileLoader;
 import data.model.Event;
 import data.model.EventContainer;
