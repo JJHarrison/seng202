@@ -111,7 +111,7 @@ public class User implements Serializable {
 		} else {
 			hasTachycardia = restingHeartRate > 100 ? true : false;
 		}
-		hasBradycardia = restingHeartRate < 60 ? true : false;
+		//hasBradycardia = restingHeartRate < 60 ? true : false;
 	}
 
 	/**
