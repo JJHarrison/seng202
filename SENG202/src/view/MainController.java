@@ -237,21 +237,44 @@ public class MainController {
 		});
 		
 		menuUserManual.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent event) {
+//				if (Desktop.isDesktopSupported()) {
+//				    try {
+//				        File myFile = new File("src/resources/fitrUG.pdf");
+//				        Desktop.getDesktop().open(myFile);
+//				    } catch (IOException ex) {
+//				        // no application registered for PDFs
+//				    	ex.printStackTrace();
+//				    }
+//				}
+//			}
+//		});
 
-			@Override
-			public void handle(ActionEvent event) {
-				if (Desktop.isDesktopSupported()) {
-				    try {
-				        File myFile = new File("src/resources/fitrUG.pdf");
-				        Desktop.getDesktop().open(myFile);
-				    } catch (IOException ex) {
-				        // no application registered for PDFs
-				    	ex.printStackTrace();
-				    }
+		@Override
+		public void handle(ActionEvent event) {
+		    try {
+		        
+		    	String s = System.getProperty("os.name").toLowerCase();
+				
+				// If OS is linux then use alternative command to prevent application from crashing
+				if (s.contains("linux")) {
+					// OS is linux
+					Runtime.getRuntime().exec(String.format("gnome-open %s", "src/resources/fitrUG.pdf"));
+				} else {				    	
+			    	File myFile = new File("src/resources/fitrUG.pdf");
+			        Desktop.getDesktop().open(myFile);	
 				}
-			}
-		});
-
+		    } catch (IOException ex) {
+		        // no application registered for PDFs
+		    	ex.printStackTrace();
+		    }
+		}
+	});
+		
+		
+		
 		menuClearEvents.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
