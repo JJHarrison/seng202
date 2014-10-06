@@ -12,8 +12,7 @@ import server.Server;
 public class ServerController {
 	public static Server server;
 	private Thread serverThread;
-	@FXML
-	TextArea textConsole;
+	@FXML TextArea textConsole;
 	static TextArea staticTextArea;
 	private Boolean serverRunning = false;
 	
