@@ -1,5 +1,11 @@
 package view.notification;
 
+/**
+ * 
+ * @author Daniel Tapp
+ *
+ */
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -18,11 +24,13 @@ public class NotificationController {
 	Label badPointsLabel;
 	
 
+	// The "Ok" Button
 	@FXML
 	void actionOk() {
 		Notification.stage.close();
 	}
 	
+	// Sets the labels to the appropriate data values
 	public void fill() {
 		addedLabel.setText(data.loader.LoadSummary.getAddedEvents());
 		ignoredLabel.setText(data.loader.LoadSummary.getIgnoredEvents());
