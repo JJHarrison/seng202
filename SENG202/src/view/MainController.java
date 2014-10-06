@@ -175,14 +175,11 @@ public class MainController {
 				task.run();
 				try {
 					if (task.get()) {
-						MessageBox
-								.show(Main.stage,
-										"User has been uploaded to the server sucessfully",
-										"", MessageBox.OK);
+						MessageBox.show(Main.stage, 
+								"User has been uploaded to the database sucessfully =)", "", MessageBox.OK);
 					} else {
-						MessageBox.show(Main.stage,
-								"Sorry, the server appears to be afk =(", "",
-								MessageBox.OK);
+						MessageBox.show(Main.stage, 
+								"Sorry, upload was unsuccessful =(", "", MessageBox.OK);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
