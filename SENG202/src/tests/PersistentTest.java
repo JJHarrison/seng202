@@ -99,11 +99,8 @@ public class PersistentTest extends TestCase {
 	 * @throws Exception
 	 */
 	public void testNewUser() throws FileNotFoundException {
-		System.out.println("new user");
-		System.out.println(userId);
 		Persistent.deleteUser(Persistent.getCurrentUser());
 		Persistent.newUser(user);
-		System.out.println("end new user");
 		assertTrue(new File(fitrFilePath + user.getUserId()).exists());
 	}
 

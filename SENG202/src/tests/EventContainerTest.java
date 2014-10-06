@@ -1,5 +1,6 @@
 package tests;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -23,7 +24,7 @@ public class EventContainerTest extends TestCase {
 
 	private EventContainer ec;
 	private EventContainer testEventContainer;
-	private User u = User.mockUser();
+	private static User u;
 
 	/**
 	 * Sets up the event container that will be tested.
@@ -31,6 +32,10 @@ public class EventContainerTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		Persistent.setFilePath(System.getProperty("user.home"));
+		u = User.mockUser();
+		Persistent.newUser(u);
+		Persistent.setUser(u);
 		ec = new EventContainer();
 		FileLoader fl = new FileLoader();
 		fl.load();
@@ -97,6 +102,13 @@ public class EventContainerTest extends TestCase {
 	public void testGetLastDate() {
 		Calendar date = new Calendar.Builder().setDate(2006, 0, 2).build();
 		assertEquals(date.getTime(), testEventContainer.getLastDate());
+	}
+	
+	/** 
+	 * removes temp files that were created
+	 */
+	public void testRemoveTemp() {
+		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 
 }

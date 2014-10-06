@@ -1,13 +1,10 @@
 package view.dash;
 
 import java.io.File;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import resources.Reference;
 import view.Main;
 import view.warning.Warning;
 import view.warning.Warning.Risk;
@@ -138,24 +134,32 @@ public class DashController {
 	private void fillWarnings() {
 		// show warnings for resting heart rate
 		if (Persistent.getCurrentUser().hasBradycardia()) {
+			String cause = "Resting heart rate too low: "
+					+ Persistent.getCurrentUser().getRestingHeartRate();
 			warningPane.getChildren().add(
-					new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+					new Warning(Risk.BRADYCARDIA, cause));
 		}
 		if (Persistent.getCurrentUser().hasTachycardia()) {
+			String cause = "Resting heart rate too high: "
+					+ Persistent.getCurrentUser().getRestingHeartRate();
 			warningPane.getChildren().add(
-					new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
+					new Warning(Risk.TACHYCARDIA, cause));
 		}
 		
 		// show any warnings for each event
 		// might want this to only show recent events...
 		for (Event e: Persistent.getCurrentUser().getEvents().getAllEvents()) {
 			if (e.hasBradycardia()) {
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				String timeString = tf.format(e.getStartTime().getTime());
 				warningPane.getChildren().add(
-						new Warning(Risk.BRADYCARDIA, e.getStartTime()));
+						new Warning(Risk.BRADYCARDIA, timeString));
 			}
 			if (e.hasTachycardia()) {
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				String timeString = tf.format(e.getStartTime().getTime());
 				warningPane.getChildren().add(
-						new Warning(Risk.TACHYCARDIA, e.getStartTime()));
+						new Warning(Risk.TACHYCARDIA, timeString));
 			}
 		}
 	}
@@ -164,6 +168,7 @@ public class DashController {
 	 * Fill the dash board with all the totals and achievements.
 	 */
 	public void fillDash() {
+		warningPane.getChildren().clear();
 		fillMonth();
 		fillTotal();
 		fillWarnings();
@@ -185,7 +190,6 @@ public class DashController {
 		Image image;
 		File file = fileChooser.showOpenDialog(Main.stage);
 		if (file != null) {
-			URL url;
 			image = new Image(file.toURI().toString(), 160, 160, false, true);
 			Saver.SaveProfilePicture(image, Persistent.getCurrentUser());
 			imageProfile.setFitHeight(160);
