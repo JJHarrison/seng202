@@ -31,7 +31,7 @@ public class SearchQuery {
 		String query = address;
 		setCurrentSearchQuery(inputQuery);
 		try {
-			query = query + count + "&q=" + (URLEncoder.encode(inputQuery, "UTF-8"));
+			query = query + getCount() + "&q=" + (URLEncoder.encode(inputQuery, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -43,7 +43,7 @@ public class SearchQuery {
 	 * Increments the count by 4 so that the next 4 results can be retrieved.
 	 */
 	public static void incrementCount() {
-		count = count + 4;
+		setCount(getCount() + 4);
 	}
 	
 	/** 
@@ -51,7 +51,7 @@ public class SearchQuery {
 	 */
 	public static void clearCount() {
 		setSearched(false);
-		count = 0;
+		setCount(0);
 	}
 
 	/**Checks to see if the Query has been searched for or not.
@@ -80,5 +80,19 @@ public class SearchQuery {
 	 */
 	public static void setCurrentSearchQuery(String currentSearchQuery) {
 		SearchQuery.currentSearchQuery = currentSearchQuery;
+	}
+
+	/**
+	 * @return the count
+	 */
+	public static int getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public static void setCount(int count) {
+		SearchQuery.count = count;
 	}
 }
