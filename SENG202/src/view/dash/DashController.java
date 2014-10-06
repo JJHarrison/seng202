@@ -1,13 +1,10 @@
 package view.dash;
 
 import java.io.File;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.prefs.PreferenceChangeEvent;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
-
-import resources.Reference;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import resources.Reference;
+import view.Main;
 import view.warning.Warning;
 import view.warning.Warning.Risk;
 import data.model.Event;
@@ -134,24 +134,32 @@ public class DashController {
 	private void fillWarnings() {
 		// show warnings for resting heart rate
 		if (Persistent.getCurrentUser().hasBradycardia()) {
+			String cause = "Resting heart rate too low: "
+					+ Persistent.getCurrentUser().getRestingHeartRate();
 			warningPane.getChildren().add(
-					new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+					new Warning(Risk.BRADYCARDIA, cause));
 		}
 		if (Persistent.getCurrentUser().hasTachycardia()) {
+			String cause = "Resting heart rate too high: "
+					+ Persistent.getCurrentUser().getRestingHeartRate();
 			warningPane.getChildren().add(
-					new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
+					new Warning(Risk.TACHYCARDIA, cause));
 		}
 		
 		// show any warnings for each event
 		// might want this to only show recent events...
 		for (Event e: Persistent.getCurrentUser().getEvents().getAllEvents()) {
 			if (e.hasBradycardia()) {
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				String timeString = tf.format(e.getStartTime().getTime());
 				warningPane.getChildren().add(
-						new Warning(Risk.BRADYCARDIA, e.getStartTime()));
+						new Warning(Risk.BRADYCARDIA, timeString));
 			}
 			if (e.hasTachycardia()) {
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				String timeString = tf.format(e.getStartTime().getTime());
 				warningPane.getChildren().add(
-						new Warning(Risk.TACHYCARDIA, e.getStartTime()));
+						new Warning(Risk.TACHYCARDIA, timeString));
 			}
 		}
 	}
@@ -168,6 +176,21 @@ public class DashController {
 	@FXML
 	void actionSetImage(ActionEvent event) {
 		Image image = new Image(Reference.class.getResourceAsStream("p.jpg"));
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		
+		// Set filters
+		ArrayList<String> filterPNG = new ArrayList<String>();
+		filterPNG.add("*.png");
+		ArrayList<String> filterJPG = new ArrayList<String>();
+		filterJPG.add("*.jpg");
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPG", filterJPG));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", filterPNG));
+		
+		fileChooser.showOpenDialog(Main.stage);
+		//File file = f
+		
+		
 		Saver.SaveProfilePicture(image, Persistent.getCurrentUser());
 		imageProfile.setFitHeight(160);
 		imageProfile.setFitWidth(160);

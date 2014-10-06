@@ -1,7 +1,6 @@
 package user;
 
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.Calendar;

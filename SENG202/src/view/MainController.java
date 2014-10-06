@@ -96,11 +96,10 @@ public class MainController {
                         super.updateItem(date, empty);
                         calendar.setTime(date);
                         setStyle("-fx-background-color: #ffffff;");
-                        //setStyle("-fx-text-fill: #ff0000;");
                         if (Persistent.getCurrentUser().getEvents()
                         		.getEvents(date).size() > 0) {
-                            setStyle("-fx-background-color: #dfeaef;");
-                            //this.getChildren().get(0).setStyle("-fx-text-fill: #ff0000;");
+                            setStyle("-fx-background-radius: 8; " + 
+                            		 "-fx-background-color: derive(-fx-accent, 80%);");
                         }
                     }
                 };

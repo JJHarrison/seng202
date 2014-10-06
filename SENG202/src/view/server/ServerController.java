@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import server.Server;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
@@ -24,6 +23,7 @@ public class ServerController implements Initializable {
 
 	@FXML
 	static
+
 	TextArea textConsole;
 	
 	Boolean serverRunning = false;
@@ -37,7 +37,8 @@ public class ServerController implements Initializable {
 		if (serverRunning) {
 			setConsoleText("The server is already running.");
 		} else {			
-			setConsoleText("Server Started!");
+			//setConsoleText("Server Started!");
+			//textConsole.setText("Server Started!...");
 			s = new Server(textConsole);
 			serverThread = new Thread(s);
 			serverThread.start();

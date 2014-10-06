@@ -79,9 +79,8 @@ public class WarningController {
 	 * Set the date recorded for the warning tile.
 	 * @param date the date the warning occurred on.
 	 */
-	protected void setDate(Calendar date) {
-		SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
-		labelTime.setText(tf.format(date.getTime()));
+	protected void setCause(String cause) {
+		labelTime.setText(cause);
 	}
 	
 	/**
