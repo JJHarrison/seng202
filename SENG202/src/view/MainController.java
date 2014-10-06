@@ -209,18 +209,12 @@ public class MainController {
 
 					// run the load summary pop up in its own thread to stop it
 					// from stopping the flow of the import
-					// MessageBox.show(Main.stage, LoadSummary.getSumamry(), "", MessageBox.OK);
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							
-//							MessageBox.show(Main.stage,
-//									LoadSummary.getSumamry(), "", MessageBox.OK);
-//							LoadSummary.clear();
 							try {
 								new Notification().start(null);
 							} catch (Exception e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
