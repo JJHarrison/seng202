@@ -169,16 +169,20 @@ public class DashController {
 		// might want this to only show recent events...
 		for (Event e : Persistent.getCurrentUser().getEvents().getAllEvents()) {
 			if (e.hasBradycardia()) {
-				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d yyyy, h:mm a");
 				String timeString = tf.format(e.getStartTime().getTime());
+				String cause = timeString + "     Heart Rate too low: "
+						+ e.getMinHeartRate();
 				warningPane.getChildren().add(
-						new Warning(Risk.BRADYCARDIA, timeString));
+						new Warning(Risk.BRADYCARDIA, cause));
 			}
 			if (e.hasTachycardia()) {
-				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d yyyy, h:mm a");
 				String timeString = tf.format(e.getStartTime().getTime());
+				String cause = timeString + "     Heart Rate too high: "
+						+ e.getMaxHeartRate();
 				warningPane.getChildren().add(
-						new Warning(Risk.TACHYCARDIA, timeString));
+						new Warning(Risk.TACHYCARDIA, cause));
 			}
 		}
 	}
