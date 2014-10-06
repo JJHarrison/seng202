@@ -6,8 +6,10 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import javafx.scene.control.TextArea;
 import user.User;
 
@@ -27,6 +29,65 @@ public class Server extends Thread{
 	private ObjectOutputStream output;
 	private DBWriter dbw;
 	private TextArea log;
+	public volatile boolean running;
+	private boolean connected;
+	
+	public void run() { 
+		connected = false;
+		while(true) {
+			try {
+				waitForConnection();
+			} catch(Exception e) {
+				
+			System.out.println("here");
+			e.printStackTrace();
+		}
+			
+		if (connected){
+			try {
+				successfulConnection();
+				setupStreams();
+				whileTransfering();
+				Thread.sleep(200);
+				connected = false;
+			} catch (Exception e) {
+				System.out.println("there");
+			}
+		}
+		else {
+			System.out.println("breaking");
+			break;
+		}
+		}
+	}
+	
+	
+	/**
+	 * Stops the server by closing the serverSocket and no longer allowing connections
+	 * @throws IOException 
+	 */
+	public void stopServer() throws IOException { 
+		//log.appendText(startMessage() + " Shutting down server.\n");
+		//view.server.ServerController.setConsoleText(" Shutting down server.");
+		
+		try {
+			if(connected) {
+				connection.close();
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("right here");
+			e.printStackTrace();
+		}
+//		connection = null;
+		System.out.println(startMessage() + " Shuting down server.");
+		// Close the server socket.
+//		new Socket(serverSocket.getInetAddress(), serverSocket.getLocalPort()).close();
+		serverSocket.close();
+
+	}
+	
 	
 	/**
 	 * Constructor for the server, takes a TextArea to be used as a console.
@@ -40,50 +101,6 @@ public class Server extends Thread{
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * Used by the caller to start the server to allow connections
-	 */
-	public void run() {
-		log.appendText(startMessage() + " Server has been started\n");
-		//sendLog();
-		while(true) {
-			try {
-				waitForConnection();
-				Thread.sleep(200);
-			} catch(Exception e) {
-//				System.out.println("here");
-//				e.printStackTrace();
-			}
-			if (!serverSocket.isClosed()){
-				try {
-					successfulConnection();
-					setupStreams();
-					whileTransfering();
-					Thread.sleep(200);
-				} catch (Exception e) {
-					System.out.println("there");
-				}
-			}
-			else{
-				break;
-			}
-		}
-	}
-	
-	/**
-	 * Stops the server by closing the serverSocket and no longer allowing connections
-	 * @throws IOException 
-	 */
-	public void stopServer() throws IOException { 
-		//log.appendText(startMessage() + " Shutting down server.\n");
-		//view.server.ServerController.setConsoleText(" Shutting down server.");
-		System.out.println(startMessage() + " Shuting down server.");
-		// Close the server socket.
-		serverSocket.close();
-
-	}
-	
 
 	/**
 	 * Waits for a connection to be formed with the client.
@@ -98,7 +115,15 @@ public class Server extends Thread{
 //				+ InetAddress.getLocalHost().getCanonicalHostName() + "]...\n");
 		// Once a client connects a socket is open for the server and client
 		//view.server.ServerController.setConsoleText("Waiting for stuff");
-		connection = serverSocket.accept();
+		try {
+			connection = serverSocket.accept();
+			connected = true;
+		}
+		catch(SocketException e) {
+			connected = false;
+			System.out.println("socket closed");
+		}
+		
 	}
 
 	/**

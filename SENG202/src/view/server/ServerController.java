@@ -19,7 +19,7 @@ public class ServerController implements Initializable {
 
 	String consoleText = "";
 	
-	private Server s;
+	private Server server;
 	private Thread serverThread;
 
 	@FXML
@@ -38,8 +38,8 @@ public class ServerController implements Initializable {
 			setConsoleText("The server is already running.");
 		} else {			
 			setConsoleText("Server Started!");
-			s = new Server(textConsole);
-			serverThread = new Thread(s);
+			server = new Server(textConsole);
+			serverThread = new Thread(server);
 			serverThread.start();
 			
 			serverRunning = true;
@@ -56,12 +56,13 @@ public class ServerController implements Initializable {
 			serverThread.interrupt();
 			
 			try {
-				s.stopServer();
+				server.stopServer();
+				
                 serverThread.join();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-			s = null;
+			server = null;
 			serverThread = null;
 			serverRunning = false;
 		} else {
