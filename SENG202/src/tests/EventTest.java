@@ -1,5 +1,6 @@
 package tests;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -32,7 +33,7 @@ public class EventTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-
+		Persistent.setFilePath(System.getProperty("user.home"));
 		user = User.mockUser();
 		Persistent.setUser(user);
 
@@ -138,5 +139,12 @@ public class EventTest extends TestCase {
 		assertEquals(p2, points.get(points.size() - 1));
 		points.add(p1);
 		assertEquals(p1, points.get(points.size() - 1));
+	}
+	
+	/** 
+	 * removes temp files that were created
+	 */
+	public void testRemoveTemp() {
+		Persistent.deleteDirectory(new File(System.getProperty("user.home") + "/Fitr"));
 	}
 }

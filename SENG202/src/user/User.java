@@ -328,28 +328,20 @@ public class User implements Serializable {
 	 * @return
 	 */
 	public static User mockUser() {
-		Persistent.clear();
 		User mock = new User("Mocky", new GregorianCalendar(1961, 8, 9),
 				Gender.MALE, 85.3, 190, null, 120);
-		//System.out.println("Mockys userId is: " + Persistent.getUserID());
-		try {
-			//Persistent.setFilePath(System.getProperty("user.home"));
-			Persistent.setFilePath("Users/SamSchofield/Desktop");
-		} catch (FileNotFoundException e) {
-
+		
+		if(Persistent.filePathSet()) {
+			Persistent.newUser(mock);		
+			Persistent.setUser(mock);
+			FileLoader fl = new FileLoader();
+			fl.load();
+			EventContainer ec = fl.getEventContainer();
+			mock.setEvents(ec);
+		} else {
+			System.out.println("You need to set the filePath");
 		}
-		
-		Persistent.newUser(mock);
-		
-		Persistent.setUser(mock);
-		FileLoader fl = new FileLoader();
-		fl.load();
-		EventContainer ec = fl.getEventContainer();
-		mock.setEvents(ec);
-		
-		// We now 
-		//Persistent.deleteDirectory(new File(System.getProperty("user.home") + "Fitr"));
-		//Persistent.deleteUser(mock);
+
 		return mock;
 	}
 	
