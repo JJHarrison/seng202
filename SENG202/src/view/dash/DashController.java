@@ -168,6 +168,7 @@ public class DashController {
 	 * Fill the dash board with all the totals and achievements.
 	 */
 	public void fillDash() {
+		// avoid double ups
 		warningPane.getChildren().clear();
 		fillMonth();
 		fillTotal();

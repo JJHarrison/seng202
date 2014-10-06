@@ -3,6 +3,7 @@ package view.tile.summary;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import data.model.DataPoint;
 import data.model.Event;
 
 /**
@@ -57,6 +58,27 @@ public class SummaryController {
 		labelMaxSpeed.setText(event.maxSpeedString());
 		labelMaxHR.setText(event.maxHRString());
 		labelCalories.setText(event.getCaloriesString());
+		fillWarning(event);
+	}
+	
+	/**
+	 * Fills the warning pane with the appropriate warning message, or leaves
+	 * it invisible if there is no warning for the event.
+	 */
+	private void fillWarning(Event event) {
+		boolean bradycardia = event.hasBradycardia();
+		boolean tachycardia = event.hasTachycardia();
+		
+		if (bradycardia && tachycardia) {
+			labelWarning.setText("Bradycardia and tachycardia detected");
+			paneWarning.setOpacity(1);
+		} else if (bradycardia) {
+			labelWarning.setText("Bradycardia detected");
+			paneWarning.setOpacity(1);
+		} else if (tachycardia) {
+			labelWarning.setText("Tachycardia detected");
+			paneWarning.setOpacity(1);
+		}
 	}
 
 }
