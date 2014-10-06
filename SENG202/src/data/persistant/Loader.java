@@ -48,6 +48,7 @@ public class Loader {
 	 */
 	public static Image loadProfileImage(User user) throws FileNotFoundException {
 		String userDir = new File(Persistent.getProfileFilePath(user.getUserId())).getParent();
+		System.out.print(userDir);
 		FileInputStream imagePath = new FileInputStream(new File(userDir + "/profile.jpg"));
 		Image image = new Image(imagePath);
 		return image;

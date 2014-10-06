@@ -88,8 +88,6 @@ public class DashController {
 		try {
 			Image image = Loader.loadProfileImage(Persistent.getCurrentUser());
 			imageProfile.setImage(image);
-			imageProfile.setImage(new Image(Reference.class
-					.getResourceAsStream("profile.png")));
 		} catch (FileNotFoundException e) {
 			Image image = new Image(
 					Reference.class.getResourceAsStream("profile.png"));
