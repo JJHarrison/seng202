@@ -234,10 +234,13 @@ public class Persistent {
 	 * @param user the user to be deleted
 	 */
 	public static void deleteUser(User user) {
-		users.remove(user);
-		userNames.remove(user.getName());
-		File path = new File(getFilePath() + "/" + user.getUserId());
-		deleteDirectory(path);
+		if(user != null) {
+			users.remove(user);
+			System.out.println(user.getName());
+			userNames.remove(user.getName());
+			File path = new File(getFilePath() + "/" + user.getUserId());
+			deleteDirectory(path);
+		}
 	}
 	
 	/**
