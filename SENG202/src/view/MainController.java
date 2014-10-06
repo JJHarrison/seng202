@@ -19,6 +19,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
@@ -69,7 +71,9 @@ public class MainController {
 	MenuItem menuAbout;
 	@FXML
 	MenuItem menuClearEvents;
-
+	@FXML
+	MenuItem menuLogout;
+	
 	FadeTransition ft;
 
 	ToggleGroup toggleGroup = new ToggleGroup();
@@ -167,10 +171,10 @@ public class MainController {
 				try {
 					if (task.get()) {
 						MessageBox.show(Main.stage, 
-								"User has been uploaded to the database sucessfully =)", "", MessageBox.OK);
+								"User has been uploaded to the server sucessfully", "", MessageBox.OK);
 					} else {
 						MessageBox.show(Main.stage, 
-								"Sorry, the user did not upload successfully =(", "", MessageBox.OK);
+								"Sorry, the server appears to be afk =(", "", MessageBox.OK);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -232,6 +236,8 @@ public class MainController {
 				
 			}
 		});
+		
+		menuClose.setAccelerator(new KeyCombination(KeyCode.F4, KeyCode.ALT));
 
 		toggleGroup.getToggles().addAll(buttonAnalysis, buttonDash, buttonWeb);
 		

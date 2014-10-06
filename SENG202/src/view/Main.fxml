@@ -24,6 +24,7 @@
 								<MenuItem fx:id="menuImport" mnemonicParsing="false" text="Import" />
 								<MenuItem fx:id="menuExport" mnemonicParsing="false" text="Export" />
                         		<MenuItem fx:id="menuClearEvents" mnemonicParsing="false" text="Clear Events" />
+                        <MenuItem fx:id="menuLogout" mnemonicParsing="false" text="Logout" />
 								<MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close" />
 							</items>
 						</Menu>
