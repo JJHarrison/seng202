@@ -1,8 +1,5 @@
 package view.warning;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
