@@ -241,13 +241,14 @@ public class MainController {
 			public void handle(ActionEvent event) {
 				MessageBox
 						.show(Main.stage,
-								  "Fitr application for fitness enthusiasts.\n\n"
-								+ "Version: Build 2.0.0.0\n\n"
+								  "Fitr: Fitness Is Training Right.\n\n"
+								+ "Version: Build 2.0.0.0\n"
+								+ "Release: October 2014\n\n"
 								+ "Licence: This software is provided by rights holders and contributers "
 								+ "\"as is\" and any express or implied warrenties are disclaimed.\n"
-								+ "In no event shall the developers of fitr be liable for any direct, indirect "
+								+ "In no event shall the developers of Fitr be liable for any direct, indirect "
 								+ "or incidental damages incured in the use of fitr.\n\n"
-								+ "USE AT YOUR OWN RISK.",
+								+ "Use at your own risk.",
 								"About Fitr", MessageBox.OK);
 
 			}
