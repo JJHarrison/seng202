@@ -17,7 +17,7 @@ public class UserUpdate {
 	public static Stage stage;
 
 	public void start(Stage primaryStage) {
-		primaryStage = new Stage();
+		stage = primaryStage;
 
 		try {
 			
@@ -32,9 +32,9 @@ public class UserUpdate {
 			primaryStage.initModality(Modality.WINDOW_MODAL);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		primaryStage.setResizable(false);
-
 		primaryStage.show();
 
 	}

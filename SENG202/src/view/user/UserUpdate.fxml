@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import extfx.scene.control.*?>
 
-<AnchorPane fx:id="paneUserCreate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.user.UserUpdateController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.user.UserUpdateController">
    <children>
       <Button layoutX="300.0" layoutY="261.0" mnemonicParsing="false" onAction="#actionCancelUpdate" prefWidth="100.0" text="Cancel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Button layoutX="155.0" layoutY="261.0" mnemonicParsing="false" onAction="#actionUpdate" prefWidth="100.0" text="Update" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="110.0" />

@@ -63,7 +63,7 @@ public class UserUpdateController {
 		User user = Persistent.getCurrentUser();
 		fieldName.setText(user.getName());
 		LocalDate localDate = LocalDate.of(user.getDateofBirth().get(Calendar.YEAR), 
-				user.getDateofBirth().get(Calendar.MONTH), 
+				user.getDateofBirth().get(Calendar.MONTH)+1,
 				user.getDateofBirth().get(Calendar.DAY_OF_MONTH));
 		
 		fieldDate.setValue(localDate);
@@ -76,7 +76,7 @@ public class UserUpdateController {
 
 	@FXML
 	void actionCancelUpdate(ActionEvent event) {
-		UserUpdate.stage.close();
+		UserUpdate.close();
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class UserUpdateController {
 			Persistent.getCurrentUser().setHeight(height.doubleValue());
 			Persistent.getCurrentUser().setRestingHeartRate(hr.intValue());
 			MainController.dashController.fillUser();
-			UserUpdate.stage.close();
+			UserUpdate.close();
 		}
 	}
 }
