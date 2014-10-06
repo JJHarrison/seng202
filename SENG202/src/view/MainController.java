@@ -20,6 +20,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -237,7 +238,7 @@ public class MainController {
 			}
 		});
 		
-		menuClose.setAccelerator(new KeyCombination(KeyCode.F4, KeyCode.ALT));
+		menuClose.setAccelerator(new KeyCodeCombination(KeyCode.F4, KeyCombination.ALT_DOWN));
 
 		toggleGroup.getToggles().addAll(buttonAnalysis, buttonDash, buttonWeb);
 		
