@@ -28,6 +28,7 @@ public class Event implements Serializable {
 	private double averageSpeed;
 	private int averageHeartRate;
 	private int maxHeartRate;
+	private int minHeartRate;
 	private double caloriesBurned;
 	private ArrayList<DataPoint> points = new ArrayList<DataPoint>();
 	private boolean hasBradycardia = false;
@@ -55,6 +56,7 @@ public class Event implements Serializable {
 	private void calculate() {
 		int numPoints = points.size();
 		int totalHR = 0;
+		minHeartRate = 1000;
 
 		for (DataPoint point : points) {
 			distance += point.getDistance();
@@ -66,6 +68,10 @@ public class Event implements Serializable {
 
 			if (maxHeartRate < point.getHeartRate()) {
 				maxHeartRate = point.getHeartRate();
+			}
+			
+			if (minHeartRate > point.getHeartRate()) {
+				minHeartRate = point.getHeartRate();
 			}
 		}
 
@@ -187,6 +193,10 @@ public class Event implements Serializable {
 	 */
 	public int getMaxHeartRate() {
 		return maxHeartRate;
+	}
+	
+	public int getMinHeartRate() {
+		return minHeartRate;
 	}
 
 	/**
