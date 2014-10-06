@@ -1,6 +1,5 @@
 package view.notification;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,17 +9,22 @@ import view.Main;
 
 
 
-public class Notification extends Application {
+public class Notification {
 
 	public static Stage stage = new Stage();
 	
-	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
 		primaryStage = stage;
 		
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/notification/Notification.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("Notification.java"));
+			Parent root = loader.load(getClass().getResourceAsStream("Notification.fxml"));
+			NotificationController controller = loader.getController();
+			
+			controller.fill();
+			
 			Scene scene = new Scene(root);
 			
 			primaryStage.initOwner(Main.stage);
@@ -35,13 +39,8 @@ public class Notification extends Application {
 		primaryStage.setMinHeight(260);
 		primaryStage.setResizable(false);
 		
-		
 		primaryStage.show();
 
 	}
 	
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

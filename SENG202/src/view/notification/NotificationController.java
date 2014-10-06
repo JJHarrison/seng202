@@ -23,6 +23,14 @@ public class NotificationController {
 		Notification.stage.close();
 	}
 	
+	public void fill() {
+		addedLabel.setText(data.loader.LoadSummary.getAddedEvents());
+		ignoredLabel.setText(data.loader.LoadSummary.getIgnoredEvents());
+		errorsLabel.setText(data.loader.LoadSummary.getLineErrors());
+		badPointsLabel.setText(data.loader.LoadSummary.getIgnoredPoints());
+		data.loader.LoadSummary.clear();
+	}
+	
 	@FXML
 	void initialize() {
 	}
