@@ -255,9 +255,7 @@ public class MainController {
 
 					@Override
 					public void run() {
-						UserLoginManager loginManager = new UserLoginManager();
-						loginManager.start(new Stage());
-
+						UserLoginManager.stage.show();
 					}
 				});
 

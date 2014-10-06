@@ -44,7 +44,7 @@ public class UserLoginController implements Switchable {
 	void actionLogin(ActionEvent event) {
 		User user = userList.getSelectionModel().getSelectedItem();
 		if (user != null) {
-			UserLoginManager.stage.close();
+			UserLoginManager.stage.hide();;
 			Persistent.setUser(user);
 			Platform.runLater(new Runnable() {
 
