@@ -27,6 +27,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import jfx.messagebox.MessageBox;
+import resources.Reference;
 import server.Client;
 import view.analysis.AnalysisController;
 import view.dash.DashController;
@@ -178,11 +179,14 @@ public class MainController {
 				task.run();
 				try {
 					if (task.get()) {
-						MessageBox.show(Main.stage, 
-								"User has been uploaded to the database sucessfully =)", "", MessageBox.OK);
+						MessageBox
+								.show(Main.stage,
+										"User has been uploaded to the database sucessfully =)",
+										"", MessageBox.OK);
 					} else {
-						MessageBox.show(Main.stage, 
-								"Sorry, upload was unsuccessful =(", "", MessageBox.OK);
+						MessageBox.show(Main.stage,
+								"Sorry, upload was unsuccessful =(", "",
+								MessageBox.OK);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -235,46 +239,32 @@ public class MainController {
 
 			}
 		});
-		
-		menuUserManual.setOnAction(new EventHandler<ActionEvent>() {
-//
-//			@Override
-//			public void handle(ActionEvent event) {
-//				if (Desktop.isDesktopSupported()) {
-//				    try {
-//				        File myFile = new File("src/resources/fitrUG.pdf");
-//				        Desktop.getDesktop().open(myFile);
-//				    } catch (IOException ex) {
-//				        // no application registered for PDFs
-//				    	ex.printStackTrace();
-//				    }
-//				}
-//			}
-//		});
 
-		@Override
-		public void handle(ActionEvent event) {
-		    try {
-		        
-		    	String s = System.getProperty("os.name").toLowerCase();
-				
-				// If OS is linux then use alternative command to prevent application from crashing
-				if (s.contains("linux")) {
-					// OS is linux
-					Runtime.getRuntime().exec(String.format("gnome-open %s", "src/resources/fitrUG.pdf"));
-				} else {				    	
-			    	File myFile = new File("src/resources/fitrUG.pdf");
-			        Desktop.getDesktop().open(myFile);	
+		menuUserManual.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+
+					String s = System.getProperty("os.name").toLowerCase();
+
+					// If OS is linux then use alternative command to prevent application from crashing
+					if (s.contains("linux")) {
+						// OS is linux
+						Runtime.getRuntime().exec(
+								String.format("gnome-open %s", Reference.class
+										.getResource("fitrUG.pdf")));
+					} else {
+						File myFile = new File("src/resources/fitrUG.pdf");
+						Desktop.getDesktop().open(myFile);
+					}
+				} catch (IOException ex) {
+					// no application registered for PDFs
+					ex.printStackTrace();
 				}
-		    } catch (IOException ex) {
-		        // no application registered for PDFs
-		    	ex.printStackTrace();
-		    }
-		}
-	});
-		
-		
-		
+			}
+		});
+
 		menuClearEvents.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -286,7 +276,8 @@ public class MainController {
 			}
 		});
 
-		menuClose.setAccelerator(new KeyCodeCombination(KeyCode.F4, KeyCombination.ALT_DOWN));
+		menuClose.setAccelerator(new KeyCodeCombination(KeyCode.F4,
+				KeyCombination.ALT_DOWN));
 
 		menuLogout.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
