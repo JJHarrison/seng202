@@ -71,6 +71,7 @@ public class WebController {
 	void clearResults(ActionEvent event) throws IOException {
 		SearchQuery.clearCount();
 		resultPane.getChildren().clear();
+		textFieldSearch.setText("");
 	}
 
 	/**
