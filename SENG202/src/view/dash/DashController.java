@@ -1,6 +1,7 @@
 package view.dash;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -133,24 +134,32 @@ public class DashController {
 	private void fillWarnings() {
 		// show warnings for resting heart rate
 		if (Persistent.getCurrentUser().hasBradycardia()) {
+			String cause = "Resting heart rate too low: "
+					+ Persistent.getCurrentUser().getRestingHeartRate();
 			warningPane.getChildren().add(
-					new Warning(Risk.BRADYCARDIA, Calendar.getInstance()));
+					new Warning(Risk.BRADYCARDIA, cause));
 		}
 		if (Persistent.getCurrentUser().hasTachycardia()) {
+			String cause = "Resting heart rate too high: "
+					+ Persistent.getCurrentUser().getRestingHeartRate();
 			warningPane.getChildren().add(
-					new Warning(Risk.TACHYCARDIA, Calendar.getInstance()));
+					new Warning(Risk.TACHYCARDIA, cause));
 		}
 		
 		// show any warnings for each event
 		// might want this to only show recent events...
 		for (Event e: Persistent.getCurrentUser().getEvents().getAllEvents()) {
 			if (e.hasBradycardia()) {
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				String timeString = tf.format(e.getStartTime().getTime());
 				warningPane.getChildren().add(
-						new Warning(Risk.BRADYCARDIA, e.getStartTime()));
+						new Warning(Risk.BRADYCARDIA, timeString));
 			}
 			if (e.hasTachycardia()) {
+				SimpleDateFormat tf = new SimpleDateFormat("MMMM d, h:mm a");
+				String timeString = tf.format(e.getStartTime().getTime());
 				warningPane.getChildren().add(
-						new Warning(Risk.TACHYCARDIA, e.getStartTime()));
+						new Warning(Risk.TACHYCARDIA, timeString));
 			}
 		}
 	}
