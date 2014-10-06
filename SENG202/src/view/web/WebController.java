@@ -71,8 +71,7 @@ public class WebController {
 	void clearResults(ActionEvent event) throws IOException {
 		SearchQuery.clearCount();
 		resultPane.getChildren().clear();
-		findResults("Disney kids");
-		textFieldSearch.setText("Jaln likes kiddy porn");
+		textFieldSearch.setText("");
 	}
 
 	/**
