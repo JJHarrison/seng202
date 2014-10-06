@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,6 +72,8 @@ public class MainController {
 	MenuItem menuClose;
 	@FXML
 	MenuItem menuAbout;
+	@FXML
+	MenuItem menuUserManual;
 	@FXML
 	MenuItem menuClearEvents;
 	@FXML
@@ -230,6 +234,22 @@ public class MainController {
 								"Developers: Fitr Team\n\nVersion 1.0 BETA\n\nHealth Tracking and Analysis System",
 								"About Fitr", MessageBox.OK);
 
+			}
+		});
+		
+		menuUserManual.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (Desktop.isDesktopSupported()) {
+				    try {
+				        File myFile = new File("src/resources/fitrUG.pdf");
+				        Desktop.getDesktop().open(myFile);
+				    } catch (IOException ex) {
+				        // no application registered for PDFs
+				    	ex.printStackTrace();
+				    }
+				}
 			}
 		});
 
