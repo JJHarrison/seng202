@@ -16,6 +16,7 @@ import view.dash.DashController;
 public class UserUpdate {
 
 	public static Stage stage = new Stage();
+	private DashController dashController ;
 	
 	/**
 	 * Constructor.
@@ -23,7 +24,7 @@ public class UserUpdate {
 	 * @param dashController
 	 */
 	public UserUpdate(DashController dashController) {
-		dashController.fillDash();
+		this.dashController = dashController;
 	}
 
 	public void start(Stage primaryStage) throws Exception {
@@ -34,6 +35,9 @@ public class UserUpdate {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("UserUpdate.fxml"));
 			Parent root = loader.load(getClass().getResourceAsStream("UserUpdate.fxml"));
+			
+			UserUpdateController uController = loader.getController();
+			uController.setDashController(dashController);
 			
 			Scene scene = new Scene(root);
 
