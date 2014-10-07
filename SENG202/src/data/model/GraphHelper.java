@@ -12,8 +12,8 @@ import user.User;
 public class GraphHelper {
 	/**
 	 * Builds a graph with heart rate on the y-axis and time on the x-axis.
-	 * @param e the event the points are to be taken from
-	 * @return The heart rate graph
+	 * @param e the event the points are to be taken from.
+	 * @return the heart rate graph.
 	 */
 	public static Graph getHeartRateGraph(Event e) {
 		Graph g = new Graph("Heart Rate", "Time (s)", "Heart Rate (bpm)");
@@ -30,8 +30,8 @@ public class GraphHelper {
 	 * Builds a graph with stress level on the y-axis and time on the x-axis.
 	 * Uses the average of the stress level over 3 points for events with
 	 * at least 10 points.
-	 * @param e the event the points are to be taken from
-	 * @return The stress level graph
+	 * @param e the event the points are to be taken from.
+	 * @return the stress level graph.
 	 */
 	public static Graph getStressLevelGraph(Event e) {
 		Graph g = new Graph("Stress Level", "Time (s)", "Stress");
@@ -80,8 +80,8 @@ public class GraphHelper {
 
 	/**
 	 * Builds a graph with speed on the y-axis and time on the x-axis.
-	 * @param e the event the points are to be taken from
-	 * @return The speed graph
+	 * @param e the event the points are to be taken from.
+	 * @return the speed graph.
 	 */
 	public static Graph getSpeedGraph(Event e) {
 		Graph g = new Graph("Speed", "Time (s)", "Speed (m/s)");
@@ -96,8 +96,8 @@ public class GraphHelper {
 
 	/**
 	 * Builds a graph with distance on the y-axis and time on the x-axis.
-	 * @param e the event the points are to be taken from
-	 * @return The distance graph
+	 * @param e the event the points are to be taken from.
+	 * @return the distance graph.
 	 */
 	public static Graph getDistanceGraph(Event e) {
 		double d = 0;
@@ -114,9 +114,9 @@ public class GraphHelper {
 	/**
 	 * Builds a graph with calories burned on the y-axis and time on the
 	 * x-axis.
-	 * @param e the event the points are to be taken from
-	 * @param u the current user
-	 * @return The calories graph
+	 * @param e the event the points are to be taken from.
+	 * @param u the current user.
+	 * @return the calories graph.
 	 */
 	public static Graph getCaloriesGraph(Event e, User u) {
 		double c = 0;
@@ -132,8 +132,8 @@ public class GraphHelper {
 
 	/**
 	 * Builds a graph with altitude on the y-axis and time on the x-axis.
-	 * @param e the event the points are to be taken from
-	 * @return The altitude graph
+	 * @param e the event the points are to be taken from.
+	 * @return the altitude graph.
 	 */
 	public static Graph getAltitudeGraph(Event e) {
 		Graph g = new Graph("Altitude", "Time (s)", "Altitude (m)");

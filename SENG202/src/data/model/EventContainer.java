@@ -30,10 +30,10 @@ public class EventContainer implements Serializable {
 	}
 
 	/**
-	 * Add an activity event to the event container.
+	 * Adds an activity event to the event container.
 	 * Will only add events which are not already in the event container.
-	 * The new events are put into order by date
-	 * @param e The activity event to be added to the container.
+	 * The new events are put into order by date.
+	 * @param e the activity event to be added to the container.
 	 */
 	public void addEvent(Event e) {
 		String dateString = dateString(e.getStartTime().getTime());
@@ -65,10 +65,11 @@ public class EventContainer implements Serializable {
 	}
 
 	/**
-	 * Returns the linked list that contains the activity events for the given day.
+	 * Returns the linked list that contains the activity events for the given
+	 * day.
 	 * 
 	 * @param date The day that the caller wants the activity events for.
-	 * @return The linked list containing activity events
+	 * @return the linked list containing activity events.
 	 */
 	public LinkedList<Event> getEvents(Date date) {
 		String dateString = dateString(date);
@@ -83,18 +84,17 @@ public class EventContainer implements Serializable {
 	 * Returns a date string in the format dd/mm/yyyy to be used as the key for
 	 * the hash map.
 	 * 
-	 * @param date
-	 *            The date object to be formatted
-	 * @return The formatted date string
+	 * @param date the date object to be formatted.
+	 * @return the formatted date string.
 	 */
 	private String dateString(Date date) {
 		return new SimpleDateFormat("dd/MM/yyyy").format(date.getTime());
 	}
 
 	/**
-	 * Used in DB. Gets all events in the event container
+	 * Used in DB. Gets all events in the event container.
 	 * 
-	 * @return All of the events as a collection.
+	 * @return all of the events as a collection.
 	 */
 	public Collection<Event> getAllEvents() {
 		LinkedList<Event> events = new LinkedList<Event>();
@@ -107,9 +107,9 @@ public class EventContainer implements Serializable {
 	}
 
 	/**
-	 * Gets all the events on a given week 
-	 * @param week to get events on 
-	 * @return linked list of events on the given week
+	 * Gets all the events on a given week. 
+	 * @param week to get events on.
+	 * @return linked list of events on the given week.
 	 */
 	public LinkedList<Event> getWeekEvents(Date week) {
 		LinkedList<Event> events = new LinkedList<Event>();
@@ -130,8 +130,8 @@ public class EventContainer implements Serializable {
 
 	/**
 	 * Gets the latest date in the event container.
-	 * If the event container has no events, then it returns the current date
-	 * @return last date in the event container 
+	 * If the event container has no events, then it returns the current date.
+	 * @return last date in the event container.
 	 */
 	public Date getLastDate() {
 		Calendar lastDate = new Calendar.Builder().build();
@@ -153,8 +153,8 @@ public class EventContainer implements Serializable {
 	}
 	
 	/**
-	 * gets the hashMap of all the events
-	 * @return days
+	 * Gets the HashMap of all the events.
+	 * @return days a HashMap of all events.
 	 */
 	public HashMap<String, LinkedList<Event>> getDays() {
 		return days;
