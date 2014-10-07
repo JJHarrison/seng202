@@ -1,24 +1,21 @@
 package view.user;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import user.User;
 import user.User.Gender;
 import view.user.UserManagementController.View;
 import data.model.EventContainer;
 import data.persistant.Persistent;
+import extfx.scene.control.DatePicker;
 import extfx.scene.control.NumberSpinner;
 
 /**
@@ -38,6 +35,9 @@ public class UserCreateController implements Switchable {
 
 	@FXML
 	Label labelCreateWarning;
+	
+	@FXML
+	AnchorPane paneCreate;
 
 	@FXML
 	TextField fieldName;
@@ -49,8 +49,8 @@ public class UserCreateController implements Switchable {
 	NumberSpinner fieldWeight;
 	@FXML
 	NumberSpinner fieldHR;
-	@FXML
-	DatePicker fieldDate;
+	
+	DatePicker fieldDate = new DatePicker();
 
 	@Override
 	public void setController(UserManagementController controller) {
@@ -67,6 +67,9 @@ public class UserCreateController implements Switchable {
 	@FXML
 	void initialize() {
 		fieldGender.setItems(FXCollections.observableArrayList(Gender.values()));
+		AnchorPane.setLeftAnchor(fieldDate, 200.0);
+		AnchorPane.setTopAnchor(fieldDate, 75.0);
+		paneCreate.getChildren().add(fieldDate);
 	}
 
 	@FXML
@@ -82,7 +85,7 @@ public class UserCreateController implements Switchable {
 	@FXML
 	void actionCreate(ActionEvent event) {
 		String name = fieldName.getText().trim();
-		LocalDate date = fieldDate.getValue();
+		Date date = fieldDate.getValue();
 		Gender gender = fieldGender.getValue();
 		Number height = fieldHeight.getValue();
 		Number weight = fieldWeight.getValue();
@@ -98,7 +101,7 @@ public class UserCreateController implements Switchable {
 			labelCreateWarning.setText("User already exists");
 		} else if (date == null) {
 			labelCreateWarning.setText("Birthdate not set");
-		} else if (date.isAfter(Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+		} else if (date.after(Calendar.getInstance().getTime())) {
 			labelCreateWarning.setText("Cant select birthdate in the future");
 		} else if (gender == null) {
 			labelCreateWarning.setText("Gender not set");
@@ -115,10 +118,8 @@ public class UserCreateController implements Switchable {
 		} else if (hr.intValue() > MAX_HR || hr.intValue() < MIN_HR) {
 			labelCreateWarning.setText("Enter a heart rate between 20 and 200 bpm");
 		} else {
-			Calendar calendar = new GregorianCalendar();
-			Instant instant = date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-			Date res = Date.from(instant);
-			calendar.setTime(res);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date);
 			try {
 				Persistent.newUser(new User(name, calendar, gender, weight.doubleValue(), height.doubleValue(),
 						(EventContainer) null, hr.intValue()));

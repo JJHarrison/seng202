@@ -17,9 +17,8 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="144.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
+      <AnchorPane fx:id="paneUpdate" layoutX="144.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
          <children>
-            <DatePicker fx:id="fieldDate" layoutX="271.0" layoutY="68.0" prefWidth="200.0" promptText="dd/mm/yyyy" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="75.0" />
             <Label layoutX="42.0" layoutY="23.0" text="Name:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font size="16.0" />

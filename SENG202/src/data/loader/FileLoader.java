@@ -50,7 +50,7 @@ public class FileLoader {
 	 * creates a file loader with the default csv file, for testing purposes 
 	 */
 	public FileLoader() {
-		inputStream = this.getClass().getResourceAsStream("seng202_2014_example_data.csv");
+		inputStream = this.getClass().getResourceAsStream("fixed_date.csv");
 	}
 
 	/**
