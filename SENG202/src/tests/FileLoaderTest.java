@@ -50,7 +50,7 @@ public class FileLoaderTest extends TestCase {
 		assertFalse(fl.isValidLine("10/04/0,23:42:28,69,30.2553368,-97.83891084,239.5"));
 		assertFalse(fl.isValidLine("10/04/20000,23:42:28,69,30.2553368,-97.83891084,239.5"));
 		assertFalse(fl.isValidLine("10/04/2101,23:42:28,69,30.2553368,-97.83891084,239.5"));
-		assertFalse(fl.isValidLine("10/04/1999,23:42:28,69,30.2553368,-97.83891084,239.5"));
+		assertTrue(fl.isValidLine("10/04/1999,23:42:28,69,30.2553368,-97.83891084,239.5"));
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class FileLoaderTest extends TestCase {
 	 */
 	public void testIsValidLineLatitude(){
 		// latitude should be [-90,90] with accuracy 5dp or higher
-		assertFalse(fl.isValidLine("10/04/2005,23:42:28,69,30.2553,-97.83891084,239.5"));
+		assertTrue(fl.isValidLine("10/04/2005,23:42:28,69,30.2553,-97.83891084,239.5"));
 		assertFalse(fl.isValidLine("10/04/2005,23:42:28,69,-300.2553368,-97.83891084,239.5"));
 		assertFalse(fl.isValidLine("10/04/2005,23:42:28,69,300.2553368,-97.83891084,239.5"));
 	}
@@ -89,7 +89,7 @@ public class FileLoaderTest extends TestCase {
 	 */
 	public void testIsValidLongitude(){
 		// longitude should be [-180,180] with accuracy 5dp or higher
-		assertFalse(fl.isValidLine("10/04/2005,23:42:28,69,30.2553368,-97.884,239.5"));
+		assertTrue(fl.isValidLine("10/04/2005,23:42:28,69,30.2553368,-97.884,239.5"));
 		assertFalse(fl.isValidLine("10/04/2005,23:42:28,69,30.2553368,-907.83891084,239.5"));
 		assertFalse(fl.isValidLine("10/04/2005,23:42:28,69,30.2553368,907.83891084,239.5"));
 	}

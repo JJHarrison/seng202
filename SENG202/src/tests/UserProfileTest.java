@@ -27,11 +27,6 @@ public class UserProfileTest extends TestCase {
 		Persistent.setFilePath(System.getProperty("user.home"));
 		u = User.mockUser();
 	}
-	
-	public void testUserID() {
-		System.out.println(u);
-		System.out.println(u.getUserId());
-	}
 
 	/**
 	 * Tests getName function to make sure it returns the right name

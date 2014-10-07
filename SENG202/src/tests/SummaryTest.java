@@ -53,15 +53,9 @@ public class SummaryTest extends TestCase {
 	public void testCalculate() throws ParseException {
 		Summary s = new Summary(eventContainer,null, null);
 		
-		System.out.println(s.getNumberOfEvents());
-		for (Event e : s.getEvents()) {
-			System.out.println(e.getEventName());
-		}
-		
 		/*
 		 * this part is to test that there were no errors in the formatting 
 		 */
-		System.out.println("\n");
 		System.out.println("totals:");
 		System.out.println(s.getTotalDuration());
 		System.out.println(s.getTotalDistance());
