@@ -11,7 +11,7 @@ import java.util.LinkedList;
 /**
  * manages summaries over a given time
  * used with dash board
- * @author SamSchofield
+ * @author Sam
  *
  */
 public class Summary {

@@ -13,7 +13,7 @@ import data.persistant.Persistent;
  * fitness tracking device. Each event consists of a collection of dataPoints
  * and attributes that relate to the activity event.
  * 
- * @author Fitr.Team??
+ * @author Simon
  */
 public class Event implements Serializable {
 
@@ -34,11 +34,11 @@ public class Event implements Serializable {
 	private boolean hasTachycardia = false;
 
 	/**
-	 * Constructor
+	 * The Event constructor, sets a name and set of points for the Event and
+	 * calculates other values.
 	 * 
-	 * @param eventName
-	 * @param points
-	 *            All data points for the event
+	 * @param eventName the name of the Event.
+	 * @param points all data points for the event.
 	 */
 
 	public Event(String eventName, ArrayList<DataPoint> points) {
@@ -50,7 +50,8 @@ public class Event implements Serializable {
 	}
 
 	/**
-	 * Calculates max and average speed, using the data points
+	 * Calculates max and average speed, average heart rate, and start and
+	 * finish time using the DataPoints.
 	 */
 	private void calculate() {
 		int numPoints = points.size();
@@ -109,7 +110,7 @@ public class Event implements Serializable {
 	}
 
 	/**
-	 * Calculate if the user has bradycardia or tachycardia. Bradycardia is if
+	 * Calculates if the user has bradycardia or tachycardia. Bradycardia is if
 	 * their heart rate goes below 60 at any point. Tachycardia is if their 
 	 * heart rate goes above 207 - 0.7*age at any point.
 	 */
@@ -129,7 +130,7 @@ public class Event implements Serializable {
 	/**
 	 * Calculates a scale factor to be used to determine stress level so that
 	 * it will tend to be around 50.
-	 * @return average speed / average heart rate
+	 * @return average speed / average heart rate.
 	 */
 	private double calculateStressFactor() {
 		double totalSpeed = 0.0;
@@ -161,7 +162,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the average speed of the activity event.
 	 * 
-	 * @return The average speed in meters per second
+	 * @return the average speed in meters per second.
 	 */
 	public double getAverageSpeed() {
 		return averageSpeed;
@@ -170,7 +171,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the max speed of the activity event.
 	 * 
-	 * @return The max speed in meters per second.
+	 * @return the max speed in meters per second.
 	 */
 	public double getMaxSpeed() {
 		return maxSpeed;
@@ -179,7 +180,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the average heart rate of the activity event.
 	 * 
-	 * @return The average heart rate in beats per minute.
+	 * @return the average heart rate in beats per minute.
 	 */
 	public int getAverageHeartRate() {
 		return averageHeartRate;
@@ -188,7 +189,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the max heart rate of the activity event.
 	 * 
-	 * @return The max heart rate in beats per minute.
+	 * @return the max heart rate in beats per minute.
 	 */
 	public int getMaxHeartRate() {
 		return maxHeartRate;
@@ -201,7 +202,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the total distance traveled in the activity event.
 	 * 
-	 * @return The total distance in meters.
+	 * @return the total distance in meters.
 	 */
 	public double getDistance() {
 		return distance;
@@ -210,7 +211,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the name of the activity event.
 	 * 
-	 * @return A String of containing the activity event name.
+	 * @return a String representation of the activity event name.
 	 */
 	public String getEventName() {
 		return eventName;
@@ -219,7 +220,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the start time of the activity event.
 	 * 
-	 * @return The start time of the activity event as a calendar object.
+	 * @return the start time of the activity event as a calendar object.
 	 */
 	public Calendar getStartTime() {
 		return startTime;
@@ -228,7 +229,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the finish time of the activity event.
 	 * 
-	 * @return The finish time of the activity event as a calendar object
+	 * @return the finish time of the activity event as a calendar object.
 	 */
 	public Calendar getFinishTime() {
 		return finishTime;
@@ -241,7 +242,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns the duration of the activity seconds.
 	 * 
-	 * @return The duration for the activity event in seconds.
+	 * @return the duration for the activity event in seconds.
 	 */
 	public long getDuration() {
 		return (finishTime.getTimeInMillis() - startTime.getTimeInMillis()) / 1000;
@@ -251,7 +252,7 @@ public class Event implements Serializable {
 	 * Returns a string formated to HH:MM:SS for the duration of the event to be
 	 * displayed in the event summary.
 	 * 
-	 * @return A string of the activity events duration.
+	 * @return a String of the activity event's duration.
 	 */
 	public String getDurationString() {
 		StringBuilder durationString = new StringBuilder();
@@ -285,7 +286,7 @@ public class Event implements Serializable {
 	/**
 	 * Returns a nicely formatted distance string for use in the GUI.
 	 * 
-	 * @return The formatted distance string.
+	 * @return the formatted distance string.
 	 */
 	public String getDistanceString() {
 		String distanceString;
@@ -300,8 +301,8 @@ public class Event implements Serializable {
 	}
 
 	/**
-	 * Returns the date formated for the gui event pane.
-	 * @return The date formated for the gui.
+	 * Returns the date formated for the GUI event pane.
+	 * @return the date formated for the GUI.
 	 */
 	public String getTimeString() {
 		SimpleDateFormat tf = new SimpleDateFormat("EEEE, MMMM d, h:mm a");
@@ -312,16 +313,16 @@ public class Event implements Serializable {
 	/**
 	 * Returns the data points of the activity event.
 	 * 
-	 * @return The dataPoints inside the activity event.
+	 * @return the dataPoints inside the activity event.
 	 */
 	public ArrayList<DataPoint> getDataPoints() {
 		return this.points;
 	}
 
 	/**
-	 * returns calories burned for the event
+	 * Returns the number of calories burned for the event.
 	 * 
-	 * @return calories burned
+	 * @return calories burned for the event.
 	 */
 	public double getCaloriesBurned() {
 		return caloriesBurned;
@@ -329,11 +330,10 @@ public class Event implements Serializable {
 
 	/**
 	 * A method which takes a dataPoint and returns a string of the location in
-	 * the form "lat, long"
+	 * the form "lat, long".
 	 * 
-	 * @param point
-	 *            A single dataPoint
-	 * @return A string of the location of the dataPoint in the form "lat,long"
+	 * @param point a single dataPoint.
+	 * @return a string of the location of the dataPoint in the form "lat,long".
 	 */
 	public String getPointString(DataPoint point) {
 		String latStr;
@@ -358,9 +358,9 @@ public class Event implements Serializable {
 
 	/**
 	 * This method creates a string of Point Locations which is the path taken
-	 * for the event
+	 * for the event.
 	 * 
-	 * @return A string of locations, in the form "lat, long", which is a path
+	 * @return a string of locations, in the form "lat, long", which is a path
 	 *         for the event.
 	 */
 	public String getPathString() {
@@ -381,16 +381,16 @@ public class Event implements Serializable {
 	}
 
 	/**
-	 * Returns if the user has Bradycardia
-	 * @return True if the user has Bradycardia, false otherwise
+	 * Returns true if the user has Bradycardia.
+	 * @return true if the user has Bradycardia, false otherwise.
 	 */
 	public boolean hasBradycardia() {
 		return hasBradycardia;
 	}
 	
 	/**
-	 * Returns if the user has Tachycardia
-	 * @return True if th euesr has Tachycardia, false otherwise
+	 * Returns true if the user has Tachycardia.
+	 * @return true if the user has Tachycardia, false otherwise.
 	 */
 	public boolean hasTachycardia() {
 		return hasTachycardia;
@@ -398,7 +398,7 @@ public class Event implements Serializable {
 
 	/**
 	 * Returns a string of the average heart rate for this event.
-	 * @return The string representation of average heart rate for this event
+	 * @return the string representation of average heart rate for this event.
 	 */
 	public String avgHRString() {
 		return String.format("%d bpm", getAverageHeartRate());
@@ -406,38 +406,39 @@ public class Event implements Serializable {
 
 	/**
 	 * Returns a string of the maximum heart rate for this event.
-	 * @return The string representation of the maximum heart rate for this event
+	 * @return the string representation of the maximum heart rate for this event.
 	 */
 	public String maxHRString() {
 		return String.format("%d bpm", getMaxHeartRate());
 	}
 
 	/**
-	 * Returns the average speed of the event 
-	 * @return A string representation of the average speed for this event
+	 * Returns the average speed of the event.
+	 * @return a string representation of the average speed for this event.
 	 */
 	public String avgSpeedString() {
 		return String.format("%.1f km / h", getAverageSpeed() * 3.6);
 	}
 
 	/**
-	 * Returns the maximum speed for this event
-	 * @return The string representation of the maximum speed for this event
+	 * Returns the maximum speed for this event.
+	 * @return the string representation of the maximum speed for this event.
 	 */
 	public String maxSpeedString() {
 		return String.format("%.1f km / h", getMaxSpeed() * 3.6);
 	}
 
 	/**
-	 * Returns the calories burnt for this event
-	 * @return A string representation for the calories burned for this event
+	 * Returns the calories burnt for this event.
+	 * @return a string representation for the calories burned for this event.
 	 */
 	public String getCaloriesString() {
 		return String.format("%.0f", getCaloriesBurned());
 	}
 
 	/**
-	 * The equals was overridden for event container functionality
+	 * Returns true if the Events have the same name and same start time.
+	 * @return true if the Events are equal, false otherwise.
 	 */
 	@Override
 	public boolean equals(Object other) {

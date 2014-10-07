@@ -6,7 +6,7 @@ import javafx.scene.chart.XYChart;
  * This class provides a basic model for graphs, which can be used in the GUI.
  * The graphs are stored in the Event class until they are needed.
  * 
- * @author simon
+ * @author Simon
  *
  */
 public class Graph {

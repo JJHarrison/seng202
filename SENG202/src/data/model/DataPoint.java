@@ -16,7 +16,7 @@ import data.persistant.Persistent;
  * tracking device. Each DataPoint consists of attributes related to the actual
  * values in the real world at that time point.
  * 
- * @author Sam
+ * @author Sam, Simon
  */
 public class DataPoint implements Serializable {
 	private static final long serialVersionUID = 8381176069733917667L;
