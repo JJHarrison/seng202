@@ -1,23 +1,20 @@
 package view.user;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import user.User;
 import user.User.Gender;
 import view.MainController;
 import data.persistant.Persistent;
+import extfx.scene.control.DatePicker;
 import extfx.scene.control.NumberSpinner;
 
 /**
@@ -48,10 +45,16 @@ public class UserUpdateController {
 	@FXML
 	NumberSpinner fieldHR;
 	@FXML
-	DatePicker fieldDate;
+	AnchorPane paneUpdate;
+	
+	DatePicker fieldDate = new DatePicker();
 
 	@FXML
 	void initialize() {
+		AnchorPane.setLeftAnchor(fieldDate, 200.0);
+		AnchorPane.setTopAnchor(fieldDate, 75.0);
+		paneUpdate.getChildren().add(fieldDate);
+		
 		fieldGender.setItems(FXCollections.observableArrayList(Gender.values()));
 		fieldName.setPromptText("Enter your name e.g. Bob Smith");
 		fieldWeight.setPromptText("Enter your weight in kg");
@@ -63,11 +66,13 @@ public class UserUpdateController {
 		
 		User user = Persistent.getCurrentUser();
 		fieldName.setText(user.getName());
-		LocalDate localDate = LocalDate.of(user.getDateofBirth().get(Calendar.YEAR), 
+		
+		@SuppressWarnings("deprecation")
+		Date date = new Date(user.getDateofBirth().get(Calendar.YEAR), 
 				user.getDateofBirth().get(Calendar.MONTH)+1,
 				user.getDateofBirth().get(Calendar.DAY_OF_MONTH));
 		
-		fieldDate.setValue(localDate);
+		fieldDate.setValue(date);
 		fieldGender.setValue(user.getGender());
 		fieldWeight.setValue(user.getWeight());
 		fieldHeight.setValue(user.getHeight());
@@ -88,7 +93,7 @@ public class UserUpdateController {
 	@FXML
 	void actionUpdate(ActionEvent event) {
 		String name = fieldName.getText().trim();
-		LocalDate date = fieldDate.getValue();
+		Date date = fieldDate.getValue();
 		Gender gender = fieldGender.getValue();
 		Number height = fieldHeight.getValue();
 		Number weight = fieldWeight.getValue();
@@ -104,7 +109,7 @@ public class UserUpdateController {
 			labelCreateWarning.setText("User name already used");
 		} else if (date == null) {
 			labelCreateWarning.setText("Birthdate not set");
-		} else if (date.isAfter(Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+		} else if (date.after(Calendar.getInstance().getTime())) {
 			labelCreateWarning.setText("Cant select birthdate in the future");
 		} else if (gender == null) {
 			labelCreateWarning.setText("Gender not set");
@@ -121,10 +126,8 @@ public class UserUpdateController {
 		} else if (hr.intValue() > MAX_HR || hr.intValue() < MIN_HR) {
 			labelCreateWarning.setText("Enter a heart rate between 20 and 200 bpm");
 		} else {
-			Calendar calendar = new GregorianCalendar();
-			Instant instant = date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-			Date res = Date.from(instant);
-			calendar.setTime(res);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(date);
 			
 			Persistent.getCurrentUser().setDateofBirth(calendar);
 			Persistent.getCurrentUser().setGender(gender);
