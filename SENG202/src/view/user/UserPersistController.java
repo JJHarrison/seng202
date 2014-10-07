@@ -63,7 +63,7 @@ public class UserPersistController implements Switchable {
 				controller.setView(View.LOGIN);
 			} catch (FileNotFoundException e) {
 				labelNoFileSet.setText("Your system is screwed");
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 
 		} else {

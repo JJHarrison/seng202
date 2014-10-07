@@ -44,6 +44,7 @@ import extfx.scene.control.CalendarView;
 import extfx.scene.control.DateCell;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *
@@ -96,13 +97,13 @@ public class MainController {
 	AnalysisController viewAnalysisController;
 	@FXML
 	DashController viewDashController;
-	
+
 	public static DashController dashController;
 
 	@FXML
 	void initialize() {
 		dashController = viewDashController;
-		
+
 		// highlight the days which have events on them
 		calendarView.setDayCellFactory(new Callback<CalendarView, DateCell>() {
 			@Override
@@ -197,8 +198,7 @@ public class MainController {
 								MessageBox.OK);
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
-				}UserUpdate.stage.close();
+				}
 			}
 		});
 
@@ -211,7 +211,7 @@ public class MainController {
 					LoadSummary.clear();
 					FileLoader fl = new FileLoader(file);
 					fl.load();
-					
+
 					Persistent.getCurrentUser().addEvents(
 							fl.getEventContainer());
 
@@ -223,11 +223,11 @@ public class MainController {
 							try {
 								new Notification().start(new Stage());
 							} catch (Exception e) {
-								e.printStackTrace();
+								// e.printStackTrace();
 							}
 						}
 					});
-					
+
 					Calendar calendar = Calendar.getInstance();
 					calendar.add(Calendar.YEAR, 1);
 					selectedDate.setValue(calendar.getTime());
@@ -244,14 +244,14 @@ public class MainController {
 			public void handle(ActionEvent event) {
 				MessageBox
 						.show(Main.stage,
-								  "Fitr: Fitness Is Training Right.\n\n"
-								+ "Version: Build 2.0.0.0\n"
-								+ "Release: October 2014\n\n"
-								+ "Licence: This software is provided by rights holders and contributers "
-								+ "\"as is\" and any express or implied warrenties are disclaimed.\n"
-								+ "In no event shall the developers of Fitr be liable for any direct, indirect "
-								+ "or incidental damages incured in the use of fitr.\n\n"
-								+ "Use at your own risk.",
+								"Fitr: Fitness Is Training Right.\n\n"
+										+ "Version: Build 2.0\n"
+										+ "Release: October 2014\n\n"
+										+ "Licence: This software is provided by rights holders and contributers "
+										+ "\"as is\" and any express or implied warrenties are disclaimed.\n"
+										+ "In no event shall the developers of Fitr be liable for any direct, indirect "
+										+ "or incidental damages incured in the use of fitr.\n\n"
+										+ "Use at your own risk.",
 								"About Fitr", MessageBox.OK);
 
 			}
@@ -275,9 +275,9 @@ public class MainController {
 						File myFile = new File("src/resources/fitrUG.pdf");
 						Desktop.getDesktop().open(myFile);
 					}
-				} catch (IOException ex) {
+				} catch (IOException e) {
 					// no application registered for PDFs
-					ex.printStackTrace();
+					// e.printStackTrace();
 				}
 			}
 		});
@@ -311,30 +311,30 @@ public class MainController {
 
 			}
 		});
-		
+
 		menuUpdate.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
 				Platform.runLater(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						UserUpdate userUpdate = new UserUpdate();
 						try {
 							userUpdate.start(new Stage());
 						} catch (Exception e) {
-							e.printStackTrace();
+							// e.printStackTrace();
 						}
 					}
 				});
-				
+
 			}
 		});
 
 		toggleGroup.getToggles().addAll(buttonAnalysis, buttonDash, buttonWeb);
 
-		// need this so the dash loads first... i don't know why either...
+		// need this so the dash loads first
 		toggleGroup.selectToggle(buttonWeb);
 		buttonDash.fire();
 

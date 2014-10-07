@@ -33,7 +33,7 @@ public class SearchQuery {
 		try {
 			query = query + getCount() + "&q=" + (URLEncoder.encode(inputQuery, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		incrementCount();
 		return query;

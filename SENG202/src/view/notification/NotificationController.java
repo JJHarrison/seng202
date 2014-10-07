@@ -9,6 +9,12 @@ package view.notification;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * Controller.
+ * 
+ * @author Daniel van Wichen, Daniel Tapp
+ *
+ */
 public class NotificationController {
 
 	@FXML

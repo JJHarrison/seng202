@@ -32,7 +32,7 @@ public class UserUpdate {
 			primaryStage.initModality(Modality.WINDOW_MODAL);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		primaryStage.setResizable(false);
 		primaryStage.show();

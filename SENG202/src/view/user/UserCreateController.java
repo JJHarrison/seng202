@@ -19,6 +19,7 @@ import data.persistant.Persistent;
 import extfx.scene.control.NumberSpinner;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *
@@ -70,6 +71,7 @@ public class UserCreateController implements Switchable {
 		AnchorPane.setLeftAnchor(fieldDate, 200.0);
 		AnchorPane.setTopAnchor(fieldDate, 75.0);
 		paneCreate.getChildren().add(fieldDate);
+		fieldDate.setPromptText("dd/mm/yyyy");
 	}
 
 	@FXML
@@ -124,7 +126,7 @@ public class UserCreateController implements Switchable {
 				Persistent.newUser(new User(name, calendar, gender, weight.doubleValue(), height.doubleValue(),
 						(EventContainer) null, hr.intValue()));
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			controller.setView(View.LOGIN);
 		}

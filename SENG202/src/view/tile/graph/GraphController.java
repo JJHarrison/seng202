@@ -10,6 +10,7 @@ import data.model.Graph;
 import data.model.GraphHelper;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *

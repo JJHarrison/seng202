@@ -18,7 +18,7 @@ import data.persistant.Persistent;
 /**
  * Tests for the event container class.
  * 
- * @author Fitr.Team
+ * @author Simon
  */
 public class EventContainerTest extends TestCase {
 

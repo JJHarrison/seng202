@@ -29,12 +29,11 @@ public class FileLoader {
 	private InputStream inputStream;
 	private EventContainer eventContainer = new EventContainer();
 	private DataPoint lastPoint;
-	public static int numberOfEvents;
 	private Date currentDate = Calendar.getInstance().getTime();
+	public static int numberOfEvents; //Used to get the number of events in the CSV
 	
 	/**
 	 * Creates a FileLoader with a particular input file.
-	 * 
 	 * @param file The input file.
 	 */
 	public FileLoader(File file) {
@@ -53,15 +52,6 @@ public class FileLoader {
 	 */
 	public FileLoader() {
 		inputStream = this.getClass().getResourceAsStream("seng202_2014_example_data.csv");
-	}
-
-	/**
-	 * Gets the input stream.
-	 * 
-	 * @return input stream of the CSV file.
-	 */
-	public InputStream getStream() {
-		return inputStream;
 	}
 
 	/**

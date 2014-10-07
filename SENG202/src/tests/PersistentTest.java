@@ -33,7 +33,6 @@ public class PersistentTest extends TestCase {
 		
 	}
 	
-	
 	/**
 	 * tests that a valid file path can be set
 	 */

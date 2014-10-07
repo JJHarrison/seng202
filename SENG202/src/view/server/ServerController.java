@@ -9,6 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import server.Server;
 
+/**
+ * Controller.
+ * 
+ * @author Daniel van Wichen, Daniel Tapp
+ *
+ */
 public class ServerController {
 	public static Server server;
 	private Thread serverThread;
@@ -41,7 +47,7 @@ public class ServerController {
 			try {
 				server.stopServer();
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
 			serverRunning = false;
 		} else {

@@ -27,7 +27,7 @@ public class Tile extends AnchorPane {
 		try {
 			loadMainPane();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
