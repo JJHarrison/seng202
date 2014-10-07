@@ -3,11 +3,14 @@ data.model
 data.persistant
 resources
 server
+tests
 user
 view
 view.analysis
 view.dash
+view.notification
 view.search
+view.server
 view.tile
 view.tile.graph
 view.tile.map
