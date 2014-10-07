@@ -22,6 +22,7 @@ public class LoadSummary {
 		badPoints = 0;
 		eventsAdded = 0;
 		eventsNotAdded = 0;
+		FileLoader.numberOfEvents = 0;
 	}
 	
 	/**

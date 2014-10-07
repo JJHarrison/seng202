@@ -290,6 +290,7 @@ public class User implements Serializable {
 	public void addEvents(EventContainer events) {
 		System.out.println("Adding events");
 		int sizeBefore = this.events.getAllEvents().size();
+		//int sizeBefore = FileLoader.numberOfEvents;
 		for(Event event : events.getAllEvents()) {
 			this.events.addEvent(event);
 		}
@@ -297,7 +298,8 @@ public class User implements Serializable {
 		System.out.println(this.events.getAllEvents().size() + ", " + sizeBefore);
 		LoadSummary.addEventsAdded(this.events.getAllEvents().size() - sizeBefore);
 		//total events in event container to be added - new events added 
-		LoadSummary.addEventsNotAdded(events.getAllEvents().size() - (this.events.getAllEvents().size() - sizeBefore));
+		System.out.println("there were " + FileLoader.numberOfEvents + " in the csv file");
+		LoadSummary.addEventsNotAdded(FileLoader.numberOfEvents - (this.events.getAllEvents().size() - sizeBefore));
 		Saver.SaveUser(this);
 	}
 	

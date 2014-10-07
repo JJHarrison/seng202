@@ -28,6 +28,7 @@ public class FileLoader {
 	private InputStream inputStream;
 	private EventContainer eventContainer = new EventContainer();
 	private DataPoint lastPoint;
+	public static int numberOfEvents;
 	
 	/**
 	 * Creates a FileLoader with a particular input file
@@ -77,7 +78,8 @@ public class FileLoader {
 					String[] dataLine = line.split(",");
 					if (dataLine[0].contains("#start")) { // start of new event
 						dataLine = fixTitle(dataLine);
-						if (!points.isEmpty()) { //checks that points have been read to be added to event	
+						numberOfEvents++;
+						if (points.size() > 1) { //checks that points have been read to be added to event	
 							eventContainer.addEvent(new Event(eventName, points));
 							points = new ArrayList<DataPoint>(); // reset the points for the next event
 							lastPoint = null;
@@ -101,10 +103,8 @@ public class FileLoader {
 			}
 			
 			// add the last event of the csv file to events
-			if (!points.isEmpty() && eventName != null) { 
+			if (points.size() > 1 && eventName != null) { 
 				eventContainer.addEvent(new Event(eventName, points));
-			} else {
-				LoadSummary.addEventsNotAdded(1);
 			}
 
 		} catch (IOException e) {
