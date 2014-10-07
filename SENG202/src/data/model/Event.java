@@ -13,7 +13,7 @@ import data.persistant.Persistent;
  * fitness tracking device. Each event consists of a collection of dataPoints
  * and attributes that relate to the activity event.
  * 
- * @author Simon
+ * @author Simon, Sam
  */
 public class Event implements Serializable {
 

@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * event container consists of activity days containing Event objects
  * representing activity events imported from a fitness tracking device.
  * 
- * @author Simon
+ * @author Simon, Sam
  */
 public class EventContainer implements Serializable {
 	/**
