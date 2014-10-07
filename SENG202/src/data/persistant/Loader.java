@@ -22,9 +22,9 @@ public class Loader {
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	/**
-	 * loads and returns a user profile from the JSON file at file path
+	 * Loads and returns a user profile from the JSON file at file path
 	 * 
-	 * @return EventContainer
+	 * @return User the user loaded from JSON.
 	 */
 	public static User loadUserProfile(File filepath) {
 
@@ -35,8 +35,8 @@ public class Loader {
 			user = gson.fromJson(br, User.class);
 
 		} catch (FileNotFoundException e) {
-			//System.out.println("User not found");
-			e.printStackTrace();
+			//The user can't be found
+			//e.printStackTrace();
 		}
 		return user;
 	}
