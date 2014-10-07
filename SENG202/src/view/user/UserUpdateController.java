@@ -132,6 +132,7 @@ public class UserUpdateController {
 			
 			// Refresh the view
 			MainController.dashController.fillUser();
+			MainController.dashController.fillDash();
 			UserLoginController.refreshUsers();
 			UserUpdate.close();
 		}
