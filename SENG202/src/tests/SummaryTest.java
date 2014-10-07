@@ -8,7 +8,6 @@ import java.util.Calendar;
 import junit.framework.TestCase;
 import user.User;
 import data.loader.FileLoader;
-import data.model.Event;
 import data.model.EventContainer;
 import data.model.Summary;
 import data.persistant.Persistent;
