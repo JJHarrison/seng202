@@ -1,11 +1,14 @@
 package server;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+
 
 import user.User;
 import data.model.DataPoint;
@@ -25,9 +28,23 @@ public class DBWriter {
 	private PreparedStatement preparedStatement = null;
 	private PreparedStatement preparedStatement2 = null;
 	private ResultSet resultSet = null;
-	// change to "jdbc:sqlite: <your database path here> " to setup 
-	private String url = "jdbc:sqlite:E:/fitr_database/fitr.db";
-
+	java.io.File file = new java.io.File("C:/Fitr_Database/fitr.db");
+	private String url = "jdbc:sqlite:";
+	
+	
+	/**
+	 * Constructor for database writer
+	 */
+	public DBWriter() {
+		url += file.toURI();
+		System.out.println(url);
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Will check the database to see if the users profile has already been
 	 * added to the database. If the user is not a participant of the database
@@ -68,6 +85,7 @@ public class DBWriter {
 	 * @throws SQLException 
 	 */
 	private boolean isUserStored(User user) throws SQLException {
+		System.out.println("URL: " + url);
 		boolean isThere = false;
 		// the query to be sent to the database to find the user_id
 		String query = String.format("SELECT * FROM USER where user_id = \"%s\"", user.getUserId());
@@ -269,27 +287,5 @@ public class DBWriter {
 		if (preparedStatement2 != null) {
 			preparedStatement2.close();
 		}
-	}
-	
-	
-
-	
-	public static void main(String[] args) { 
-		DBWriter dbw = new DBWriter();
-		User mocky = User.mockUser();
-		mocky.setUserId("9");
-		long startTime = System.currentTimeMillis();
-
-		try {
-			dbw.writeUser(mocky);
-		} catch (SQLException e) {
-//			e.printStackTrace();
-		}
-
-		long endTime = System.currentTimeMillis();
-
-		System.out.println("That took " + (endTime - startTime) + " milliseconds");
-		//19607
-		//559
 	}
 }

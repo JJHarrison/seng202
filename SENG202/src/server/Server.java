@@ -165,6 +165,7 @@ public class Server extends Thread{
 					consoleWriter(startMessage() + " Database appears to be down!");
 					sendMessage("NACK");
 					endMessage();
+					e.printStackTrace();
 				}
 				clientMessage = (String) input.readObject();
 			} catch (ClassNotFoundException e) {
