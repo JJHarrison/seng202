@@ -6,7 +6,7 @@ import user.User;
 
 /**
  * Has static methods for building each graph from a given event.
- * @author simon
+ * @author Simon
  *
  */
 public class GraphHelper {
