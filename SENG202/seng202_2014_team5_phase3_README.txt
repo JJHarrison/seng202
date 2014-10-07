@@ -1,5 +1,5 @@
 Fitr 
-Version 1.0 beta
+Version 2.0 final release
 24/09/2014
 Readme
 
