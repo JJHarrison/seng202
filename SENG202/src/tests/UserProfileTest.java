@@ -13,7 +13,7 @@ import data.persistant.Persistent;
 /**
  * Tests the functionality of the UserProfile class
  * 
- * @author Fitr.Team
+ * @author Simon, James
  */
 public class UserProfileTest extends TestCase {
 	User u;
