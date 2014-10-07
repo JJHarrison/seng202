@@ -40,7 +40,7 @@ public class Server extends Thread{
 			try {
 				serverSocket = new ServerSocket(port);
 			} catch (IOException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			}	
 	}
 	
@@ -52,7 +52,7 @@ public class Server extends Thread{
 				try {
 					waitForConnection();
 				} catch (IOException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}			
 		if (connected){
 				successfulConnection();
@@ -60,12 +60,12 @@ public class Server extends Thread{
 					setupStreams();
 					whileTransfering();
 				} catch (IOException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 				try {
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 				connected = false;
 		}
@@ -100,7 +100,6 @@ public class Server extends Thread{
 				+ InetAddress.getLocalHost().getCanonicalHostName() + "]...");
 		
 		// Once a client connects a socket is open for the server and client
-		//view.server.ServerController.setConsoleText("Waiting for stuff");
 		try {
 			connection = serverSocket.accept();
 			connected = true;
@@ -196,10 +195,9 @@ public class Server extends Thread{
 	private void sendMessage(String message) {
 		try {
 			output.writeObject(message);
-			System.out.println(startMessage() + " Sent confirmation to the Client\n");
 			consoleWriter(startMessage() + " Sent confirmation to the Client");
 		} catch (IOException e) {
-			System.out.println(startMessage() + " No confirmation was sent to the <Client>");
+			consoleWriter(startMessage() + " No confirmation was sent to the <Client>");
 		}
 	}
 	
@@ -226,183 +224,5 @@ public class Server extends Thread{
 	private void endMessage() {
 		consoleWriter("-----------------------------------------------"
 				+ "------------------------------------------------" + "\n");
-	}
-	
-	
+	}	
 }
-	
-	
-	
-	
-//-----------------Don't delete yet till I've tested the new version extensively-------------------	
-	
-//	private ServerSocket server;
-//	private Socket connection;
-//	private ObjectInputStream input;
-//	private ObjectOutputStream output;
-//	// private String host = "localhost";
-//	final private int portNumber = 8888;
-//	private DBWriter dbw;
-//	private boolean running;
-//
-//	/**
-//	 * Starts a server that will endlessly wait for connections
-//	 */
-//	public void startServer() {
-//		try {
-//			server = new ServerSocket(portNumber);
-//			while (true) {
-//				try {
-//					waitForConnection();
-//					setupStreams();
-//					whileTransfering();
-//					System.out.println(startMessage() + " Connection ended!");
-//					System.out.println("-----------------------------------"
-//							+ "--------------------");
-//				} catch (EOFException e) {
-//					System.out.println(startMessage() + " Connection ended!");
-//					System.out.println("-----------------------------------"
-//							+ "--------------------");
-//				} finally {
-//					closeStuff();
-//				}
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	public void shutDownServer() {
-//		//closeStuff();
-//		running = false;
-//	}
-//	/**
-//	 * Waits for a connection to be formed with the client.
-//	 * 
-//	 * @throws IOException
-//	 */
-//	private void waitForConnection() throws IOException {
-//		System.out.println(startMessage()
-//				+ " Waiting for a client to connect to ["
-//				+ InetAddress.getLocalHost().getCanonicalHostName() + "]...");
-//		// Once a client connects a socket is open for the server and client
-//		connection = server.accept();
-//		System.out.println(String.format(startMessage()	+ " Now connected to <client> at [%s]", 
-//				connection.getInetAddress().getHostName()));
-//	}
-//
-//	/**
-//	 * Sets up the output/input streams to send/receive objects with the client.
-//	 * 
-//	 * @throws IOException
-//	 */
-//	private void setupStreams() throws IOException {
-//		output = new ObjectOutputStream(connection.getOutputStream());
-//		output.flush();
-//		input = new ObjectInputStream(connection.getInputStream());
-//		System.out.println(startMessage() + " IO streams are now ready to be used");
-//	}
-//
-//	private User getUserFromClient() throws IOException, ClassNotFoundException {
-//		User uploadedUser;
-//		uploadedUser = (User) input.readObject();
-//		System.out.println(startMessage() + " <Client> sent the user: [" + uploadedUser.getName() + "]");
-//		sendMessage(uploadedUser.getName());
-//
-//		return uploadedUser;
-//	}
-//
-//	/**
-//	 * This functions handles the transfer from the client and automatically writes the user to the datebase
-//	 * if the user is valid
-//	 * @throws IOException
-//	 */
-//	private void whileTransfering() throws IOException {
-//		System.out.println(startMessage() + " Ready for transfer...\n");
-//		String clientMessage = null;
-//		User uploadedUser = null;
-//		dbw = new DBWriter();
-//
-//		do {
-//			try {
-//				uploadedUser = getUserFromClient();
-//				try {
-//					System.out.println(startMessage() + " Adding user [" + uploadedUser.getName() + "] to the database...");
-//					dbw.writeUser(uploadedUser);
-//					System.out.println(startMessage() + " Complete!\n");
-//				} catch (Exception e) {
-//					System.out.println("An error occured");
-//					e.printStackTrace();
-//				}
-//				clientMessage = (String) input.readObject();
-//			} catch (ClassNotFoundException e) {
-//				System.out.println(startMessage() + " I don't know what to do with that type of object");
-//			}
-//		} while (!clientMessage.equals("END"));
-//	}
-//
-//	/**
-//	 * Closes the streams and socket once the connection is lost
-//	 */
-//	public void closeStuff() {
-//		try {
-//			input.close();
-//			output.close();
-//			connection.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	/**
-//	 * Sends a confirmation message to the client that their message was
-//	 * received.
-//	 * @param message The message that was received from the client.
-//	 */
-//	private void sendMessage(String message) {
-//		try {
-//			output.writeObject(message);
-//			System.out.println(startMessage() + " Sent confirmation to the <Client>\n");
-//		} catch (IOException e) {
-//			System.out.println(startMessage() + " No confirmation was sent to the <Client>");
-//		}
-//	}
-//
-//	/**
-//	 * Gets the current time on the server.
-//	 * @return The current time of the server
-//	 */
-//	private String getCurrentTime() {
-//		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-//		Calendar cal = Calendar.getInstance();
-//		return df.format(cal.getTime());
-//	}
-//
-//	/**
-//	 * Creates a message consisting of [currentTime]<Server> for the server
-//	 * output messages.
-//	 * 
-//	 * @return The opening string for server output messages.
-//	 */
-//	private String startMessage() {
-//		return "[" + getCurrentTime() + "]<Server>";
-//	}
-//
-//	public static void main(String[] args) {
-		
-//		Server s = new Server();
-//		
-//		Task<Void> t = new Task<Void>() {
-//			@Override
-//			protected Void call() throws Exception {
-//				s.startServer();
-//				return null;
-//			}
-//		};
-//		
-//		Thread thread = new Thread(t);
-//		thread.start();
-//		s.startServer();
-//		s.shutDownServer();
-//	}
-//}
