@@ -19,7 +19,7 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Hyperlink fx:id="labelURL" layoutX="170.0" layoutY="55.0" onAction="#gotoButton" text="www.google.com" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0">
+                  <Hyperlink fx:id="labelURL" layoutX="170.0" layoutY="55.0" onAction="#gotoButton" text="www.google.comdasffjksdlgksgda;f" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
                      <font>
                         <Font size="20.0" />
                      </font>
