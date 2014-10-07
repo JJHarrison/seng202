@@ -1,8 +1,8 @@
 package view.analysis;
 
-import view.tile.Tile;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import view.tile.Tile;
 import data.model.Event;
 
 /**

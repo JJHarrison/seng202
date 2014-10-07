@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import user.User;
 import junit.framework.TestCase;
+import user.User;
 import data.loader.FileLoader;
 import data.model.DataPoint;
 import data.model.Event;

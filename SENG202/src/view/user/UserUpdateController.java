@@ -32,6 +32,7 @@ public class UserUpdateController {
 	public static final Double MIN_HEIGHT = 0.0; // cm
 	public static final Integer MAX_HR = 200; // resting hr
 	public static final Integer MIN_HR = 20; // resting hr
+	public static final Integer MAX_NAME_LENGTH = 20;
 
 	@FXML
 	Label labelCreateWarning;
@@ -97,8 +98,10 @@ public class UserUpdateController {
 			labelCreateWarning.setText("Please provide your name");
 		} else if (!name.matches("([a-zA-Z]|[\\s])*")) {
 			labelCreateWarning.setText("Please enter a valid name");
+		} else if (name.length() > MAX_NAME_LENGTH) {
+			labelCreateWarning.setText("Name must be less than 20 characters");
 		} else if (Persistent.getUserNames().contains(name) && ! name.equals(Persistent.getCurrentUser().getName())) {
-			labelCreateWarning.setText("User already exists");
+			labelCreateWarning.setText("User name already used");
 		} else if (date == null) {
 			labelCreateWarning.setText("Birthdate not set");
 		} else if (date.isAfter(Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
