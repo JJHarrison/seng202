@@ -86,7 +86,7 @@ public class UserUpdateController {
 	 */
 	@FXML
 	void actionUpdate(ActionEvent event) {
-		String name = fieldName.getText();
+		String name = fieldName.getText().trim();
 		LocalDate date = fieldDate.getValue();
 		Gender gender = fieldGender.getValue();
 		Number height = fieldHeight.getValue();
@@ -97,6 +97,8 @@ public class UserUpdateController {
 			labelCreateWarning.setText("Please provide your name");
 		} else if (!name.matches("([a-zA-Z]|[\\s])*")) {
 			labelCreateWarning.setText("Please enter a valid name");
+		} else if (Persistent.getUserNames().contains(name) && ! name.equals(Persistent.getCurrentUser().getName())) {
+			labelCreateWarning.setText("User already exists");
 		} else if (date == null) {
 			labelCreateWarning.setText("Birthdate not set");
 		} else if (date.isAfter(Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {

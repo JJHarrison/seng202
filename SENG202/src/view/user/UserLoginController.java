@@ -85,5 +85,6 @@ public class UserLoginController implements Switchable {
 	public static void refreshUsers() {
 		staticUserList.setItems(null);
 		staticUserList.setItems(Persistent.getUsers());
+		staticUserList.getSelectionModel().clearSelection();
 	}
 }
