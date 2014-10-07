@@ -286,7 +286,7 @@ public class User implements Serializable {
 	 */
 	public void addEvents(EventContainer events) {
 		int sizeBefore = this.events.getAllEvents().size();
-
+		System.out.println("evetns added to user are");
 		for(Event event : events.getAllEvents()) {
 			this.events.addEvent(event);
 		}
