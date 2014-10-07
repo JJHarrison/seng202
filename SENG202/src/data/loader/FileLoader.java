@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import data.model.DataPoint;
 import data.model.Event;
@@ -29,6 +30,7 @@ public class FileLoader {
 	private EventContainer eventContainer = new EventContainer();
 	private DataPoint lastPoint;
 	public static int numberOfEvents;
+	private Date currentDate = Calendar.getInstance().getTime();
 	
 	/**
 	 * Creates a FileLoader with a particular input file
@@ -239,12 +241,11 @@ public class FileLoader {
  	* @return True if the value is a valid date, false otherwise
  	*/
  	private boolean isDateValid(String date) {
-		String[] values = date.split("/");
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		df.setLenient(false);
 		try {
-	        df.parse(date);
-	        return (isInRange(values[2], 2000, Calendar.getInstance().get(Calendar.YEAR)));
+	        Date d = df.parse(date);
+	        return d.before(currentDate);
 	    } catch (ParseException e) {
 	        return false;
 	    }
