@@ -1,8 +1,8 @@
 package data.loader;
 
 /**
- * class used for summarizing the loading of a csv file to give the user 
- * some feedback on what has happened when they uploaded a csv file 
+ * Class used for summarizing the loading of a CSV file to give the user 
+ * some feedback on what has happened when they uploaded a CSV file .
  * @author SamSchofield
  *
  */
@@ -14,8 +14,8 @@ public class LoadSummary {
 	private static int eventsNotAdded;
 	
 	/**
-	 * re-sets all the counters to zero
-	 * used at the end of a load method 
+	 * Re-sets all the counters to zero
+	 * used at the end of a load method.
 	 */
 	public static void clear() {
 		lineErrors = 0;
@@ -83,20 +83,5 @@ public class LoadSummary {
 	 */
 	public static String getIgnoredPoints() {
 		return String.format("%d", badPoints);
-	}
-	
-	/**
-	 * gets the summary string for the loading of the csv file
-	 * @return summary of the load 
-	 */
-	public static String getSumamry() {
-		return String.format("Import Summary:\t\t\t\t\t\t\t\t\t\n\n"
-				+ "%-50s%d\n"
-				+ "%-50s%d\n"
-				+ "%-50s%d\n"
-				+ "%-50s%d\n\n"
-				+ "*Go to [About->Importing] to learn about file checking",
-				"Events added:", eventsAdded, "Events ignored:", eventsNotAdded,
-				"Line errors:", lineErrors, "Bad points:", badPoints);
 	}
 }
