@@ -11,7 +11,7 @@ import data.persistant.Persistent;
 /**
  * Tests the functionality of the DataPoint class
  * 
- * @author Fitr.Team
+ * @author Simon
  */
 public class DataPointTest extends TestCase {
 	private static DataPoint p1;

@@ -46,7 +46,7 @@ import extfx.scene.control.DateCell;
 /**
  * Controller.
  * 
- * @author Daniel van Wichen
+ * @author Daniel van Wichen, Simon
  *
  */
 public class MainController {

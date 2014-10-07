@@ -8,7 +8,7 @@ import data.model.Event;
 /**
  * Controller.
  * 
- * @author Daniel van Wichen
+ * @author Daniel van Wichen, Simon
  *
  */
 public class SummaryController {

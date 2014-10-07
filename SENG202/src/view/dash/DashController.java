@@ -31,7 +31,7 @@ import data.persistant.Saver;
 /**
  * Controller.
  * 
- * @author Daniel van Wichen
+ * @author Daniel van Wichen, Simon
  *
  */
 public class DashController {

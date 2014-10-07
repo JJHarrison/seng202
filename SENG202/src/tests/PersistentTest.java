@@ -10,6 +10,11 @@ import user.User;
 import user.User.Gender;
 import data.persistant.Persistent;
 
+/**
+ * Tests the Persistent class.
+ * @author James
+ *
+ */
 public class PersistentTest extends TestCase {
 	
 	// Set up some of the basics

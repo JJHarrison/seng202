@@ -23,7 +23,7 @@ import data.model.EventContainer;
  * The activity data needs to be in a CSV format consisting of
  * date, time, heart rate, latitude, longitude, and altitude..
  * 
- * @author Sam, James
+ * @author Sam, James, Simon
  */
 public class FileLoader {
 	private InputStream inputStream;
