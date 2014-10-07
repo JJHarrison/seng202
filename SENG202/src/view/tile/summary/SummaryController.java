@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import data.model.Event;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *

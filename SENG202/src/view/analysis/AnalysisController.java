@@ -6,6 +6,7 @@ import view.tile.Tile;
 import data.model.Event;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *

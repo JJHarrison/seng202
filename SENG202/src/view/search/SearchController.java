@@ -14,6 +14,7 @@ import javafx.scene.control.TextArea;
 import view.search.GoogleSearchResults.Result;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen, Daniel Tapp, Jaln Rodger
  *

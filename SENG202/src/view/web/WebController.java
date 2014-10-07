@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
+ * Controller.
  * 
  * @author Daniel Tapp, Daniel van Wichen, Jaln Rodger
  *

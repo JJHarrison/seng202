@@ -19,6 +19,7 @@ import data.persistant.Saver;
 import extfx.scene.control.NumberSpinner;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *
@@ -72,6 +73,7 @@ public class UserUpdateController {
 				user.getDateofBirth().get(Calendar.MONTH) + 1, 
 				user.getDateofBirth().get(Calendar.DAY_OF_MONTH));
 		fieldDate.setValue(date);
+		fieldDate.setPromptText("dd/mm/yyyy");
 		
 		fieldGender.setValue(user.getGender());
 		fieldWeight.setValue(user.getWeight());

@@ -10,6 +10,7 @@ import data.model.DataPoint;
 import data.model.Event;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *

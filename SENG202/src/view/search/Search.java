@@ -19,18 +19,19 @@ public class Search extends AnchorPane {
 	/**
 	 * Constructor.
 	 * 
-	 * @param result the result to display.
+	 * @param result
+	 *            the result to display.
 	 */
 	public Search(Result result) {
 		if (result != null) {
-		try {
-			loadMainPane(result);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}}
-	
-	}
+			try {
+				loadMainPane(result);
+			} catch (IOException e) {
+				// e.printStackTrace();
+			}
+		}
 
+	}
 
 	private void loadMainPane(Result result) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -42,5 +43,5 @@ public class Search extends AnchorPane {
 		searchController.fill(result);
 
 	}
-	
+
 }

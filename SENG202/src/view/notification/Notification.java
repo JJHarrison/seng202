@@ -13,8 +13,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import view.Main;
 
+/**
+ * A custom notification panel for showing 
+ * 
+ * @author Daniel van Wichen, Daniel Tapp
+ *
+ */
 public class Notification {
 
+	/**
+	 * The stage of the notification panel.
+	 */
 	public static Stage stage;
 	
 	public void start(Stage primaryStage) throws Exception {
@@ -41,7 +50,7 @@ public class Notification {
 			primaryStage.initModality(Modality.WINDOW_MODAL);
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		// Set the size of the window

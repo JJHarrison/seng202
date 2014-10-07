@@ -39,7 +39,7 @@ public class Server extends Application {
 					try {
 						ServerController.server.stopServer();
 					} catch (IOException e) {
-						e.printStackTrace();
+						//e.printStackTrace();
 					} catch(NullPointerException np) {
 						System.exit(0);
 					}
@@ -47,7 +47,7 @@ public class Server extends Application {
 				}
 			});
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	

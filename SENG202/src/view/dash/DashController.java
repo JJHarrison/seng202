@@ -29,6 +29,7 @@ import data.persistant.Persistent;
 import data.persistant.Saver;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *
@@ -201,8 +202,8 @@ public class DashController {
 			try {
 				AnchorPane pane = loader.load(Warning.class.getResourceAsStream("NoWarnings.fxml"));
 				warningPane.getChildren().add(pane);
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (IOException ioException) {
+				//ioException.printStackTrace();
 			}
 		}
 	}

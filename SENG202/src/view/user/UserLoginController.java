@@ -12,6 +12,7 @@ import view.user.UserManagementController.View;
 import data.persistant.Persistent;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *

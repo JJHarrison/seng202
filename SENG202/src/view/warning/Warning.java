@@ -32,7 +32,7 @@ public class Warning extends AnchorPane {
 		try {
 			loader.load(getClass().getResourceAsStream(TILE));
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 
 		WarningController warningController = loader.getController();

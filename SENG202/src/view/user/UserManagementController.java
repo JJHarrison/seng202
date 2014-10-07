@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import data.persistant.Persistent;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *
@@ -112,7 +113,7 @@ public class UserManagementController {
 			userPersistController = fxmlLoader.getController();
 			userPersistController.setController(this);
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 

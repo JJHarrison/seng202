@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
+ * Controller.
  * 
  * @author Daniel van Wichen
  *
