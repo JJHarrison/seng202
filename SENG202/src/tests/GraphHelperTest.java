@@ -16,7 +16,7 @@ import data.persistant.Persistent;
 /**
  * Tests the functionality of the GraphHelper class.
  * 
- * @author simon
+ * @author Simon
  *
  */
 public class GraphHelperTest extends TestCase {
