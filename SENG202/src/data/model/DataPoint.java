@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import user.User.Gender;
-import data.persistant.Persistent;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import user.User.Gender;
+import data.persistant.Persistent;
 
 /**
  * This class provides an abstract version of points provided by a fitness

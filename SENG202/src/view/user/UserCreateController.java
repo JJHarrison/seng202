@@ -34,6 +34,7 @@ public class UserCreateController implements Switchable {
 	public static final Double MIN_HEIGHT = 0.0; // cm
 	public static final Integer MAX_HR = 200; // resting hr
 	public static final Integer MIN_HR = 20; // resting hr
+	public static final Integer MAX_NAME_LENGTH = 20;
 
 	@FXML
 	Label labelCreateWarning;
@@ -91,6 +92,8 @@ public class UserCreateController implements Switchable {
 			labelCreateWarning.setText("Please provide your name");
 		} else if (!name.matches("([a-zA-Z]|[\\s])*")) {
 			labelCreateWarning.setText("Please enter a valid name");
+		} else if (name.length() > MAX_NAME_LENGTH) {
+			labelCreateWarning.setText("Name must be less than 20 characters");
 		} else if (Persistent.getUserNames().contains(name)) {
 			labelCreateWarning.setText("User already exists");
 		} else if (date == null) {

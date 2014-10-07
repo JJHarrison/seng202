@@ -119,7 +119,7 @@
                               </FlowPane>
                </children>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="ALWAYS" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
+                              <ColumnConstraints hgrow="ALWAYS" maxWidth="300.0" minWidth="300.0" percentWidth="50.0" prefWidth="300.0" />
                               <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
                            </columnConstraints>
                            <rowConstraints>

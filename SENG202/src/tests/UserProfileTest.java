@@ -4,11 +4,11 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import data.loader.FileLoader;
-import data.persistant.Persistent;
 import junit.framework.TestCase;
 import user.User;
 import user.User.Gender;
+import data.loader.FileLoader;
+import data.persistant.Persistent;
 
 /**
  * Tests the functionality of the UserProfile class

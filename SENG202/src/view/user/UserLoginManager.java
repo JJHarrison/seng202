@@ -2,7 +2,6 @@ package view.user;
 
 import java.io.IOException;
 
-import resources.Reference;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import resources.Reference;
 import data.persistant.Persistent;
 
 /**

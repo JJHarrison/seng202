@@ -2,9 +2,9 @@ package view.search;
 
 import java.io.IOException;
 
-import view.search.GoogleSearchResults.Result;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import view.search.GoogleSearchResults.Result;
 
 /**
  * A search tile to nicely display the title, content and URL of each web page.
