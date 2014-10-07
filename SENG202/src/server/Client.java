@@ -14,7 +14,7 @@ import data.persistant.Persistent;
 /**
  * This class provides a client to interact with the server.
  * It is used for sending a serialized user profile to the server.
- * @author James
+ * @author James Harrison
  *
  */
 public class Client implements Callable<Boolean>{
@@ -27,7 +27,7 @@ public class Client implements Callable<Boolean>{
     private boolean hasConnected;
     
 	@Override
-	public Boolean call() throws Exception {
+	public Boolean call() throws IOException {
 		setupConnection();
     	transferToServer(Persistent.getCurrentUser());
     	closeStuff();
@@ -111,19 +111,16 @@ public class Client implements Callable<Boolean>{
 
     /**
      * Closes the I/O Streams and the connection to the server
+     * @throws IOException 
      */
-    public void closeStuff() {
+    public void closeStuff() throws IOException {
 	if(output != null || input != null || clientSocket != null){
-		try {
 		    System.out.println(startMessage() + " closing connection...");
 		    output.writeObject("END");
 		    input.close();
 		    output.close();
 		    clientSocket.close();
 		    System.out.println(startMessage() + " connection successfully closed!\n");
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
 	}
     }
 
@@ -155,14 +152,4 @@ public class Client implements Callable<Boolean>{
 	public boolean isSuccessful(){
 		return hasConnected && hasTransfered;
 	}
-	
-	public static void main(String[] args) {
-		User mocky = User.mockUser();
-		Client c = new Client();
-		c.setupConnection();
-		c.transferToServer(mocky);
-		c.closeStuff();
-	}
-
-
 }

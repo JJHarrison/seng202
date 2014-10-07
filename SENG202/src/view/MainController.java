@@ -198,9 +198,7 @@ public class MainController {
 								MessageBox.OK);
 					}
 				} catch (Exception e) {
-					// e.printStackTrace();
 				}
-				UserUpdate.stage.close();
 			}
 		});
 

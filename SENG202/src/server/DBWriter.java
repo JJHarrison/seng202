@@ -25,6 +25,7 @@ public class DBWriter {
 	private PreparedStatement preparedStatement = null;
 	private PreparedStatement preparedStatement2 = null;
 	private ResultSet resultSet = null;
+	// change to "jdbc:sqlite: <your database path here> " to setup 
 	private String url = "jdbc:sqlite:E:/fitr_database/fitr.db";
 
 	/**
@@ -39,7 +40,6 @@ public class DBWriter {
 	 * @param user The users profile that will be uploaded
 	 */
 	public void writeUser(User user) throws SQLException{
-	
 		if (!isUserStored(user)) {
 			// if the user is not in the database it will add it
 			writeUserProfile(user);
@@ -49,7 +49,7 @@ public class DBWriter {
 		}
 		// write all events associated with that user to the db
 		for (Event event : user.getEvents().getAllEvents()) {
-		writeEvent(user, event);
+			writeEvent(user, event);
 		}
 			
 			
@@ -283,7 +283,7 @@ public class DBWriter {
 		try {
 			dbw.writeUser(mocky);
 		} catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 
 		long endTime = System.currentTimeMillis();
