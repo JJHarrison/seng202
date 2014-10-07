@@ -13,15 +13,12 @@ import data.persistant.Persistent;
 
 /**
  * This class provides an abstract version of points provided by a fitness
- * tracking device. Each dataPoint consists of attributes related to the actual
+ * tracking device. Each DataPoint consists of attributes related to the actual
  * values in the real world at that time point.
  * 
  * @author Sam
  */
 public class DataPoint implements Serializable {
-	/**
-     * 
-     */
 	private static final long serialVersionUID = 8381176069733917667L;
 	private Calendar date;
 	private int heartRate;
@@ -35,7 +32,7 @@ public class DataPoint implements Serializable {
 	private double stressLevel;
 
 	/**
-	 * Builder for DataPoint class
+	 * Builder for the DataPoint class.
 	 * 
 	 * @author SamSchofield
 	 */
@@ -50,8 +47,8 @@ public class DataPoint implements Serializable {
 		/**
 		 * set date for data point
 		 * 
-		 * @param date
-		 * @return builder
+		 * @param date the date and time that the DataPoint occurred.
+		 * @return builder a new Builder object which contains the date.
 		 */
 		public Builder date(Calendar date) {
 			this.date = date;
@@ -59,10 +56,10 @@ public class DataPoint implements Serializable {
 		}
 
 		/**
-		 * set heartRate for data point
+		 * Sets heartRate for the DataPoint.
 		 * 
-		 * @param heartRate
-		 * @return builder
+		 * @param heartRate the heart rate measured by the device.
+		 * @return builder a Builder which now contains the heart rate.
 		 */
 		public Builder heartRate(int heartRate) {
 			this.heartRate = heartRate;
@@ -70,10 +67,10 @@ public class DataPoint implements Serializable {
 		}
 
 		/**
-		 * set latitude for data point
+		 * Sets latitude for the DataPoint.
 		 * 
-		 * @param latitude
-		 * @return builder
+		 * @param latitude the latitude measured by the device.
+		 * @return builder a Builder which now contains the latitude.
 		 */
 		public Builder latitude(Double latitude) {
 			this.latitude = latitude;
@@ -81,10 +78,10 @@ public class DataPoint implements Serializable {
 		}
 
 		/**
-		 * set longitude for data point
+		 * Sets longitude for the DataPoint.
 		 * 
-		 * @param longitude
-		 * @return builder
+		 * @param longitude the longitude measured by the device.
+		 * @return builder a Builder which now contains the longitude.
 		 */
 		public Builder longitude(Double longitude) {
 			this.longitude = longitude;
@@ -92,10 +89,10 @@ public class DataPoint implements Serializable {
 		}
 
 		/**
-		 * set altitude for data point
+		 * Sets altitude for the DataPoint.
 		 * 
-		 * @param altitude
-		 * @return builder
+		 * @param altitude the altitude measured by the device.
+		 * @return builder a Builder which now contains the altitude
 		 */
 		public Builder altitude(Double altitude) {
 			this.altitude = altitude;
@@ -103,10 +100,10 @@ public class DataPoint implements Serializable {
 		}
 
 		/**
-		 * set previous point for data point
+		 * Sets the DataPoint that occurred before the current one.
 		 * 
-		 * @param point
-		 * @return builder
+		 * @param point the previous DataPoint.
+		 * @return builder a Builder which now contains the previous DataPoint.
 		 */
 		public Builder prevDataPoint(DataPoint point) {
 			this.previousPointPoint = point;
@@ -114,9 +111,9 @@ public class DataPoint implements Serializable {
 		}
 
 		/**
-		 * build the dataPoint
+		 * Builds the DataPoint.
 		 * 
-		 * @return data point
+		 * @return data the new DataPoint.
 		 */
 		public DataPoint build() {
 			return new DataPoint(this);
@@ -124,9 +121,9 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * constructor for DataPoint Set data point values using builder
+	 * The constructor for DataPoint. Sets DataPoint values using Builder.
 	 * 
-	 * @param builder
+	 * @param builder the Builder that contains the DataPoint values.
 	 */
 	public DataPoint(Builder builder) {
 		this.date = builder.date;
@@ -150,7 +147,7 @@ public class DataPoint implements Serializable {
 	/**
 	 * Calculates the change in time between two points.
 	 * 
-	 * @param previosPoint The point previous to this point in an event.
+	 * @param previousPoint The point previous to this point in an event.
 	 * @return The change in time (seconds).
 	 */
 	private long calculateDeltaTime(DataPoint previousPoint) {
@@ -160,8 +157,8 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Calculates the distance from the current point to the previousPoint in meters. 
-	 * @param previousPoint The point from which to calculate the distance from
-	 * @return The distance in meters from the previous point
+	 * @param previousPoint The point from which to calculate the distance from.
+	 * @return The distance in meters from the previous point.
 	 */
 	private double calculateDistance(DataPoint previousPoint) {
 		double distance = 0;
@@ -184,9 +181,9 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * 
-	 * @param deltaTime The between two data points
-	 * @return The average speed between two points
+	 * Calculates the speed at the particular point.
+	 * @param deltaTime the time difference between two DataPoints.
+	 * @return the average speed between two points.
 	 */
 	private double calculateSpeed(long deltaTime) {
 		double speed;
@@ -199,8 +196,8 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Gets the date at a particular point. 
-	 * @return the date
+	 * Gets the date at a particular point.
+	 * @return the date.
 	 */
 	public Calendar getDate() {
 		return date;
@@ -208,7 +205,7 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the heart rate at a particular point. 
-	 * @return the heartRate
+	 * @return the heartRate.
 	 */
 	public int getHeartRate() {
 		return heartRate;
@@ -216,7 +213,7 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the latitude at a particular point. 
-	 * @return the latitude
+	 * @return the latitude.
 	 */
 	public double getLatitude() {
 		return latitude;
@@ -224,7 +221,7 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the longitude at a particular point.
-	 * @return the longitude
+	 * @return the longitude.
 	 */
 	public double getLongitude() {
 		return longitude;
@@ -232,7 +229,7 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the altitude at a particular point.
-	 * @return the altitude
+	 * @return the altitude.
 	 */
 	public double getAltitude() {
 		return altitude;
@@ -240,7 +237,7 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the average speed (m/s) from the previous point to this point.
-	 * @return the speed
+	 * @return the speed.
 	 */
 	public double getSpeed() {
 		return speed;
@@ -248,15 +245,15 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Gets the distance (m) from the previous point to this point.
-	 * @return the distance
+	 * @return the distance.
 	 */
 	public double getDistance() {
 		return distance;
 	}
 
 	/**
-	 * calculates the calories burnt from the last point to the current point.
-	 * @return calories burnt from last point to this point
+	 * Calculates the calories burnt from the last point to the current point.
+	 * @return calories burnt from last point to this point.
 	 */
 	private double calculateCalories() {
 		double calories;
@@ -275,16 +272,16 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Returns the calories burnt at this point
-	 * @return The calories burnt from last point to this point
+	 * Returns the calories burnt at this point.
+	 * @return the calories burnt from last point to this point.
 	 */
 	public double getCalories() {
 		return caloriesBurned;
 	}
 
 	/**
-	 * Returns the physical stress level from last point to this point
-	 * @return The physical stress level
+	 * Returns the physical stress level from last point to this point.
+	 * @return the physical stress level.
 	 */
 	public double getStressLevel() {
 		return stressLevel;
@@ -292,8 +289,7 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Sets the physical stress level at this point.
-	 * The stress level is calculated by
-	 * @param stressLevel
+	 * @param stressLevel the physical stress level.
 	 */
 	public void setStressLevel(double stressLevel) {
 		this.stressLevel = stressLevel;
@@ -301,9 +297,9 @@ public class DataPoint implements Serializable {
 
 	/**
 	 * Returns a string representation of the timestamp for the data point as
-	 * "hh:mm:ss"
+	 * "hh:mm:ss".
 	 * 
-	 * @return time of the data point
+	 * @return time of the DataPoint.
 	 */
 	public String getTimeString() {
 		SimpleDateFormat tf = new SimpleDateFormat("HH:mm:ss");
@@ -311,10 +307,10 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Returns a string representation of the date for the data point as
-	 * "dd/mm/yyyy"
+	 * Returns a string representation of the date for the DataPoint as
+	 * "dd/mm/yyyy".
 	 * 
-	 * @return date of the data point
+	 * @return date string of the data point.
 	 */
 	public String getDateString() {
 		// The calendar takes january being the 0th month and december the 11th
@@ -323,64 +319,64 @@ public class DataPoint implements Serializable {
 	}
 
 	/**
-	 * Gets the observable date property 
-	 * @return date property
+	 * Gets the observable date property.
+	 * @return the date property.
 	 */
 	public Property<String> getDateProperty() {
 		return new SimpleStringProperty(getDateString());
 	}
 
 	/**
-	 * Gets the observable time property 
-	 * @return time property
+	 * Gets the observable time property. 
+	 * @return the time property.
 	 */
 	public Property<String> getTimeProperty() {
 		return new SimpleStringProperty(getTimeString());
 	}
 
 	/**
-	 * Gets the observable latitude property 
-	 * @return latitude property
+	 * Gets the observable latitude property.
+	 * @return the latitude property.
 	 */
 	public SimpleDoubleProperty getLatitudeProperty() {
 		return new SimpleDoubleProperty(getLatitude());
 	}
 
 	/**
-	 * Gets the observable longitude property 
-	 * @return date property
+	 * Gets the observable longitude property.
+	 * @return the date property.
 	 */
 	public SimpleDoubleProperty getLongitudeProperty() {
 		return new SimpleDoubleProperty(getLongitude());
 	}
 
 	/**
-	 * Gets the observable distance property 
-	 * @return distance property
+	 * Gets the observable distance property.
+	 * @return the distance property.
 	 */
 	public Property<String> getDistanceProperty() {
 		return new SimpleStringProperty(String.format("%.2f", getDistance()));
 	}
 
 	/**
-	 * Gets the observable speed property 
-	 * @return speed property
+	 * Gets the observable speed property.
+	 * @return the speed property.
 	 */
 	public Property<String> getSpeedProperty() {
 		return new SimpleStringProperty(String.format("%.2f", getSpeed()));
 	}
 
 	/**
-	 * Gets the observable altitude property 
-	 * @return altitude property
+	 * Gets the observable altitude property.
+	 * @return the altitude property.
 	 */
 	public SimpleDoubleProperty getAltitudeProperty() {
 		return new SimpleDoubleProperty(altitude);
 	}
 
 	/**
-	 * Gets the observable heart rate property 
-	 * @return heart rate property
+	 * Gets the observable heart rate property.
+	 * @return the heart rate property.
 	 */
 	public SimpleIntegerProperty getHeartRateProperty() {
 		return new SimpleIntegerProperty(getHeartRate());
