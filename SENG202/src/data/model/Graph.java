@@ -16,14 +16,11 @@ public class Graph {
 	XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
 
 	/**
-	 * Constructor
+	 * Constructor, sets the title and axis labels of the graph.
 	 * 
-	 * @param title
-	 *            the title of the graph
-	 * @param xName
-	 *            the label for the x axis
-	 * @param yName
-	 *            the label for the y axis
+	 * @param title the title of the graph.
+	 * @param xName the label for the x axis.
+	 * @param yName the label for the y axis.
 	 */
 	public Graph(String title, String xName, String yName) {
 		this.title = title;
@@ -33,48 +30,46 @@ public class Graph {
 	}
 
 	/**
-	 * Adds a point to the graph
+	 * Adds a point to the graph.
 	 * 
-	 * @param x
-	 *            x value
-	 * @param y
-	 *            y value
+	 * @param x x value.
+	 * @param y y value.
 	 */
 	public void addPoint(double x, double y) {
 		series.getData().add(new XYChart.Data<Number, Number>(x, y));
 	}
 
 	/**
-	 * Returns graph title
+	 * Returns the graph title.
 	 * 
-	 * @return graph title
+	 * @return the graph title.
 	 */
 	public String getTitle() {
 		return title;
 	}
 
 	/**
-	 * Returns x axis label
+	 * Returns the x axis label.
 	 * 
-	 * @return xName
+	 * @return the x axis label.
 	 */
 	public String getXName() {
 		return xName;
 	}
 
 	/**
-	 * Returns y axis label
+	 * Returns the y axis label.
 	 * 
-	 * @return yName
+	 * @return the y axis label.
 	 */
 	public String getYName() {
 		return yName;
 	}
 
 	/**
-	 * Returns an ArrayList of all the points
+	 * Returns an Series of all the points.
 	 * 
-	 * @return points
+	 * @return all points in the graph.
 	 */
 	public XYChart.Series<Number, Number> getPoints() {
 		return series;
