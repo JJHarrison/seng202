@@ -76,7 +76,7 @@ public class SearchQuery {
 	}
 
 	/**
-	 * @param inputQuery the inputQuery to set
+	 * @param currentSearchQuery the search query to set
 	 */
 	public static void setCurrentSearchQuery(String currentSearchQuery) {
 		SearchQuery.currentSearchQuery = currentSearchQuery;

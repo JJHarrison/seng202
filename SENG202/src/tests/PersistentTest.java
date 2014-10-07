@@ -110,8 +110,7 @@ public class PersistentTest extends TestCase {
 
 	/**
 	 * tests that the new users directory is being created
-	 * @throws FileNotFoundException 
-	 * @throws Exception
+	 * @throws FileNotFoundException
 	 */
 	public void testNewUser() throws FileNotFoundException {
 		Persistent.deleteUser(Persistent.getCurrentUser());
@@ -121,7 +120,6 @@ public class PersistentTest extends TestCase {
 
 	/**
 	 * tests that an existing user can be set
-	 * @throws Exception
 	 */
 	public void testSetUser() {
 		Persistent.newUser(user);
@@ -131,7 +129,6 @@ public class PersistentTest extends TestCase {
 
 	/**
 	 * tests that a non existing user can not be set
-	 * @throws Exception
 	 */
 	public void testSetNonExistingUser() {
 		String username = "Fred";
@@ -143,7 +140,6 @@ public class PersistentTest extends TestCase {
 
 	/**
 	 * tests that we are returning the correct current user
-	 * @throws Exception
 	 */
 	public void testGetCurrentUser() {
 		Persistent.newUser(user);

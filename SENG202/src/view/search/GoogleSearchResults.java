@@ -1,5 +1,4 @@
 package view.search;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -85,7 +84,6 @@ public class GoogleSearchResults {
 	     * Gets the content of the result.
 	     * 
 	     * @return content
-	     * @throws UnsupportedEncodingException 
 	     */
 	    public String getContent() {
 	    	return Jsoup.parse(content).text();

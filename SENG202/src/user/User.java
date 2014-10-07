@@ -287,7 +287,6 @@ public class User implements Serializable {
 	 */
 	public void addEvents(EventContainer events) {
 		int sizeBefore = this.events.getAllEvents().size();
-		System.out.println("evetns added to user are");
 		for (Event event : events.getAllEvents()) {
 			this.events.addEvent(event);
 		}
@@ -341,8 +340,6 @@ public class User implements Serializable {
 			fl.load();
 			EventContainer ec = fl.getEventContainer();
 			mock.setEvents(ec);
-		} else {
-			System.out.println("Mocky's FilePath has not been set");
 		}
 		return mock;
 	}

@@ -56,7 +56,9 @@ public class ServerController {
 	}
 
 	/**
-	 * Adds a new line to the console text area
+	 * Adds a new line to the console text area.
+	 * 
+	 * @param newLine the line to add.
 	 */
 	public static void setConsoleText(String newLine) {
 		staticTextArea.appendText(newLine);

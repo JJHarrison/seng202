@@ -67,7 +67,7 @@ public class Client implements Callable<Boolean>{
     /**
      * To transfer information to the server.
      * 
-     * @param message 
+     * @param traffic 
      */
     public void transferToServer(User traffic) {
     	if(output != null){

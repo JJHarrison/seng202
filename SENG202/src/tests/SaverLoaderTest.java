@@ -25,7 +25,6 @@ public class SaverLoaderTest extends TestCase {
 	/**
 	 * Tests saving a user to json 
 	 * @throws FileNotFoundException 
-	 * @throws Exception
 	 */
 	public void testSaveUser() throws FileNotFoundException {
 		Saver.SaveUser(u);

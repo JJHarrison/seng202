@@ -21,8 +21,8 @@ public class Warning extends AnchorPane {
 	/**
 	 * Constructor.
 	 * 
-	 * @param riskType The risk that has been identified.
-	 * @param eventStartTime The time that risk was identified.
+	 * @param riskType the risk that has been identified.
+	 * @param cause the cause of the risk.
 	 */
 	public Warning(Risk riskType, String cause) {
 		super();

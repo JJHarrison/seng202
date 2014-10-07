@@ -272,7 +272,7 @@ public class MainController {
 								String.format("gnome-open %s", Reference.class
 										.getResource("fitrUG.pdf")));
 					} else {
-						File myFile = new File("src/resources/fitrUG.pdf");
+						File myFile = new File(Reference.class.getResource("fitrUG.pdf").toString());
 						Desktop.getDesktop().open(myFile);
 					}
 				} catch (IOException e) {

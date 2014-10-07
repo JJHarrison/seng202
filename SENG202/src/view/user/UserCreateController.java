@@ -1,5 +1,8 @@
 package view.user;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -72,6 +75,14 @@ public class UserCreateController implements Switchable {
 		AnchorPane.setTopAnchor(fieldDate, 75.0);
 		paneCreate.getChildren().add(fieldDate);
 		fieldDate.setPromptText("dd/mm/yyyy");
+		
+		// Redirect the output stream so the error doesn't show
+		System.setErr(new PrintStream(new OutputStream() {
+			
+			@Override
+			public void write(int b) throws IOException {
+			}
+		}));
 	}
 
 	@FXML

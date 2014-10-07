@@ -172,7 +172,7 @@ public class FileLoader {
 	/**
 	 * checks that the data line from the CSV file if valid i.e that it has all
 	 * the required fields and they are an appropriate value.
-	 * @param The line to be checked.
+	 * @param line the line to be checked.
 	 * @return isValid (if the file is valid).
 	 */
  	public boolean isValidLine(String line) { 

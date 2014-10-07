@@ -105,7 +105,7 @@ public class Persistent {
 	 * also adds a userID.json
 	 * The usedID.json is hidden on OSX and Linux OS so that users can't corrupt their data
 	 * The user will only be added if that user doesn't already exist.
-	 * @param User the user to be added.
+	 * @param user the user to be added.
 	 * @return boolean if the user to be added or not.
 	 */
 	public static boolean newUser(User user) {
@@ -188,7 +188,7 @@ public class Persistent {
 
 	/**
 	 * Loads all the profiles from the user directories into the
-	 * ObservableList<User> users
+	 * list of users.
 	 */
 	public static void initialize() {
 		if (getFilePath() != null && new File(getFilePath()).exists()) {

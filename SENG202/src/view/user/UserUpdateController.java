@@ -1,5 +1,8 @@
 package view.user;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Calendar;
 
@@ -56,6 +59,14 @@ public class UserUpdateController {
 		AnchorPane.setLeftAnchor(fieldDate, 200.0);
 		AnchorPane.setTopAnchor(fieldDate, 75.0);
 		paneUpdate.getChildren().add(fieldDate);
+		
+		// Redirect the output stream so the error doesn't show
+		System.setErr(new PrintStream(new OutputStream() {
+			
+			@Override
+			public void write(int b) throws IOException {
+			}
+		}));
 		
 		fieldGender.setItems(FXCollections.observableArrayList(Gender.values()));
 		fieldName.setPromptText("Enter your name e.g. Bob Smith");

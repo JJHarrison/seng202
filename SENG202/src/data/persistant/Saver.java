@@ -27,7 +27,7 @@ public class Saver {
 	/**
 	 * Saves the user profile to a JSON file
 	 * 
-	 * @param User, user to be saved
+	 * @param user user to be saved
 	 */
 	public static void SaveUser(User user) {
 		String profileString = gson.toJson(user);
