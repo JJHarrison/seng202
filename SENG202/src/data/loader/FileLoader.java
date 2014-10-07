@@ -280,7 +280,7 @@ public class FileLoader {
 	*/
  	private boolean isLatitudeValid(String lat){
  		String[] values = lat.split("\\.");		
- 		return (isInRange(lat, -90, 90) &&  values[1].length() >= 5);
+ 		return (isInRange(lat, -90, 90) &&  values[1].length() >= 3);
  	}
 
 	/**
@@ -290,7 +290,7 @@ public class FileLoader {
 	*/
  	private boolean isLongitudeValid(String lng){
  		String[] values = lng.split("\\.");		
- 		return (isInRange(lng, -180, 180) &&  values[1].length() >= 5);
+ 		return (isInRange(lng, -180, 180) &&  values[1].length() >= 3);
  	}
  	
  	/**

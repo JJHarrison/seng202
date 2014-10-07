@@ -115,7 +115,7 @@ public class Summary {
 	 * @return string of total duration in hours
 	 */
 	public String getTotalDuration() {
-		return String.format("%d hours logged", totalHours / 3600);
+		return String.format("Hours logged: %s", getDurationString(totalHours));
 	}
 	
 	/**
@@ -123,7 +123,7 @@ public class Summary {
 	 * @return string of total distance in km
 	 */
 	public String getTotalDistance() {
-		return String.format("%.1f km travelled", totalDistance / 1000);	
+		return String.format("Distance Travelled: %.1f km", totalDistance / 1000);	
 	}
 	
 	/**
@@ -131,7 +131,7 @@ public class Summary {
 	 * @return total calories burned 
 	 */
 	public String getTotalCalories() {
-		return String.format("%.0f calories burned", totalCalories);
+		return String.format("Calories burned: %.0f", totalCalories);
 	}
 	
 	/**
