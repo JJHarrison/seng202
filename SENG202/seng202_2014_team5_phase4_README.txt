@@ -51,3 +51,13 @@ To use Fitr
 	- To view activity events
 		- Go to analysis 
 		- Use the calendar to navigate to the event you want to view
+
+To use Server Console* 
+	
+	 *Note: A sql data must be connected to the server
+	 
+	- To start server
+		- Press "Start" button to the initiate server
+		
+	- To stop server
+		- Press "Stop" button to stop the server 
