@@ -28,10 +28,10 @@ public class Summary {
 	private long maxHeartRate;
 	
 	/**
-	 * Sets up a summary for the events over the time period startTime - endTime
-	 * @param events the event container of all events
-	 * @param startTime the start of the time period the summary is for
-	 * @param endTime the end of the time period the summary is for
+	 * Sets up a summary for the events over the time period startTime - endTime.
+	 * @param events the event container of all events.
+	 * @param startTime the start of the time period the summary is for.
+	 * @param endTime the end of the time period the summary is for.
 	 */
 	public Summary(EventContainer events, Calendar startTime, Calendar endTime) {
 		if(endTime == null) {
@@ -64,7 +64,7 @@ public class Summary {
 	}
 	
 	/**
-	 * calculates all the values once the correct events have been determined 
+	 * Calculates all the values once the correct events have been determined.
 	 */
 	public void calculate() {
 		for (Event event : events) {
@@ -95,40 +95,40 @@ public class Summary {
 	}
 	
 	/**
-	 * gets the events that are between the start and end dates
-	 * @return arraylist of events 
+	 * Gets the events that are between the start and end dates.
+	 * @return ArrayList of events.
 	 */
 	public ArrayList<Event> getEvents() {
 		return events;
 	}
 	
 	/** 
-	 * gets the number of events over the time period
-	 * @return numberOfEvents
+	 * Gets the number of events over the time period.
+	 * @return the number of events.
 	 */
 	public int getNumberOfEvents() {
 		return events.size();
 	}
 	
 	/**
-	 * gets the total duration of all the events over the time period
-	 * @return string of total duration in hours
+	 * Gets the total duration of all the events over the time period.
+	 * @return string of total duration in hours.
 	 */
 	public String getTotalDuration() {
 		return String.format("Hours logged: %s", getDurationString(totalHours));
 	}
 	
 	/**
-	 * gets the total distance travelled over the time period
-	 * @return string of total distance in km
+	 * Gets the total distance travelled over the time period.
+	 * @return string of total distance in km.
 	 */
 	public String getTotalDistance() {
 		return String.format("Distance Travelled: %.1f km", totalDistance / 1000);	
 	}
 	
 	/**
-	 * gets the total calories burned over the time period
-	 * @return total calories burned 
+	 * Gets the total calories burned over the time period.
+	 * @return total calories burned.
 	 */
 	public String getTotalCalories() {
 		return String.format("Calories burned: %.0f", totalCalories);
@@ -138,7 +138,7 @@ public class Summary {
 	 * Returns a string formated to HH:MM:SS for the duration of the event to be
 	 * displayed in the event summary.
 	 * 
-	 * @return A string of the activity events duration.
+	 * @return a string of the activity events duration.
 	 */
 	private String getDurationString(long time) {
 		StringBuilder durationString = new StringBuilder();
@@ -169,40 +169,40 @@ public class Summary {
 	}
 	
 	/**
-	 * get the maximum distance traveled in the time period
-	 * @return a string of the maximum distance traveled in km
+	 * Gets the maximum distance traveled in the time period.
+	 * @return a string of the maximum distance traveled in km.
 	 */
 	public String getMaxDistance() {
 		return String.format("%.1f km", maxDistance / 1000);
 	}
 	
 	/**
-	 * get the maximum number of calories burned in an event in the time period 
-	 * @return a string of the maximum calories burned
+	 * Gets the maximum number of calories burned in an event in the time period.
+	 * @return a string of the maximum calories burned.
 	 */
 	public String maxCalories() {
 		return String.format("%.0f cal", maxCalories);
 	}
 
 	/**
-	 * get the maximum speed in an event in the time period
-	 * @return a string of the maximum speed in km/h
+	 * Gets the maximum speed in an event in the time period.
+	 * @return a string of the maximum speed in km/h.
 	 */
 	public String maxSpeed() {
 		return String.format("%.1f kph", (maxSpeed * 3600) / 1000);
 	}	
 	
 	/**
-	 * gets the maximum duration for an event in a time period
-	 * @return a string of the maximum duration in hours and minutes
+	 * Gets the maximum duration for an event in a time period.
+	 * @return a string of the maximum duration in hours and minutes.
 	 */
 	public String getMaxDuration() {
 		return getDurationString(maxDuration);
 	}
 	
 	/**
-	 * gets the maximum heart rate in any event in the time period 
-	 * @return a string of the maximum heart rate
+	 * Gets the maximum heart rate in any event in the time period. 
+	 * @return a string of the maximum heart rate.
 	 */
 	public String maxHeartRate() {
 		return String.format("%d bpm", maxHeartRate);
