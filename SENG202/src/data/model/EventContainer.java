@@ -115,18 +115,16 @@ public class EventContainer implements Serializable {
 		LinkedList<Event> events = new LinkedList<Event>();
 		String weekString = dateString(week);
 		String[] dL = weekString.split("/"); // split the string up into day month year
-		Calendar date = new Calendar.Builder().setDate(Integer.parseInt(dL[2]),
-				Integer.parseInt(dL[1]) - 1, Integer.parseInt(dL[0])).build();
+		Calendar date = new Calendar.Builder().setDate(Integer.parseInt(dL[2]),Integer.parseInt(dL[1]) - 1, Integer.parseInt(dL[0])).build();
 		date.set(Calendar.DAY_OF_WEEK, 0);
 
 		// iterate through all the days of the given week
-		for (int i = 1; i < 7; i++) {
+		for (int i = 1; i <= 7; i++) {
 			if (days.containsKey(dateString(date.getTime()))) {
 				events.addAll(days.get(dateString(date.getTime())));
 			}
 			date.set(Calendar.DAY_OF_WEEK, i);
 		}
-
 		return events;
 	}
 

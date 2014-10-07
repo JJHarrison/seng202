@@ -25,7 +25,7 @@ public class Saver {
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	/**
-	 * saves the user profile to a JSON file
+	 * Saves the user profile to a JSON file
 	 * 
 	 * @param User, user to be saved
 	 */
@@ -55,7 +55,7 @@ public class Saver {
 	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
 	    } catch (IOException e) {
 	    	//file path doesn't exist
-	        //System.out.println("Couldn't save picture. filepath not found");
+	        //System.out.println("Couldn't save picture. filePath not found");
 	    	
 	    }
 	}

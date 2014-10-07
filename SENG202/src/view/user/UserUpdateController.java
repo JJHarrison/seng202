@@ -1,12 +1,13 @@
 package view.user;
 
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -14,7 +15,7 @@ import user.User;
 import user.User.Gender;
 import view.MainController;
 import data.persistant.Persistent;
-import extfx.scene.control.DatePicker;
+import data.persistant.Saver;
 import extfx.scene.control.NumberSpinner;
 
 /**
@@ -67,12 +68,11 @@ public class UserUpdateController {
 		User user = Persistent.getCurrentUser();
 		fieldName.setText(user.getName());
 		
-		@SuppressWarnings("deprecation")
-		Date date = new Date(user.getDateofBirth().get(Calendar.YEAR), 
-				user.getDateofBirth().get(Calendar.MONTH)+1,
+		LocalDate date = LocalDate.of(user.getDateofBirth().get(Calendar.YEAR),
+				user.getDateofBirth().get(Calendar.MONTH) + 1, 
 				user.getDateofBirth().get(Calendar.DAY_OF_MONTH));
-		
 		fieldDate.setValue(date);
+		
 		fieldGender.setValue(user.getGender());
 		fieldWeight.setValue(user.getWeight());
 		fieldHeight.setValue(user.getHeight());
@@ -93,7 +93,7 @@ public class UserUpdateController {
 	@FXML
 	void actionUpdate(ActionEvent event) {
 		String name = fieldName.getText().trim();
-		Date date = fieldDate.getValue();
+		LocalDate date = fieldDate.getValue();
 		Gender gender = fieldGender.getValue();
 		Number height = fieldHeight.getValue();
 		Number weight = fieldWeight.getValue();
@@ -109,7 +109,7 @@ public class UserUpdateController {
 			labelCreateWarning.setText("User name already used");
 		} else if (date == null) {
 			labelCreateWarning.setText("Birthdate not set");
-		} else if (date.after(Calendar.getInstance().getTime())) {
+		} else if (date.isAfter(LocalDate.now())) {
 			labelCreateWarning.setText("Cant select birthdate in the future");
 		} else if (gender == null) {
 			labelCreateWarning.setText("Gender not set");
@@ -127,7 +127,7 @@ public class UserUpdateController {
 			labelCreateWarning.setText("Enter a heart rate between 20 and 200 bpm");
 		} else {
 			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(date);
+			calendar.set(date.getYear(), date.getMonthValue()-1, date.getDayOfMonth());
 			
 			Persistent.getCurrentUser().setDateofBirth(calendar);
 			Persistent.getCurrentUser().setGender(gender);
@@ -135,6 +135,7 @@ public class UserUpdateController {
 			Persistent.getCurrentUser().setWeight(weight.doubleValue());
 			Persistent.getCurrentUser().setHeight(height.doubleValue());
 			Persistent.getCurrentUser().setRestingHeartRate(hr.intValue());
+			Saver.SaveUser(Persistent.getCurrentUser());
 			
 			// Refresh the view
 			MainController.dashController.fillUser();

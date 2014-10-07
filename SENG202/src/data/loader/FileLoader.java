@@ -33,9 +33,9 @@ public class FileLoader {
 	private Date currentDate = Calendar.getInstance().getTime();
 	
 	/**
-	 * Creates a FileLoader with a particular input file
+	 * Creates a FileLoader with a particular input file.
 	 * 
-	 * @param file The input file
+	 * @param file The input file.
 	 */
 	public FileLoader(File file) {
 		try {
@@ -49,16 +49,16 @@ public class FileLoader {
 	}
 
 	/**
-	 * creates a file loader with the default csv file, for testing purposes 
+	 * creates a file loader with the default csv file, for testing purposes.
 	 */
 	public FileLoader() {
 		inputStream = this.getClass().getResourceAsStream("seng202_2014_example_data.csv");
 	}
 
 	/**
-	 * Gets the input stream
+	 * Gets the input stream.
 	 * 
-	 * @return The input stream
+	 * @return input stream of the CSV file.
 	 */
 	public InputStream getStream() {
 		return inputStream;
@@ -66,7 +66,7 @@ public class FileLoader {
 
 	/**
 	 * Reads a CSV file and creates a new event at each #start add all following
-	 * data points to the event
+	 * data points to the event.
 	 */
 	public void load() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
@@ -75,13 +75,16 @@ public class FileLoader {
 		String eventName = null;
 
 		try {
+			//read until the end of the file
 			while ((line = br.readLine()) != null) {
 				if (isValidLine(line)) {
 					String[] dataLine = line.split(",");
-					if (dataLine[0].contains("#start")) { // start of new event
+					if (dataLine[0].contains("#start")) {
+						// start of new event
 						dataLine = fixTitle(dataLine);
 						numberOfEvents++;
-						if (points.size() > 1) { //checks that points have been read to be added to event	
+						if (points.size() > 1) { 
+							//An event needs to have at least 2 points	
 							eventContainer.addEvent(new Event(eventName, points));
 							points = new ArrayList<DataPoint>(); // reset the points for the next event
 							lastPoint = null;
@@ -104,22 +107,21 @@ public class FileLoader {
 				}
 			}
 			
-			// add the last event of the csv file to events
+			// add the last event of the CSV file to events
 			if (points.size() > 1 && eventName != null) { 
 				eventContainer.addEvent(new Event(eventName, points));
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * Takes a correctly formatted line and returns it as DataPoint
+	 * Takes a correctly formatted line and returns it as DataPoint.
 	 * 
-	 * @param The line to convert to a dataPoint
-	 * @return DataPoint of line which was read
+	 * @param line the line to convert to a dataPoint.
+	 * @return dataPoint of the line that was read.
 	 */
 	private DataPoint parseLine(String[] line) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy,kk:mm:ss");
@@ -129,7 +131,6 @@ public class FileLoader {
 			date = new Calendar.Builder().setInstant(sdf.parse(line[0] + "," + line[1])).build();
 		} catch (ParseException e) {
 			// line format has already been checked
-			e.printStackTrace();
 		}
 		
 		//parse the other fields from string to appropriate type
@@ -147,16 +148,15 @@ public class FileLoader {
 		if(isValidPoint(point)) {
 			lastPoint = point;
 		} else {
-			//point is invalid so dont add it  
+			//point is invalid so don't add it  
 			point = null;
 		}
-
 		return point;
 	}
 	
 	/**
-	 * Normalizes the start line so it always has a title 
-	 * @param string
+	 * Normalizes the start line so it always has a title.
+	 * @param string the string to normalize.
 	 * @return String #start,EventTitle,,,
 	 */
 	private String[] fixTitle(String[] string) {
@@ -172,20 +172,18 @@ public class FileLoader {
 	}
 
 	/**
-	 * returns the event container which holds all the dataPoints
-	 * 
-	 * @return the event container which all the events were loaded to 
+	 * Returns the event container which holds all the dataPoints
+	 * @return eventContainer which all the events were loaded to 
 	 */
 	public EventContainer getEventContainer() {
 		return eventContainer;
 	}
 
 	/**
-	 * checks that the data line from the csv file if valid i.e that it has all
-	 * the required fields and they are an appropriate value
-	 * 
-	 * @param The line to be checked
-	 * @return isValid
+	 * checks that the data line from the CSV file if valid i.e that it has all
+	 * the required fields and they are an appropriate value.
+	 * @param The line to be checked.
+	 * @return isValid (if the file is valid).
 	 */
  	public boolean isValidLine(String line) { 
 		boolean isValid = false;

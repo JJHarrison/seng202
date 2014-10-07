@@ -13,8 +13,8 @@ import javafx.collections.ObservableList;
 import user.User;
 
 /**
- * static class for keeping track of preferences, file paths etc
- * 
+ * Static class for keeping track of preferences, file paths
+ * and all other horrible things.
  * @author SamSchofield
  *
  */
@@ -23,12 +23,12 @@ public class Persistent {
 	private static Preferences prefs = Preferences.userRoot().node("/Fitr");
 	private static ObservableList<User> users = FXCollections.observableList(new ArrayList<User>());
 	private static ObservableList<String> userNames = FXCollections.observableList(new ArrayList<String>());
-	private static User currentUser; //= User.mockUser(); // JUST FOR TESTING
+	private static User currentUser;
 
 	/**
-	 * Sets the FilePath preference to a Fitr directory at location of filePath
-	 * Will only set a valid file path
-	 * @param filePath location on users computer where they want Fitr to be saved
+	 * Sets the FilePath preference to a Fitr directory which will be set up 
+	 * at the location of filePath.
+	 * @param filePath location on users computer where they want Fitr to be saved.
 	 * @throws FileNotFoundException
 	 */
 	public static void setFilePath(String filePath) throws FileNotFoundException {
@@ -37,7 +37,7 @@ public class Persistent {
 			try {
 				prefs.flush();
 			} catch (BackingStoreException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 
 			// only creates new Fitr directory if the selected one doesn't already exist
@@ -52,7 +52,7 @@ public class Persistent {
 	}
 
 	/**
-	 * sets up a new Fitr directory at the file path if filePath has been set
+	 * Sets up a new Fitr directory at the file path if filePath has been set
 	 */
 	public static void setupDirectory() {
 		if (getFilePath() != null) {
@@ -61,18 +61,18 @@ public class Persistent {
 	}
 
 	/**
-	 * gets the file path to the Fitr directory from preferences
+	 * Gets the file path to the Fitr directory from preferences
 	 * 
-	 * @return FilePath
+	 * @return FilePath of Fitr directory.
 	 */
 	public static String getFilePath() {
 		return prefs.get("FilePath", null);
 	}
 
 	/**
-	 * returns the file path to the current users profile within the Fitr directory.
-	 * user profile sub directories are named as the users ID number
-	 * @return profileFilePath
+	 * Gets the filePath to the user.fitr JSON file.
+	 * @param userID the id of the user who's file we want to get.
+	 * @return String of the filePath.
 	 */
 	public static String getProfileFilePath(String userID) {
 		return getFilePath() + userID + "/." + userID + ".fitr";
@@ -80,18 +80,20 @@ public class Persistent {
 
 	/**
 	 * checks if a valid file path has been set.
-	 * Used to determine if we need to ask the user to set their file path when opening the program 
-	 * @return pathSet
+	 * Used to determine if we need to ask the user to set their file path when opening the program.
+	 * @return pathSet - if the filePath has been set or not.
 	 */
 	public static boolean filePathSet() {
 		boolean pathSet = true;
 		File filePath;
+		//check if filePath has been set
 		if (getFilePath() == null) {
 			filePath = null;
 		} else {
 			filePath = new File(getFilePath());
 		}
-
+		
+		// check that the filePath exists
 		if (filePath == null || !filePath.exists()) {
 			pathSet = false;
 		}
@@ -102,9 +104,9 @@ public class Persistent {
 	 * creates a new directory in users with name userID to store user information in.
 	 * also adds a userID.json
 	 * The usedID.json is hidden on OSX and Linux OS so that users can't corrupt their data
-	 * The user will only be added if that user doesn't already exist
-	 * @param User the user to be added
-	 * @return boolean if the user to be added or not
+	 * The user will only be added if that user doesn't already exist.
+	 * @param User the user to be added.
+	 * @return boolean if the user to be added or not.
 	 */
 	public static boolean newUser(User user) {
 		boolean userAdded;
@@ -116,7 +118,7 @@ public class Persistent {
 			try {
 				new File(getProfileFilePath(userID)).createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 
 			users.add(user);
@@ -126,7 +128,6 @@ public class Persistent {
 		} else {
 			//user has already been added
 			userAdded = false;
-			//throw new Exception("User already exists");
 		}
 		return userAdded;
 	}
@@ -142,9 +143,9 @@ public class Persistent {
 
 	/**
 	 * Sets the current user.
-	 * Will only set the current user if the user is existing 
+	 * Will only set the current user if the user is existing .
 	 * 
-	 * @param user
+	 * @param user to set as current.
 	 */
 	public static void setUser(User user) {
 		if (users.contains(user)) {
@@ -155,9 +156,9 @@ public class Persistent {
 	}
 
 	/**
-	 * returns the current user
+	 * Returns the current user.
 	 * 
-	 * @return currenUser
+	 * @return currentUser, the current user.
 	 */
 	public static User getCurrentUser() {
 		return currentUser;
@@ -166,16 +167,16 @@ public class Persistent {
 	/**
 	 * Returns a list of all the users found in the user directories.
 	 * 
-	 * @return
+	 * @return Observable list of users
 	 */
 	public static ObservableList<User> getUsers() {
 		return users;
 	}
 
 	/**
-	 * gets the user names of all the profiles
+	 * Gets the user names of all the profiles.
 	 * 
-	 * @return userNames
+	 * @return Observable list of userNames
 	 */
 	public static ObservableList<String> getUserNames() {
 		userNames.clear();
@@ -186,7 +187,7 @@ public class Persistent {
 	}
 
 	/**
-	 * loads all the profiles from the user directorys into the
+	 * Loads all the profiles from the user directories into the
 	 * ObservableList<User> users
 	 */
 	public static void initialize() {
@@ -213,7 +214,7 @@ public class Persistent {
 	}
 	
 	/**
-	 * clears the current users activity data and saves the changes 
+	 * Clears the current users activity data and saves the changes.
 	 */
 	public static void clearUserActivityData() {
 		Persistent.currentUser.clearEvents();
@@ -221,7 +222,7 @@ public class Persistent {
 	}
 	
 	/**
-	 * deletes the given user and removes its directory and json files
+	 * Deletes the given user and removes its directory and JSON files.
 	 * @param user the user to be deleted
 	 */
 	public static void deleteUser(User user) {
@@ -234,11 +235,14 @@ public class Persistent {
 	}
 	
 	/**
-	 * deletes the files at filePath 
-	 * only public for use in testing 
-	 * @param path path to delete files from 
+	 * Deletes the files at filePath 
+	 * (only public for use in testing)
+	 * Only deletes Fitr directories and the files within them.
+	 * Be Careful!
+	 * @param path path to delete files from.
 	 */
 	public static void deleteDirectory(File path) {
+		// Check that the file you are deleting isn't too important  
 		if(path.exists() && (path.getParentFile().getName().equals("Fitr") || path.getName().equals("Fitr"))) {
 			if(path.getName().equals("Fitr")) {
 				userNames.clear();
@@ -254,12 +258,13 @@ public class Persistent {
 			}
 			path.delete();
 		} else {
+			// dont want to delete things that arn't to do with Fitr.
 			System.out.println("not deleting: " + path + ".. Not a Fitr folder");
 		}
 	}
 
 	/**
-	 * used to clear the user preferences when reseting the program 
+	 * Used to clear the user preferences when reseting the program.
 	 */
 	public static void clear() {
 		try {
@@ -270,7 +275,7 @@ public class Persistent {
 	}
 
 	/**
-	 * checks that preferences have been stored and that it is safe to close the program 
+	 * Checks that preferences have been stored and that it is safe to close the program.
 	 * @throws BackingStoreException
 	 */
 	public static void exit() throws BackingStoreException {
@@ -279,6 +284,7 @@ public class Persistent {
 
 	/**
 	 * Main method used only for testing purposes 
+	 * Clears the preferences if things have stopped working
 	 * @param args
 	 * @throws Exception 
 	 */
