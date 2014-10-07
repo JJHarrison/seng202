@@ -18,7 +18,7 @@ import data.persistant.Saver;
  * also has the event container that holds all of the activity events associated
  * with the user.
  * 
- * @author Fitr.Team
+ * @author Simon, Jaln, James, Sam
  */
 public class User implements Serializable {
 	/**
@@ -42,19 +42,12 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * 
-	 * @param name
-	 *            Name of user
-	 * @param dateOfBirth
-	 *            Birth date of user.
-	 * @param gender
-	 *            Gender of user (MALE or FEMALE).
-	 * @param weight
-	 *            Weight of user.
-	 * @param height
-	 *            Height of user.
-	 * @param events
-	 *            For testing, but if set to NULL creates a new event container
+	 * @param name Name of user
+	 * @param dateOfBirth Birth date of user.
+	 * @param gender Gender of user (MALE or FEMALE).
+	 * @param weight Weight of user.
+	 * @param height Height of user.
+	 * @param events For testing, but if set to NULL creates a new event container.
 	 */
 	public User(String name, Calendar dateOfBirth, Gender gender,
 			double weight, double height, EventContainer events,
@@ -72,15 +65,15 @@ public class User implements Serializable {
 	
 	/**
 	 * Returns if the use has Tachycardia.
-	 * @return True if the user has Tachycardia, false otherwise
+	 * @return True if the user has Tachycardia, false otherwise.
 	 */
 	public boolean hasTachycardia(){
 		return this.hasTachycardia;
 	}
 	
 	/**
-	 * Returns if the user has Bradycardia
-	 * @return True if the user has Bradycardi, false otherwise
+	 * Returns if the user has Bradycardia.
+	 * @return True if the user has Bradycardi, false otherwise.
 	 */
 	public boolean hasBradycardia(){
 		return this.hasBradycardia;
@@ -115,8 +108,7 @@ public class User implements Serializable {
 	/**
 	 * Sets the weight for the users profile, must be in kg.
 	 * 
-	 * @param weight
-	 *            Weight of the user in kg.
+	 * @param weight Weight of the user in kg.
 	 */
 	public void setWeight(double weight) {
 		this.weight = weight;
@@ -126,7 +118,7 @@ public class User implements Serializable {
 	/**
 	 * Returns the weight of the user in kg.
 	 * 
-	 * @return
+	 * @return weight of the user in kg's
 	 */
 	public double getWeight() {
 		return weight;
@@ -135,8 +127,7 @@ public class User implements Serializable {
 	/**
 	 * Set the height for the users profile, must be in m.
 	 * 
-	 * @param height
-	 *            Height of the user in m.
+	 * @param height Height of the user in m.
 	 */
 	public void setHeight(double height) {
 		this.height = height;
