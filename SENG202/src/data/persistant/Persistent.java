@@ -137,18 +137,8 @@ public class Persistent {
 	 */
 	public static String generateUserID() {
 		String userID = UUID.randomUUID().toString();
-		System.out.println("generateed user id is: " + userID);
 		return userID;
 	}
-
-//	/**
-//	 * returns the most recently used userID.
-//	 * used in generating userID values 
-//	 * @return userId
-//	 */
-//	public static String getUserID() {
-//		return prefs.get("UserID", null);
-//	}
 
 	/**
 	 * Sets the current user.
@@ -189,12 +179,9 @@ public class Persistent {
 	 */
 	public static ObservableList<String> getUserNames() {
 		userNames.clear();
-		System.out.println("user names are: ");
 		for (User user : users) {
 			userNames.add(user.getName());
-			System.out.println(user.getName());
 		}
-		System.out.println("======");
 		return userNames;
 	}
 
@@ -240,7 +227,6 @@ public class Persistent {
 	public static void deleteUser(User user) {
 		if(user != null) {
 			users.remove(user);
-			System.out.println(user.getName());
 			userNames.remove(user.getName());
 			File path = new File(getFilePath() + "/" + user.getUserId());
 			deleteDirectory(path);
@@ -268,9 +254,7 @@ public class Persistent {
 			}
 			path.delete();
 		} else {
-			System.out.println("File Path exists = " + (path).exists());;
-			System.out.println("not deleting: " + path);
-			System.out.println("Not deleting that");
+			System.out.println("not deleting: " + path + ".. Not a Fitr folder");
 		}
 	}
 
@@ -299,12 +283,7 @@ public class Persistent {
 	 * @throws Exception 
 	 */
 	public static void main(String args[]) throws Exception {
-		clear();
-//		Persistent.setFilePath("/Users/SamSchofield/Desktop");
-//		User u = User.mockUser();
-//		Persistent.newUser(u);
-//		deleteUser(u);
-		//deleteDirectory(new File("/Users/SamSchofield/Desktop/Fitr"));
-		
+		//clear the preferences 
+		clear();		
 	}
 }

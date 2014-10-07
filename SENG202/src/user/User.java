@@ -195,9 +195,6 @@ public class User implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
-		for(User u : Persistent.getUsers()) {
-			System.out.println(u.getName());
-		}
 	}
 
 	/**
@@ -288,17 +285,14 @@ public class User implements Serializable {
 	 * @param events
 	 */
 	public void addEvents(EventContainer events) {
-		System.out.println("Adding events");
 		int sizeBefore = this.events.getAllEvents().size();
-		//int sizeBefore = FileLoader.numberOfEvents;
+
 		for(Event event : events.getAllEvents()) {
 			this.events.addEvent(event);
 		}
 		//change in the number of events 
-		System.out.println(this.events.getAllEvents().size() + ", " + sizeBefore);
 		LoadSummary.addEventsAdded(this.events.getAllEvents().size() - sizeBefore);
 		//total events in event container to be added - new events added 
-		System.out.println("there were " + FileLoader.numberOfEvents + " in the csv file");
 		LoadSummary.addEventsNotAdded(FileLoader.numberOfEvents - (this.events.getAllEvents().size() - sizeBefore));
 		Saver.SaveUser(this);
 	}
@@ -353,8 +347,4 @@ public class User implements Serializable {
 		userID = s;
 	}
 //-----------------------------------------------------------------------------------------
-	
-	public static void main(String[] args) {
-		mockUser();
-	}
 }

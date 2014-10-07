@@ -99,22 +99,4 @@ public class LoadSummary {
 				"Events added:", eventsAdded, "Events ignored:", eventsNotAdded,
 				"Line errors:", lineErrors, "Bad points:", badPoints);
 	}
-	
-	
-	public static void main(String[] args) {
-		String s = String.format("Import Summary:\t\t\t\t\t\t\t\t\t\n\n"
-				+ "%-50s%d\n"
-				+ "%-50s%d\n"
-				+ "%-50s%d\n"
-				+ "%-50s%d\n\n"
-				+ "*See About->Importing learn about file checking",			
-//				+ "Events are ignored if they: \n-Contain less than 2 points\n-Have already been added to the user\n\n"
-//				+ "A line has errors if it is not in the required format\n\n"
-//				+ "A point is ignored if it is deemed to be unreasonable",
-				"Events added:", eventsAdded, "Events ignored:", eventsNotAdded,
-				"Line errors:", lineErrors, "Bad points:", badPoints);
-		
-		System.out.println(s);
-	}
-
 }

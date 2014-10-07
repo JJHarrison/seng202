@@ -220,7 +220,6 @@ public class MainController {
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							System.out.println(LoadSummary.getSumamry());
 							try {
 								new Notification().start(new Stage());
 							} catch (Exception e) {

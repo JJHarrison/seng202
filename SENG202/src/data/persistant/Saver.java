@@ -36,7 +36,8 @@ public class Saver {
 			writer.write(profileString);
 			writer.close();
 		} catch (IOException e) {
-			System.out.println("No Existing filepath to save to");
+			// file path doesn't exists
+			// The file path has been set using a file chooser so we will never reach this
 			//e.printStackTrace();
 		}
 	}
@@ -53,7 +54,9 @@ public class Saver {
 	    try {
 	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
 	    } catch (IOException e) {
-	        System.out.println("Couldnt save picture. filepath not found");
+	    	//file path doesn't exist
+	        //System.out.println("Couldn't save picture. filepath not found");
+	    	
 	    }
 	}
 

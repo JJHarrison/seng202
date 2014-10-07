@@ -35,7 +35,7 @@ public class Loader {
 			user = gson.fromJson(br, User.class);
 
 		} catch (FileNotFoundException e) {
-			System.out.println("User not found");
+			//System.out.println("User not found");
 			e.printStackTrace();
 		}
 		return user;
