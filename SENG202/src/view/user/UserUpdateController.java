@@ -127,7 +127,10 @@ public class UserUpdateController {
 			Persistent.getCurrentUser().setWeight(weight.doubleValue());
 			Persistent.getCurrentUser().setHeight(height.doubleValue());
 			Persistent.getCurrentUser().setRestingHeartRate(hr.intValue());
+			
+			// Refresh the view
 			MainController.dashController.fillUser();
+			UserLoginController.refreshUsers();
 			UserUpdate.close();
 		}
 	}

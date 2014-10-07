@@ -29,10 +29,13 @@ public class UserLoginController implements Switchable {
 
 	@FXML
 	ListView<User> userList;
+	
+	private static ListView<User> staticUserList;
 
 	@FXML
 	void initialize() {
-		userList.itemsProperty().set(Persistent.getUsers());
+		staticUserList = userList;
+		userList.setItems(Persistent.getUsers());
 	}
 
 	@FXML
@@ -44,7 +47,7 @@ public class UserLoginController implements Switchable {
 	void actionLogin(ActionEvent event) {
 		User user = userList.getSelectionModel().getSelectedItem();
 		if (user != null) {
-			UserLoginManager.stage.hide();;
+			UserLoginManager.stage.hide();
 			Persistent.setUser(user);
 			Platform.runLater(new Runnable() {
 
@@ -76,4 +79,11 @@ public class UserLoginController implements Switchable {
 		Platform.exit();
 	}
 
+	/**
+	 * Refresh the users in the login manager.
+	 */
+	public static void refreshUsers() {
+		staticUserList.setItems(null);
+		staticUserList.setItems(Persistent.getUsers());
+	}
 }
