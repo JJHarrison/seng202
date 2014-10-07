@@ -295,9 +295,9 @@ public class User implements Serializable {
 		}
 		//change in the number of events 
 		System.out.println(this.events.getAllEvents().size() + ", " + sizeBefore);
-		LoadSummary.setEventsAdded(this.events.getAllEvents().size() - sizeBefore);
+		LoadSummary.addEventsAdded(this.events.getAllEvents().size() - sizeBefore);
 		//total events in event container to be added - new events added 
-		LoadSummary.setEventsNotAdded(events.getAllEvents().size() - (this.events.getAllEvents().size() - sizeBefore));
+		LoadSummary.addEventsNotAdded(events.getAllEvents().size() - (this.events.getAllEvents().size() - sizeBefore));
 		Saver.SaveUser(this);
 	}
 	

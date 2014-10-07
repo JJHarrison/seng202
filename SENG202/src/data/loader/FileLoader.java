@@ -102,6 +102,8 @@ public class FileLoader {
 			// add the last event of the csv file to events
 			if (!points.isEmpty() && eventName != null) { 
 				eventContainer.addEvent(new Event(eventName, points));
+			} else {
+				LoadSummary.addEventsNotAdded(1);
 			}
 
 		} catch (IOException e) {

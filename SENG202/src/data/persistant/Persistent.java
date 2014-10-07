@@ -188,9 +188,13 @@ public class Persistent {
 	 * @return userNames
 	 */
 	public static ObservableList<String> getUserNames() {
+		userNames.clear();
+		System.out.println("user names are: ");
 		for (User user : users) {
 			userNames.add(user.getName());
+			System.out.println(user.getName());
 		}
+		System.out.println("======");
 		return userNames;
 	}
 

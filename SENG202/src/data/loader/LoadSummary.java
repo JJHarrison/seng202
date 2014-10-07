@@ -41,14 +41,14 @@ public class LoadSummary {
 	/**
 	 * increments the number of events added
 	 */
-	public static void setEventsAdded(int numberOfEvents) {
+	public static void addEventsAdded(int numberOfEvents) {
 		eventsAdded += numberOfEvents;
 	}
 	
 	/**
 	 * increments the number of events not added
 	 */
-	public static void setEventsNotAdded(int numberOfEvents) {
+	public static void addEventsNotAdded(int numberOfEvents) {
 		eventsNotAdded += numberOfEvents;
 	}
 	
