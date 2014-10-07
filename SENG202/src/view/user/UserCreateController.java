@@ -80,7 +80,7 @@ public class UserCreateController implements Switchable {
 	 */
 	@FXML
 	void actionCreate(ActionEvent event) {
-		String name = fieldName.getText();
+		String name = fieldName.getText().trim();
 		LocalDate date = fieldDate.getValue();
 		Gender gender = fieldGender.getValue();
 		Number height = fieldHeight.getValue();
