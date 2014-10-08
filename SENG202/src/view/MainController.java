@@ -3,6 +3,7 @@ package view;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -272,7 +273,7 @@ public class MainController {
 								String.format("gnome-open %s", Reference.class
 										.getResource("fitrUG.pdf")));
 					} else {
-						File myFile = new File(Reference.class.getResource("fitrUG.pdf").toString());
+						File myFile = new File("src/resources/fitrUG.pdf");
 						Desktop.getDesktop().open(myFile);
 					}
 				} catch (IOException e) {
